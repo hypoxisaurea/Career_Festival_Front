@@ -70,3 +70,50 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+```
+Career_Festival_Front
+├─ career_festival_front
+│  ├─ package-lock.json
+│  ├─ package.json
+│  ├─ public
+│  │  └─ index.html
+│  └─ src
+│     ├─ App.css
+│     ├─ App.js
+│     ├─ assets
+│     │  ├─ 0109피그마
+│     │  │  ├─ 1메인화면 - 행사목록 카테고리 들어간 후.png
+│     │  │  ├─ 1메인화면 - 회원가입 or 로그인 후 바로 뜨는 홈화면.png
+│     │  │  ├─ 2 DetailFestivalPage 행사 클릭한 화면(댓글창포함).png
+│     │  │  ├─ 로그인 페이지.png
+│     │  │  ├─ 회원가입 주최자 페이지.png
+│     │  │  ├─ 회원가입 참가자 주최자 모달창.png
+│     │  │  ├─ 회원가입 참가자 페이지.png
+│     │  │  └─ 회원가입 페이지.png
+│     │  └─ images
+│     ├─ components
+│     │  ├─ footer
+│     │  │  ├─ Footer.jsx
+│     │  │  └─ FooterStyle.jsx
+│     │  ├─ header
+│     │  │  ├─ Header.jsx
+│     │  │  └─ HeaderStyle.jsx
+│     │  ├─ home
+│     │  │  ├─ FilterComponent.jsx
+│     │  │  └─ RecommandComponent.jsx
+│     │  └─ login
+│     │     ├─ LoginComponent.jsx
+│     │     └─ LoginComponentStyle.jsx
+│     ├─ index.css
+│     ├─ index.js
+│     ├─ pages
+│     │  ├─ DetailFestivalPage.jsx
+│     │  ├─ HomePage.jsx
+│     │  ├─ LoginPage.jsx
+│     │  └─ SignupPage.jsx
+│     └─ utils
+└─ README.md
+
+```
