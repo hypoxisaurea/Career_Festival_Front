@@ -15,7 +15,7 @@ const LoginComponent = () => {
   return (
     <div>
       <label>
-        Username :
+        Username:
         <input
           type="text"
           value={username}
