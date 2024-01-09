@@ -1,21 +1,26 @@
-// src/pages/Home.jsx
-
-// 토의 필요
-// 메인화면을 하나만 두고
-// 컴포넌트로 바꾸면서 쓸지(행사목록, 기록장, 마이페이지등)
-
-// 아니면 행사목록, 기록장, 마이페이지 등을 
-// 각각 페이지로 만들지
-
+// src/pages/HomePage.jsx
 import React from 'react';
+import { Link } from 'react-router-dom';
+import Recommand from '../components/home/Recommand';
+import Community from '../components/home/Community';
+import Diary from '../components/home/Diary';
+import { HomePageContainer, LinkContainer } from './HomePageStyle';
 
-const Homepage = () => {
+const HomePage = () => {
   return (
-    <div>
+    <HomePageContainer>
+      
+      <LinkContainer>
+        <Link to="/festival-list">행사목록</Link>
+        <Link to="/diary">기록장</Link>
+        <Link to="/community">커뮤니티</Link>
+      </LinkContainer>
       <h2>Home Page</h2>
+      <Recommand />
       {/* Add home page content here */}
-    </div>
+      
+    </HomePageContainer>
   );
 };
 
-export default Homepage;
+export default HomePage;

@@ -7,6 +7,10 @@ import HomePage from './pages/HomePage';
 import DetailFestivalPage from './pages/DetailFestivalPage';
 import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
+import Recommand from './components/home/Recommand';
+import FestivalList from './components/home/FestivalList';
+import Community from './components/home/Community';
+import Diary from './components/home/Diary';
 import './App.css';
 
 function App() {
@@ -19,6 +23,9 @@ function App() {
           <Route path="/detail" element={<DetailFestivalPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
+          <Route path="/festival-list" element={<FestivalList />} />
+          <Route path="/community" element={<Community />} />
+          <Route path="/diary" element={<Diary />} />
         </Routes>
         <Footer />
       </div>

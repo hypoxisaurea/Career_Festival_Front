@@ -88,10 +88,10 @@ Career_Festival_Front
 │     │  │  ├─ 1메인화면 - 회원가입 or 로그인 후 바로 뜨는 홈화면.png
 │     │  │  ├─ 2 DetailFestivalPage 행사 클릭한 화면(댓글창포함).png
 │     │  │  ├─ 로그인 페이지.png
-│     │  │  ├─ 회원가입 주최자 페이지.png
-│     │  │  ├─ 회원가입 참가자 주최자 모달창.png
-│     │  │  ├─ 회원가입 참가자 페이지.png
-│     │  │  └─ 회원가입 페이지.png
+│     │  │  ├─ 회원가입1 페이지.png
+│     │  │  ├─ 회원가입2 참가자 주최자 모달창.png
+│     │  │  ├─ 회원가입3 주최자 페이지.png
+│     │  │  └─ 회원가입4 참가자 페이지.png
 │     │  └─ images
 │     ├─ components
 │     │  ├─ footer
@@ -101,16 +101,27 @@ Career_Festival_Front
 │     │  │  ├─ Header.jsx
 │     │  │  └─ HeaderStyle.jsx
 │     │  ├─ home
-│     │  │  ├─ FilterComponent.jsx
-│     │  │  └─ RecommandComponent.jsx
+│     │  │  ├─ Community.jsx
+│     │  │  ├─ CommunityStyle.jsx
+│     │  │  ├─ Diary.jsx
+│     │  │  ├─ DiaryStyle.jsx
+│     │  │  ├─ FestivalList.jsx
+│     │  │  ├─ FestivalListStyle.jsx
+│     │  │  ├─ Filter.jsx
+│     │  │  ├─ FilterStyle.jsx
+│     │  │  ├─ Recommand.jsx
+│     │  │  ├─ RecommandStyle.jsx
+│     │  │  ├─ Result.jsx
+│     │  │  └─ ResultStyle.jsx
 │     │  └─ login
-│     │     ├─ LoginComponent.jsx
-│     │     └─ LoginComponentStyle.jsx
+│     │     ├─ Login.jsx
+│     │     └─ LoginStyle.jsx
 │     ├─ index.css
 │     ├─ index.js
 │     ├─ pages
 │     │  ├─ DetailFestivalPage.jsx
 │     │  ├─ HomePage.jsx
+│     │  ├─ HomePageStyle.jsx
 │     │  ├─ LoginPage.jsx
 │     │  └─ SignupPage.jsx
 │     └─ utils
