@@ -11,7 +11,7 @@ const Recommand = () => {
 
   return (
     <div>
-      <h3>추천 행사</h3>
+      <h3>추천 행사 사진</h3>
       <ul>
         {recommandedEvents.map(event => (
           <li key={event.id}>
