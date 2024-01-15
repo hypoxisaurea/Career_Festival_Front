@@ -1,13 +1,23 @@
 // src/components/footer/Footer.jsx
 import React from 'react';
-import FooterStyle from './FooterStyle'; // 스타일 파일 불러오기
+import styled from 'styled-components';
+
+const FooterContainer = styled.footer`
+  display: flex;
+  flex-direction: column;
+  background: #582fff;
+  padding: 10px 15%;
+  text-align: center;
+  color: #ffffff;
+`;
+
 
 const Footer = () => {
   return (
-    <FooterStyle.FooterContainer>
+    <FooterContainer>
       <p>footer</p>
       <p>&copy; 2024 Career Festival</p>
-    </FooterStyle.FooterContainer>
+    </FooterContainer>
   );
 };
 

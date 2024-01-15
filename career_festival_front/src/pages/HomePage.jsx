@@ -1,5 +1,6 @@
 // src/pages/HomePage.jsx
 import React from 'react';
+<<<<<<< Updated upstream
 import { Link } from 'react-router-dom';
 import Recommand from '../components/home/Recommand';
 import Community from '../components/home/Community';
@@ -20,6 +21,15 @@ const HomePage = () => {
       {/* Add home page content here */}
       
     </HomePageContainer>
+=======
+
+const HomePage = () => {
+  return (
+    <div>
+      <h2>Main Festival Page</h2>
+      {/* Add detail festival page content here */}
+    </div>
+>>>>>>> Stashed changes
   );
 };
 
