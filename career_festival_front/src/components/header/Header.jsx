@@ -178,8 +178,8 @@ const Header = () => {
       </LogoSearchContainer>
       <Line />
       <LinkContainer>
-        <LinkItem to="/list">행사목록</LinkItem>
-        <LinkItem to="/record">기록장</LinkItem>
+        <LinkItem to="/festival-list">행사목록</LinkItem>
+        <LinkItem to="/diary">기록장</LinkItem>
         <LinkItem to="/community">커뮤니티</LinkItem>
         <LinkItem to="/mypage">마이페이지</LinkItem>
         <RegisterItem to="/register">행사등록하기</RegisterItem>
