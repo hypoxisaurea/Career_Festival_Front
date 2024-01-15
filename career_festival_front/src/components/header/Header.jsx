@@ -141,7 +141,6 @@ const HeightLine = styled.div`
 
 
 
-
 const Header = () => {
   // 검색어
   const [searchTerm, setSearchTerm] = useState("");

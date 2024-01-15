@@ -2,7 +2,7 @@
 import styled from 'styled-components';
 
 const HomePickCarouselContainer = styled.div`
-  font-weight: bold;
+ font-weight: bold;
 `;
 
 export {HomePickCarouselContainer};
