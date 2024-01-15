@@ -25,4 +25,10 @@ const LinkContainer = styled.div`
   }
 `;
 
-export { HomePageContainer, LinkContainer };
+const RecommandPlaceContainer = styled.div`
+background-color: #f2f2f2; /*임의로 영역 확인용*/ `
+
+const RecommandPersonalContainer = styled.div`
+background-color: #f7e4ad; /*임의로 영역 확인용*/ `
+
+export { HomePageContainer, LinkContainer, RecommandPlaceContainer, RecommandPersonalContainer };
