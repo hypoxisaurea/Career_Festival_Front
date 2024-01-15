@@ -1,8 +1,5 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-<<<<<<< Updated upstream
-import HeaderStyle from './HeaderStyle'; // 스타일 파일 불러오기
-=======
 import styled from "styled-components";
 import logo from "../../assets/images/logo.png";
 import search from "../../assets/images/search.png";
@@ -143,7 +140,7 @@ const HeightLine = styled.div`
 `;
 
 
->>>>>>> Stashed changes
+
 
 const Header = () => {
   // 검색어
@@ -152,16 +149,6 @@ const Header = () => {
     setSearchTerm(event.target.value);
   };
 
-<<<<<<< Updated upstream
-      <HeaderStyle.LinkContainer>
-        <HeaderStyle.LinkItem to="/">Home</HeaderStyle.LinkItem>
-        <HeaderStyle.LinkItem to="/detail">Detail Festival</HeaderStyle.LinkItem>
-        <HeaderStyle.LinkItem to="/login">Login</HeaderStyle.LinkItem>
-        <HeaderStyle.LinkItem to="/signup">Signup</HeaderStyle.LinkItem>
-      </HeaderStyle.LinkContainer>
-      
-    </HeaderStyle.HeaderContainer>
-=======
   //로그인
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
@@ -205,7 +192,7 @@ const Header = () => {
 
       <Line2 />
     </HeaderContainer>
->>>>>>> Stashed changes
+
   );
 };
 
