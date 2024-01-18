@@ -27,15 +27,16 @@ const SocialLoginButtons = styled.div`
     cursor: pointer;
   }
 
+  // 카카오로 시작하기
   button:nth-child(1) {
-    background-color: #ffffff;
-    border-color: #fde500;
+    background-color: #ffffff;  // 배경색 흰색
+    border: 4px solid #fde500;  // 테두리 설정
     color: #181818;
   }
-
+  // 네이버로 시작하기
   button:nth-child(2) {
-    background-color: #ffffff;
-    border-color: #06b163;
+    background-color: #ffffff;  // 배경색 흰색
+    border: 4px solid #06b163;  // 테두리 설정
     color: #181818;
   }
 `;
