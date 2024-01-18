@@ -12,6 +12,7 @@ import FestivalList from './components/home/FestivalList';
 import Community from './components/home/Community';
 import Diary from './components/home/Diary';
 import './App.css';
+import FestivalListPage from './pages/FestivalListPage';
 
 function App() {
   return (
@@ -23,7 +24,7 @@ function App() {
           <Route path="/detail" element={<DetailFestivalPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
-          <Route path="/festival-list" element={<FestivalList />} />
+          <Route path="/festival-list" element={<FestivalListPage />} />
           <Route path="/community" element={<Community />} />
           <Route path="/diary" element={<Diary />} />
         </Routes>
