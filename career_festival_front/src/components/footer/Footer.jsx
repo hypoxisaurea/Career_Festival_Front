@@ -2,13 +2,13 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const FooterContainer = styled.footer`
+const FooterContainer = styled.div`
   font-size: 15px;
   font-weight: 500;
 `;
 
 //공지사항 
-const NoticeContainer = styled.footer`
+const NoticeContainer = styled.div`
   background: #ffffff;
   border-top: solid 1px #D9D9D9;
   border-bottom: solid 1px #D9D9D9;
@@ -21,7 +21,7 @@ const NoticeContainer = styled.footer`
 `
 
 //하단 전체
-const FooterInfoContainer = styled.footer`
+const FooterInfoContainer = styled.div`
   background: #fbfafa;
   padding-left: 118px;
   height: 466px;
@@ -32,7 +32,7 @@ const FooterInfoContainer = styled.footer`
 `
 
 //회사소개...., 서비스 이용약관.. 라인 (추후 링크 걸 수 있는 라인)
-const FooterInfoBtnContainer = styled.footer`
+const FooterInfoBtnContainer = styled.li`
   display: flex;
   list-style:none;
   margin: 15px 0px;
@@ -73,7 +73,7 @@ const FooterContactContainer = styled.footer`
   }
 `
 
-const FooterCompanyInfoContainer = styled.footer`
+const FooterCompanyInfoContainer = styled.div`
   font-size: 13px;
   margin-right : 118px;
   line-height: 1.5;
@@ -123,7 +123,7 @@ const Footer = () => {
             <li>개인정보처리방침</li>
             <li>전자금융거래 이용약관</li>
             <li>취소 및 환불 약관</li>
-            <li>이메일 주고 무단수집 거부</li>
+            <li>이메일 주소 무단수집 거부</li>
           </FooterInfoBtnContainer>
           <br></br>
           <div style={{fontSize:"15px", color: "#838383"}}>Copyright CareerFestival Co.   All Rights Reserved</div>

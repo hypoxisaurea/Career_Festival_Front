@@ -1,26 +1,51 @@
 // src/components/home/Recommand.jsx
 import React from 'react';
+import styled from 'styled-components';
+import dummy from "../../db/RecommandedEvents.json";
 
-const Recommand = () => {
-  // 예시 데이터 (행사 목록)
-  const recommandedEvents = [
-    { id: 1, title: '좋은 기업 채용박람회', date: '2024-02-15' },
-    { id: 2, title: 'IT 기술 세미나', date: '2024-03-10' },
-    { id: 3, title: '디자인 워크샵', date: '2024-04-05' },
-  ];
+const RecommandCardcontainer = styled.div`
+  width: 392px;
+  height: 400px;
+  margin: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid red;
+  border-radius: 32px;
 
+  img{
+    width: 392px;
+    height: 246px;
+    border-radius: 32px;
+    margin: 10px 0px;
+  }
+
+  h4{
+    margin: 0px;
+  }
+`
+const RecommmadInfoWrapper = styled.div`
+  width: 392px;
+  height: 132px;
+ 
+  border: 1px solid red;
+`
+
+const Recommand = ({mainImg, eventName, recruitmentStart, recruitmentEnd, price}) => {
   return (
-    <div>
-      <h3>추천 행사 사진</h3>
-      <ul>
-        {recommandedEvents.map(event => (
-          <li key={event.id}>
-            <strong>{event.title}</strong> - {event.date}
-          </li>
-        ))}
-      </ul>
-    </div>
+    <RecommandCardcontainer>
+      <img src={mainImg} alt='행사 이미지'/>
+      <RecommmadInfoWrapper>
+        <h4>{eventName}</h4>
+        <div>{recruitmentStart}</div>
+        <div>{recruitmentEnd}</div>
+        <div>{price}</div>
+      </RecommmadInfoWrapper>
+    </RecommandCardcontainer>
   );
 };
 
 export default Recommand;
+
+
+
