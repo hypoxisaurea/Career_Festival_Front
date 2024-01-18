@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import HomePickCarousel from "../components/home/HomePickCarousel";
 // import FestivalList from "../components/home/FestivalList";
 
 // 상단-배너+인기검색어
@@ -13,8 +12,21 @@ const TopContainer = styled.div`
 const BannerAndPopular = styled.div`
   display: flex;
   gap: 3vw;
-  margin: 0 auto;
+  margin: 2vw auto;
 `;
+
+const HomeP = styled.p`
+  color: #000000;
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding-left: 15vw;
+`;
+
+const PickText = styled.span`
+  color: #582fff;
+  font-weight: bold;
+`;
+
 //배너
 const Banner = styled.div`
   width: 1000px;
@@ -22,6 +34,7 @@ const Banner = styled.div`
   background-color: #d9d9d9;
   padding: 20px;
 `;
+
 //인기검색어
 const Popularsearches = styled.div`
   width: 170px;
@@ -35,7 +48,7 @@ const MiddleContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
-  background-color: #eceaf1;
+  background-color: #ffffff;
   gap: 4vw;
   padding: 4vw 0 6vw 0;
 `;
@@ -45,29 +58,52 @@ const FilterAndAreaContainer = styled.div`
   flex-direction: column;
   gap: 2vw;
 `;
-
+//필터
 const Filter = styled.div`
   width: 200px;
   height: 500px;
   border-radius: 20px;
-  border: 1px solid;
+  border: 1px solid #000000;
   justify-content: center;
+  color: #582fff;
+  font-size: 1rem;
+  font-weight: bold;
+`;
+const FilterP = styled.p`
+  font-weight: bold;
+  color: #000000;
+  font-size: 0.8rem;
 `;
 //지역
 const Area = styled.div`
   width: 200px;
   height: 100px;
   border-radius: 20px;
-  border: 1px solid;
+  border: 1px solid #000000;
   justify-content: center;
+  color: #000000;
+  font-size: 0.8rem;
+  font-weight: bold;
+`;
+// 지역 셀렉트 박스 스타일
+const SelectBox = styled.select`
+  width: 100%;
+  padding: 0.5rem;
+  margin: 0.5rem;
+  border: 1px solid #d9d9d9;
+  border-radius: 5px;
+  font-size: 1rem;
 `;
 //행사유형
 const Eventtype = styled.div`
   width: 200px;
   height: 200px;
   border-radius: 20px;
-  border: 1px solid;
+  border: 1px solid #000000;
   justify-content: center;
+  color: #000000;
+  font-size: 0.8rem;
+  font-weight: bold;
 `;
 
 const HomeMiddleContainer = styled.div`
@@ -136,19 +172,29 @@ const FestivalListPage = () => {
     <div>
       {/* 상단 영역 */}
       <TopContainer>
-        <HomePickCarousel /> {/* 위치조정해야함 컴포넌트 파일에서 */}
+        <HomeP style={{ marginTop: "1vw" }}>
+          커리어 페스티벌 <PickText>pick!</PickText>
+        </HomeP>
         <BannerAndPopular>
           <Banner>배너</Banner>
           <Popularsearches>인기검색어</Popularsearches>
         </BannerAndPopular>
       </TopContainer>
-
       {/* 중간 영역 */}
       <MiddleContainer>
         {/* 필터, 지역, 행사유형 영역 */}
         <FilterAndAreaContainer>
-          <Filter>필터</Filter>
-          <Area>지역</Area>
+          <Filter>
+            필터<FilterP>행사분야</FilterP>
+          </Filter>
+          <Area>
+            지역
+            <SelectBox>
+              <option value="seoul">서울</option>
+              <option value="busan">부산</option>
+              <option value="incheon">인천</option>
+            </SelectBox>
+          </Area>
           <Eventtype>행사유형</Eventtype>
         </FilterAndAreaContainer>
 

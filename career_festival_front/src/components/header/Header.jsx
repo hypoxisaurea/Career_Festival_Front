@@ -3,24 +3,36 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import logo from "../../assets/images/logo.png";
 import search from "../../assets/images/search.png";
-import setting from "../../assets/images/setting.png";
 
 // 헤더 컨테이너 스타일
 const HeaderContainer = styled.div`
-  color: #582fff;
+  width: 100%;
+  height: 100%;
+  background: #ffffff;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+  margin: 10px 0 5px 0;
+  padding: 12px 0 16px 0;
+
+  display: block;
+  align-items: center; 
+  text-align: center; 
+`;
+// 로그인과 회원가입을 포함하는 컨테이너 스타일
+
+const AuthButtonsContainer = styled.div`
   display: flex;
-  flex-direction: column;
-  margin-top: 3vw;
-  padding: 10px 15%;
+  align-items: center;
+  gap: 2vw;
 `;
 
-// 로고와 검색을 포함하는 컨테이너 스타일
+
 const LogoSearchContainer = styled.div`
   display: flex;
   align-items: center;
+  justify-content: center;
 `;
 
-// 로고 이미지 스타일
 const LogoImage = styled.img`
   width: 15vw;
   cursor: pointer;
@@ -28,14 +40,6 @@ const LogoImage = styled.img`
   padding: 1.5vw;
 `;
 
-// 검색 아이콘과 검색 입력창을 포함하는 컨테이너 스타일
-const SearchItem = styled.div`
-  width: 50%;
-  display: flex;
-  align-items: center;
-  color: #582fff;
-  position: relative;
-`;
 
 // 검색 아이콘 스타일
 const SearchImage = styled.img`
@@ -45,15 +49,36 @@ const SearchImage = styled.img`
   margin-left: 1vw;
   z-index: 1;
 `;
-
-// 검색 입력창 스타일
+// 검색 아이콘과 검색 입력창을 포함하는 컨테이너 스타일
+const SearchItem = styled.div`
+  width: 50%;
+  display: flex;
+  align-items: center;
+  color: #582fff;
+`;
+//검색 내부
 const SearchInput = styled.input`
-  width: 80%;
+  width: 60%;
   border: 0.15vw solid #582fff;
   border-radius: 0.5vw;
-  padding: 0.5vw 1vw 0.5vw 2.5vw;
+  padding: 0.7vw 1vw 0.7vw 2.5vw;
   font-size: 0.8vw;
 `;
+//검색 버튼
+const SearchButton = styled.button`
+  background-color: #582fff;
+  color: #ffffff;
+  border: none;
+  border-radius: 0.5vw;
+  padding: 0.7vw 1vw;
+  font-size: 0.8vw;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #838383;
+  }
+`;
+
 
 // 로그인 버튼 스타일
 const LoginButtonStyle = styled.button`
@@ -61,7 +86,6 @@ const LoginButtonStyle = styled.button`
   background-color: #ffffff;
   color: #838383;
   font-weight: bold;
-  padding: 1vw 2vw 1vw 5vw;
   font-size: 0.8rem;
   border: none;
 
@@ -69,25 +93,36 @@ const LoginButtonStyle = styled.button`
     text-decoration: underline;
   }
 `;
+
 const WelcomeText = styled.span`
   color: #582fff;
   font-size: 0.8rem;
   margin-left: 1vw;
 `;
 
-// 환경 아이콘 스타일
-const SettingImage = styled.img`
-  width: 1vw;
-  height: 1vw;
-  margin-left: 1vw;
+// 회원가입 버튼 스타일
+const Join = styled.button`
+  background-color: #ffffff;
+  color: #838383;
+  font-weight: bold;
+  padding: 1vw 1vw 1vw 1vw;
+  font-size: 0.8rem;
+  border: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
 `;
+
 
 // 링크 목록을 포함하는 컨테이너 스타일
 const LinkContainer = styled.div`
   display: flex;
   align-items: center;
   margin-top: 1vw;
+  margin-left:-10vw;
   align-items: center;
+  justify-content: center; /* 가운데 정렬을 위해 추가한 스타일 */
 `;
 
 // 각각의 링크 아이템 스타일
@@ -125,15 +160,6 @@ const Line = styled.div`
   background-color: #d9d9d9;
 `;
 
-//라인 2
-const Line2 = styled.div`
-  margin-top: 1vw;
-  width: 100%;
-  height: 2px;
-  background-color: rgba(217, 217, 217, 1);
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.25);
-`;
-
 //세로선
 const HeightLine = styled.div`
   color: #d9d9d9;
@@ -144,8 +170,17 @@ const HeightLine = styled.div`
 const Header = () => {
   // 검색어
   const [searchTerm, setSearchTerm] = useState("");
+
+  // 검색어 변경 핸들러
   const handleSearchTermChange = (event) => {
     setSearchTerm(event.target.value);
+  };
+
+  // 검색 버튼 클릭 핸들러
+  const handleSearchButtonClick = () => {
+    // 여기에서 검색 버튼이 클릭되었을 때 수행할 동작을 추가
+    // 예를 들면 검색 결과를 가져오거나 페이지를 이동하는 등의 동작
+    console.log("검색어:", searchTerm);
   };
 
   //로그인
@@ -168,13 +203,16 @@ const Header = () => {
             value={searchTerm}
             placeholder="2024년도 취업 세미나"
           />
+          <SearchButton onClick={handleSearchButtonClick}>검색</SearchButton>
         </SearchItem>
-        <Link to="/login">
-          <LoginButtonStyle onClick={handleButtonClick}>
-            {isLoggedIn ? "로그아웃" : "로그인"}
-          </LoginButtonStyle>
-          <SettingImage src={setting} alt="setting" />
-        </Link>
+        <AuthButtonsContainer>
+          <Link to="/login">
+            <LoginButtonStyle onClick={handleButtonClick}>
+              {isLoggedIn ? "로그아웃" : "로그인"}
+            </LoginButtonStyle>
+          </Link>
+          <Join to="/signup">회원가입</Join>
+        </AuthButtonsContainer>
       </LogoSearchContainer>
       <Line />
       <LinkContainer>
@@ -188,10 +226,7 @@ const Header = () => {
           {isLoggedIn ? "000님 환영합니다!" : "로그인 해주세요!"}
         </WelcomeText>
       </LinkContainer>
-
-      <Line2 />
     </HeaderContainer>
-
   );
 };
 
