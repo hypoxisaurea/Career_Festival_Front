@@ -1,7 +1,7 @@
-// src/components/LoginComponentStyle.js
+// src/components/login/LoginStyle.jsx
 import styled from "styled-components";
 
-const LoginComponentContainer = styled.div`
+const LoginContainer = styled.div`
   max-width: 300px;
   margin: 0 auto;
   padding: 20px;
@@ -18,21 +18,37 @@ const InputField = styled.input`
 const Button = styled.button`
   width: 100%;
   padding: 10px;
-  background-color: #007bff;
+  background-color: #582fff;
   color: #fff;
   border: none;
   border-radius: 5px;
   cursor: pointer;
 
   &:hover {
-    background-color: #0056b3;
+    background-color: #401f91;
   }
 `;
 
-const LoginComponentStyle = {
-  LoginComponentContainer,
+const SignupButton = styled.button`
+  width: 100%;
+  padding: 10px;
+  background-color: #582fff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  margin-top: 10px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #401f91;
+  }
+`;
+
+const LoginStyle = {
+  LoginContainer,
   InputField,
   Button,
+  SignupButton,
 };
 
-export default LoginComponentStyle;
+export default LoginStyle;
