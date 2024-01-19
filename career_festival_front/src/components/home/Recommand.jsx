@@ -2,6 +2,11 @@
 import React from 'react';
 import styled from 'styled-components';
 import dummy from "../../db/RecommandedEvents.json";
+import {useState, useEffect} from 'react';
+
+import EmptyHeartImg from "../../assets/images/emptyheart.png";
+import HeartImg from "../../assets/images/heart.png";
+
 
 const RecommandCardcontainer = styled.div`
   display: flex;
@@ -26,7 +31,12 @@ const RecommmadInfoWrapper = styled.div`
   border: 1px solid red;
 `
 
-const Recommand = ({mainImg, eventName, recruitmentStart, recruitmentEnd, price}) => {
+const HeartIcon = styled.img`
+  
+`
+// const HeartButton = ({isLiked, onclick})
+
+const Recommand = ({mainImg, eventName, recruitmentStart, recruitmentEnd, isLiked, price, profile}) => {
   return (
     <RecommandCardcontainer>
       <img src={mainImg} alt='행사 이미지'/>
@@ -34,7 +44,9 @@ const Recommand = ({mainImg, eventName, recruitmentStart, recruitmentEnd, price}
         <h4>{eventName}</h4>
         <div>{recruitmentStart}</div>
         <div>{recruitmentEnd}</div>
+        <HeartIcon src={EmptyHeartImg} alt='heartlogo'/> {/*백엔드에서 나오면 바꾸기*/}
         <div>{price}</div>
+        <img src={profile} alt='주최자 이미지'/>
       </RecommmadInfoWrapper>
     </RecommandCardcontainer>
   );
