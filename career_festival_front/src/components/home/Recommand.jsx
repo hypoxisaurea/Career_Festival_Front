@@ -4,9 +4,6 @@ import styled from 'styled-components';
 import dummy from "../../db/RecommandedEvents.json";
 
 const RecommandCardcontainer = styled.div`
-  width: 392px;
-  height: 400px;
-  margin: 5px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -14,8 +11,8 @@ const RecommandCardcontainer = styled.div`
   border-radius: 32px;
 
   img{
-    width: 392px;
-    height: 246px;
+    width: 30px;
+    height: 20px;
     border-radius: 32px;
     margin: 10px 0px;
   }
@@ -25,8 +22,6 @@ const RecommandCardcontainer = styled.div`
   }
 `
 const RecommmadInfoWrapper = styled.div`
-  width: 392px;
-  height: 132px;
  
   border: 1px solid red;
 `
