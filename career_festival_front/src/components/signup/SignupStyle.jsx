@@ -88,8 +88,6 @@ const SignupButton = styled.button`
 
 // 모달 스타일
 const ModalStyle = styled.div`
-  width: 30%;
-  height: 40%;
   position: fixed;
   top: 50%;
   left: 50%;
