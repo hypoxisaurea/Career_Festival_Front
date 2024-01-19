@@ -7,6 +7,7 @@ import Diary from '../components/home/Diary';
 //import HomePickCarousel from '../components/home/HomePickCarousel';
 import dummy from "../db/RecommandedEvents.json";
 import styled from 'styled-components';
+import Banner from "../components/home/Banner";
 
 //Home 전체 페이지
 const HomePageContainer = styled.div`
@@ -75,7 +76,7 @@ const HomePage = () => {
   return (
     <HomePageContainer>
       
-       
+       <Banner/>
       <RecommandPlaceContainer>
         <h2 style={{fontSize:'24px', 
                     fontWeight: '900',
