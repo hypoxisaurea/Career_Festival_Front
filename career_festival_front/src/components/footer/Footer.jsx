@@ -83,7 +83,7 @@ const Footer = () => {
   return (
     <FooterContainer>
       <NoticeContainer>
-        <span>공지사항</span>
+        <span>공지사항</span><span style={{marginLeft: "20px"}}>유료 행사 참가자 신청 프로세스 변경 안내</span>
       </NoticeContainer>
       <FooterInfoContainer>
         <FooterInfoBtnContainer>
