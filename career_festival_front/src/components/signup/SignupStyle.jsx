@@ -4,8 +4,8 @@ const SignupContainer = styled.div`
   max-width: 300px;
   margin: 0 auto;
   padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+
+
 `;
 
 const InputField = styled.input`
@@ -16,28 +16,44 @@ const InputField = styled.input`
 
 const SocialLoginButtons = styled.div`
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;  // 위아래로 나타나도록 설정
+  align-items: center;     // 가운데 정렬
+  margin-top: 20px;
   margin-bottom: 20px;
 
   button {
-    width: 48%;
+    width: 100%;             // 버튼 너비 조절
+    margin-bottom: 10px;    // 버튼 간격 조절
     padding: 10px;
-    border: 2px solid transparent;
+    border: 3px solid transparent;
     border-radius: 5px;
     cursor: pointer;
   }
 
   // 카카오로 시작하기
   button:nth-child(1) {
-    background-color: #ffffff;  // 배경색 흰색
-    border: 4px solid #fde500;  // 테두리 설정
+    background-color: #ffffff;
+    border: 3px solid #fde500;
     color: #181818;
   }
   // 네이버로 시작하기
   button:nth-child(2) {
-    background-color: #ffffff;  // 배경색 흰색
-    border: 4px solid #06b163;  // 테두리 설정
+    background-color: #ffffff;
+    border: 3px solid #2feb00;
     color: #181818;
+  }
+`;
+
+const OrDivider = styled.div`
+  margin: 10px 0;
+  display: flex;
+  align-items: center;
+
+  div {
+    flex: 1;
+    height: 1px;
+    background-color: #ccc;
+    margin: 0 10px;
   }
 `;
 
@@ -47,11 +63,11 @@ const EmailVerificationContainer = styled.div`
 
   button {
     width: 48%;
+    background-color: #ffffff;
+    border: 3px solid #582fff;
     padding: 10px;
     margin-left: 10px;
-    background-color: #582fff;
-    color: #fff;
-    border: none;
+    color: #582fff;  // 텍스트 색상을 버튼 테두리 색상과 일치하도록 수정
     border-radius: 5px;
     cursor: pointer;
   }
@@ -88,6 +104,7 @@ const SignupStyle = {
   EmailVerificationContainer,
   AgreementContainer,
   SignupButton,
+  OrDivider,
 };
 
 export default SignupStyle;
