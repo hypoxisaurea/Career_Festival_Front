@@ -38,16 +38,17 @@ const HeartIcon = styled.img`
 
 const Recommand = ({mainImg, eventName, recruitmentStart, recruitmentEnd, isLiked, price, profile}) => {
   return (
-    <div>
-      <h3>추천 행사 사진</h3>
-      <ul>
-        {recommandedEvents.map(event => (
-          <li key={event.id}>
-            <strong>{event.title}</strong> - {event.date}
-          </li>
-        ))}
-      </ul>
-    </div>
+    <RecommandCardcontainer>
+      <img src={mainImg} alt='행사 이미지'/>
+      <RecommmadInfoWrapper>
+        <h4>{eventName}</h4>
+        <div>{recruitmentStart}</div>
+        <div>{recruitmentEnd}</div>
+        <HeartIcon src={EmptyHeartImg} alt='heartlogo'/> {/*백엔드에서 나오면 바꾸기*/}
+        <div>{price}</div>
+        <img src={profile} alt='주최자 이미지'/>
+      </RecommmadInfoWrapper>
+    </RecommandCardcontainer>
   );
 };
 

@@ -1,11 +1,18 @@
 // src/pages/DetailFestival.jsx
-import React from 'react';
+import React from "react";
+import {
+  EnrollmentContainer,
+  EventDetailContainer,
+} from "./DetailFestivalPageStyle";
+import Enrollment from "../components/enrollment/Enrollment";
+import EventDetail from "../components/eventDetail/EventDetail";
 
 const DetailFestivalPage = () => {
   return (
     <div>
-      <h2>Detail Festival Page</h2>
-      {/* Add detail festival page content here */}
+      <EventDetailContainer>
+        <EventDetail />
+      </EventDetailContainer>
     </div>
   );
 };
