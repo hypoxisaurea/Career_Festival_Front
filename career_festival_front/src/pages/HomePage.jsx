@@ -4,22 +4,21 @@ import Recommand from '../components/home/Recommand';
 import Community from '../components/home/Community';
 import Diary from '../components/home/Diary';
 //import { HomePageContainer, HomePickCarouselContainer, RecommandPlaceWraper, RecommandPersonalWraper, RecommandPlaceContainer,RecommandPersonalContainer } from './HomePageStyle';
-import HomePickCarousel from '../components/home/HomePickCarousel';
+//import HomePickCarousel from '../components/home/HomePickCarousel';
 import dummy from "../db/RecommandedEvents.json";
 import styled from 'styled-components';
 
 //Home 전체 페이지
 const HomePageContainer = styled.div`
-  width: 90%;
+  display: flex;
+  flex-direction: column;
+  width: 80%;
   margin: 0 auto;
   //padding: 20px;
 
 `;
 
-//배너
-const HomePickCarouselContainer = styled.div`
- 
-`
+
 //위치 근처 추천
 const RecommandPlaceContainer = styled.div`
   background-color: #f2f2f2; /*임의로 영역 확인용*/
@@ -75,9 +74,6 @@ const RecommandPersonalWraper = styled.div`
 const HomePage = () => {
   return (
     <HomePageContainer>
-      <HomePickCarouselContainer>
-        <HomePickCarousel />
-      </HomePickCarouselContainer>
       
        
       <RecommandPlaceContainer>
@@ -98,7 +94,9 @@ const HomePage = () => {
                   eventName = {item.eventName}
                   recruitmentStart = {item.recruitmentStart}
                   recruitmentEnd = {item.recruitmentEnd}
+                  isLiked = {item.isLiked}
                   price = {item.price}
+                  profile = {item.profile}
                 />
               )
             })
