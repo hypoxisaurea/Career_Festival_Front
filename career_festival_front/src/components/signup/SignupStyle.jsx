@@ -1,11 +1,7 @@
 import styled from "styled-components";
-
 const SignupContainer = styled.div`
   max-width: 300px;
-  max-height: 300px;
   margin: 0 auto;
-  margin-top: 20px;
-  margin-bottom: 400px;
   padding: 20px;
 `;
 
@@ -21,7 +17,6 @@ const SocialLoginButtons = styled.div`
   align-items: center;     // 가운데 정렬
   margin-top: 20px;
   margin-bottom: 20px;
-
   button {
     width: 100%;             // 버튼 너비 조절
     margin-bottom: 10px;    // 버튼 간격 조절
@@ -30,7 +25,6 @@ const SocialLoginButtons = styled.div`
     border-radius: 5px;
     cursor: pointer;
   }
-
   // 카카오로 시작하기
   button:nth-child(1) {
     background-color: #ffffff;
@@ -49,7 +43,6 @@ const OrDivider = styled.div`
   margin: 10px 0;
   display: flex;
   align-items: center;
-
   div {
     flex: 1;
     height: 1px;
@@ -61,7 +54,6 @@ const OrDivider = styled.div`
 const EmailVerificationContainer = styled.div`
   display: flex;
   justify-content: space-between;
-
   button {
     width: 48%;
     background-color: #ffffff;
@@ -73,7 +65,6 @@ const EmailVerificationContainer = styled.div`
     cursor: pointer;
   }
 `;
-
 const AgreementContainer = styled.div`
   margin-bottom: 10px;
   label {
@@ -81,9 +72,7 @@ const AgreementContainer = styled.div`
     margin-bottom: 5px;
     color: #000000;
   }
-
 `;
-
 const SignupButton = styled.button`
   width: 100%;
   padding: 10px;
@@ -92,30 +81,116 @@ const SignupButton = styled.button`
   border: none;
   border-radius: 5px;
   cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
-
   &:hover {
     background-color: ${(props) => (props.disabled ? "#ccc" : "#218838")};
   }
 `;
 
-const ModalOverlay = styled.div`
+// 모달 스타일
+const ModalStyle = styled.div`
+  width: 30%;
+  height: 40%;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 20px;
+  border: 2px solid #ffffff;
+  border-radius: 30px;
+  z-index: 1000;
+  text-align: center; // 모달 내용을 가운데 정렬
+  display: flex;            // 내부 요소들을 가로로 배치
+  flex-direction: column;   // 내부 요소들을 세로로 배치
+  align-items: center;       // 가운데 정렬
+`;
+
+const ModalButton = styled.button`
+  width: 75%;
+  height: 30%;
+  margin-top: 10px;
+  padding: 8px;
+  color:#ffffff;
+  border: 1px solid #582fff;
+  border-radius: 10px;
+  background-color: #582fff;
+`;
+
+const ModalRadioContainer = styled.div`
+  margin-top: 10px;
+
+  p {
+    color: #582fff;
+    margin-bottom: 10px;
+    font-size: 20px;
+  }
+
+  display: flex;
+  flex-direction: column;
+
+  label {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 10px;
+    padding: 30px;
+    border: 3px solid #181818;
+    border-radius: 5px;
+    cursor: pointer;
+
+    // Add the following styles to change the border color of the selected radio button
+    &:hover {
+      border-color: #582fff;
+    }
+
+    input:checked + & {
+      border-color: #582fff;
+    }
+  }
+`;
+
+// 배경을 흐려지게 하는 스타일 추가
+const Backdrop = styled.div`
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  background: rgba(0, 0, 0, 0.3); // 투명한 검은 배경
+  z-index: 999;
 `;
 
-const ModalContent = styled.div`
-  background: #fff;
-  padding: 20px;
-  border-radius: 5px;
-  text-align: center;
+// SignupStyle.js 파일 내 WelcomeText 부분 수정
+const WelcomeText = styled.p`
+  margin-top: 10px;
+  font-size: 16px;
+  p{
+    font-size: 20px;
+  }
+  span {
+    color: #582fff; // 변경된 부분: 원하는 색상으로 설정
+    text-decoration: underline; // 밑줄 스타일 추가
+  }
 `;
+
+const WelcomeText2 = styled.p`
+  margin-top: 10px;
+  font-size: 16px;
+  color: #582fff; // 변경된 부분: 원하는 색상으로 설정
+`;
+
+const CheckIcon = styled.div`
+  width: 24px;  // 이미지의 너비를 증가시켰습니다.
+  height: 24px; // 이미지의 높이를 증가시켰습니다.
+  margin-top: 5px;
+  display: flex;
+  align-items: center; // 이미지를 세로 중앙 정렬
+  background: url(${require('../../assets/images/check-icon.png')}) no-repeat;
+  background-size: cover; // 배경 이미지 크기 설정
+  text-align: center; // 체크 이미지를 가운데 정렬
+  display: flex;      // flex 컨테이너로 설정
+  align-items: center; // 세로 중앙 정렬 추가
+`;
+
 
 const SignupStyle = {
   SignupContainer,
@@ -125,8 +200,13 @@ const SignupStyle = {
   AgreementContainer,
   SignupButton,
   OrDivider,
-  ModalOverlay,
-  ModalContent,
+  Modal: ModalStyle,
+  ModalButton,
+  ModalRadioContainer,
+  Backdrop,
+  CheckIcon,
+  WelcomeText,
+  WelcomeText2,
 };
 
 export default SignupStyle;
