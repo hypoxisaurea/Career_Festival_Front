@@ -3,6 +3,7 @@ import styled from "styled-components";
 // import FestivalList from "../components/home/FestivalList";
 import Banner from "../components/home/Banner";
 
+
 // 중간-필터+지역+행사목록
 const MiddleContainer = styled.div`
   display: flex;
@@ -131,7 +132,9 @@ const FestivalListPage = () => {
   return (
     <div>
       {/* 상단 영역 */}
+
      <Banner/>
+
       {/* 중간 영역 */}
       <MiddleContainer>
         {/* 필터, 지역, 행사유형 영역 */}
