@@ -2,10 +2,11 @@ import styled from "styled-components";
 
 const SignupContainer = styled.div`
   max-width: 300px;
+  max-height: 300px;
   margin: 0 auto;
+  margin-top: 20px;
+  margin-bottom: 400px;
   padding: 20px;
-
-
 `;
 
 const InputField = styled.input`
@@ -97,6 +98,25 @@ const SignupButton = styled.button`
   }
 `;
 
+const ModalOverlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const ModalContent = styled.div`
+  background: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  text-align: center;
+`;
+
 const SignupStyle = {
   SignupContainer,
   InputField,
@@ -105,6 +125,8 @@ const SignupStyle = {
   AgreementContainer,
   SignupButton,
   OrDivider,
+  ModalOverlay,
+  ModalContent,
 };
 
 export default SignupStyle;

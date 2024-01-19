@@ -53,6 +53,3 @@ const Recommand = ({mainImg, eventName, recruitmentStart, recruitmentEnd, isLike
 };
 
 export default Recommand;
-
-
-
