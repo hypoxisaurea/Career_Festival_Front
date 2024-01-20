@@ -37,13 +37,11 @@ const Welcome = styled.div`
   text-align: center;
 `;
 
-// SNS 텍스트 스타일
-const SocialText = styled.div`
-  width: 100%;
-  margin-top: 20px;
+// 도움말 텍스트 스타일
+const HelpText = styled.div`
+  font-size: 14px;
+  margin-top: 10px;
   margin-bottom: 20px;
-  font-weight: bold;
-  font-size: 16px;
   text-align: center;
 `;
 
@@ -108,21 +106,18 @@ const Button = styled.button`
   }
 `;
 
-// 회원가입 버튼 스타일
-const SignupButton = styled.button`
+// 회원가입 텍스트
+const SignupText = styled.div`
   width: 100%;
   padding: 10px;
-  background-color: #582fff;
-  color: #fff;
+
+  color: #582fff;
   border: none;
   border-radius: 5px;
   margin-top: 20px;
   margin-bottom: 50px;
   cursor: pointer;
 
-  &:hover {
-    background-color: #401f91;
-  }
 `;
 
 const RememberMe = styled.div`
@@ -130,7 +125,7 @@ const RememberMe = styled.div`
   display: flex;
   align-items: center;
   right: calc(50% + 60px); // 로그인 인풋의 중간에 위치
-  margin-top:5px;
+  margin-top: 5px;
   input {
     margin-right: 5px;
   }
@@ -140,14 +135,11 @@ const RememberMe = styled.div`
   }
 `;
 
+// 비밀번호 찾기 링크 스타일
 const PasswordReset = styled(Link)`
   font-size: 14px;
-  position: absolute;
-  margin-top: 15px;
   display: block;
-  text-align: right; // 왼쪽 정렬로 수정
-  left: calc(50% + 70px); // 로그인 인풋의 중간에 위치
-  transform: translateY(-50%); // 중간 정렬
+  text-align: right; // 오른쪽 정렬로 수정
   text-decoration: none;
   color: #565656;
 `;
@@ -158,9 +150,9 @@ export {
   InputField,
   Label,
   Button,
-  SignupButton,
+  SignupText,
   Welcome,
-  SocialText,
+  HelpText,
   SocialButtonContainer,
   RememberMe,
   PasswordReset,

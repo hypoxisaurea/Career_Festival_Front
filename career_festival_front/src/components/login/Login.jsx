@@ -11,9 +11,9 @@ import {
   InputField,
   Label,
   Button,
-  SignupButton,
+  SignupText,
   Welcome,
-  SocialText,
+  HelpText,
   SocialButtonContainer,
   RememberMe,
   PasswordReset,
@@ -35,9 +35,7 @@ const Login = () => {
   return (
     <LoginContainer>
       <img src={Logo} alt="Logo" /> {/* 로고 이미지 추가 */}
-      <Welcome>
-        커리어 페스티벌에 오신걸 환영합니다!
-      </Welcome>
+      <Welcome>커리어 페스티벌에 오신걸 환영합니다!</Welcome>
       <Field>
         <InputField
           type="text"
@@ -56,7 +54,6 @@ const Login = () => {
         />
         <Label for="password">비밀번호</Label>
       </Field>
-
       <div>
         <RememberMe>
           <input
@@ -67,22 +64,18 @@ const Login = () => {
           />
           <label htmlFor="rememberMe">로그인 유지</label>
         </RememberMe>
-        <PasswordReset to="/password-reset">
-          비밀번호 찾기
-        </PasswordReset>
       </div>
-
       <Button onClick={handleLogin}>로그인</Button>
-      <SocialText>
-        SNS 계정으로 로그인/회원가입
-      </SocialText>
+      <HelpText>
+        <Link to="/find-username">아이디 찾기</Link> |{"  "}
+        <Link to="/password-reset">비밀번호 찾기</Link> |{"  "}
+        <SignupText as={Link} to="/signup">회원가입</SignupText>
+      </HelpText>
+
       <SocialButtonContainer>
         <img src={Kakao} alt="Login_Kakao" />
         <img src={Naver} alt="Login_Naver" />
       </SocialButtonContainer>
-      <Link to="/signup">
-        <SignupButton>회원가입하기</SignupButton>
-      </Link>
     </LoginContainer>
   );
 };
