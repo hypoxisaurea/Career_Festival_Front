@@ -11,6 +11,8 @@ import Recommand from './components/home/Recommand';
 import FestivalList from './components/home/FestivalList';
 import Community from './components/home/Community';
 import Diary from './components/home/Diary';
+import Participant from './components/signup/Participant';
+import Organizer from './components/signup/Organizer';
 import './App.css';
 import FestivalListPage from './pages/FestivalListPage';
 
@@ -27,6 +29,8 @@ function App() {
           <Route path="/festival-list" element={<FestivalListPage />} />
           <Route path="/community" element={<Community />} />
           <Route path="/diary" element={<Diary />} />
+          <Route path="/participant" element={<Participant />} />
+          <Route path="/organizer" element={<Organizer />} />
         </Routes>
         <Footer />
       </div>

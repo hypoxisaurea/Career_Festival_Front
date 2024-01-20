@@ -31,7 +31,7 @@ const Welcome = styled.div`
   width: 200%;
   margin-bottom: 50px;
   margin-left: -50%;
-  font-family: 'Your Desired Font', sans-serif;
+  font-family: "Your Desired Font", sans-serif;
   font-weight: bold;
   font-size: 30px;
   text-align: center;
@@ -106,20 +106,6 @@ const Button = styled.button`
   }
 `;
 
-// 회원가입 텍스트
-const SignupText = styled.div`
-  width: 100%;
-  padding: 10px;
-
-  color: #582fff;
-  border: none;
-  border-radius: 5px;
-  margin-top: 20px;
-  margin-bottom: 50px;
-  cursor: pointer;
-
-`;
-
 const RememberMe = styled.div`
   position: absolute;
   display: flex;
@@ -135,13 +121,32 @@ const RememberMe = styled.div`
   }
 `;
 
+// 회원가입 텍스트
+const SignupText = styled.div`
+  font-size: 14px;
+  padding: 3px;
+  color: #582fff;
+  border: none;
+  // border-radius: 5px;
+  cursor: pointer;
+`;
+
+// 아이디 찾기 링크 스타일
+const IDFind = styled(Link)`
+  font-size: 14px;
+  padding: 3px;
+  color: #000000;
+  text-decoration: none;
+  cursor: pointer;
+`;
+
 // 비밀번호 찾기 링크 스타일
 const PasswordReset = styled(Link)`
   font-size: 14px;
-  display: block;
-  text-align: right; // 오른쪽 정렬로 수정
+  padding: 3px;
+  color: #000000;
   text-decoration: none;
-  color: #565656;
+  cursor: pointer;
 `;
 
 export {
@@ -155,5 +160,6 @@ export {
   HelpText,
   SocialButtonContainer,
   RememberMe,
-  PasswordReset,
+  IDFind,
+  PasswordReset
 };

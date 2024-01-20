@@ -16,6 +16,7 @@ import {
   HelpText,
   SocialButtonContainer,
   RememberMe,
+  IDFind,
   PasswordReset,
 } from "./LoginStyle"; // 수정된 부분
 
@@ -62,13 +63,14 @@ const Login = () => {
             checked={rememberMe}
             onChange={() => setRememberMe(!rememberMe)}
           />
+          
           <label htmlFor="rememberMe">로그인 유지</label>
         </RememberMe>
       </div>
       <Button onClick={handleLogin}>로그인</Button>
       <HelpText>
-        <Link to="/find-username">아이디 찾기</Link> |{"  "}
-        <Link to="/password-reset">비밀번호 찾기</Link> |{"  "}
+        <IDFind as={Link} to="/find-username">아이디 찾기</IDFind> |{"  "}
+        <PasswordReset as={Link} to="/password-reset">비밀번호 찾기</PasswordReset> |{"  "}
         <SignupText as={Link} to="/signup">회원가입</SignupText>
       </HelpText>
 
