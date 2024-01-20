@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-// import FestivalList from "../components/home/FestivalList";
 import Banner from "../components/home/Banner";
+import Filter from "../components/home/Filter";
+import Checkbox from "../components/home/Checkbox";
 
 
 // 중간-필터+지역+행사목록
@@ -20,11 +21,11 @@ const FilterAndAreaContainer = styled.div`
   gap: 2vw;
 `;
 //필터
-const Filter = styled.div`
+const FilterContainer = styled.div`
   width: 200px;
   height: 500px;
-  border-radius: 20px;
-  border: 1px solid #000000;
+  // border-radius: 20px;
+  // border: 1px solid #000000;
   justify-content: center;
   color: #582fff;
   font-size: 1rem;
@@ -39,8 +40,8 @@ const FilterP = styled.p`
 const Area = styled.div`
   width: 200px;
   height: 100px;
-  border-radius: 20px;
-  border: 1px solid #000000;
+  // border-radius: 20px;
+  // border: 1px solid #000000;
   justify-content: center;
   color: #000000;
   font-size: 0.8rem;
@@ -48,19 +49,20 @@ const Area = styled.div`
 `;
 // 지역 셀렉트 박스 스타일
 const SelectBox = styled.select`
-  width: 100%;
+  width: 80%;
   padding: 0.5rem;
   margin: 0.5rem;
   border: 1px solid #d9d9d9;
   border-radius: 5px;
   font-size: 1rem;
+  color: gray;
 `;
 //행사유형
 const Eventtype = styled.div`
   width: 200px;
   height: 200px;
-  border-radius: 20px;
-  border: 1px solid #000000;
+  // border-radius: 20px;
+  // border: 1px solid #000000;
   justify-content: center;
   color: #000000;
   font-size: 0.8rem;
@@ -139,9 +141,11 @@ const FestivalListPage = () => {
       <MiddleContainer>
         {/* 필터, 지역, 행사유형 영역 */}
         <FilterAndAreaContainer>
-          <Filter>
+          <FilterContainer>
             필터<FilterP>행사분야</FilterP>
-          </Filter>
+            <Filter/>
+          
+          </FilterContainer>
           <Area>
             지역
             <SelectBox>
@@ -150,7 +154,7 @@ const FestivalListPage = () => {
               <option value="incheon">인천</option>
             </SelectBox>
           </Area>
-          <Eventtype>행사유형</Eventtype>
+          <Eventtype>행사유형<Checkbox/></Eventtype>
         </FilterAndAreaContainer>
 
         {/* 행사목록 영역 */}
