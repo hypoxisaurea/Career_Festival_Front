@@ -120,7 +120,7 @@ const Signup = () => {
               checked={selectedRole === "participant"}
               onChange={handleOptionChange}
             />
-            신청자<br />
+            참가자<br />
             행사를 신청하고 참여합니다!
           </label>
           <label>
