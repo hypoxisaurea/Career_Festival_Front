@@ -8,7 +8,6 @@ import DetailFestivalPage from './pages/DetailFestivalPage';
 import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
 import Recommand from './components/home/Recommand';
-import FestivalList from './components/home/FestivalList';
 import Community from './components/home/Community';
 import Diary from './components/home/Diary';
 import './App.css';
