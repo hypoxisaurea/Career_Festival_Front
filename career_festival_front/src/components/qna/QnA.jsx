@@ -24,10 +24,17 @@ const UserContainer = styled.div`
 
 const AskContentContainer = styled.textarea`
   width: 1180px;
-  min-height: 79px;
+  min-height: 99px;
   border-radius: 10px;
-  border: 3px #582fff solid;
+  border: 3px #838383 solid;
   margin: 9px 19px 0 24px;
+
+  &::placeholder {
+    color: #838383;
+    font-size: 14px;
+    font-family: "Noto Sans KR";
+    font-weight: 400;
+  }
 `;
 
 const CountContainer = styled.div`
@@ -104,6 +111,14 @@ const CountColorText = styled.span`
 `;
 
 const QnA = () => {
+  let [inputCount, setInputCount] = useState(0);
+
+  const onInputHandler = (e) => {
+    setInputCount(
+      e.target.value.replace(/[\0-\x7f]|([0-\u07ff]|(.))/g, "$&$1$2").length
+    );
+  };
+
   return (
     <QnAContainer>
       <Subtitle>문의하기</Subtitle>
@@ -112,12 +127,16 @@ const QnA = () => {
           <UserName>김커리</UserName>
           <QnAText>님</QnAText>
         </UserContainer>
-        <AskContentContainer></AskContentContainer>
+        <AskContentContainer
+          placeholder="행사와 관련된 문의를 자유롭게 남겨보세요!"
+          onChange={onInputHandler}
+          maxLength="5000"
+        />
 
         <HorizontalDivider />
 
         <CountContainer>
-          <CountColorText>0</CountColorText>
+          <CountColorText>{inputCount}</CountColorText>
           <CountText>/5000자</CountText>
         </CountContainer>
         <ReplyContainer>댓글 등록</ReplyContainer>

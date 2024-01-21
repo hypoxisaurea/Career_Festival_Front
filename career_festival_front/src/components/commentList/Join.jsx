@@ -136,6 +136,14 @@ const CountColorText = styled.span`
 `;
 
 const Join = () => {
+  let [inputCount, setInputCount] = useState(0);
+
+  const onInputHandler = (e) => {
+    setInputCount(
+      e.target.value.replace(/[\0-\x7f]|([0-\u07ff]|(.))/g, "$&$1$2").length
+    );
+  };
+
   return (
     <JoinContainer>
       <Subtitle>같이 가요!</Subtitle>
@@ -154,11 +162,13 @@ const Join = () => {
         <AskContentContainer
           placeholder="팀원들과 같이 갈 날짜와 시간, 장소와 인원수를 명시해주세요!  팀원들이 모일 수단을 첨부하시면 도움이 됩니다.
           예시) 1월 14일 14시, 삼각지역 9번 출구 앞, 3명, https://open.kakao.com/o/uIPzxlZf"
+          onChange={onInputHandler}
+          maxLength="5000"
         />
         <HorizontalDivider />
 
         <CountContainer>
-          <CountColorText>0</CountColorText>
+          <CountColorText>{inputCount}</CountColorText>
           <CountText>/5000자</CountText>
         </CountContainer>
         <ReplyContainer>댓글 등록</ReplyContainer>
