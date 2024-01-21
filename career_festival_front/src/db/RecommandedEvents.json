@@ -1,5 +1,5 @@
 {
-    "RecommandedByPlace":[
+    "RecommandedByPerson":[
         {
             "id":1, 
             "mainImg":"https://dummyimage.com/600x400/d9d9d9/fff",
@@ -13,7 +13,7 @@
         {
             "id":2, 
             "mainImg":"https://dummyimage.com/600x400/d9d9d9/fff",
-            "eventName": "2022말레이시아 K-MOVE 해외취업 세미나",
+            "eventName": "2022말레이시아 akjflkjfkwjefjiwfihgjjlkfjsfjpwajfpojwpojfpowjf",
             "recruitmentStart": "2022-01-01",
             "recruitmentEnd": "2022-01-02",
             "isLiked": false,
@@ -64,7 +64,7 @@
 
 
 
-    "RecommandedByPerson":[
+    "RecommandedByPlace":[
         {
             "id":21, 
             "mainImg":"https://dummyimage.com/600x400/000/fff",
@@ -73,7 +73,7 @@
             "recruitmentEnd": "2021-01-02",
             "isLiked": false,
             "price": "무료",
-            "profile": "https://dummyimage.com/600x400/000/fff"
+            "profile": "https://dummyimage.com/600x400/d9d9d9/fff"
         },
         {
             "id":22, 
@@ -83,7 +83,7 @@
             "recruitmentEnd": "2022-01-02",
             "isLiked": false,
             "price": "무료",
-            "profile": "https://dummyimage.com/600x400/000/fff"
+            "profile":"https://dummyimage.com/600x400/d9d9d9/fff"
         },
         {
             "id":23, 
