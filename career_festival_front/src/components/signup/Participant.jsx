@@ -1,5 +1,5 @@
 // 필요한 React 및 스타일링 컴포넌트를 불러옵니다.
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Container,
   Title,
@@ -19,13 +19,17 @@ import {
 const Participant = () => {
   // 모달 창의 열림 여부와 선택된 지역 정보 및 추가 정보를 상태로 관리합니다.
   const [isModalOpen, setModalOpen] = useState(false);
-  const [selectedArea, setSelectedArea] = useState("");
+  const [selectedArea, setSelectedArea] = useState("seoul");
   const [selectedCity, setSelectedCity] = useState("");
   const [email, setEmail] = useState(""); // 추가: 이메일 상태
   const [phoneNumber, setPhoneNumber] = useState(""); // 추가: 전화번호 상태
   const [affiliation, setAffiliation] = useState(""); // 추가: 소속 상태
   const [selectedKeywords, setSelectedKeywords] = useState([]); // 추가: 선택된 키워드 상태
-
+  // useEffect를 사용하여 컴포넌트가 처음 마운트될 때 실행될 로직 추가
+  useEffect(() => {
+    // 초기값으로 서울을 선택하도록 설정
+    handleAreaSelect("seoul");
+  }, []);
   // 모달 창을 열거나 닫는 함수를 정의합니다.
   const handleModalToggle = () => {
     setModalOpen(!isModalOpen);
