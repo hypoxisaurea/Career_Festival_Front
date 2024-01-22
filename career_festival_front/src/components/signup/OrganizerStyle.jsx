@@ -91,7 +91,11 @@ display: flex;
     border: none;
     padding: 8px;
     cursor: pointer;
+    color:#838383;
     background: #ffffff;
+    border: 1px solid;
+    border-radius: 20px;
+
 
     ${(props) =>
       props.selected
