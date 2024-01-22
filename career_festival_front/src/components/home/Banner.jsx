@@ -25,9 +25,9 @@ const BannerAndPopular = styled.div`
 
 const HomeP = styled.p`
   color: #000000;
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   font-weight: bold;
-  padding: 1vw 0 0 20vw;
+  padding: 0.5vw 0 0 17vw;
 `;
 
 const PickText = styled.span`
@@ -45,6 +45,7 @@ const BannerB = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
+ 
 `;
 
 const BannerContainer = styled.div`
@@ -52,8 +53,9 @@ const BannerContainer = styled.div`
   justify-content: center;
   text-align: center;
   align-items: center;
-  gap: 2vw;
-  padding:0 0 2vw 0;
+  gap:1vw;
+  padding: 0 0 2vw 0;
+  margin-left:-4vw;
 `;
 
 const Slides = styled.div`
@@ -63,14 +65,14 @@ const Slides = styled.div`
 
 
 const Image = styled.img`
-  width: 400px;
-  height: 250px;
-  border-radius: 0.5vw;
+  width: 24.25vw;
+  height: 13.27vw;
+  //border-radius: 0.5vw;
 `;
 
 const Button = styled.img`
-  width: 1.2vw;
-  height: 1.2vw;
+  width: 2.5vw;
+  height: 2.5vw;
   cursor: pointer;
 `;
 
@@ -78,12 +80,54 @@ const ButtonLeftStyled = styled(Button)``;
 
 const ButtonRightStyled = styled(Button)``;
 
-// 인기검색어 스타일 정의
-const Popularsearches = styled.div`
-  width: 170px;
-  height: 250px;
-  border-radius: 20px;
-  border: 1px solid;
+//인기검색어
+const PopularsearchesTitle = styled.h3`
+  font-weight: bold;
+  color: #000000;
+  font-size: 1rem;
+  margin-bottom: 10px;
+`;
+
+// Popularsearches 스타일 정의
+const PopularsearchesStyled = styled.div`
+  width: 10vw; 
+  height: 16vw;
+  border-radius: 22px;
+  border: 1px solid #c3c3c3;
+  justify-content: flex-start;
+  padding: 10px;
+  align-items: flex-start;
+  margin-top: -3vw;
+  margin-left: -2vw;
+`;
+
+const PopularsearchItem = styled.div`
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+  color: ${(props) => (props.rank <= 3 ? "#582fff" : "#000000")};
+  font-size: 0.8rem;
+`;
+
+
+const ItemNumber = styled.span`
+  font-weight: bold;
+  margin-right: 5px;
+  padding: 4px 10px;
+  border-radius: 4px;
+  color: #ffffff;
+
+  ${(props) => {
+    // 등수에 따라 스타일을 동적으로 지정
+    const rank = parseInt(props.rank, 10);
+    return rank <= 3
+      ? `
+        background-color: #582fff;
+      `
+      : `
+        background-color: #d3d3d3; /* 회색 배경색 추가 */
+      `;
+  }}
 `;
 
 // 배너 컴포넌트 정의
@@ -122,12 +166,21 @@ const Banner = () => {
       clearInterval(autoSlideTimer);
     };
   }, [images.length]);
+//인기검색어
+    const popularKeywords = [
+      "경영 세미나",
+      "취업",
+      "학술대회",
+      "대학 경연",
+      "대학 세미나",
+      "박람회",
+    ];
 
-  // 컴포넌트 렌더링
   return (
     <TopContainer>
-      <HomeP style={{ marginTop: "1vw" }}>
-        커리어 페스티벌 <PickText>pick</PickText><TextP>!</TextP>
+      <HomeP>
+        커리어 페스티벌 <PickText>pick</PickText>
+        <TextP>!</TextP>
       </HomeP>
       <BannerAndPopular>
         <BannerB>
@@ -155,7 +208,14 @@ const Banner = () => {
             />
           </BannerContainer>
         </BannerB>
-        <Popularsearches>인기검색어</Popularsearches>
+        <PopularsearchesStyled>
+          <PopularsearchesTitle>인기 검색어</PopularsearchesTitle>
+          {popularKeywords.map((keyword, index) => (
+            <PopularsearchItem key={index} rank={index + 1}>
+              <ItemNumber rank={index + 1}>{index + 1}</ItemNumber> {keyword}
+            </PopularsearchItem>
+          ))}
+        </PopularsearchesStyled>
       </BannerAndPopular>
     </TopContainer>
   );

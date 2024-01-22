@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 const DetailContainer = styled.div`
   width: 808px;
-  margin: 67px 26px 89px 113px;
   backgroud: green;
 `;
 
@@ -72,44 +71,6 @@ const NoticeContent = styled.div`
   word-wrap: break-word;
 `;
 
-const QnAContainer = styled.div`
-  width: 100%;
-  height: 100%;
-  margin: 56px 0 0 0;
-  display: block;
-`;
-
-const ContactContainer = styled.div`
-  width: 100%;
-  height: 100%;
-  background: rgba(234.44, 231.89, 231.89, 0.2);
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-
-  margin: 33px 0 89px 0;
-  padding: 12px 0 16px 0;
-
-  display: block;
-`;
-
-const ContactTitle = styled.div`
-  color: #838383;
-  font-size: 14px;
-  font-family: "Noto Sans KR";
-  font-weight: 500;
-  word-wrap: break-word;
-  margin: 0 20px 0 20px;
-  display: inline-block;
-`;
-
-const ContactContent = styled.div`
-  color: black;
-  font-size: 14px;
-  font-family: "Noto Sans KR";
-  font-weight: 500;
-  word-wrap: break-word;
-  display: inline-block;
-`;
-
 const Subtitle = styled.div`
   color: black;
   font-size: 20px;
@@ -128,9 +89,5 @@ export {
   PlaceContainer,
   NoticeContainer,
   NoticeContent,
-  QnAContainer,
-  ContactContainer,
-  ContactTitle,
-  ContactContent,
   Subtitle,
 };
