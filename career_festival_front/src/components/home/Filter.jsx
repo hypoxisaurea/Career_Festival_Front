@@ -8,8 +8,8 @@ const CheckboxLabel = styled.label`
   align-items: center;
   margin-bottom: 8px;
   cursor: pointer;
-  color: black; // 글씨체를 검은색으로 변경
-  font-size: 14px; // 폰트 크기를 조절
+  color: black;
+  font-size: 14px;
 `;
 
 const StyledCheckbox = styled.input`
@@ -26,12 +26,8 @@ const CheckImage = styled.img`
   transition: border-color 0.3s, background-color 0.3s;
 `;
 
-
-const Filter = () => {
-  const [selectedFilters, setSelectedFilters] = useState([]);
-
+const Filter = ({ selectedFilters, setSelectedFilters }) => {
   const handleCheckboxChange = (category) => {
-    // 현재 선택된 카테고리를 확인하고 토글
     if (selectedFilters.includes(category)) {
       setSelectedFilters(
         selectedFilters.filter((filter) => filter !== category)
@@ -42,55 +38,44 @@ const Filter = () => {
   };
 
   return (
-    <div>
-      <form>
-        {[
-          "창업",
-          "IT/프로그래밍",
-          "경제/금융",
-          "경영",
-          "인문/사회",
-          "예술",
-          "마켓팅",
-          "과학기술",
-          "디자인/영상",
-          "의료/의학",
-          "기획",
-          "관광/여행",
-          "기타",
-        ].map((category) => (
-          <div key={category}>
-            <CheckboxLabel>
-              <StyledCheckbox
-                type="checkbox"
-                value={category}
-                checked={selectedFilters.includes(category)}
-                onChange={() => handleCheckboxChange(category)}
-              />
-              <CheckImage
-                src={
-                  selectedFilters.includes(category)
-                    ? checkedImage
-                    : uncheckedImage
-                }
-                alt={category}
-                checked={selectedFilters.includes(category)}
-              />
-              {category}
-            </CheckboxLabel>
-          </div>
-        ))}
-      </form>
-
-      <div>
-        <h4>선택된 카테고리</h4>
-        <ul>
-          {selectedFilters.map((filter) => (
-            <li key={filter}>{filter}</li>
-          ))}
-        </ul>
-      </div>
-    </div>
+    <form>
+      {[
+        "창업",
+        "IT/프로그래밍",
+        "경제/금융",
+        "경영",
+        "인문/사회",
+        "예술",
+        "마켓팅",
+        "과학기술",
+        "디자인/영상",
+        "의료/의학",
+        "기획",
+        "관광/여행",
+        "기타",
+      ].map((category) => (
+        <div key={category}>
+          <CheckboxLabel>
+            <StyledCheckbox
+              type="checkbox"
+              value={category}
+              checked={selectedFilters.includes(category)}
+              onChange={() => handleCheckboxChange(category)}
+            />
+            <CheckImage
+              src={
+                selectedFilters.includes(category)
+                  ? checkedImage
+                  : uncheckedImage
+              }
+              alt={category}
+              checked={selectedFilters.includes(category)}
+            />
+            {category}
+          </CheckboxLabel>
+        </div>
+      ))}
+    </form>
   );
 };
 
