@@ -63,10 +63,12 @@ const SearchItem = styled.div`
 // 검색 입력창 스타일
 const SearchInput = styled.input`
   width: 50%;
-  border: 0.2vw solid #582fff;
-  border-radius: 0.5vw;
+  border: 0.2vw solid transparent;
+  border-image: linear-gradient(45deg, #582fff, #0085ff) 1;
+  border-radius: 1vw;
   padding: 0.7vw 1vw 0.7vw 2.5vw;
   font-size: 0.8vw;
+  outline: none;
 `;
 
 // 검색 버튼 스타일
