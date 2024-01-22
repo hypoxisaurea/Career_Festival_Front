@@ -7,18 +7,39 @@ import {
   SelectWrapper,
   OptionList,
   Modal,
+  AreaWrapper,
+  CityWrapper,
+  AreaOptionList,
+  CityOptionList,
+  HorizontalLine,
+  VerticalLine
 } from "./InterestAreaStyle";
 
-const InterestArea = ({ selectedArea, handleAreaSelect, selectedCity, handleCitySelect, areaOptions, isModalOpen, handleModalToggle, closeModal }) => {
+const InterestArea = ({
+  selectedArea,
+  handleAreaSelect,
+  selectedCity,
+  handleCitySelect,
+  isModalOpen,
+  handleModalToggle,
+  closeModal
+}) => {
+  // 지역 정보를 객체로 정의합니다.
+  const areaOptions = {
+    seoul: ["강남구", "종로구", "성북구", "성동구"],
+    busan: ["서면역", "해운대", "북구", "사하구"]
+    // 다른 지역 정보 추가 가능
+  };
+
   return (
-<InterestAreaStyle isOpen={isModalOpen}>
+    <InterestAreaStyle isOpen={isModalOpen}>
       {/* 모달 열기 버튼 */}
       <button onClick={handleModalToggle}>
         {/* 선택된 지역이 있으면 해당 지역, 없으면 기본 안내 메시지 출력 */}
         {selectedCity
           ? selectedCity
           : selectedArea
-          ? "시/군/구 선택"
+          ? "지역 선택하세요 ▼"
           : "관심 지역 선택하세요"}
       </button>
 
@@ -26,50 +47,53 @@ const InterestArea = ({ selectedArea, handleAreaSelect, selectedCity, handleCity
       {isModalOpen && (
         <Modal isOpen={isModalOpen}>
           {/* X 버튼 추가 */}
-          <button onClick={closeModal} style={{ float: "right", cursor: "pointer" }}>
+          {/* <button onClick={closeModal} style={{ float: "right", cursor: "pointer" }}>
             X
-          </button>
-          <ModalContent> {/* 수정된 부분 */}
-            <SelectWrapper> {/* 수정된 부분 */}
+          </button> */}
+          <ModalContent>
+            <SelectWrapper>
               {/* 시/도 선택 부분 */}
-              <div>
+              <AreaWrapper>
                 <label>시/도</label>
-                <OptionList> {/* 수정된 부분 */}
+                <HorizontalLine></HorizontalLine>
+                <AreaOptionList>
                   <button
-                    onClick={() => handleAreaSelect("seoul")}
-                    selected={selectedArea === "seoul"}
-                  >
-                    서울
-                  </button>
-                  <button
-                    onClick={() => handleAreaSelect("busan")}
-                    selected={selectedArea === "busan"}
-                  >
+                  onClick={() => handleAreaSelect("seoul")}
+                  className={selectedArea === "seoul" ? "selected" : ""}
+                >
+                  서울
+                </button>
+                <button
+                  onClick={() => handleAreaSelect("busan")}
+                  className={selectedArea === "busan" ? "selected" : ""}
+                >
                     부산
                   </button>
                   {/* 원하는 시/도 옵션을 추가하세요 */}
-                </OptionList>
-              </div>
-
+                </AreaOptionList>
+              </AreaWrapper>
+              {/* 세로선 */}
+              <VerticalLine></VerticalLine>
               {/* 시/군/구 선택 부분 */}
               {selectedArea !== "" && (
-                <div>
+                <CityWrapper>
                   <label>시/군/구</label>
-                  <OptionList> {/* 수정된 부분 */}
+                  <HorizontalLine></HorizontalLine>
+                  <CityOptionList>
                     {areaOptions[selectedArea].map((city) => (
                       <button
-                        key={city}
-                        onClick={() => handleCitySelect(city)}
-                        selected={selectedCity === city}
-                      >
+                      key={city}
+                      onClick={() => handleCitySelect(city)}
+                      className={selectedCity === city ? "selected" : ""}
+                    >
                         {city}
                       </button>
                     ))}
-                  </OptionList>
-                </div>
+                  </CityOptionList>
+                </CityWrapper>
               )}
-            </SelectWrapper> {/* 수정된 부분 */}
-          </ModalContent> {/* 수정된 부분 */}
+            </SelectWrapper>
+          </ModalContent>
         </Modal>
       )}
     </InterestAreaStyle>
