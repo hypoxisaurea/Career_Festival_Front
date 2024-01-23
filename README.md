@@ -71,7 +71,6 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
-
 ```
 Career_Festival_Front
 ├─ career_festival_front
@@ -93,35 +92,76 @@ Career_Festival_Front
 │     │  │  ├─ 회원가입3 주최자 페이지.png
 │     │  │  └─ 회원가입4 참가자 페이지.png
 │     │  └─ images
+│     │     ├─ banner1.png
+│     │     ├─ banner2.png
+│     │     ├─ banner3.png
+│     │     ├─ banner4.png
+│     │     ├─ bannerleftarrow.png
+│     │     ├─ bannerrightarrow.png
+│     │     ├─ check-icon.png
+│     │     ├─ checked_image.png
+│     │     ├─ emptyStarIcon.png
+│     │     ├─ length.png
+│     │     ├─ login_kakao.png
+│     │     ├─ login_naver.png
+│     │     ├─ logo.png
+│     │     ├─ search.png
+│     │     ├─ setting.png
+│     │     └─ unchecked_image.png
 │     ├─ components
+│     │  ├─ commentList
+│     │  │  ├─ CommentList.jsx
+│     │  │  └─ Join.jsx
+│     │  ├─ contact
+│     │  │  └─ Contact.jsx
+│     │  ├─ enrollment
+│     │  │  └─ Enrollment.jsx
+│     │  ├─ eventDetail
+│     │  │  ├─ EventDetail.jsx
+│     │  │  └─ EventDetailStyle.jsx
 │     │  ├─ footer
-│     │  │  ├─ Footer.jsx
-│     │  │  └─ FooterStyle.jsx
+│     │  │  └─ Footer.jsx
 │     │  ├─ header
-│     │  │  ├─ Header.jsx
-│     │  │  └─ HeaderStyle.jsx
+│     │  │  └─ Header.jsx
 │     │  ├─ home
+│     │  │  ├─ Banner.jsx
+│     │  │  ├─ Checkbox.jsx
 │     │  │  ├─ Community.jsx
-│     │  │  ├─ CommunityStyle.jsx
 │     │  │  ├─ Diary.jsx
-│     │  │  ├─ DiaryStyle.jsx
-│     │  │  ├─ FestivalList.jsx
-│     │  │  ├─ FestivalListStyle.jsx
 │     │  │  ├─ Filter.jsx
-│     │  │  ├─ FilterStyle.jsx
-│     │  │  ├─ Recommand.jsx
-│     │  │  ├─ RecommandStyle.jsx
-│     │  │  ├─ Result.jsx
-│     │  │  └─ ResultStyle.jsx
-│     │  └─ login
-│     │     ├─ Login.jsx
-│     │     └─ LoginStyle.jsx
+│     │  │  ├─ Filterkeyword.jsx
+│     │  │  └─ Recommand.jsx
+│     │  ├─ login
+│     │  │  ├─ Login.jsx
+│     │  │  └─ LoginStyle.jsx
+│     │  ├─ qna
+│     │  │  ├─ QnA.jsx
+│     │  │  └─ QnAList.jsx
+│     │  └─ signup
+│     │     ├─ InterestArea.jsx
+│     │     ├─ InterestAreaStyle.jsx
+│     │     ├─ Organizer.jsx
+│     │     ├─ OrganizerStyle.jsx
+│     │     ├─ Participant.jsx
+│     │     ├─ ParticipantStyle.jsx
+│     │     ├─ Signup.jsx
+│     │     └─ SignupStyle.jsx
+│     ├─ db
+│     │  └─ RecommandedEvents.json
+│     ├─ fonts
+│     │  ├─ Font.css
+│     │  ├─ NotoSansKR-Black.woff
+│     │  ├─ NotoSansKR-Bold.woff
+│     │  ├─ NotoSansKR-Light.woff
+│     │  ├─ NotoSansKR-Medium.woff
+│     │  ├─ NotoSansKR-Regular.woff
+│     │  └─ NotoSansKR-Thin.woff
 │     ├─ index.css
 │     ├─ index.js
 │     ├─ pages
 │     │  ├─ DetailFestivalPage.jsx
+│     │  ├─ FestivalListPage.jsx
 │     │  ├─ HomePage.jsx
-│     │  ├─ HomePageStyle.jsx
 │     │  ├─ LoginPage.jsx
 │     │  └─ SignupPage.jsx
 │     └─ utils
