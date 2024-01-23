@@ -8,7 +8,12 @@ import {
   EmailInput,
   TelInput,
   AffiliationInput,
-  KeyworldOptionList
+  KeyworldOptionList,
+  KeywordButton,
+  TwoButton,
+  LaterSave,
+  Save,
+  
 } from "./OrganizerStyle";
 
 const Organizer = () => {
@@ -20,7 +25,9 @@ const Organizer = () => {
   const [phoneNumber, setPhoneNumber] = useState(""); // 추가: 전화번호 상태
   const [affiliation, setAffiliation] = useState(""); // 추가: 소속 상태
   const [selectedKeywords, setSelectedKeywords] = useState([]); // 추가: 선택된 키워드 상태
-
+  // 기타 키워드 입력을 위한 상태 추가
+  const [customKeyword, setCustomKeyword] = useState("");
+  const [customKeywords, setCustomKeywords] = useState([]);
   // useEffect를 사용하여 컴포넌트가 처음 마운트될 때 실행될 로직 추가
   useEffect(() => {
     // 초기값으로 서울을 선택하도록 설정
@@ -60,6 +67,38 @@ const Organizer = () => {
       setSelectedKeywords((prevKeywords) => [...prevKeywords, keyword]);
     }
   };
+
+  // 기타 키워드를 추가하는 함수
+  const addCustomKeyword = () => {
+    if (customKeyword.trim() !== "") {
+      setSelectedKeywords((prevKeywords) => [...prevKeywords, customKeyword]);
+      setCustomKeywords((prevCustomKeywords) => [
+        ...prevCustomKeywords,
+        customKeyword
+      ]);
+      setCustomKeyword(""); // 입력 필드 초기화
+    }
+  };
+
+  // 기타 키워드를 삭제하는 함수
+  const removeCustomKeyword = (keywordToRemove) => {
+    setSelectedKeywords((prevKeywords) =>
+      prevKeywords.filter((kw) => kw !== keywordToRemove)
+    );
+    setCustomKeywords((prevCustomKeywords) =>
+      prevCustomKeywords.filter((kw) => kw !== keywordToRemove)
+    );
+  };
+
+// "다음에입력" 버튼을 눌렀을 때 실행되는 함수
+const handleNextInput = () => {
+  const confirmNextInput = window.confirm("정말 다음에 입력하세요?");
+  if (confirmNextInput) {
+    // 여기서 홈화면으로 이동하도록 설정
+    window.location.href = "/"; // 홈화면의 경로에 따라 수정하세요.
+  }
+  // 다음에 입력하지 않을 경우, 아무 동작도 하지 않음
+};
 
   // 부가정보를 저장하는 함수입니다.
   const saveAdditionalInfo = () => {
@@ -126,28 +165,25 @@ const Organizer = () => {
 
       {/* 전화번호 입력 부분입니다. */}
       <TelInput>
-      <label>전화번호</label>
-      <input
-        type="tel"
-        placeholder="전화번호를 입력하세요"
-        value={phoneNumber}
-        onChange={(e) => setPhoneNumber(e.target.value)}
-      />
+        <label>전화번호</label>
+        <input
+          type="tel"
+          placeholder="전화번호를 입력하세요"
+          value={phoneNumber}
+          onChange={(e) => setPhoneNumber(e.target.value)}
+        />
       </TelInput>
-
-      
 
       {/* 소속 입력 부분입니다. */}
       <AffiliationInput>
-      <p>소속(회사/기관/학교명)</p>
-      <input
-        type="text"
-        placeholder="소속을 입력하세요"
-        value={affiliation}
-        onChange={(e) => setAffiliation(e.target.value)}
-      />
+        <p>소속(회사/기관/학교명)</p>
+        <input
+          type="text"
+          placeholder="소속을 입력하세요"
+          value={affiliation}
+          onChange={(e) => setAffiliation(e.target.value)}
+        />
       </AffiliationInput>
-      
 
       {/* 커리어 키워드 입력 부분입니다. */}
       <p>커리어 키워드</p>
@@ -163,30 +199,58 @@ const Organizer = () => {
           "디자인",
           "관광/여행"
         ].map((keyword) => (
-          <button
+          <KeywordButton
             key={keyword}
             onClick={() => handleKeywordSelect(keyword)}
             selected={selectedKeywords.includes(keyword)}
           >
             {keyword}
-          </button>
+          </KeywordButton>
+        ))}
+
+        {/* 기타 키워드 입력 필드 */}
+        <input
+          type="text"
+          placeholder="기타 키워드 추가"
+          value={customKeyword}
+          onChange={(e) => setCustomKeyword(e.target.value)}
+        />
+
+        {/* 기타 키워드 추가 버튼 */}
+        <button onClick={addCustomKeyword}>추가</button>
+
+        {/* 기타 키워드 목록 */}
+        {customKeywords.map((customKeyword) => (
+          <KeywordButton
+            key={customKeyword}
+            onClick={() => handleKeywordSelect(customKeyword)}
+            selected={selectedKeywords.includes(customKeyword)}
+            onRemove={() => removeCustomKeyword(customKeyword)}
+          >
+            {customKeyword}
+          </KeywordButton>
         ))}
       </KeyworldOptionList>
+      <hr />
+      
+      <TwoButton>
 
-      {/* 부가정보 저장하기 버튼 */}
-      <button
-        onClick={saveAdditionalInfo}
-        disabled={
-          !selectedArea ||
-          !selectedCity ||
-          !email ||
-          !phoneNumber ||
-          !affiliation ||
-          selectedKeywords.length === 0
-        }
-      >
-        부가정보 저장하기
-      </button>
+      <LaterSave onClick={handleNextInput}>다음에입력</LaterSave>
+        {/* 부가정보 저장하기 버튼 */}
+      <Save
+          onClick={saveAdditionalInfo}
+          disabled={
+            !selectedArea ||
+            !selectedCity ||
+            !email ||
+            !phoneNumber ||
+            !affiliation ||
+            selectedKeywords.length === 0
+          }
+        >
+          부가정보 저장하기
+      </Save>
+      </TwoButton>
     </Container>
   );
 };
