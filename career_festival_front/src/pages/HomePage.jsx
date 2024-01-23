@@ -10,34 +10,26 @@ const HomePageContainer = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-  //width: 80%;
   margin: 0 auto;
-  //padding: 20px;
+  padding: 0 8vw 0 8vw;
 `;
 
 
 
 //개인 키워드 추천
 const RecommandPersonalContainer = styled.div`
-  //background-color: #f7e4ad; /*임의로 영역 확인용*/
   display: flex;
   flex-direction: column;
   width: 80%;
-  margin: 3vmax 0;
+  margin: 2vw;
 `;
 
 const RecommandPersonalWraper = styled.div`
-//그리드 3*2
-display: grid;
+  // 그리드 3x2
+  display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(2, 2fr);
-  gap: 5vmax  2vmax;
-
-  justify-content: center;
- 
+  gap: 2vw;
 `;
-
-
 
 
 //위치 근처 추천
@@ -71,6 +63,8 @@ const RecommandPlaceWraper = styled.div`
 `;
 
 const HomePage = () => {
+  const recommendedByPersonSlice = dummy.RecommandedByPerson.slice(0, 6); // 처음 6개 아이템만 사용
+
   return (
     <div>
       <Banner />
@@ -85,30 +79,36 @@ const HomePage = () => {
           >
             이런행사 찾으셨죠?
           </h2>
-          <div style={{ fontSize: "20px", fontWeight: "700", marginBottom: "2vmax"}}>
+          <div
+            style={{
+              fontSize: "20px",
+              fontWeight: "bold",
+              marginBottom: "2vmax",
+            }}
+          >
             회원가입 시 선택한
-            <span style={{ color: "#582fff" }}>  커리어 키워드</span>에 가장
+            <span style={{ color: "#582fff" }}> 커리어 키워드</span>에 가장
             부합한 행사들을 볼 수 있어요!
           </div>
           <RecommandPersonalWraper>
-            {dummy.RecommandedByPerson.map((item) => {
-              return (
-                <Recommand
-                  mainImg={item.mainImg}
-                  eventName={item.eventName}
-                  recruitmentStart={item.recruitmentStart}
-                  recruitmentEnd={item.recruitmentEnd}
-                  isLiked={item.isLiked}
-                  price={item.price}
-                  profile={item.profile}
-                />
-              );
-            })}
+            {recommendedByPersonSlice.map((item) => (
+              <Recommand
+                style={{
+                  color: "white",
+                  fontSize: "0.8rem",
+                }}
+                key={item.eventName} // 유일한 키가 필요합니다.
+                mainImg={item.mainImg}
+                eventName={item.eventName}
+                recruitmentStart={item.recruitmentStart}
+                recruitmentEnd={item.recruitmentEnd}
+                isLiked={item.isLiked}
+                price={item.price}
+                profile={item.profile}
+              />
+            ))}
           </RecommandPersonalWraper>
         </RecommandPersonalContainer>
-
-
-
 
         <RecommandPlaceContainer>
           <h2
@@ -119,7 +119,7 @@ const HomePage = () => {
               justifyItems: "center",
             }}
           >
-            <button>지역명</button>   근처 행사
+            <button>지역명</button> 근처 행사
           </h2>
           <RecommandPlaceWraper>
             {dummy.RecommandedByPlace.map((item) => {

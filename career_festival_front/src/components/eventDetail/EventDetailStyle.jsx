@@ -11,13 +11,6 @@ const Thumbnail = styled.div`
   background: #d9d9d9;
 `;
 
-const Menu = styled.div`
-  width: 100%;
-  height: 10px; //임시
-  background: red;
-  margin: 54px 0 19px 0;
-`;
-
 const HorizontalDivider = styled.div`
   width: 100%;
   height: 2px;
@@ -25,18 +18,13 @@ const HorizontalDivider = styled.div`
   margin: 19px 0 29px 0; //임시
 `;
 
-const InfoContainer = styled.div`
-  width: 100%;
-  height: 50px; //임시
-  background: red; //임시
-  margin: 27px 0 28px 0;
-`;
-
 const FileContainer = styled.div`
   width: 100%;
-  height: 50px; //임시
-  background: red;
+  height: 800px; //임시
+  background: #d9d9d9;
   margin: 56px 0 56px 0;
+  text-align: center;
+  align-items: center;
 `;
 
 const PlaceContainer = styled.div`
@@ -82,9 +70,7 @@ const Subtitle = styled.div`
 export {
   DetailContainer,
   Thumbnail,
-  Menu,
   HorizontalDivider,
-  InfoContainer,
   FileContainer,
   PlaceContainer,
   NoticeContainer,
