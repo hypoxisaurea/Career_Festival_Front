@@ -1,8 +1,12 @@
 import React from "react";
+import { useState} from "react";
 import styled from "styled-components";
 import Banner from "../components/home/Banner";
 import Filter from "../components/home/Filter";
 import Checkbox from "../components/home/Checkbox";
+import FilterKeyword from "../components/home/Filterkeyword";
+import Recommand from "../components/home/Recommand";
+import dummy from "../db/RecommandedEvents.json";
 
 
 // 중간-필터+지역+행사목록
@@ -78,31 +82,30 @@ const HomeMiddleContainer = styled.div`
 //행사목록가장큰틀
 const Eventlist = styled.div`
   width: 50vw;
-  height: 60vw;
-  border-radius: 20px;
-  border: 1px solid;
-`//3x3배열
+  height: 85vw;
+`;
+
+//3x3배열
 const FestivalListWrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 2vw;
-  padding: 2vw;
-`;
-//행사아이템하나하나
-const FestivalItem = styled.div`
-  width: 100%;
-  height: 15vw;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  border-radius: 10px;
+  align-items: center;
+  margin-top: 1vw;
 `;
 //키워드
-const Keyword = styled.div`
+const KeywordContainer = styled.div`
   width: 5vw;
   height: 2vw;
   margin-left: 2vw;
   border-radius: 20px;
   border: 1px solid;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f9f7ff; // 원하는 배경색 설정
+  color: #582fff; // 원하는 텍스트 색상 설정
+  font-weight: bold;
 `;
 //슬라이드 행사목록 넘김
 const Silder = styled.div`
@@ -130,12 +133,28 @@ const Eventer = styled.div`
   border: 1px solid;
 `;
 
+
 const FestivalListPage = () => {
+   const [selectedFilters, setSelectedFilters] = useState([]);
+
+   const handleCheckboxChange = (category) => {
+     if (selectedFilters.includes(category)) {
+       setSelectedFilters(
+         selectedFilters.filter((filter) => filter !== category)
+       );
+     } else {
+       setSelectedFilters([...selectedFilters, category]);
+     }
+   };
+
+   const removeFilter = (filter) => {
+     setSelectedFilters(selectedFilters.filter((f) => f !== filter));
+   };
+
   return (
     <div>
       {/* 상단 영역 */}
-
-     <Banner/>
+      <Banner />
 
       {/* 중간 영역 */}
       <MiddleContainer>
@@ -143,8 +162,10 @@ const FestivalListPage = () => {
         <FilterAndAreaContainer>
           <FilterContainer>
             필터<FilterP>행사분야</FilterP>
-            <Filter/>
-          
+            <Filter
+              selectedFilters={selectedFilters}
+              setSelectedFilters={setSelectedFilters}
+            />
           </FilterContainer>
           <Area>
             지역
@@ -154,23 +175,34 @@ const FestivalListPage = () => {
               <option value="incheon">인천</option>
             </SelectBox>
           </Area>
-          <Eventtype>행사유형<Checkbox/></Eventtype>
+          <Eventtype>
+            행사유형
+            <Checkbox />
+          </Eventtype>
         </FilterAndAreaContainer>
 
         {/* 행사목록 영역 */}
         <Eventlist>
           152 개의 행사를 찾았어요!
-          <Keyword></Keyword>
+          <FilterKeyword
+            selectedFilters={selectedFilters}
+            removeFilter={removeFilter}
+          />
           <FestivalListWrapper>
-            <FestivalItem>1</FestivalItem>
-            <FestivalItem>2</FestivalItem>
-            <FestivalItem>3</FestivalItem>
-            <FestivalItem>4</FestivalItem>
-            <FestivalItem>5</FestivalItem>
-            <FestivalItem>6</FestivalItem>
-            <FestivalItem>7</FestivalItem>
-            <FestivalItem>8</FestivalItem>
-            <FestivalItem>9</FestivalItem>
+            {dummy.RecommandedByPerson.map((item) => {
+              return (
+                <Recommand
+                  style={{ fontSize: "0.5rem" }}
+                  mainImg={item.mainImg}
+                  eventName={item.eventName}
+                  recruitmentStart={item.recruitmentStart}
+                  recruitmentEnd={item.recruitmentEnd}
+                  isLiked={item.isLiked}
+                  price={item.price}
+                  profile={item.profile}
+                />
+              );
+            })}
           </FestivalListWrapper>
           <Silder>1</Silder>
           <HomeMiddleContainer>
@@ -184,4 +216,5 @@ const FestivalListPage = () => {
     </div>
   );
 };
+
 export default FestivalListPage;

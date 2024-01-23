@@ -1,5 +1,6 @@
 // 필요한 React 및 스타일링 컴포넌트를 불러옵니다.
 import React, { useState, useEffect } from "react";
+import InterestArea from "./InterestArea";
 import {
   Container,
   Title,
@@ -7,12 +8,10 @@ import {
   Subtitle2,
   Gender,
   Age,
-  InterestArea,
-  ModalButton,
-  Modal,
-  ModalContent,
-  SelectWrapper,
-  OptionList
+  EmailInput,
+  TelInput,
+  AffiliationInput,
+  KeyworldOptionList
 } from "./ParticipantStyle";
 
 // Participant 컴포넌트를 정의합니다.
@@ -52,13 +51,6 @@ const Participant = () => {
     setModalOpen(false);
   };
 
-  // 지역 정보를 객체로 정의합니다.
-  const areaOptions = {
-    seoul: ["강남구", "종로구"],
-    busan: ["서면역", "해운대"]
-    // 다른 지역 정보 추가 가능
-  };
-
   // 커리어 키워드 선택 시 호출되는 함수입니다.
   const handleKeywordSelect = (keyword) => {
     // 이미 선택된 키워드인지 확인 후 토글
@@ -74,7 +66,14 @@ const Participant = () => {
   // 부가정보를 저장하는 함수입니다.
   const saveAdditionalInfo = () => {
     // 모든 항목이 입력되었는지 확인
-    if (selectedArea && selectedCity && email && phoneNumber && affiliation && selectedKeywords.length > 0) {
+    if (
+      selectedArea &&
+      selectedCity &&
+      email &&
+      phoneNumber &&
+      affiliation &&
+      selectedKeywords.length > 0
+    ) {
       // 데이터를 백엔드로 전달하는 로직 추가
       console.log("부가정보 저장:", {
         selectedArea,
@@ -120,89 +119,42 @@ const Participant = () => {
 
       {/* 관심지역 입력 부분입니다. */}
       <p>관심지역</p>
-      <InterestArea>
-        {/* 모달 열기 버튼 */}
-        <ModalButton onClick={handleModalToggle}>
-          {/* 선택된 지역이 있으면 해당 지역, 없으면 기본 안내 메시지 출력 */}
-          {selectedCity
-            ? selectedCity
-            : selectedArea
-            ? "시/군/구 선택"
-            : "관심 지역 선택하세요"}
-        </ModalButton>
-
-        {/* 모달 창 */}
-        <Modal isOpen={isModalOpen}>
-          {/* X 버튼 추가 */}
-          <button
-            onClick={closeModal}
-            style={{ float: "right", cursor: "pointer" }}
-          >
-            X
-          </button>
-          <ModalContent>
-            <SelectWrapper>
-              {/* 시/도 선택 부분 */}
-              <div>
-                <label>시/도</label>
-                <OptionList>
-                  <button
-                    onClick={() => handleAreaSelect("seoul")}
-                    selected={selectedArea === "seoul"}
-                  >
-                    서울
-                  </button>
-                  <button
-                    onClick={() => handleAreaSelect("busan")}
-                    selected={selectedArea === "busan"}
-                  >
-                    부산
-                  </button>
-                  {/* 원하는 시/도 옵션을 추가하세요 */}
-                </OptionList>
-              </div>
-
-              {/* 시/군/구 선택 부분 */}
-              {selectedArea !== "" && (
-                <div>
-                  <label>시/군/구</label>
-                  <OptionList>
-                    {areaOptions[selectedArea].map((city) => (
-                      <button
-                        key={city}
-                        onClick={() => handleCitySelect(city)}
-                        selected={selectedCity === city}
-                      >
-                        {city}
-                      </button>
-                    ))}
-                  </OptionList>
-                </div>
-              )}
-            </SelectWrapper>
-          </ModalContent>
-        </Modal>
-      </InterestArea>
-      
-      {/* 추가: 이메일 입력 부분입니다. */}
-      <p>이메일</p>
-      <input
-        type="email"
-        placeholder="이메일을 입력하세요"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
+      <InterestArea
+        selectedArea={selectedArea}
+        handleAreaSelect={handleAreaSelect}
+        selectedCity={selectedCity}
+        handleCitySelect={handleCitySelect}
+        isModalOpen={isModalOpen}
+        handleModalToggle={handleModalToggle}
+        closeModal={closeModal}
       />
 
-      {/* 추가: 전화번호 입력 부분입니다. */}
-      <p>전화번호</p>
+      {/* 이메일 입력 부분입니다. */}
+      <EmailInput>
+        <label>이메일</label>
+        <input
+          type="email"
+          placeholder="이메일을 입력하세요"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+      </EmailInput>
+
+      {/* 전화번호 입력 부분입니다. */}
+      <TelInput>
+      <label>전화번호</label>
       <input
         type="tel"
         placeholder="전화번호를 입력하세요"
         value={phoneNumber}
         onChange={(e) => setPhoneNumber(e.target.value)}
       />
+      </TelInput>
 
-      {/* 추가: 소속 입력 부분입니다. */}
+      
+
+      {/* 소속 입력 부분입니다. */}
+      <AffiliationInput>
       <p>소속(회사/기관/학교명)</p>
       <input
         type="text"
@@ -210,20 +162,21 @@ const Participant = () => {
         value={affiliation}
         onChange={(e) => setAffiliation(e.target.value)}
       />
+      </AffiliationInput>
 
       {/* 추가: 커리어 키워드 입력 부분입니다. */}
       <p>커리어 키워드</p>
-      <OptionList>
+      <KeyworldOptionList>
         {[
           "창업",
           "라이프",
           "예술",
           "마케팅",
-          "경제금융",
-          "인문사회",
+          "경제/금융",
+          "인문/사회",
           "과학기술",
           "디자인",
-          "관광여행"
+          "관광/여행"
         ].map((keyword) => (
           <button
             key={keyword}
@@ -233,10 +186,20 @@ const Participant = () => {
             {keyword}
           </button>
         ))}
-      </OptionList>
+      </KeyworldOptionList>
 
       {/* 부가정보 저장하기 버튼 */}
-      <button onClick={saveAdditionalInfo} disabled={!selectedArea || !selectedCity || !email || !phoneNumber || !affiliation || selectedKeywords.length === 0}>
+      <button
+        onClick={saveAdditionalInfo}
+        disabled={
+          !selectedArea ||
+          !selectedCity ||
+          !email ||
+          !phoneNumber ||
+          !affiliation ||
+          selectedKeywords.length === 0
+        }
+      >
         부가정보 저장하기
       </button>
     </Container>
