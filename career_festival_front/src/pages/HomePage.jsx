@@ -1,9 +1,11 @@
 // src/pages/HomePage.jsx
 import React from "react";
-import Recommand from "../components/home/Recommand";
-import dummy from "../db/RecommandedEvents.json";
+import Recommend from "../components/home/Recommend";
+import dummy from "../db/RecommendedEvents.json";
 import styled from "styled-components";
 import Banner from "../components/home/Banner";
+import OrganizationList from "../components/home/OrganizationList";
+
 
 //Home 전체 페이지
 const HomePageContainer = styled.div`
@@ -11,20 +13,23 @@ const HomePageContainer = styled.div`
   align-items: center;
   flex-direction: column;
   margin: 0 auto;
-  padding: 0 8vw 0 8vw;
+  width: 65%;
+  //padding: 0 8vw 0 8vw;
 `;
 
 
 
-//개인 키워드 추천
-const RecommandPersonalContainer = styled.div`
+/*개인 키워드 추천*/
+
+//개인 키워드 추천 전체
+const RecommendPersonalContainer = styled.div`
+  background-color: beige;
   display: flex;
   flex-direction: column;
-  width: 80%;
-  margin: 2vw;
+  //margin: 2vw;
 `;
 
-const RecommandPersonalWraper = styled.div`
+const RecommendPersonalWraper = styled.div`
   // 그리드 3x2
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -33,12 +38,9 @@ const RecommandPersonalWraper = styled.div`
 
 
 //위치 근처 추천
-const RecommandPlaceContainer = styled.div`
-  //background-color: #f2f2f2; /*임의로 영역 확인용*/
-  width: 80%;
-  margin-top: 3vmax;
-  margin-bottom: 15vmax;
-
+const RecommendPlaceContainer = styled.div`
+  background-color: #f2f2f2; /*임의로 영역 확인용*/
+  
   button {
     width: 113px;
     height: 42px;
@@ -54,7 +56,7 @@ const RecommandPlaceContainer = styled.div`
   }
 `;
 
-const RecommandPlaceWraper = styled.div`
+const RecommendPlaceWraper = styled.div`
    //그리드 3*1
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -62,37 +64,46 @@ const RecommandPlaceWraper = styled.div`
   gap: 5vmax 2vmax;
 `;
 
+
+//주최자
+
+
+
+
+
+
 const HomePage = () => {
-  const recommendedByPersonSlice = dummy.RecommandedByPerson.slice(0, 6); // 처음 6개 아이템만 사용
+  const recommendedByPersonSlice = dummy.RecommendedByPerson.slice(0, 6); // 처음 6개 아이템만 사용
 
   return (
     <div>
       <Banner />
       <HomePageContainer>
-        <RecommandPersonalContainer>
+        <RecommendPersonalContainer>
           <h2
             style={{
-              fontSize: "24px",
+              fontSize: "1.5rem",
               fontWeight: "900",
-              marginBottom: "10px",
+              paddingTop: "5rem",
+              marginBottom: "1rem",
             }}
           >
             이런행사 찾으셨죠?
           </h2>
           <div
             style={{
-              fontSize: "20px",
-              fontWeight: "bold",
-              marginBottom: "2vmax",
+              fontSize: "1.3rem",
+              fontWeight: "900",
+              marginBottom: "2rem",
             }}
           >
             회원가입 시 선택한
             <span style={{ color: "#582fff" }}> 커리어 키워드</span>에 가장
             부합한 행사들을 볼 수 있어요!
           </div>
-          <RecommandPersonalWraper>
+          <RecommendPersonalWraper>
             {recommendedByPersonSlice.map((item) => (
-              <Recommand
+              <Recommend
                 style={{
                   color: "white",
                   fontSize: "0.8rem",
@@ -107,24 +118,25 @@ const HomePage = () => {
                 profile={item.profile}
               />
             ))}
-          </RecommandPersonalWraper>
-        </RecommandPersonalContainer>
+          </RecommendPersonalWraper>
+        </RecommendPersonalContainer>
 
-        <RecommandPlaceContainer>
+        <RecommendPlaceContainer>
           <h2
             style={{
-              fontSize: "24px",
+              fontSize: "1.5rem",
               fontWeight: "900",
-              marginBottom: "2vmax",
+              paddingTop: "10rem",
+              marginBottom: "2rem",
               justifyItems: "center",
             }}
           >
             <button>지역명</button> 근처 행사
           </h2>
-          <RecommandPlaceWraper>
-            {dummy.RecommandedByPlace.map((item) => {
+          <RecommendPlaceWraper>
+            {dummy.RecommendedByPlace.map((item) => {
               return (
-                <Recommand
+                <Recommend
                   mainImg={item.mainImg}
                   eventName={item.eventName}
                   recruitmentStart={item.recruitmentStart}
@@ -135,8 +147,9 @@ const HomePage = () => {
                 />
               );
             })}
-          </RecommandPlaceWraper>
-        </RecommandPlaceContainer>
+          </RecommendPlaceWraper>
+        </RecommendPlaceContainer>
+        <OrganizationList/>
       </HomePageContainer>
     </div>
   );
