@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
+
 const SignupContainer = styled.div`
   max-width: 300px;
   margin: 0 auto;
@@ -9,6 +11,13 @@ const InputField = styled.input`
   width: 93.5%;
   margin-bottom: 10px;
   padding: 8px;
+  border: 1px solid;
+  border-radius:5px;
+  &:hover,
+  &:focus {
+    border-color: #582fff;
+    outline: none; // 선택 효과를 제거합니다.
+  }
 `;
 
 const SocialLoginButtons = styled.div`
@@ -48,14 +57,23 @@ const OrDivider = styled.div`
     height: 1px;
     background-color: #ccc;
     margin: 0 10px;
+    margin-bottom: 10px;
   }
 `;
 
 const EmailVerificationContainer = styled.div`
   display: flex;
   justify-content: space-between;
+  margin-bottom:10px;
+  
+  input{
+    width: 70%;
+    border: 1px solid;
+    border-radius:5px;
+  }
+
   button {
-    width: 48%;
+    width: 30%;
     background-color: #ffffff;
     border: 3px solid #582fff;
     padding: 10px;
@@ -63,6 +81,11 @@ const EmailVerificationContainer = styled.div`
     color: #582fff;  // 텍스트 색상을 버튼 테두리 색상과 일치하도록 수정
     border-radius: 5px;
     cursor: pointer;
+
+    &:hover {
+      color: #ffffff;
+      background-color: #582fff;
+    }
   }
 `;
 const AgreementContainer = styled.div`
@@ -76,13 +99,13 @@ const AgreementContainer = styled.div`
 const SignupButton = styled.button`
   width: 100%;
   padding: 10px;
-  background-color: ${(props) => (props.disabled ? "#ccc" : "#28a745")};
+  background-color: ${(props) => (props.disabled ? "#ccc" : "#582fff")};
   color: #fff;
   border: none;
   border-radius: 5px;
   cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
   &:hover {
-    background-color: ${(props) => (props.disabled ? "#ccc" : "#218838")};
+    background-color: ${(props) => (props.disabled ? "#ccc" : "#582fff")};
   }
 `;
 
@@ -140,7 +163,7 @@ const ModalRadioContainer = styled.div`
       border-color: #582fff;
     }
 
-    input:checked + & {
+    input[type="radio"]:checked + & {
       border-color: #582fff;
     }
   }
@@ -189,6 +212,15 @@ const CheckIcon = styled.div`
   align-items: center; // 세로 중앙 정렬 추가
 `;
 
+const BackLink = styled(Link)`
+  margin-left: 200px;
+  
+  img {
+    max-width: 3%; // 이미지의 최대 너비를 100%로 설정
+    height: auto; // 비율에 맞게 자동으로 높이 조절
+    margin-top: 10px;
+  }
+`;
 
 const SignupStyle = {
   SignupContainer,
@@ -205,6 +237,7 @@ const SignupStyle = {
   CheckIcon,
   WelcomeText,
   WelcomeText2,
+  BackLink,
 };
 
 export default SignupStyle;

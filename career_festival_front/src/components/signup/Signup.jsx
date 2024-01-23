@@ -1,5 +1,11 @@
 import React, { useState } from "react";
-import { BrowserRouter as Router, Routes, Route, useNavigate } from "react-router-dom";
+import Backicon from "../../assets/images/keyboard-left-arrow-button.png";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useNavigate
+} from "react-router-dom";
 import styled from "styled-components";
 import SignupStyle from "./SignupStyle";
 import Participant from "./Participant";
@@ -14,7 +20,7 @@ const Signup = () => {
   const [agreements, setAgreements] = useState({
     agreement1: false,
     agreement2: false,
-    agreement3: false,
+    agreement3: false
   });
 
   // 모달 관련 상태
@@ -41,6 +47,7 @@ const Signup = () => {
 
   // 역할에 따라 URL 변경 및 모달 닫기
   const handleModalNext = async (role) => {
+    // "다음" 버튼이 눌리면 선택된 데이터를 상태에 저장하고 모달을 닫음
     setModalOpen(false);
 
     try {
@@ -50,21 +57,49 @@ const Signup = () => {
         password,
         checkPassword: confirmPassword,
         email,
-        role,
+        role
       });
 
+      // 선택된 역할과 함께 사용자가 입력한 정보를 서버로 전송하기 위한 데이터
+      const userData = {
+        name,
+        password,
+        confirmPassword,
+        email,
+        agreements,
+        role: selectedRole
+      };
       // 백엔드 API 호출 및 응답 처리
+      // fetch 함수 호출 또는 axios 등을 사용하여 백엔드로 데이터 전송
+      const response = await fetch("백엔드 API 주소", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(userData)
+      });
 
+      // 응답 확인
+      if (response.ok) {
+        // 백엔드에서 온 응답 처리
+        console.log("회원가입 성공");
+      } else {
+        console.error("회원가입 실패:", response.statusText);
+      }
       // 역할에 따라 URL 변경
       const url = role === "participant" ? "/participant" : "/organizer";
-      navigate(url);  // navigate 함수 사용
+      navigate(url); // navigate 함수 사용
 
       // 선택된 역할에 따라 화면을 설정
       setRoleComponent(
-        role === "participant" ? <Participant /> : role === "organizer" ? <Organizer /> : null
+        role === "participant" ? (
+          <Participant />
+        ) : role === "organizer" ? (
+          <Organizer />
+        ) : null
       );
     } catch (error) {
-      console.error("Error:", error);
+      console.error('에러 발생:', error);
     }
   };
 
@@ -110,38 +145,50 @@ const Signup = () => {
           오늘부터 행사의 참여자도, 주최자도 될 수 있어요.
         </SignupStyle.WelcomeText>
 
-        <SignupStyle.WelcomeText2>어떤 용도로 사용하실건가요?</SignupStyle.WelcomeText2>
+        <SignupStyle.WelcomeText2>
+          어떤 용도로 사용하실건가요?
+        </SignupStyle.WelcomeText2>
 
         <SignupStyle.ModalRadioContainer>
-          <label>
+          <label checked={selectedRole === "participant"}>
             <input
               type="radio"
-              value="participant"
-              checked={selectedRole === "participant"}
+              value="ROLE_PARTICIPANT"
+              checked={selectedRole === "ROLE_PARTICIPANT"}
               onChange={handleOptionChange}
             />
-            참가자<br />
+            참가자
+            <br />
             행사를 신청하고 참여합니다!
           </label>
-          <label>
+          <label checked={selectedRole === "organizer"}>
             <input
               type="radio"
-              value="organizer"
-              checked={selectedRole === "organizer"}
+              value="ROLE_ORGANIZER"
+              checked={selectedRole === "ROLE_ORGANIZER"}
               onChange={handleOptionChange}
             />
-            주최자<br />
+            주최자
+            <br />
             행사를 개설하고 운영합니다!
           </label>
         </SignupStyle.ModalRadioContainer>
 
-        <SignupStyle.ModalButton onClick={handleNextButtonClick}>다음</SignupStyle.ModalButton>
+        <SignupStyle.ModalButton onClick={handleNextButtonClick}>
+          다음
+        </SignupStyle.ModalButton>
       </SignupStyle.Modal>
     );
   };
 
   return (
     <div>
+      <br />
+      <SignupStyle.BackLink to="/login">
+        {" "}
+        {/* 로그인 화면으로 이동하는 BackLink 컴포넌트 추가 */}
+        <img src={Backicon} alt="Backicon" />
+      </SignupStyle.BackLink>
       <SignupStyle.SignupContainer>
         <div>회원가입</div>
         <SignupStyle.SocialLoginButtons>
@@ -213,7 +260,7 @@ const Signup = () => {
               onChange={() =>
                 setAgreements({
                   ...agreements,
-                  agreement1: !agreements.agreement1,
+                  agreement1: !agreements.agreement1
                 })
               }
             />
@@ -226,7 +273,7 @@ const Signup = () => {
               onChange={() =>
                 setAgreements({
                   ...agreements,
-                  agreement2: !agreements.agreement2,
+                  agreement2: !agreements.agreement2
                 })
               }
             />
@@ -239,7 +286,7 @@ const Signup = () => {
               onChange={() =>
                 setAgreements({
                   ...agreements,
-                  agreement3: !agreements.agreement3,
+                  agreement3: !agreements.agreement3
                 })
               }
             />
