@@ -29,6 +29,7 @@ const InterestAreaStyle = styled.div`
 // 모달 스타일 정의
 const Modal = styled.div`
   width: 300px; // 모달 가로 크기 설정
+  height: 400px;
   position: fixed; // 고정 위치 설정
   top: 50%; // 화면 상단에서 50% 위치로 설정
   left: 50%; // 화면 왼쪽에서 50% 위치로 설정
@@ -70,6 +71,9 @@ const CityOptionList = styled.div`
   display: grid; // 그리드 레이아웃으로 변경
   grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); // 자동으로 열 생성 및 최소 너비 설정
   gap: 5px; // 그리드 아이템 간의 간격 설정
+  overflow-y: auto; /* 세로 스크롤이 필요한 경우에만 스크롤 표시 */
+  max-height: 350px; /* 스크롤이 나타날 최대 높이 설정 */
+  overflow-x: hidden; /* 가로 스크롤 숨김 */
 `;
 
 // 시/도 선택 부분 스타일 정의

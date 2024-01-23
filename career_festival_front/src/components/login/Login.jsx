@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import LoginStyle from "./LoginStyle"; // 스타일 파일 불러오기
+import Backicon from "../../assets/images/keyboard-left-arrow-button.png";
 import Logo from "../../assets/images/logo.png";
 import Kakao from "../../assets/images/login_kakao.png";
 import Naver from "../../assets/images/login_naver.png";
@@ -18,6 +19,7 @@ import {
   RememberMe,
   IDFind,
   PasswordReset,
+  BackLink,
 } from "./LoginStyle"; // 수정된 부분
 
 const Login = () => {
@@ -34,7 +36,12 @@ const Login = () => {
   };
 
   return (
-    <LoginContainer>
+    <>
+    <br/>
+    <BackLink to="/"> {/* 메인 화면으로 이동하는 BackLink 컴포넌트 추가 */}
+      <img src={Backicon} alt="Backicon" />
+    </BackLink>
+    <LoginContainer>  
       <img src={Logo} alt="Logo" /> {/* 로고 이미지 추가 */}
       <Welcome>커리어 페스티벌에 오신걸 환영합니다!</Welcome>
       <Field>
@@ -79,6 +86,7 @@ const Login = () => {
         <img src={Naver} alt="Login_Naver" />
       </SocialButtonContainer>
     </LoginContainer>
+    </>
   );
 };
 

@@ -22,8 +22,10 @@ const LoginContainer = styled.div`
 
 // 입력 필드 관련 스타일
 const Field = styled.div`
+  width: 300px;
+  height: 50px;
   position: relative;
-  margin-top: 30px;
+  margin-top: 20px;
 `;
 
 // 환영 메시지 스타일
@@ -50,11 +52,11 @@ const SocialButtonContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-
   img {
     width: 40px;
     height: auto;
-    margin: 0 5px;
+    margin-right: 10px;
+    margin-left: 10px;
     border-radius: 40px;
   }
 `;
@@ -149,6 +151,16 @@ const PasswordReset = styled(Link)`
   cursor: pointer;
 `;
 
+const BackLink = styled(Link)`
+  margin-left: 200px;
+  
+  img {
+    max-width: 3%; // 이미지의 최대 너비를 100%로 설정
+    height: auto; // 비율에 맞게 자동으로 높이 조절
+    margin-top: 10px;
+  }
+`;
+
 export {
   LoginContainer,
   Field,
@@ -161,5 +173,6 @@ export {
   SocialButtonContainer,
   RememberMe,
   IDFind,
-  PasswordReset
+  PasswordReset,
+  BackLink,
 };

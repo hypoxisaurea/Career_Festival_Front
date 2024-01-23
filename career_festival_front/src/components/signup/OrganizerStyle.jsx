@@ -1,6 +1,6 @@
 // OrganizerStyle.js
 
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 const Container = styled.div`
   max-width: 800px;
@@ -43,6 +43,13 @@ const EmailInput = styled.div`
     font-size: 16px;
     border: 1px solid;
     border-radius: 5px;
+
+    &:hover,
+    &:focus {
+      border: 3px solid;
+      border-color: #582fff;
+      outline: none; // 선택 효과를 제거합니다.
+    }
   }
 `;
 
@@ -61,6 +68,13 @@ const TelInput = styled.div`
     font-size: 16px;
     border: 1px solid;
     border-radius: 5px;
+
+    &:hover,
+    &:focus {
+      border: 3px solid;
+      border-color: #582fff;
+      outline: none; // 선택 효과를 제거합니다.
+    }
   }
 `;
 
@@ -79,35 +93,76 @@ const AffiliationInput = styled.div`
     font-size: 16px;
     border: 1px solid;
     border-radius: 5px;
-  }
-`;
 
-const KeyworldOptionList = styled.div`
-display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-
-  button {
-    border: none;
-    padding: 8px;
-    cursor: pointer;
-    color:#838383;
-    background: #ffffff;
-    border: 1px solid;
-    border-radius: 20px;
-
-
-    ${(props) =>
-      props.selected
-        ? "background-color: #582fff; color: #fff; border: 1px solid #582fff;" // 선택된 항목에 배경색, 글자색, 테두리 추가
-        : ""};
-    &:hover {
-      color: #582fff;
+    &:hover,
+    &:focus {
+      border: 3px solid;
+      border-color: #582fff;
+      outline: none; // 선택 효과를 제거합니다.
     }
   }
 `;
 
+const KeyworldOptionList = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+`;
 
+const KeywordButton = styled.button`
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+  color: #838383;
+  background: #ffffff;
+  border: 2px solid;
+  border-radius: 20px;
+
+  ${(props) =>
+    props.selected &&
+    css`
+      border: 2px solid #582fff;
+      color: #582fff;
+    `};
+
+  &:hover {
+    color: #582fff;
+  }
+`;
+
+const TwoButton = styled.div`
+  display: flex;
+  justify-content: center;  // 가로 중앙 정렬
+  align-items: center;  // 세로 중앙 정렬
+  gap: 10px;  // 버튼 사이의 간격 조절
+`;
+
+const LaterSave = styled.button`
+  background-color: #d9d9d9;
+  color: #582fff;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 10px;
+
+  &:hover {
+    background-color: #c1c1c1;
+  }
+
+`;
+
+const Save = styled.button`
+  background-color: #582fff;
+  color: #ffffff;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 10px;
+
+  &:hover {
+    background-color: #4018cc;
+  }
+`;
 
 export {
   Container,
@@ -118,4 +173,8 @@ export {
   TelInput,
   AffiliationInput,
   KeyworldOptionList,
+  KeywordButton,
+  TwoButton,
+  LaterSave,
+  Save,
 };
