@@ -34,21 +34,27 @@ const AskContentContainer = styled.textarea`
     font-size: 14px;
     font-family: "Noto Sans KR";
     font-weight: 400;
+    padding: 17px 0 0 15px;
   }
 `;
 
+const BottomContainer = styled.div`
+  display: flex;
+`;
+
 const CountContainer = styled.div`
-  width: 72px;
+  width: 100px;
   height: 100%;
   display: flex;
+  justify-content: flex-end;
+  margin: 27px 11px 8px 950px;
 `;
 
 const ReplyContainer = styled.div`
   width: 203px;
-  height: 49px;
   background: #020d6a;
   border-bottom-right-radius: 10px;
-  margin-left: 1021px;
+  margin-left: 11px;
 
   color: white;
   font-size: 16px;
@@ -130,16 +136,17 @@ const QnA = () => {
         <AskContentContainer
           placeholder="행사와 관련된 문의를 자유롭게 남겨보세요!"
           onChange={onInputHandler}
-          maxLength="5000"
+          maxLength="500"
         />
 
         <HorizontalDivider />
-
-        <CountContainer>
-          <CountColorText>{inputCount}</CountColorText>
-          <CountText>/5000자</CountText>
-        </CountContainer>
-        <ReplyContainer>댓글 등록</ReplyContainer>
+        <BottomContainer>
+          <CountContainer>
+            <CountColorText>{inputCount}</CountColorText>
+            <CountText>/500자</CountText>
+          </CountContainer>
+          <ReplyContainer>댓글 등록</ReplyContainer>
+        </BottomContainer>
       </AskContainer>
     </QnAContainer>
   );

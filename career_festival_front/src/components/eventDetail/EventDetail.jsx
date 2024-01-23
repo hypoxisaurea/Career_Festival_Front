@@ -2,13 +2,14 @@ import React from "react";
 import {
   DetailContainer,
   Thumbnail,
-  Menu,
   HorizontalDivider,
-  InfoContainer,
   FileContainer,
   PlaceContainer,
   Subtitle,
 } from "./EventDetailStyle";
+
+import Menu from "./Menu";
+import Info from "./Info";
 
 function EventDetail() {
   return (
@@ -16,9 +17,9 @@ function EventDetail() {
       <Thumbnail />
       <Menu />
       <HorizontalDivider />
-      <InfoContainer />
+      <Info />
       <HorizontalDivider />
-      <FileContainer />
+      <FileContainer>상세 내용</FileContainer>
       <PlaceContainer>
         <Subtitle>행사위치</Subtitle>
       </PlaceContainer>

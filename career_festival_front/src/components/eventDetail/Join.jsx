@@ -35,21 +35,26 @@ const AskContentContainer = styled.textarea`
     font-size: 14px;
     font-family: "Noto Sans KR";
     font-weight: 400;
+    padding: 17px 0 0 15px;
   }
+`;
+const BottomContainer = styled.div`
+  display: flex;
 `;
 
 const CountContainer = styled.div`
-  width: 72px;
+  width: 100px;
   height: 100%;
   display: flex;
+  justify-content: flex-end;
+  margin: 27px 11px 8px 950px;
 `;
 
 const ReplyContainer = styled.div`
   width: 203px;
-  height: 49px;
   background: #020d6a;
   border-bottom-right-radius: 10px;
-  margin-left: 1021px;
+  margin-left: 11px;
 
   color: white;
   font-size: 16px;
@@ -163,15 +168,16 @@ const Join = () => {
           placeholder="팀원들과 같이 갈 날짜와 시간, 장소와 인원수를 명시해주세요!  팀원들이 모일 수단을 첨부하시면 도움이 됩니다.
           예시) 1월 14일 14시, 삼각지역 9번 출구 앞, 3명, https://open.kakao.com/o/uIPzxlZf"
           onChange={onInputHandler}
-          maxLength="5000"
+          maxLength="500"
         />
         <HorizontalDivider />
-
-        <CountContainer>
-          <CountColorText>{inputCount}</CountColorText>
-          <CountText>/5000자</CountText>
-        </CountContainer>
-        <ReplyContainer>댓글 등록</ReplyContainer>
+        <BottomContainer>
+          <CountContainer>
+            <CountColorText>{inputCount}</CountColorText>
+            <CountText>/500자</CountText>
+          </CountContainer>
+          <ReplyContainer>댓글 등록</ReplyContainer>
+        </BottomContainer>
       </AskContainer>
     </JoinContainer>
   );
