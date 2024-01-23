@@ -47,6 +47,7 @@ const Signup = () => {
 
   // 역할에 따라 URL 변경 및 모달 닫기
   const handleModalNext = async (role) => {
+    // "다음" 버튼이 눌리면 선택된 데이터를 상태에 저장하고 모달을 닫음
     setModalOpen(false);
 
     try {
@@ -59,8 +60,32 @@ const Signup = () => {
         role
       });
 
+      // 선택된 역할과 함께 사용자가 입력한 정보를 서버로 전송하기 위한 데이터
+      const userData = {
+        name,
+        password,
+        confirmPassword,
+        email,
+        agreements,
+        role: selectedRole
+      };
       // 백엔드 API 호출 및 응답 처리
+      // fetch 함수 호출 또는 axios 등을 사용하여 백엔드로 데이터 전송
+      const response = await fetch("백엔드 API 주소", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(userData)
+      });
 
+      // 응답 확인
+      if (response.ok) {
+        // 백엔드에서 온 응답 처리
+        console.log("회원가입 성공");
+      } else {
+        console.error("회원가입 실패:", response.statusText);
+      }
       // 역할에 따라 URL 변경
       const url = role === "participant" ? "/participant" : "/organizer";
       navigate(url); // navigate 함수 사용
@@ -74,7 +99,7 @@ const Signup = () => {
         ) : null
       );
     } catch (error) {
-      console.error("Error:", error);
+      console.error('에러 발생:', error);
     }
   };
 
