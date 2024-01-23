@@ -43,7 +43,16 @@ const EmailInput = styled.div`
     font-size: 16px;
     border: 1px solid;
     border-radius: 5px;
+
+    &:hover,
+    &:focus {
+      border: 3px solid;
+      border-color: #582fff;
+      outline: none; // 선택 효과를 제거합니다.
+    }
   }
+
+  
 `;
 
 const TelInput = styled.div`
@@ -61,7 +70,16 @@ const TelInput = styled.div`
     font-size: 16px;
     border: 1px solid;
     border-radius: 5px;
+
+    &:hover,
+    &:focus {
+    border: 3px solid;
+    border-color: #582fff;
+    outline: none; // 선택 효과를 제거합니다.
   }
+  }
+
+  
 `;
 
 const AffiliationInput = styled.div`
@@ -79,6 +97,13 @@ const AffiliationInput = styled.div`
     font-size: 16px;
     border: 1px solid;
     border-radius: 5px;
+
+    &:hover,
+    &:focus {
+      border: 3px solid;
+      border-color: #582fff;
+      outline: none; // 선택 효과를 제거합니다.
+    }
   }
 `;
 
