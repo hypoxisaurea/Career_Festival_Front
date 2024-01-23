@@ -192,7 +192,7 @@ const FestivalListPage = () => {
             {dummy.RecommendedByPerson.map((item) => {
               return (
                 <Recommend
-                  style={{ fontSize: "0.5rem" }}
+                  //style={{ fontSize: "0.5rem" }}
                   mainImg={item.mainImg}
                   eventName={item.eventName}
                   recruitmentStart={item.recruitmentStart}

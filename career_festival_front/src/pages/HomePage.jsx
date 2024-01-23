@@ -13,8 +13,7 @@ const HomePageContainer = styled.div`
   align-items: center;
   flex-direction: column;
   margin: 0 auto;
-  width: 65%;
-  //padding: 0 8vw 0 8vw;
+
 `;
 
 
@@ -26,20 +25,36 @@ const RecommendPersonalContainer = styled.div`
   background-color: beige;
   display: flex;
   flex-direction: column;
-  //margin: 2vw;
+
+  width: 70vw;
 `;
 
+//컴포넌트 자리
 const RecommendPersonalWraper = styled.div`
+  background-color: lavender;
+
+  width: 100%;
+
   // 그리드 3x2
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  align-items: center;
   gap: 2vw;
 `;
 
 
-//위치 근처 추천
+/* 위치 근처 추천*/
+
+//위치 근처 추천 전체
 const RecommendPlaceContainer = styled.div`
   background-color: #f2f2f2; /*임의로 영역 확인용*/
+
+  display: flex;
+  flex-direction: column;
+
+  width: 70vw;
+  margin-top: 5rem;
+
   
   button {
     width: 113px;
@@ -56,12 +71,19 @@ const RecommendPlaceContainer = styled.div`
   }
 `;
 
+
+//컴포넌트 자리
 const RecommendPlaceWraper = styled.div`
+  background-color: lavender;
+  width: 100%;
+
+
    //그리드 3*1
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: 1fr;
-  gap: 5vmax 2vmax;
+  align-items: center;
+  gap: 2vw;
 `;
 
 
@@ -74,6 +96,8 @@ const RecommendPlaceWraper = styled.div`
 
 const HomePage = () => {
   const recommendedByPersonSlice = dummy.RecommendedByPerson.slice(0, 6); // 처음 6개 아이템만 사용
+  const recommendedByPlaceSlice = dummy.RecommendedByPlace.slice(0, 3); // 처음 3개 아이템만 사용
+
 
   return (
     <div>
@@ -84,8 +108,7 @@ const HomePage = () => {
             style={{
               fontSize: "1.5rem",
               fontWeight: "900",
-              paddingTop: "5rem",
-              marginBottom: "1rem",
+              margin: "2rem 0"
             }}
           >
             이런행사 찾으셨죠?
@@ -101,6 +124,9 @@ const HomePage = () => {
             <span style={{ color: "#582fff" }}> 커리어 키워드</span>에 가장
             부합한 행사들을 볼 수 있어요!
           </div>
+          
+
+
           <RecommendPersonalWraper>
             {recommendedByPersonSlice.map((item) => (
               <Recommend
@@ -126,15 +152,16 @@ const HomePage = () => {
             style={{
               fontSize: "1.5rem",
               fontWeight: "900",
-              paddingTop: "10rem",
+              //paddingTop: "10rem",
               marginBottom: "2rem",
               justifyItems: "center",
             }}
           >
             <button>지역명</button> 근처 행사
           </h2>
+
           <RecommendPlaceWraper>
-            {dummy.RecommendedByPlace.map((item) => {
+            {recommendedByPlaceSlice.map((item) => {
               return (
                 <Recommend
                   mainImg={item.mainImg}
