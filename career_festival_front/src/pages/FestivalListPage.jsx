@@ -5,8 +5,8 @@ import Banner from "../components/home/Banner";
 import Filter from "../components/home/Filter";
 import Checkbox from "../components/home/Checkbox";
 import FilterKeyword from "../components/home/Filterkeyword";
-import Recommand from "../components/home/Recommand";
-import dummy from "../db/RecommandedEvents.json";
+import Recommend from "../components/home/Recommend";
+import dummy from "../db/RecommendedEvents.json";
 
 
 // 중간-필터+지역+행사목록
@@ -189,10 +189,10 @@ const FestivalListPage = () => {
             removeFilter={removeFilter}
           />
           <FestivalListWrapper>
-            {dummy.RecommandedByPerson.map((item) => {
+            {dummy.RecommendedByPerson.map((item) => {
               return (
-                <Recommand
-                  style={{ fontSize: "0.5rem" }}
+                <Recommend
+                  //style={{ fontSize: "0.5rem" }}
                   mainImg={item.mainImg}
                   eventName={item.eventName}
                   recruitmentStart={item.recruitmentStart}
