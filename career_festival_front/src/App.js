@@ -30,6 +30,7 @@ function App() {
           <Route path="/detail" element={<><Header /><DetailFestivalPage /><Footer /></>} />
           <Route path="/community" element={<><Header /><Community /><Footer /></>} />
           <Route path="/diary" element={<><Header /><Diary /><Footer /></>} />
+          <Route path="/addDiary" element={<><Header /><AddDiary /><Footer /></>} />
         </Routes>
       </div>
     </Router>
