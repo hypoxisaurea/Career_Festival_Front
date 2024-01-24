@@ -1,6 +1,8 @@
 // InterestArea.jsx
 
 import React, { useEffect } from "react";
+// 데이터 파일 불러오기
+import areaData from "../../db/areaData.json";
 import {
   InterestAreaStyle,
   ModalContent,
@@ -14,8 +16,7 @@ import {
   VerticalLine
 } from "./InterestAreaStyle";
 
-// 데이터 파일 불러오기
-import areaData from "../../db/areaData.json";
+
 
 const InterestArea = ({
   selectedArea,
@@ -28,6 +29,15 @@ const InterestArea = ({
 }) => {
   // 지역 정보를 데이터 파일에서 불러오기
   const areaOptions = areaData.areas;
+  
+  // 모달 외부 클릭 이벤트 핸들러
+  const handleOutsideClick = (e) => {
+    // 모달이 열려있는 상태에서 모달 영역 외부를 클릭한 경우에만 모달을 닫음
+    if (isModalOpen && e.target.classList.contains("modal-overlay")) {
+      closeModal();
+    }
+  };
+  
 
   // 컴포넌트가 마운트될 때 서울로 초기 선택
   useEffect(() => {
@@ -41,6 +51,14 @@ const InterestArea = ({
     }
   }, [isModalOpen]);
 
+  // 클릭 이벤트 리스너 등록
+  useEffect(() => {
+    document.addEventListener("click", handleOutsideClick);
+    return () => {
+      document.removeEventListener("click", handleOutsideClick);
+    };
+  }, [isModalOpen, closeModal]);
+
   return (
     <InterestAreaStyle isOpen={isModalOpen}>
       {/* 모달 열기 버튼 */}
@@ -49,13 +67,13 @@ const InterestArea = ({
         {selectedCity
           ? selectedCity
           : selectedArea
-          ? "지역 선택하세요 ▼"
+          ? `지역 선택하세요 ${isModalOpen ? "▲" : "▼"}`
           : "관심 지역 선택하세요"}
       </button>
 
       {/* 모달 창 */}
       {isModalOpen && (
-        <Modal isOpen={isModalOpen}>
+        <Modal isOpen={isModalOpen} className="modal-overlay">
           {/* X 버튼 추가 */}
           {/* <button onClick={closeModal} style={{ float: "right", cursor: "pointer" }}>
             X
