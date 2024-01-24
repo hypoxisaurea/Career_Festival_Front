@@ -37,8 +37,9 @@ const RecommendPersonalWraper = styled.div`
 
   // 그리드 3x2
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  align-items: center;
+  grid-template-columns: repeat(3, 22vw);
+  align-items: top;
+
   gap: 2vw;
 `;
 
@@ -80,9 +81,9 @@ const RecommendPlaceWraper = styled.div`
 
    //그리드 3*1
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, 22vw);
   grid-template-rows: 1fr;
-  align-items: center;
+  align-items: top;
   gap: 2vw;
 `;
 
