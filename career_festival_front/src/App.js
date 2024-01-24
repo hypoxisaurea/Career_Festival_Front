@@ -15,6 +15,7 @@ import Participant from "./components/signup/Participant";
 import Organizer from "./components/signup/Organizer";
 import "./App.css";
 import FestivalListPage from "./pages/FestivalListPage";
+import RegisterPage from "./pages/RegisterPage";
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
           <Route path="/community" element={<><Header /><Community /><Footer /></>} />
           <Route path="/diary" element={<><Header /><Diary /><Footer /></>} />
           <Route path="/addDiary" element={<><Header /><AddDiary /><Footer /></>} />
+          <Route path="/register" element={<><Header /><RegisterPage /><Footer /></>} />
         </Routes>
       </div>
     </Router>
