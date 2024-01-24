@@ -1,11 +1,10 @@
 // InterestArea.jsx
 
-import React from "react";
+import React, { useEffect } from "react";
 import {
   InterestAreaStyle,
   ModalContent,
   SelectWrapper,
-  OptionList,
   Modal,
   AreaWrapper,
   CityWrapper,
@@ -14,6 +13,9 @@ import {
   HorizontalLine,
   VerticalLine
 } from "./InterestAreaStyle";
+
+// 데이터 파일 불러오기
+import areaData from "../../db/areaData.json";
 
 const InterestArea = ({
   selectedArea,
@@ -24,12 +26,20 @@ const InterestArea = ({
   handleModalToggle,
   closeModal
 }) => {
-  // 지역 정보를 객체로 정의합니다.
-  const areaOptions = {
-    seoul: ["강남구", "종로구", "성북구", "성동구"],
-    busan: ["서면역", "해운대", "북구", "사하구"]
-    // 다른 지역 정보 추가 가능
-  };
+  // 지역 정보를 데이터 파일에서 불러오기
+  const areaOptions = areaData.areas;
+
+  // 컴포넌트가 마운트될 때 서울로 초기 선택
+  useEffect(() => {
+    handleAreaSelect("서울");
+  }, []); 
+
+  // 모달이 열릴 때 서울로 선택
+  useEffect(() => {
+    if (isModalOpen) {
+      handleAreaSelect("서울");
+    }
+  }, [isModalOpen]);
 
   return (
     <InterestAreaStyle isOpen={isModalOpen}>
@@ -57,35 +67,32 @@ const InterestArea = ({
                 <label>시/도</label>
                 <HorizontalLine></HorizontalLine>
                 <AreaOptionList>
-                  <button
-                  onClick={() => handleAreaSelect("seoul")}
-                  className={selectedArea === "seoul" ? "selected" : ""}
-                >
-                  서울
-                </button>
-                <button
-                  onClick={() => handleAreaSelect("busan")}
-                  className={selectedArea === "busan" ? "selected" : ""}
-                >
-                    부산
-                  </button>
-                  {/* 원하는 시/도 옵션을 추가하세요 */}
+                  {Object.keys(areaOptions).map((area) => (
+                    <button
+                      key={area}
+                      onClick={() => handleAreaSelect(area)}
+                      className={selectedArea === area ? "selected" : ""}
+                    >
+                      {area}
+                    </button>
+                  ))}
                 </AreaOptionList>
               </AreaWrapper>
+
               {/* 세로선 */}
-              <VerticalLine></VerticalLine>
+              <VerticalLine />
               {/* 시/군/구 선택 부분 */}
-              {selectedArea !== "" && (
+              {selectedArea !== "" && areaOptions[selectedArea] && (
                 <CityWrapper>
                   <label>시/군/구</label>
                   <HorizontalLine></HorizontalLine>
                   <CityOptionList>
                     {areaOptions[selectedArea].map((city) => (
                       <button
-                      key={city}
-                      onClick={() => handleCitySelect(city)}
-                      className={selectedCity === city ? "selected" : ""}
-                    >
+                        key={city}
+                        onClick={() => handleCitySelect(city)}
+                        className={selectedCity === city ? "selected" : ""}
+                      >
                         {city}
                       </button>
                     ))}
