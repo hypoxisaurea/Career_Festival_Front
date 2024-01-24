@@ -6,8 +6,8 @@ import Filter from "../components/home/Filter";
 import Checkbox from "../components/home/Checkbox";
 import InterestArea from "../components/signup/InterestArea";
 import FilterKeyword from "../components/home/Filterkeyword";
-import Recommand from "../components/home/Recommand";
-import dummy from "../db/RecommandedEvents.json";
+import Recommend from "../components/home/Recommend";
+import dummy from "../db/RecommendedEvents.json";
 
 
 // 중간 컨테이너에 대한 스타일링
@@ -95,9 +95,9 @@ const Eventlist = styled.div`
 // 페스티벌 리스트 래퍼에 대한 스타일링 
 const FestivalListWrapper = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, 18vw);
   gap: 2vw;
-  align-items: center;
+  align-items: top;
   margin-top: 1vw;
 `;
 //키워드
@@ -242,10 +242,10 @@ const FestivalListPage = () => {
             removeFilter={removeFilter}
           />
           <FestivalListWrapper>
-            {dummy.RecommandedByPerson.map((item) => {
+            {dummy.RecommendedByPerson.map((item) => {
               return (
-                <Recommand
-                  style={{ fontSize: "0.5rem" }}
+                <Recommend
+                  //style={{ fontSize: "0.5rem" }}
                   mainImg={item.mainImg}
                   eventName={item.eventName}
                   recruitmentStart={item.recruitmentStart}

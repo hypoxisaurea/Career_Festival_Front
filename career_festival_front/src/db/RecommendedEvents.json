@@ -1,0 +1,220 @@
+ {
+    "RecommendedByPerson":[
+        {
+            "id":1, 
+            "mainImg":"https://dummyimage.com/600x400/d9d9d9/fff",
+            "eventName": "2021말레이시아 K-MOVE 해외취업 세미나",
+            "recruitmentStart": "2021년 1월 3일 금요일 8시",
+            "recruitmentEnd": "2021년 2월 22일 금요일 8시까지",
+            "isLiked": false,
+            "price": "무료",
+            "profile": "https://dummyimage.com/400x400/d9d9d9/fff"
+        },
+        {
+            "id":2, 
+            "mainImg":"https://dummyimage.com/600x400/d9d9d9/fff",
+            "eventName": "2022말레이시아 akjflkjfkwjefjiwfihgjjlkfjsfjpwajfpojwpojfpowjf",
+            "recruitmentStart": "2022년 1월 3일 금요일 8시",
+            "recruitmentEnd": "2022년 2월 22일 금요일 8시까지",
+            "isLiked": false,
+            "price": "무료",
+            "profile": "https://dummyimage.com/400x400/d9d9d9/fff"
+        },
+        {
+            "id":3, 
+            "mainImg":"https://dummyimage.com/600x400/d9d9d9/fff",
+            "eventName": "2023말레이시아 K-MOVE 해외취업 세미나",
+            "recruitmentStart": "2023년 1월 3일 금요일 8시",
+            "recruitmentEnd": "2023년 2월 22일 금요일 8시까지",
+            "isLiked": false,
+            "price": "무료",
+            "profile": "https://dummyimage.com/400x400/d9d9d9/fff"
+        },
+        {
+            "id":4, 
+            "mainImg":"https://dummyimage.com/600x400/d9d9d9/fff",
+            "eventName": "2024말레이시아 K-MOVE 해외취업 세미나",
+            "recruitmentStart": "2024년 1월 3일 금요일 8시",
+            "recruitmentEnd": "2024년 2월 22일 금요일 8시까지",
+            "isLiked": false,
+            "price": "무료",
+            "profile": "https://dummyimage.com/400x400/d9d9d9/fff"
+        },
+        {
+            "id":5, 
+            "mainImg":"https://dummyimage.com/600x400/d9d9d9/fff",
+            "eventName": "2025말레이시아 K-MOVE 해외취업 세미나",
+            "recruitmentStart": "2025년 1월 3일 금요일 8시",
+            "recruitmentEnd": "2025년 2월 22일 금요일 8시까지",
+            "isLiked": false,
+            "price": "무료",
+            "profile": "https://dummyimage.com/400x400/d9d9d9/fff"
+        },
+        {
+            "id":6, 
+            "mainImg":"https://dummyimage.com/600x400/d9d9d9/fff",
+            "eventName": "2026말레이시아 K-MOVE 해외취업 세미나",
+            "recruitmentStart": "2026년 1월 3일 금요일 8시",
+            "recruitmentEnd": "2026년 2월 22일 금요일 8시까지",
+            "isLiked": false,
+            "price": "무료",
+            "profile": "https://dummyimage.com/400x400/d9d9d9/fff"
+        },
+         {
+           "id": 7,
+           "mainImg": "https://dummyimage.com/600x400/d9d9d9/fff",
+           "eventName": "2026말레이시아 K-MOVE 해외취업 세미나",
+           "recruitmentStart": "2027년 1월 3일 금요일 8시",
+           "recruitmentEnd": "2027년 2월 22일 금요일 8시까지",
+           "isLiked": false,
+           "price": "무료",
+           "profile": "https://dummyimage.com/400x400/d9d9d9/fff"
+         },
+          {
+            "id": 8,
+            "mainImg": "https://dummyimage.com/600x400/d9d9d9/fff",
+            "eventName": "2026말레이시아 K-MOVE 해외취업 세미나",
+            "recruitmentStart": "2028년 1월 3일 금요일 8시",
+            "recruitmentEnd": "2028년 2월 22일 금요일 8시까지",
+            "isLiked": false,
+            "price": "무료",
+            "profile": "https://dummyimage.com/400x400/d9d9d9/fff"
+          },
+        {
+            "id": 9,
+            "mainImg": "https://dummyimage.com/600x400/d9d9d9/fff",
+            "eventName": "2026말레이시아 K-MOVE 해외취업 세미나",
+            "recruitmentStart": "2029년 1월 3일 금요일 8시",
+            "recruitmentEnd": "2029년 2월 22일 금요일 8시까지",
+            "isLiked": false,
+            "price": "무료",
+            "profile": "https://dummyimage.com/400x400/d9d9d9/fff"
+        },
+        {
+            "id": 10,
+            "mainImg": "https://dummyimage.com/600x400/d9d9d9/fff",
+            "eventName": "2026말레이시아 K-MOVE 해외취업 세미나",
+            "recruitmentStart": "2029년 1월 3일 금요일 8시",
+            "recruitmentEnd": "2029년 2월 22일 금요일 8시까지",
+            "isLiked": false,
+            "price": "무료",
+            "profile": "https://dummyimage.com/400x400/d9d9d9/fff"
+        },
+        {
+            "id": 11,
+            "mainImg": "https://dummyimage.com/600x400/d9d9d9/fff",
+            "eventName": "2026말레이시아 K-MOVE 해외취업 세미나",
+            "recruitmentStart": "2029년 1월 3일 금요일 8시",
+            "recruitmentEnd": "2029년 2월 22일 금요일 8시까지",
+            "isLiked": false,
+            "price": "무료",
+            "profile": "https://dummyimage.com/400x400/d9d9d9/fff"
+        },
+        {
+            "id": 12,
+            "mainImg": "https://dummyimage.com/600x400/d9d9d9/fff",
+            "eventName": "2026말레이시아 K-MOVE 해외취업 세미나",
+            "recruitmentStart": "2029년 1월 3일 금요일 8시",
+            "recruitmentEnd": "2029년 2월 22일 금요일 8시까지",
+            "isLiked": false,
+            "price": "무료",
+            "profile": "https://dummyimage.com/400x400/d9d9d9/fff"
+        },
+        {
+            "id": 13,
+            "mainImg": "https://dummyimage.com/600x400/d9d9d9/fff",
+            "eventName": "2026말레이시아 K-MOVE 해외취업 세미나",
+            "recruitmentStart": "2029년 1월 3일 금요일 8시",
+            "recruitmentEnd": "2029년 2월 22일 금요일 8시까지",
+            "isLiked": false,
+            "price": "무료",
+            "profile": "https://dummyimage.com/400x400/d9d9d9/fff"
+        },
+        {
+            "id": 14,
+            "mainImg": "https://dummyimage.com/600x400/d9d9d9/fff",
+            "eventName": "2026말레이시아 K-MOVE 해외취업 세미나",
+            "recruitmentStart": "2029년 1월 3일 금요일 8시",
+            "recruitmentEnd": "2029년 2월 22일 금요일 8시까지",
+            "isLiked": false,
+            "price": "무료",
+            "profile": "https://dummyimage.com/400x400/d9d9d9/fff"
+        },
+        {
+            "id": 15,
+            "mainImg": "https://dummyimage.com/600x400/d9d9d9/fff",
+            "eventName": "2026말레이시아 K-MOVE 해외취업 세미나",
+            "recruitmentStart": "2029년 1월 3일 금요일 8시",
+            "recruitmentEnd": "2029년 2월 22일 금요일 8시까지",
+            "isLiked": false,
+            "price": "무료",
+            "profile": "https://dummyimage.com/400x400/d9d9d9/fff"
+        }
+
+    ],
+
+
+
+    "RecommendedByPlace":[
+        {
+            "id":21, 
+            "mainImg":"https://dummyimage.com/600x400/000/fff",
+            "eventName": "2021말레이시아 K-MOVE 국내취업 세미나",
+            "recruitmentStart": "2021년 1월 3일 금요일 8시",
+            "recruitmentEnd": "2021년 2월 22일 금요일 8시까지",
+            "isLiked": false,
+            "price": "무료",
+            "profile": "https://dummyimage.com/400x400/d9d9d9/fff"
+        },
+        {
+            "id":22, 
+            "mainImg":"https://dummyimage.com/600x400/000/fff",
+            "eventName": "2022말레이시아 K-MOVE 국내취업 세미나 dkfhwuhfoiewhfoiwenfniwfnwiefnwpnfponefpon2pofnonfwn",
+            "recruitmentStart": "2022년 1월 3일 금요일 8시",
+            "recruitmentEnd": "2022년 2월 22일 금요일 8시까지",
+            "isLiked": false,
+            "price": "무료",
+            "profile":"https://dummyimage.com/400x400/d9d9d9/fff"
+        },
+        {
+            "id":23, 
+            "mainImg":"https://dummyimage.com/600x400/000/fff",
+            "eventName": "2023말레이시아 K-MOVE 국내취업 세미나",
+            "recruitmentStart": "2023년 1월 3일 금요일 8시",
+            "recruitmentEnd": "2023년 2월 22일 금요일 8시까지",
+            "isLiked": false,
+            "price": "무료",
+            "profile": "https://dummyimage.com/400x400/d9d9d9/fff"
+        },
+        {
+            "id":24, 
+            "mainImg":"https://dummyimage.com/600x400/000/fff",
+            "eventName": "2024말레이시아 K-MOVE 국내취업 세미나",
+            "recruitmentStart": "2024년 1월 3일 금요일 8시",
+            "recruitmentEnd": "2024년 2월 22일 금요일 8시까지",
+            "isLiked": false,
+            "price": "무료",
+            "profile": "https://dummyimage.com/400x400/d9d9d9/fff"
+        },
+        {
+            "id":25, 
+            "mainImg":"https://dummyimage.com/600x400/000/fff",
+            "eventName": "2025말레이시아 K-MOVE 국내취업 세미나",
+            "recruitmentStart": "2025년 1월 3일 금요일 8시",
+            "recruitmentEnd": "2025년 2월 22일 금요일 8시까지",
+            "isLiked": false,
+            "price": "무료",
+            "profile": "https://dummyimage.com/400x400/d9d9d9/fff"
+        },
+        {
+            "id":26, 
+            "mainImg":"https://dummyimage.com/600x400/000/fff",
+            "eventName": "2026말레이시아 K-MOVE 국내취업 세미나",
+            "recruitmentStart": "2026년 1월 3일 금요일 8시",
+            "recruitmentEnd": "2026년 2월 22일 금요일 8시까지",
+            "isLiked": false,
+            "price": "무료",
+            "profile": "https://dummyimage.com/400x400/d9d9d9/fff"
+        }
+    ]
+}
