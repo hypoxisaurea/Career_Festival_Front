@@ -17,7 +17,6 @@ import {
 } from "./InterestAreaStyle";
 
 
-
 const InterestArea = ({
   selectedArea,
   handleAreaSelect,
@@ -27,6 +26,7 @@ const InterestArea = ({
   handleModalToggle,
   closeModal
 }) => {
+  
   // 지역 정보를 데이터 파일에서 불러오기
   const areaOptions = areaData.areas;
   

@@ -20,7 +20,7 @@ const AddDiaryButton = styled(Link)`
 `;
 
 const Diary = () => {
-  return <AddDiaryButton to="/addDiary">추가하기</AddDiaryButton>;
+  return <AddDiaryButton to="/diary/LectureSeminar">추가하기</AddDiaryButton>;
 };
 
 export default Diary;
