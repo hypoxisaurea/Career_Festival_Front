@@ -21,7 +21,6 @@ const HeaderContainer = styled.div`
 
 // 로그인과 회원가입을 포함하는 컨테이너 스타일
 const AuthButtonsContainer = styled.div`
-  margin-right: 5vw;
   align-items: center;
 `;
 
@@ -50,7 +49,7 @@ const SearchImage = styled.img`
 
 // 검색 아이콘과 검색 입력창을 포함하는 컨테이너 스타일
 const SearchItem = styled.div`
-  width: 50%;
+  width: 40%;
   display: flex;
   align-items: center;
   color: #582fff;
