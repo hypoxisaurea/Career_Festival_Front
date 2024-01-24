@@ -13,10 +13,8 @@ import dummy from "../db/RecommendedEvents.json";
 // 중간 컨테이너에 대한 스타일링
 const MiddleContainer = styled.div`
   display: flex;
-  flex-direction: row;
   justify-content: center;
-  background-color: #ffffff;
-  gap: 4vw;
+  gap: 3vw;
   padding: 4vw 0 6vw 0;
 `;
  // 필터 및 지역 컴포넌트를 담는 컨테이너에 대한 스타일링
@@ -95,9 +93,9 @@ const Eventlist = styled.div`
 // 페스티벌 리스트 래퍼에 대한 스타일링 
 const FestivalListWrapper = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, 18vw);
   gap: 2vw;
-  align-items: center;
+  align-items: top;
   margin-top: 1vw;
 `;
 //키워드

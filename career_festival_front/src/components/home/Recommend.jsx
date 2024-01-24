@@ -7,135 +7,146 @@ import {useState, useEffect} from 'react';
 import emptyStarIcon from "../../assets/images/emptyStarIcon.png";
 
 
-//카드 전체
-const RecommendCardcontainer = styled.div`
-  border: 1px solid red; //생략 가능
-  border-radius: 10px;
-  aspect-ratio: 1/1;
 
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(5, 1fr);
+/* 전체 틀
+적용되는 페이지에 따라 사이즈가 다르게 들어가도록 함
+따라서 해당 컴포넌트 사용시, 컴포넌트가 들어가는 컨테이너의 크기를 vw 단위로 맞추고
+그리드의 가로폭 크기도 vw단위로 고정할것
+*/
+const RecommendCardcontainer = styled.div`
+  //border: solid red;
+  border-radius: 10%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
 `
 
-
-
-
-//행사 이미지 백에서 600*400 사이즈 고정으로 받기 요청
+//행사 이미지 (600*400또는 6:4비율로 받을 것)
 const RecommendMainImgWrapper = styled.div`
-  border: 1px solid red; //생략 가능
-  
-  grid-column: 1/6;
-  grid-row: 1/4;
-  display: block;
+  //border: solid green;
+  border-radius: 10%;
 
   img{
     width: 100%;
     height: 100%;
-
-    border-radius: 10px;
-    margin: 0;
-  } 
-  
-  border-radius: 10px;
+    border-radius: 10%;
+  }
 `
 
-
-//제목
+//행사 이름
 const RecommendTitleWrapper = styled.div`
-  border: 1px solid red;//생략가능
-  grid-column: 1/6;
-  grid-row: 4/5;
-
-  
-  align-self: center;
-  font-size: 1.2vmax;
-  font-weight: 900;
+  //border: solid green;
+  width: 100%;
+  padding: 0.5em 0;
 
   overflow: hidden;
-`
+  text-overflow: ellipsis;
 
 
-//행사 정보
-const RecommendInfoWrapper = styled.div`
-  border: 1px solid red;//생략가능
-
-  grid-column: 1/5;
-  grid-row: 5/6;
-`
-const RecommendTimeInfoWrapper =styled.div`
-  border: 1px solid red;
-  font-size: 0.7vmax;
-  font-weight: 500;
-
-  overflow: hidden;
-`
-
-const RecommendIconWapper =styled.div`
-  display: inline-flex;
-  flex-direction: row;
-
-  font-size: 1vmax;
+  font-size: 1.2em;
   font-weight: 700;
+`
+
+
+//행사 정보: 제목 하단 전체
+const RecommendInfoWrapper = styled.div`
+  //border: solid green;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+`
+
+
+//행사 시간, 즐겨찾기 라인
+const RecommandDetailWrapper = styled.div`
+  //border: solid skyblue;
+  width: 80%;
+  display: block;
+  font-size: 1em;
+  font-weight: 500;
+`
+
+//행사 시간
+const RecommendTimeInfoWrapper = styled.div`
+  //border: solid yellow;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  
+`
+
+// 즐겨찾기, 가격
+const RecommendIconWapper = styled.div`
+  //border: solid yellow;
+
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  padding-top: 0.2em;
+  
   color: #582fff;
+  font-weight: 700;
+
 `
-//저장 아이콘
+
+//즐겨찾기 아이콘
 const StarIcon = styled.img`
-  margin-right: 0.5vmax;
-  width: 1em;
-  height: 1em;
+  width: 1.2em;
+  height: 1.2em;
+  margin-right: 0.5rem;
+
 `
 
 
-
-//주최자 사진
+// 주최자 프로필 이미지 (400*400 또는 1:1 비율로 고정되서 받을 것)
 const RecommendOrganizerImgWrapper = styled.div`
-    border: 1px solid red;
-    grid-column:5/6;
-    grid-row: 5/6;
-   
-    img{
+  //border: solid skyblue;
+  width: 20%;
+  aspect-ratio: 1/1;
+  
+
+  img{
     width: 100%;
-    height: 100%;
     border-radius: 50%;
-    }
+  }
+  
 `
 
 
 
-
-// const HeartButton = ({isLiked, onclick})
 
 const Recommend = ({mainImg, eventName, recruitmentStart, recruitmentEnd, isLiked, price, profile}) => {
   return (
     <RecommendCardcontainer>
+    
       <RecommendMainImgWrapper>
         <img src={mainImg} alt='행사 이미지'/>
       </RecommendMainImgWrapper>
-      
-     
+
       <RecommendTitleWrapper> 
         {eventName}
       </RecommendTitleWrapper>
 
-      <RecommendInfoWrapper>
 
-        <RecommendTimeInfoWrapper>
-          <div>{recruitmentStart}</div>
-          <div>{recruitmentEnd}</div>
-        </RecommendTimeInfoWrapper>
+      <RecommendInfoWrapper>
+        <RecommandDetailWrapper>
+          <RecommendTimeInfoWrapper>
+            <div>{recruitmentStart}</div>
+            <div>{recruitmentEnd}</div>
+          </RecommendTimeInfoWrapper>
         
 
-        <RecommendIconWapper>
-          <div><StarIcon src={emptyStarIcon} alt='저장'/> {/*백엔드에서 나오면 바꾸기*/} </div>
-          <div>{price}</div>
-        </RecommendIconWapper>
-      </RecommendInfoWrapper>  
+          <RecommendIconWapper>
+            <div><StarIcon src={emptyStarIcon} alt='저장'/> {/*백엔드에서 나오면 바꾸기*/} </div>
+            <div>{price}</div>
+          </RecommendIconWapper>
+        </RecommandDetailWrapper>
 
-
-      <RecommendOrganizerImgWrapper>
-        <img src={profile} alt='주최자 이미지'/>
-      </RecommendOrganizerImgWrapper>    
+        <RecommendOrganizerImgWrapper>
+          <img src={profile} alt='주최자 이미지'/>
+        </RecommendOrganizerImgWrapper>
+      </RecommendInfoWrapper>      
     </RecommendCardcontainer>
   );
 };
