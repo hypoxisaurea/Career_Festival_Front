@@ -6,7 +6,7 @@ const CheckboxLabel = styled.label`
   align-items: center;
   margin-bottom: 8px;
   cursor: pointer;
-  color: black;
+  color: ${(props) => (props.checked ? "#582fff;" : "black")};
   font-size: 14px;
 `;
 
@@ -19,6 +19,21 @@ const CheckboxContainer = styled.div`
     margin-top: 20px; /* form에 마진 탑 추가 */
   }
 `;
+
+// const SelectedEvent = styled.div`
+//   h5 {
+//     color:  color: #582fff;;
+//   }
+
+//   ul {
+//     list-style-type: none;
+//     padding: 0;
+//   }
+
+//   li {
+//     color:   color: #582fff;;
+//   }
+// `;
 
 const Checkbox = () => {
   const [selectedOptions, setSelectedOptions] = useState([]);
@@ -38,7 +53,7 @@ const Checkbox = () => {
       <form>
         {["강연/세미나", "학술대회", "전시/박람회", "기타"].map((option) => (
           <div key={option}>
-            <CheckboxLabel>
+            <CheckboxLabel checked={selectedOptions.includes(option)}>
               <StyledCheckbox
                 type="checkbox"
                 value={option}
@@ -51,14 +66,17 @@ const Checkbox = () => {
         ))}
       </form>
 
-      <div>
-        <h4>선택된 이벤트 유형</h4>
-        <ul>
-          {selectedOptions.map((selected) => (
-            <li key={selected}>{selected}</li>
-          ))}
-        </ul>
-      </div>
+      {/* 추후 출력은 안할거임 근데 데이터 읽어야되서 남겨둠
+      {selectedOptions.length > 0 && (
+        <SelectedEvent>
+          <h5>선택된 이벤트 유형</h5>
+          <ul>
+            {selectedOptions.map((selected) => (
+              <li key={selected}>{selected}</li>
+            ))}
+          </ul>
+        </SelectedEvent>
+      )} */}
     </CheckboxContainer>
   );
 };
