@@ -44,7 +44,7 @@ const EmailInput = styled.div`
     border: 1px solid;
     border-radius: 5px;
 
-    &:hover,
+
     &:focus {
       border: 3px solid;
       border-color: #582fff;
@@ -69,7 +69,7 @@ const TelInput = styled.div`
     border: 1px solid;
     border-radius: 5px;
 
-    &:hover,
+
     &:focus {
       border: 3px solid;
       border-color: #582fff;
@@ -94,7 +94,7 @@ const AffiliationInput = styled.div`
     border: 1px solid;
     border-radius: 5px;
 
-    &:hover,
+
     &:focus {
       border: 3px solid;
       border-color: #582fff;
