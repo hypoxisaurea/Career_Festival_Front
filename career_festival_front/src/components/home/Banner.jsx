@@ -25,7 +25,7 @@ const BannerAndPopular = styled.div`
 
 const HomeP = styled.p`
   color: #000000;
-  font-size: 1.3rem;
+  font-size: 1.3vw;
   font-weight: bold;
   padding: 0.5vw 0 0 17vw;
 `;
@@ -82,50 +82,44 @@ const ButtonRightStyled = styled(Button)``;
 
 //인기검색어
 const PopularsearchesTitle = styled.h3`
-  font-weight: bold;
-  color: #000000;
-  font-size: 1rem;
-  margin-bottom: 10px;
+  font-size: 1.2vw;
+  margin-bottom: -0.5vw;
 `;
 
 // Popularsearches 스타일 정의
 const PopularsearchesStyled = styled.div`
-  width: 10vw; 
-  height: 16vw;
-  border-radius: 22px;
+  width: 10vw;
+  max-height: 15vw; /* 최대 높이 지정 */
+  overflow: hidden; /* 넘치는 부분 숨김 */
+  border-radius: 1vw;
   border: 1px solid #c3c3c3;
-  justify-content: flex-start;
-  padding: 10px;
-  align-items: flex-start;
+  padding: 1vw;
   margin-top: -3vw;
   margin-left: -2vw;
 `;
-
 const PopularsearchItem = styled.div`
   display: flex;
   align-items: center;
-  margin-bottom: 12px;
+  margin-bottom: 0.8vw;
   color: ${(props) => (props.rank <= 3 ? "#582fff" : "#000000")};
-  font-size: 0.8rem;
+  font-size: 0.8vw;
 `;
-
 
 const ItemNumber = styled.span`
   font-weight: bold;
-  margin-right: 5px;
-  padding: 4px 10px;
-  border-radius: 4px;
+  margin-right: 1vw;
+  padding: 0.2vw 0.5vw;
+  border-radius: 30%;
   color: #ffffff;
 
   ${(props) => {
-    // 등수에 따라 스타일을 동적으로 지정
     const rank = parseInt(props.rank, 10);
     return rank <= 3
       ? `
         background-color: #582fff;
       `
       : `
-        background-color: #d3d3d3; /* 회색 배경색 추가 */
+        background-color: #d3d3d3;
       `;
   }}
 `;
@@ -166,15 +160,17 @@ const Banner = () => {
       clearInterval(autoSlideTimer);
     };
   }, [images.length]);
-//인기검색어
-    const popularKeywords = [
-      "경영 세미나",
-      "취업",
-      "학술대회",
-      "대학 경연",
-      "대학 세미나",
-      "박람회",
-    ];
+  //인기검색어
+  const popularKeywords = [
+    "경영 세미나",
+    "취업",
+    "학술대회",
+    "대학 경연",
+    "대학 세미나",
+    "박람회",
+  ];
+  // 인기 검색어를 5개까지만 사용
+  const limitedPopularKeywords = popularKeywords.slice(0, 5);
 
   return (
     <TopContainer>
@@ -209,8 +205,8 @@ const Banner = () => {
           </BannerContainer>
         </BannerB>
         <PopularsearchesStyled>
-          <PopularsearchesTitle>인기 검색어</PopularsearchesTitle>
-          {popularKeywords.map((keyword, index) => (
+          <PopularsearchesTitle><h4>인기 검색어</h4></PopularsearchesTitle>
+          {limitedPopularKeywords.map((keyword, index) => (
             <PopularsearchItem key={index} rank={index + 1}>
               <ItemNumber rank={index + 1}>{index + 1}</ItemNumber> {keyword}
             </PopularsearchItem>
