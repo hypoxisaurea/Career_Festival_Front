@@ -19,19 +19,17 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <Header />
         <Routes>
-          <Route path="/" element={<HomePage />} />
+          <Route path="/" element={<><Header /><HomePage /><Footer /></>} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
-          <Route path="/festival-list" element={<FestivalListPage />} />
-          <Route path="/detail" element={<DetailFestivalPage />} />
-          <Route path="/community" element={<Community />} />
-          <Route path="/diary" element={<Diary />} />
           <Route path="/participant" element={<Participant />} />
           <Route path="/organizer" element={<Organizer />} />
+          <Route path="/festival-list" element={<><Header /><FestivalListPage /><Footer /></>} />
+          <Route path="/detail" element={<><Header /><DetailFestivalPage /><Footer /></>} />
+          <Route path="/community" element={<><Header /><Community /><Footer /></>} />
+          <Route path="/diary" element={<><Header /><Diary /><Footer /></>} />
         </Routes>
-        <Footer />
       </div>
     </Router>
   );
