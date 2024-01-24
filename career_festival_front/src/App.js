@@ -7,7 +7,7 @@ import HomePage from "./pages/HomePage";
 import DetailFestivalPage from "./pages/DetailFestivalPage";
 import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
-import Recommand from "./components/home/Recommand";
+import Recommend from "./components/home/Recommend";
 import Community from "./components/home/Community";
 import Diary from "./components/diary/Diary";
 import Participant from "./components/signup/Participant";

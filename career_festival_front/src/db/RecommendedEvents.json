@@ -1,11 +1,11 @@
 {
-    "RecommandedByPerson":[
+    "RecommendedByPerson":[
         {
             "id":1, 
             "mainImg":"https://dummyimage.com/600x400/d9d9d9/fff",
             "eventName": "2021말레이시아 K-MOVE 해외취업 세미나",
-            "recruitmentStart": "2024년 1월 3일 금요일 오후 8시부터",
-            "recruitmentEnd": "2024년 2월 22일 금요일 오후 8시까지",
+            "recruitmentStart": "2024년 1월 3일 금요일",
+            "recruitmentEnd": "2024년 2월 22일 금요일",
             "isLiked": false,
             "price": "무료",
             "profile": "https://dummyimage.com/600x400/d9d9d9/fff"
@@ -94,7 +94,7 @@
 
 
 
-    "RecommandedByPlace":[
+    "RecommendedByPlace":[
         {
             "id":21, 
             "mainImg":"https://dummyimage.com/600x400/000/fff",
