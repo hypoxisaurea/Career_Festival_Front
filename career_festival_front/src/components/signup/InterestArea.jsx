@@ -67,7 +67,7 @@ const InterestArea = ({
         {selectedCity
           ? selectedCity
           : selectedArea
-          ? "지역 선택하세요 ▼"
+          ? `지역 선택하세요 ${isModalOpen ? "▲" : "▼"}`
           : "관심 지역 선택하세요"}
       </button>
 
