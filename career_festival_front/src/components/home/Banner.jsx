@@ -83,7 +83,7 @@ const ButtonRightStyled = styled(Button)``;
 //인기검색어
 const PopularsearchesTitle = styled.h3`
   font-size: 1.2vw;
-  margin-bottom: -0.5vw;
+  margin-top:-1.5vw;
 `;
 
 // Popularsearches 스타일 정의
