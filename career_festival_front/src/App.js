@@ -30,6 +30,10 @@ function App() {
           <Route path="/diary" element={<Diary />} />
           <Route path="/participant" element={<Participant />} />
           <Route path="/organizer" element={<Organizer />} />
+          <Route path="/festival-list" element={<><Header /><FestivalListPage /><Footer /></>} />
+          <Route path="/detail" element={<><Header /><DetailFestivalPage /><Footer /></>} />
+          <Route path="/community" element={<><Header /><Community /><Footer /></>} />
+          <Route path="/diary" element={<><Header /><Diary /><Footer /></>} />
         </Routes>
         <Footer />
       </div>
