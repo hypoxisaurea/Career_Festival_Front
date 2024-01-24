@@ -1,6 +1,6 @@
-// ParticipantStyle.js
+// OrganizerStyle.js
 
-import styled,{ css } from "styled-components";
+import styled, { css } from "styled-components";
 
 const Container = styled.div`
   max-width: 800px;
@@ -28,40 +28,6 @@ const Subtitle2 = styled.p`
   color: #838383;
 `;
 
-const Gender = styled.div`
-  display: flex;
-  align-items: center;
-  margin-bottom: 20px;
-  
-  input[type="radio"] {
-    margin-right: 5px;
-  }
-  input[type="radio"][value="male"] {
-    margin-left: 10px; /* 남성 라디오버튼에 추가된 마진값 */
-  }
-  input[type="radio"][value="female"] {
-    margin-left: 40px; /* 여성 라디오버튼에 추가된 마진값 */
-  }
-`;
-
-const Age = styled.div`
-  margin-bottom: 20px;
-
-  label {
-    display: block;
-    font-size: 16px;
-    margin-bottom: 5px;
-  }
-
-  input {
-    width: 180px;
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid;
-    border-radius: 5px;
-  }
-`;
-
 const EmailInput = styled.div`
   margin-bottom: 20px;
 
@@ -77,6 +43,13 @@ const EmailInput = styled.div`
     font-size: 16px;
     border: 1px solid;
     border-radius: 5px;
+
+    &:hover,
+    &:focus {
+      border: 3px solid;
+      border-color: #582fff;
+      outline: none; // 선택 효과를 제거합니다.
+    }
   }
 `;
 
@@ -95,6 +68,13 @@ const TelInput = styled.div`
     font-size: 16px;
     border: 1px solid;
     border-radius: 5px;
+
+    &:hover,
+    &:focus {
+      border: 3px solid;
+      border-color: #582fff;
+      outline: none; // 선택 효과를 제거합니다.
+    }
   }
 `;
 
@@ -113,6 +93,13 @@ const AffiliationInput = styled.div`
     font-size: 16px;
     border: 1px solid;
     border-radius: 5px;
+
+    &:hover,
+    &:focus {
+      border: 3px solid;
+      border-color: #582fff;
+      outline: none; // 선택 효과를 제거합니다.
+    }
   }
 `;
 
@@ -177,14 +164,11 @@ const Save = styled.button`
   }
 `;
 
-
 export {
   Container,
   Title,
   Subtitle,
   Subtitle2,
-  Gender,
-  Age,
   EmailInput,
   TelInput,
   AffiliationInput,

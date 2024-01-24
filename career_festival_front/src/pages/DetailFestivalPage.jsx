@@ -1,13 +1,13 @@
 // src/pages/DetailFestival.jsx
 import React from "react";
 import styled from "styled-components";
-import Enrollment from "../components/enrollment/Enrollment";
+import Enrollment from "../components/eventDetail/Enrollment";
 import EventDetail from "../components/eventDetail/EventDetail";
-import QnA from "../components/qna/QnA";
-import QnAList from "../components/qna/QnAList";
-import Contact from "../components/contact/Contact";
-import Join from "../components/commentList/Join";
-import CommentList from "../components/commentList/CommentList";
+import QnA from "../components/eventDetail/QnA";
+import QnAList from "../components/eventDetail/QnAList";
+import Contact from "../components/eventDetail/Contact";
+import Join from "../components/eventDetail/Join";
+import CommentList from "../components/eventDetail/CommentList";
 
 const DetailFestivalPageContainer = styled.div`
   width: 1453px;
