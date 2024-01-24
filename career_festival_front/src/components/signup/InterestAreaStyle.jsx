@@ -28,17 +28,24 @@ const InterestAreaStyle = styled.div`
 
 // 모달 스타일 정의
 const Modal = styled.div`
-  width: 300px; // 모달 가로 크기 설정
-  height: 400px;
   position: fixed; // 고정 위치 설정
-  top: 50%; // 화면 상단에서 50% 위치로 설정
-  left: 50%; // 화면 왼쪽에서 50% 위치로 설정
-  transform: translate(-50%, -50%); // 중앙 정렬을 위한 변형 설정
-  background-color: white; // 배경색 설정
-  padding: 10px; // 안쪽 여백 설정
-  z-index: 1; // 우선순위 z-index를 사용하여 다른 요소 위에 표시
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); // 그림자 효과 추가
-  display: ${(props) => (props.isOpen ? "block" : "none")}; // 모달 열림 여부에 따라 표시 설정
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4); // 배경을 흐리게 하는 rgba 값
+  display: ${(props) => (props.isOpen ? "flex" : "none")};
+  justify-content: center;
+  align-items: center;
+
+  // 내용 스타일 정의
+  > div {
+    width: 300px; // 모달 가로 크기 설정
+    height: 400px;
+    background-color: white; // 배경색 설정
+    padding: 10px; // 안쪽 여백 설정
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); // 그림자 효과 추가
+  }
 `;
 
 // 모달 내용 스타일 정의
@@ -61,9 +68,9 @@ const SelectWrapper = styled.div`
 
 // 시/도 옵션 목록 스타일 정의
 const AreaOptionList = styled.div`
-  display: flex; // 플렉스 레이아웃 적용
-  flex-direction: row; // 요소들을 수평으로 배치
-  justify-content: space-between; // 버튼들 사이에 공간을 균등하게 배분
+display: grid; // 그리드 레이아웃으로 변경
+grid-template-columns: repeat(2, 1fr); // 2개의 열로 자동으로 나눔
+gap: 5px; // 그리드 아이템 간의 간격 설정
 `;
 
 // 시/군/구 옵션 목록 스타일 정의
@@ -87,9 +94,9 @@ const AreaWrapper = styled.div`
   }
 
   button {
-    width: 50%;
+    width: 100%; // 버튼의 가로 크기를 100%로 설정
     margin: 2px;
-    padding: 10px;
+    padding: 6px;
     font-size: 14px;
     border: none;
     border-radius: 5px;
@@ -117,6 +124,12 @@ const CityWrapper = styled.div`
     font-size: 16px;
     margin-bottom: 5px;
     width: 100%;
+  }
+
+   // CityOptionList에 스크롤 적용
+  ${CityOptionList} {
+    overflow-y: auto;
+    max-height: 350px;
   }
 
   button {

@@ -10,10 +10,9 @@ const HeaderContainer = styled.div`
   width: 100%;
   height: 100%;
   background: #ffffff;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-
-  margin: 10px 0 5px 0;
-  padding: 12px 0 16px 0;
+  box-shadow: 0 0.3rem 0.3rem rgba(0, 0, 0, 0.25);
+  margin: 0 0 1vw 0;
+  padding: 3vw 0 1vw 0;
 
   display: block;
   align-items: center;
@@ -22,10 +21,8 @@ const HeaderContainer = styled.div`
 
 // 로그인과 회원가입을 포함하는 컨테이너 스타일
 const AuthButtonsContainer = styled.div`
-  display: flex;
+  margin-right: 5vw;
   align-items: center;
-  gap: 2vw;
-  margin-left: -10vw;
 `;
 
 // 로고와 검색창을 포함한 컨테이너 스타일
@@ -37,9 +34,9 @@ const LogoSearchContainer = styled.div`
 
 // 로고 이미지 스타일
 const LogoImage = styled.img`
-  width: 15vw;
+  width: 20vw;
   cursor: pointer;
-  margin-bottom: 10px;
+  margin-bottom: 1vw;
   padding: 1.5vw;
 `;
 
@@ -47,9 +44,8 @@ const LogoImage = styled.img`
 const SearchImage = styled.img`
   width: 1vw;
   height: 1vw;
+  margin-left:1vw;
   position: absolute;
-  margin-left: 1vw;
-  z-index: 1;
 `;
 
 // 검색 아이콘과 검색 입력창을 포함하는 컨테이너 스타일
@@ -93,7 +89,7 @@ const LoginButtonStyle = styled.button`
   background-color: #ffffff;
   color: #838383;
   font-weight: bold;
-  font-size: 0.8rem;
+  font-size: 0.8vw;
   border: none;
 
   &:hover {
@@ -104,7 +100,7 @@ const LoginButtonStyle = styled.button`
 // 환영 메시지 스타일
 const WelcomeText = styled.span`
   color: #582fff;
-  font-size: 0.8rem;
+  font-size: 0.8vw;
   margin-left: 1vw;
 `;
 
@@ -114,7 +110,7 @@ const Join = styled.button`
   color: #838383;
   font-weight: bold;
   padding: 1vw 1vw 1vw 1vw;
-  font-size: 0.8rem;
+  font-size: 0.8vw;
   border: none;
 
   &:hover {
@@ -124,19 +120,23 @@ const Join = styled.button`
 
 // 환경설정 아이콘 스타일
 const SettingImage = styled.img`
-  width: 1vw;
-  height: 1vw;
+  width: 100%;
+  height: 100%;
 `;
 
 // 링크 목록을 포함하는 컨테이너 스타일
 const LinkContainer = styled.div`
   display: flex;
   align-items: center;
-  margin-top: 1vw;
-  margin-left: -10vw;
-  align-items: center;
   justify-content: center;
+  margin-top: 1vw;
+  flex-wrap: wrap;
+
+  & > * {
+    margin: 0.1vw;
+  }
 `;
+
 
 // 각각의 링크 아이템 스타일
 const LinkItem = styled(Link)`
@@ -144,7 +144,7 @@ const LinkItem = styled(Link)`
   text-decoration: none;
   font-weight: bold;
   margin-left: 5vw;
-  font-size: 0.8rem;
+  font-size: 0.8vw;
   transition: color 0.3s; /* 색상 변화에 대한 트랜지션 효과 추가 */
 
   &:hover {
@@ -157,7 +157,7 @@ const RegisterItem = styled(Link)`
   color: #582fff;
   text-decoration: none;
   font-weight: bold;
-  font-size: 0.8rem;
+  font-size: 0.8vw;
   margin-left: 23vw;
   margin-right: 1vw;
   border: none;
@@ -170,13 +170,14 @@ const RegisterItem = styled(Link)`
 // 라인 1
 const Line = styled.div`
   width: 100%;
-  height: 1px;
+  height: 0.1vw;
   background-color: #d9d9d9;
 `;
 
 // 세로선
 const HeightLine = styled.div`
   color: #d9d9d9;
+  height:100%;
 `;
 
 const Header = () => {

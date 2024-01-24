@@ -1,11 +1,12 @@
 // InterestArea.jsx
 
-import React from "react";
+import React, { useEffect } from "react";
+// 데이터 파일 불러오기
+import areaData from "../../db/areaData.json";
 import {
   InterestAreaStyle,
   ModalContent,
   SelectWrapper,
-  OptionList,
   Modal,
   AreaWrapper,
   CityWrapper,
@@ -14,6 +15,8 @@ import {
   HorizontalLine,
   VerticalLine
 } from "./InterestAreaStyle";
+
+
 
 const InterestArea = ({
   selectedArea,
@@ -24,12 +27,37 @@ const InterestArea = ({
   handleModalToggle,
   closeModal
 }) => {
-  // 지역 정보를 객체로 정의합니다.
-  const areaOptions = {
-    seoul: ["강남구", "종로구", "성북구", "성동구"],
-    busan: ["서면역", "해운대", "북구", "사하구"]
-    // 다른 지역 정보 추가 가능
+  // 지역 정보를 데이터 파일에서 불러오기
+  const areaOptions = areaData.areas;
+  
+  // 모달 외부 클릭 이벤트 핸들러
+  const handleOutsideClick = (e) => {
+    // 모달이 열려있는 상태에서 모달 영역 외부를 클릭한 경우에만 모달을 닫음
+    if (isModalOpen && e.target.classList.contains("modal-overlay")) {
+      closeModal();
+    }
   };
+  
+
+  // 컴포넌트가 마운트될 때 서울로 초기 선택
+  useEffect(() => {
+    handleAreaSelect("서울");
+  }, []); 
+
+  // 모달이 열릴 때 서울로 선택
+  useEffect(() => {
+    if (isModalOpen) {
+      handleAreaSelect("서울");
+    }
+  }, [isModalOpen]);
+
+  // 클릭 이벤트 리스너 등록
+  useEffect(() => {
+    document.addEventListener("click", handleOutsideClick);
+    return () => {
+      document.removeEventListener("click", handleOutsideClick);
+    };
+  }, [isModalOpen, closeModal]);
 
   return (
     <InterestAreaStyle isOpen={isModalOpen}>
@@ -39,13 +67,13 @@ const InterestArea = ({
         {selectedCity
           ? selectedCity
           : selectedArea
-          ? "지역 선택하세요 ▼"
+          ? `지역 선택하세요 ${isModalOpen ? "▲" : "▼"}`
           : "관심 지역 선택하세요"}
       </button>
 
       {/* 모달 창 */}
       {isModalOpen && (
-        <Modal isOpen={isModalOpen}>
+        <Modal isOpen={isModalOpen} className="modal-overlay">
           {/* X 버튼 추가 */}
           {/* <button onClick={closeModal} style={{ float: "right", cursor: "pointer" }}>
             X
@@ -57,35 +85,32 @@ const InterestArea = ({
                 <label>시/도</label>
                 <HorizontalLine></HorizontalLine>
                 <AreaOptionList>
-                  <button
-                  onClick={() => handleAreaSelect("seoul")}
-                  className={selectedArea === "seoul" ? "selected" : ""}
-                >
-                  서울
-                </button>
-                <button
-                  onClick={() => handleAreaSelect("busan")}
-                  className={selectedArea === "busan" ? "selected" : ""}
-                >
-                    부산
-                  </button>
-                  {/* 원하는 시/도 옵션을 추가하세요 */}
+                  {Object.keys(areaOptions).map((area) => (
+                    <button
+                      key={area}
+                      onClick={() => handleAreaSelect(area)}
+                      className={selectedArea === area ? "selected" : ""}
+                    >
+                      {area}
+                    </button>
+                  ))}
                 </AreaOptionList>
               </AreaWrapper>
+
               {/* 세로선 */}
-              <VerticalLine></VerticalLine>
+              <VerticalLine />
               {/* 시/군/구 선택 부분 */}
-              {selectedArea !== "" && (
+              {selectedArea !== "" && areaOptions[selectedArea] && (
                 <CityWrapper>
                   <label>시/군/구</label>
                   <HorizontalLine></HorizontalLine>
                   <CityOptionList>
                     {areaOptions[selectedArea].map((city) => (
                       <button
-                      key={city}
-                      onClick={() => handleCitySelect(city)}
-                      className={selectedCity === city ? "selected" : ""}
-                    >
+                        key={city}
+                        onClick={() => handleCitySelect(city)}
+                        className={selectedCity === city ? "selected" : ""}
+                      >
                         {city}
                       </button>
                     ))}
