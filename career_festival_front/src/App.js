@@ -10,6 +10,7 @@ import SignupPage from "./pages/SignupPage";
 import Recommend from "./components/home/Recommend";
 import Community from "./components/home/Community";
 import Diary from "./components/diary/Diary";
+import AddDiary from "./components/diary/AddDiary";
 import Participant from "./components/signup/Participant";
 import Organizer from "./components/signup/Organizer";
 import "./App.css";
