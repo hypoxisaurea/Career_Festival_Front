@@ -35,6 +35,10 @@ function RecordIntro() {
     <IntroContainer>
       <ColorText>김커리</ColorText>
       <NormalText>님, 안녕하세요?</NormalText>
+
+      <NormalText>행사에서 얻었던 정보들을</NormalText>
+      <TitleText>Career Festival</TitleText>
+      <NormalText>에 모아서 기록해보세요!</NormalText>
     </IntroContainer>
   );
 }

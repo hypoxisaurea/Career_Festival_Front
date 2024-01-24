@@ -10,6 +10,7 @@ import SignupPage from "./pages/SignupPage";
 import Recommend from "./components/home/Recommend";
 import Community from "./components/home/Community";
 import Diary from "./components/diary/Diary";
+import AddDiary from "./components/diary/AddDiary";
 import Participant from "./components/signup/Participant";
 import Organizer from "./components/signup/Organizer";
 import "./App.css";
@@ -28,6 +29,7 @@ function App() {
           <Route path="/detail" element={<DetailFestivalPage />} />
           <Route path="/community" element={<Community />} />
           <Route path="/diary" element={<Diary />} />
+          <Route path="/addDiary" element={<AddDiary />} />
           <Route path="/participant" element={<Participant />} />
           <Route path="/organizer" element={<Organizer />} />
         </Routes>
