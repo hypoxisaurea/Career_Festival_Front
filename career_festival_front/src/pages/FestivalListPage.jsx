@@ -13,10 +13,8 @@ import dummy from "../db/RecommendedEvents.json";
 // 중간 컨테이너에 대한 스타일링
 const MiddleContainer = styled.div`
   display: flex;
-  flex-direction: row;
   justify-content: center;
-  background-color: #ffffff;
-  gap: 4vw;
+  gap: 3vw;
   padding: 4vw 0 6vw 0;
 `;
  // 필터 및 지역 컴포넌트를 담는 컨테이너에 대한 스타일링
