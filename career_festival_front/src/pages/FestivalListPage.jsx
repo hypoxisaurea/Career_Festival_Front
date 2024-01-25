@@ -93,8 +93,8 @@ const Eventlist = styled.div`
 // 페스티벌 리스트 래퍼에 대한 스타일링 
 const FestivalListWrapper = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, 18vw);
-  gap: 2vw;
+  grid-template-columns: repeat(3, 16vw);
+  gap: 1vw;
   align-items: top;
   margin-top: 1vw;
 `;

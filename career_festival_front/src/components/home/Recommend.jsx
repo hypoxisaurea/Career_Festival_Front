@@ -39,9 +39,9 @@ const RecommendTitleWrapper = styled.div`
   //border: solid green;
   width: 100%;
   padding: 0.7em 0;
-
   overflow: hidden;
   text-overflow: ellipsis;
+  //word-break: break-all;
 
 
   font-size: 1.2em;
@@ -71,10 +71,12 @@ const RecommandDetailWrapper = styled.div`
 const RecommendTimeInfoWrapper = styled.div`
   //border: solid yellow;
   width: 100%;
-  overflow: hidden;
+  div{
+    overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-
+  }
+  
 `
 
 // 즐겨찾기, 가격
@@ -126,7 +128,7 @@ const Recommend = ({mainImg, eventName, recruitmentStart, recruitmentEnd, isLike
         <img src={mainImg} alt='행사 이미지'/>
       </RecommendMainImgWrapper>
 
-      <RecommendTitleWrapper> 
+      <RecommendTitleWrapper title={eventName}> 
         {eventName}
       </RecommendTitleWrapper>
 
@@ -134,8 +136,8 @@ const Recommend = ({mainImg, eventName, recruitmentStart, recruitmentEnd, isLike
       <RecommendInfoWrapper>
         <RecommandDetailWrapper>
           <RecommendTimeInfoWrapper>
-            <div>{recruitmentStart}</div>
-            <div>{recruitmentEnd}</div>
+            <div title={recruitmentStart}>{recruitmentStart}</div>
+            <div title={recruitmentEnd}>{recruitmentEnd}</div>
           </RecommendTimeInfoWrapper>
         
 

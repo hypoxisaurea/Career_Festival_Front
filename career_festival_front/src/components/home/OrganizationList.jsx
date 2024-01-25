@@ -6,6 +6,8 @@ import styled from 'styled-components';
 
 export default function OrganizationList() {
   return (
+    
+
     <div>OrganizationList</div>  
   )
 }

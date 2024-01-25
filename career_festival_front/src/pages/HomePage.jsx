@@ -17,6 +17,17 @@ const HomePageContainer = styled.div`
 `;
 
 
+//모든 행사 보기
+const HomePageShowAll = styled.span`
+  font-size: 1rem;
+  font-weight: 500;
+  color: #838383;
+
+  position: absolute;
+  padding-top: 3rem;
+  align-self: end;
+`
+
 
 /*개인 키워드 추천*/
 
@@ -109,16 +120,17 @@ const HomePage = () => {
             style={{
               fontSize: "1.5rem",
               fontWeight: "900",
-              margin: "2rem 0"
+              margin: "2rem 0 0 0"
             }}
           >
             이런행사 찾으셨죠?
           </h2>
+          <HomePageShowAll>모든행사보기</HomePageShowAll>
           <div
             style={{
               fontSize: "1.3rem",
               fontWeight: "900",
-              marginBottom: "2rem",
+              margin: "0.8rem 0 2rem 0",
             }}
           >
             회원가입 시 선택한
@@ -126,8 +138,6 @@ const HomePage = () => {
             부합한 행사들을 볼 수 있어요!
           </div>
           
-
-
           <RecommendPersonalWraper>
             {recommendedByPersonSlice.map((item) => (
               <Recommend
@@ -148,18 +158,23 @@ const HomePage = () => {
           </RecommendPersonalWraper>
         </RecommendPersonalContainer>
 
+
+
+
+
+
         <RecommendPlaceContainer>
           <h2
             style={{
               fontSize: "1.5rem",
               fontWeight: "900",
-              //paddingTop: "10rem",
-              marginBottom: "2rem",
+              marginBottom: "3rem",
               justifyItems: "center",
             }}
           >
-            <button>지역명</button> 근처 행사
+            <button>지역명</button> 근처 행사 
           </h2>
+          <HomePageShowAll>모든행사보기</HomePageShowAll>
 
           <RecommendPlaceWraper>
             {recommendedByPlaceSlice.map((item) => {
