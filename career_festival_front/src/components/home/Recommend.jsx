@@ -38,7 +38,7 @@ const RecommendMainImgWrapper = styled.div`
 const RecommendTitleWrapper = styled.div`
   //border: solid green;
   width: 100%;
-  padding: 0.5em 0;
+  padding: 0.7em 0;
 
   overflow: hidden;
   text-overflow: ellipsis;
@@ -73,7 +73,8 @@ const RecommendTimeInfoWrapper = styled.div`
   width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
-  
+  white-space: nowrap;
+
 `
 
 // 즐겨찾기, 가격
@@ -83,7 +84,7 @@ const RecommendIconWapper = styled.div`
   display: flex;
   flex-direction: row;
   align-content: center;
-  padding-top: 0.2em;
+  padding-top: 0.7em;
   
   color: #582fff;
   font-weight: 700;
@@ -92,9 +93,10 @@ const RecommendIconWapper = styled.div`
 
 //즐겨찾기 아이콘
 const StarIcon = styled.img`
-  width: 1.2em;
-  height: 1.2em;
+  width: 1.3em;
+  height: 1.3em;
   margin-right: 0.5rem;
+  align-self: center;
 
 `
 
