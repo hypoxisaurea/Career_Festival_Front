@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 import ArrowIcon from "../../assets/images/diary_down_arrow.png";
 
 const DropdownContainer = styled.div`
@@ -57,7 +58,7 @@ const MenuItem = styled.div`
 const Dropdown = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedMenu, setSelectedMenu] = useState("강연/세미나");
-
+  const navigate = useNavigate(); // React Router의 useNavigate 훅 사용
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
@@ -65,6 +66,24 @@ const Dropdown = () => {
   const handleMenuClick = (menu) => {
     setSelectedMenu(menu);
     setIsOpen(false);
+
+    // 선택한 메뉴에 따라 경로 이동
+    switch (menu) {
+      case "강연/세미나":
+        navigate("/diary/lectureseminar");
+        break;
+      case "학술대회":
+        navigate("/diary/symposium");
+        break;
+      case "전시/박람회":
+        navigate("/diary/exhibitionfair");
+        break;
+      case "기타":
+        navigate("/diary/other");
+        break;
+      default:
+        break;
+    }
   };
 
   return (
@@ -73,30 +92,35 @@ const Dropdown = () => {
       <SelectedText> {selectedMenu}</SelectedText>
       <DropDownButton src={ArrowIcon} onClick={toggleMenu} />
       <MenuContainer isOpen={isOpen}>
+
         <MenuItem
           isSelected={selectedMenu === "강연/세미나"}
           onClick={() => handleMenuClick("강연/세미나")}
         >
           강연/세미나
         </MenuItem>
+
         <MenuItem
           isSelected={selectedMenu === "학술대회"}
           onClick={() => handleMenuClick("학술대회")}
         >
           학술대회
         </MenuItem>
+
         <MenuItem
           isSelected={selectedMenu === "전시/박람회"}
           onClick={() => handleMenuClick("전시/박람회")}
         >
           전시/박람회
         </MenuItem>
+
         <MenuItem
           isSelected={selectedMenu === "기타"}
           onClick={() => handleMenuClick("기타")}
         >
           기타
         </MenuItem>
+
       </MenuContainer>
     </DropdownContainer>
   );
