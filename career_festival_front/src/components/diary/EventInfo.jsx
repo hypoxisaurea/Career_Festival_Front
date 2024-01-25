@@ -26,9 +26,9 @@ const TextInput = styled.textarea`
   font-family: "Noto Sans KR";
   font-weight: 400;
   word-wrap: break-word;
-  border-radius: 0.8vw;
+  border-radius: 0.6vw;
   border: 0.1vw #838383 solid;
-  margin-top: 1vw;
+  margin-top: 1.2vw;
   padding: 0.5vw 0 0 1vw;
 
   &::placeholder {
