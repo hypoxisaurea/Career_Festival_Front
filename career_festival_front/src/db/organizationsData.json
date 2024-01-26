@@ -1,0 +1,53 @@
+{
+    "OrganizationsList":[
+    {
+        "id": 1,
+        "profile": "https://dummyimage.com/400x400/d9d9d9/fff",
+        "OrganizationName":"제주올레여행길센터",
+        "uploadedNumber": 111,
+        "subscribed": "false"
+    },
+    {
+        "id": 2,
+        "profile": "https://dummyimage.com/400x400/d9d9d9/fff",
+        "OrganizationName":"제주올레여행길센터",
+        "uploadedNumber": 222,
+        "subscribed": "false"
+    },
+    {
+        "id": 3,
+        "profile": "https://dummyimage.com/400x400/d9d9d9/fff",
+        "OrganizationName":"제주올레여행길센터",
+        "uploadedNumber": 333,
+        "subscribed": "false"
+    },
+    {
+        "id": 4,
+        "profile": "https://dummyimage.com/400x400/d9d9d9/fff",
+        "OrganizationName":"제주올레여행길센터",
+        "uploadedNumber": 444,
+        "subscribed": "false"
+    },
+    {
+        "id": 5,
+        "profile": "https://dummyimage.com/400x400/d9d9d9/fff",
+        "OrganizationName":"제주올레여행길센터",
+        "uploadedNumber": 555,
+        "subscribed": "false"
+    },
+    {
+        "id": 6,
+        "profile": "https://dummyimage.com/400x400/d9d9d9/fff",
+        "OrganizationName":"제주올레여행길센터",
+        "uploadedNumber": 666,
+        "subscribed": "false"
+    },
+    {
+        "id": 7,
+        "profile": "https://dummyimage.com/400x400/d9d9d9/fff",
+        "OrganizationName":"제주올레여행길센터",
+        "uploadedNumber": 777,
+        "subscribed": "false"
+    }
+    ]
+}
