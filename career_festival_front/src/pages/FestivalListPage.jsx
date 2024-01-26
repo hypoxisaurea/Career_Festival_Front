@@ -9,7 +9,6 @@ import FilterKeyword from "../components/home/Filterkeyword";
 import Recommend from "../components/home/Recommend";
 import dummy from "../db/RecommendedEvents.json";
 
-
 // 중간 컨테이너에 대한 스타일링
 const MiddleContainer = styled.div`
   display: flex;
@@ -17,7 +16,7 @@ const MiddleContainer = styled.div`
   gap: 3vw;
   padding: 4vw 0 6vw 0;
 `;
- // 필터 및 지역 컴포넌트를 담는 컨테이너에 대한 스타일링
+// 필터 및 지역 컴포넌트를 담는 컨테이너에 대한 스타일링
 const FilterAndAreaContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -27,20 +26,19 @@ const FilterAndAreaContainer = styled.div`
 //필터
 const FilterContainer = styled.div`
   width: 100%;
-  justify-content: center;
   color: #582fff;
   font-size: 1.2rem;
   font-weight: bold;
 `;
 // 필터 초기화 버튼에 스타일을 적용한 컴포넌트
 const StyledResetButton = styled.button`
-  width: 80%;
+  width: 100%;
   background-color: transparent;
   color: #838383;
   border: none;
   cursor: pointer;
   font-size: 0.8rem;
-  margin-left: 6vw;
+  margin-left: 4vw;
 
   &:hover {
     text-decoration: underline;
@@ -63,7 +61,7 @@ const AreaContainer = styled.div`
 `;
 const Area = styled.div`
   width: 100%;
-  margin-top:1vw;
+  margin-top: 1vw;
 `;
 
 //행사유형
@@ -84,13 +82,13 @@ const HomeMiddleContainer = styled.div`
   justify-content: space-between;
 `;
 
- // 행사 목록 컨테이너에 대한 스타일링
+// 행사 목록 컨테이너에 대한 스타일링
 const Eventlist = styled.div`
   width: 50vw;
   height: 85vw;
 `;
 
-// 페스티벌 리스트 래퍼에 대한 스타일링 
+// 페스티벌 리스트 래퍼에 대한 스타일링
 const FestivalListWrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 18vw);
@@ -101,7 +99,7 @@ const FestivalListWrapper = styled.div`
 //키워드
 const KeywordContainer = styled.div`
   display: flex;
-  font-size:26px;
+  font-size: 26px;
   font-weight: bold;
 `;
 //슬라이드 행사목록 넘김
