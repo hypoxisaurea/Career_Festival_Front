@@ -6,10 +6,11 @@ const Main = styled.div`
   display: flex;
   justify-content: center;
 `;
+
 const MyPage = () => {
   return (
     <div>
-      <Main>주최자 프로필 개설</Main>
+      <Main>마이페이지</Main>
     </div>
   );
 };
