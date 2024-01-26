@@ -29,7 +29,7 @@ function App() {
         <Routes>
           <Route path="/" element={<><Header /><HomePage /><Footer /></>} />
           <Route path="/login" element={<LoginPage />} />
-          <Route path="/signup" element={<SignupPage />} />
+          <Route path="/join" element={<SignupPage />} />
           <Route path="/participant" element={<Participant />} />
           <Route path="/organizer" element={<Organizer />} />
           <Route path="/diary/exhibitionfair" element={<><Header /><ExhibitionFair /><Footer /></>} />

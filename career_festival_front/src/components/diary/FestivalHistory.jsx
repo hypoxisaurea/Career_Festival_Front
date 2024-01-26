@@ -1,35 +1,18 @@
+// FestivalHistory.js
 import React from "react";
+import styled from "styled-components";
+
+const FestivalHistoryStyled = styled.div`
+  /* 스타일 내용 */
+  border:1px solid;
+`;
 
 const FestivalHistory = () => {
   return (
-    <div>
-      <h2>Festival History</h2>
-      <table border="1">
-        <thead>
-          <tr>
-            <th>Date</th>
-            <th>Event</th>
-            <th>Location</th>
-            <th>Description</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>2022-01-01</td>
-            <td>New Year's Festival</td>
-            <td>Main Square</td>
-            <td>A celebration for the new year</td>
-          </tr>
-          <tr>
-            <td>2022-05-15</td>
-            <td>Spring Festival</td>
-            <td>Park</td>
-            <td>Enjoy the beauty of spring</td>
-          </tr>
-          {/* Add more rows as needed */}
-        </tbody>
-      </table>
-    </div>
+    <FestivalHistoryStyled>
+      <p>행사기록</p>
+      {/* 내용 */}
+    </FestivalHistoryStyled>
   );
 };
 
