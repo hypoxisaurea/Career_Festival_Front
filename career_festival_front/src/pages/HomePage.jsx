@@ -4,6 +4,7 @@ import Recommend from "../components/home/Recommend";
 import dummy from "../db/RecommendedEvents.json";
 import styled from "styled-components";
 import Banner from "../components/home/Banner";
+import organizationsData from "../db/organizationsData.json"
 import OrganizationList from "../components/home/OrganizationList";
 
 
@@ -100,6 +101,37 @@ const RecommendPlaceWraper = styled.div`
 
 
 //주최자
+const OrganizationListContainer = styled.div`
+  background-color: #f9f7ff;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  h2{
+    margin-left: 15vw;
+  }
+`
+
+const OrganizationslistWraper = styled.div`
+   border: 1px solid red;
+   width: 70vw;
+   margin: 0 auto;
+  
+`
+
+const OrganizationListBoxWrapper = styled.div`
+  border: 1px solid red;
+  width: 60vw;
+
+  margin: 0 auto;
+
+
+  // 그리드
+  display: grid;
+  grid-template-columns: repeat(4, 13.5vw);
+  gap: 2vw;
+`
 
 
 
@@ -109,6 +141,7 @@ const RecommendPlaceWraper = styled.div`
 const HomePage = () => {
   const recommendedByPersonSlice = dummy.RecommendedByPerson.slice(0, 6); // 처음 6개 아이템만 사용
   const recommendedByPlaceSlice = dummy.RecommendedByPlace.slice(0, 3); // 처음 3개 아이템만 사용
+  const organizationsListSlice = organizationsData.OrganizationsList.slice(0, 4)// 처음 4개 아이템 우선 보임
 
 
   return (
@@ -160,9 +193,6 @@ const HomePage = () => {
 
 
 
-
-
-
         <RecommendPlaceContainer>
           <h2
             style={{
@@ -192,7 +222,29 @@ const HomePage = () => {
             })}
           </RecommendPlaceWraper>
         </RecommendPlaceContainer>
-        <OrganizationList/>
+
+
+
+
+        <OrganizationListContainer>
+          <h2><span>219</span>명의 주최자</h2>
+          <OrganizationslistWraper>
+            <OrganizationListBoxWrapper>
+              {organizationsListSlice.map((item)=>{
+                return (
+                  <OrganizationList
+                    profile={item.profile}
+                    OranizationName={item.OrganizationName}
+                    uploadedNumber={item.uploadedNumber}
+                    subscribed={item.subscribed}
+                  />
+                );
+              })}
+              
+            </OrganizationListBoxWrapper>
+          </OrganizationslistWraper>
+        </OrganizationListContainer>
+        
       </HomePageContainer>
     </div>
   );

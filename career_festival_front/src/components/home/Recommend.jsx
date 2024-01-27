@@ -2,7 +2,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import dummy from "../../db/RecommendedEvents.json";
-import {useState, useEffect} from 'react';
+
 
 import emptyStarIcon from "../../assets/images/emptyStarIcon.png";
 
