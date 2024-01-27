@@ -9,14 +9,9 @@ import setting from "../../assets/images/setting.png";
 const HeaderContainer = styled.div`
   width: 100%;
   height: 100%;
-  background: #ffffff;
-  box-shadow: 0 0.3rem 0.3rem rgba(0, 0, 0, 0.25);
-  margin: 0 0 1vw 0;
-  padding: 3vw 0 1vw 0;
 
-  display: block;
-  align-items: center;
-  text-align: center;
+  box-shadow: 0 0.3vw 0.3vw rgba(0, 0, 0, 0.25);
+  margin: 2vw 0 0.5vw 0;
 `;
 
 // 로그인과 회원가입을 포함하는 컨테이너 스타일
@@ -36,14 +31,14 @@ const LogoImage = styled.img`
   width: 20vw;
   cursor: pointer;
   margin-bottom: 1vw;
-  padding: 1.5vw;
+  padding: 1vw;
 `;
 
 // 검색 아이콘 스타일
 const SearchImage = styled.img`
   width: 1vw;
   height: 1vw;
-  margin-left:1vw;
+  margin-left: 1vw;
   position: absolute;
 `;
 
@@ -88,34 +83,33 @@ const LoginButtonStyle = styled.button`
   background-color: #ffffff;
   color: #838383;
   font-weight: bold;
-  font-size: 0.8vw;
+  font-size: 0.8rem;
   border: none;
 
   &:hover {
     text-decoration: underline;
   }
 `;
-
-// 환영 메시지 스타일
-const WelcomeText = styled.span`
-  color: #582fff;
-  font-size: 0.8vw;
-  margin-left: 1vw;
-`;
-
 // 회원가입 버튼 스타일
 const Join = styled.button`
   background-color: #ffffff;
   color: #838383;
   font-weight: bold;
   padding: 1vw 1vw 1vw 1vw;
-  font-size: 0.8vw;
+  font-size: 0.8rem;
   border: none;
 
   &:hover {
     text-decoration: underline;
   }
 `;
+// 환영 메시지 스타일
+const WelcomeText = styled.span`
+  color: #582fff;
+  font-size: 0.8rem;
+  margin-left: 1vw;
+`;
+
 
 // 환경설정 아이콘 스타일
 const SettingImage = styled.img`
@@ -128,14 +122,18 @@ const LinkContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 1vw;
+  padding: 0.7vw;
   flex-wrap: wrap;
+  @media (max-width: 950px) {
+    font-size: 0.8vw;
+    gap: 5vw;
+  }
 
-  & > * {
-    margin: 0.1vw;
+  @media (max-width: 500px) {
+    font-size: 0.8vw;
+    gap: 1vw;
   }
 `;
-
 
 // 각각의 링크 아이템 스타일
 const LinkItem = styled(Link)`
@@ -143,7 +141,7 @@ const LinkItem = styled(Link)`
   text-decoration: none;
   font-weight: bold;
   margin-left: 5vw;
-  font-size: 0.8vw;
+  font-size: 0.8rem;
   transition: color 0.3s; /* 색상 변화에 대한 트랜지션 효과 추가 */
 
   &:hover {
@@ -156,7 +154,7 @@ const RegisterItem = styled(Link)`
   color: #582fff;
   text-decoration: none;
   font-weight: bold;
-  font-size: 0.8vw;
+  font-size: 0.8rem;
   margin-left: 23vw;
   margin-right: 1vw;
   border: none;
@@ -168,15 +166,16 @@ const RegisterItem = styled(Link)`
 
 // 라인 1
 const Line = styled.div`
+  margin-top: -1vw;
   width: 100%;
   height: 0.1vw;
   background-color: #d9d9d9;
 `;
 
-// 세로선
-const HeightLine = styled.div`
-  color: #d9d9d9;
-  height:100%;
+const VerticalLine = styled.div`
+  width: 0.1vw;
+  height: 1.5vw;
+  background-color: #d9d9d9;
 `;
 
 const Header = () => {
@@ -240,7 +239,7 @@ const Header = () => {
         <LinkItem to="/community">커뮤니티</LinkItem>
         <LinkItem to="/mypage">마이페이지</LinkItem>
         <RegisterItem to="/register">행사등록하기</RegisterItem>
-        <HeightLine>|</HeightLine>
+        <VerticalLine />
         <WelcomeText>
           {isLoggedIn ? "000님 환영합니다!" : "로그인 해주세요!"}
         </WelcomeText>
