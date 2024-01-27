@@ -73,8 +73,8 @@ const RecommendTimeInfoWrapper = styled.div`
   width: 100%;
   div{
     overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
   
 `

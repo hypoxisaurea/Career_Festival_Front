@@ -117,7 +117,8 @@ const OrganizationslistWraper = styled.div`
    border: 1px solid red;
    width: 70vw;
    margin: 0 auto;
-  
+   
+  padding-bottom: 5rem;
 `
 
 const OrganizationListBoxWrapper = styled.div`
@@ -234,7 +235,7 @@ const HomePage = () => {
                 return (
                   <OrganizationList
                     profile={item.profile}
-                    OranizationName={item.OrganizationName}
+                    OrganizationName={item.OrganizationName}
                     uploadedNumber={item.uploadedNumber}
                     subscribed={item.subscribed}
                   />
