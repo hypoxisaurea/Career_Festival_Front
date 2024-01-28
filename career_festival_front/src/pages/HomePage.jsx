@@ -4,6 +4,8 @@ import Recommend from "../components/home/Recommend";
 import dummy from "../db/RecommendedEvents.json";
 import styled from "styled-components";
 import Banner from "../components/home/Banner";
+
+//주최자
 import organizationsData from "../db/organizationsData.json"
 import OrganizationList from "../components/home/OrganizationList";
 
@@ -142,7 +144,10 @@ const OrganizationListBoxWrapper = styled.div`
 const HomePage = () => {
   const recommendedByPersonSlice = dummy.RecommendedByPerson.slice(0, 6); // 처음 6개 아이템만 사용
   const recommendedByPlaceSlice = dummy.RecommendedByPlace.slice(0, 3); // 처음 3개 아이템만 사용
+
+  //주최자
   const organizationsListSlice = organizationsData.OrganizationsList.slice(0, 4)// 처음 4개 아이템 우선 보임
+
 
 
   return (
@@ -226,7 +231,7 @@ const HomePage = () => {
 
 
 
-
+        {/*주최자*/}
         <OrganizationListContainer>
           <h2><span>219</span>명의 주최자</h2>
           <OrganizationslistWraper>

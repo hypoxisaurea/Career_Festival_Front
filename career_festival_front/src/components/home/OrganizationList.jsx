@@ -39,7 +39,7 @@ const OrganizationInfo = styled.div`
   height: 25%;
   text-align: center;
 
-  font-size: 1em;
+  font-size: 1rem;
   font-weight: 500;
 
   position: relative;
@@ -83,7 +83,7 @@ const SubscribeButtonWrapper = styled.div`
     border: none;
     background-color: #582fff;
     color: #ffff;
-    font-size: 1em;
+    font-size: 1rem;
     font-weight: 700;
     border-radius: 5px;
   }
