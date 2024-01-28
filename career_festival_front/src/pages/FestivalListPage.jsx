@@ -92,8 +92,8 @@ const HomeMiddleContainer = styled.div`
 
 // 행사 목록 컨테이너에 대한 스타일링
 const Eventlist = styled.div`
-  width: 50vw;
-  height: 85vw;
+  // width: 50vw;
+  // height: 85vw;
 `;
 
 // 페스티벌 리스트 래퍼에 대한 스타일링
