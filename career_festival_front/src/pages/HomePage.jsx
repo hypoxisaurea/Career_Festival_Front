@@ -8,6 +8,9 @@ import Banner from "../components/home/Banner";
 //주최자
 import organizationsData from "../db/organizationsData.json"
 import OrganizationList from "../components/home/OrganizationList";
+import buttonLeft from "../assets/images/bannerleftarrow.png";
+import buttonRight from "../assets/images/bannerrightarrow.png";
+
 
 
 //Home 전체 페이지
@@ -36,7 +39,7 @@ const HomePageShowAll = styled.span`
 
 //개인 키워드 추천 전체
 const RecommendPersonalContainer = styled.div`
-  background-color: beige;
+  //background-color: beige;
   display: flex;
   flex-direction: column;
 
@@ -45,7 +48,7 @@ const RecommendPersonalContainer = styled.div`
 
 //컴포넌트 자리
 const RecommendPersonalWraper = styled.div`
-  background-color: lavender;
+  //background-color: lavender;
 
   width: 100%;
 
@@ -62,7 +65,7 @@ const RecommendPersonalWraper = styled.div`
 
 //위치 근처 추천 전체
 const RecommendPlaceContainer = styled.div`
-  background-color: #f2f2f2; /*임의로 영역 확인용*/
+  //background-color: #f2f2f2; /*임의로 영역 확인용*/
 
   display: flex;
   flex-direction: column;
@@ -89,7 +92,7 @@ const RecommendPlaceContainer = styled.div`
 
 //컴포넌트 자리
 const RecommendPlaceWraper = styled.div`
-  background-color: lavender;
+  //background-color: lavender;
   width: 100%;
 
 
@@ -104,7 +107,7 @@ const RecommendPlaceWraper = styled.div`
 
 //주최자
 const OrganizationListContainer = styled.div`
-  background-color: #f9f7ff;
+  //background-color: #f9f7ff;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -112,19 +115,27 @@ const OrganizationListContainer = styled.div`
 
   h2{
     margin-left: 15vw;
+    font-size: "1.3rem";
+    font-weight: "900";
+  }
+
+  span{
+    color: #582fff;
   }
 `
 
 const OrganizationslistWraper = styled.div`
-   border: 1px solid red;
+   //border: 1px solid red;
    width: 70vw;
    margin: 0 auto;
    
   padding-bottom: 5rem;
+  display: flex;
+  flex-direction: row;
 `
 
 const OrganizationListBoxWrapper = styled.div`
-  border: 1px solid red;
+  //border: 1px solid red;
   width: 60vw;
 
   margin: 0 auto;
@@ -148,6 +159,17 @@ const HomePage = () => {
   //주최자
   const organizationsListSlice = organizationsData.OrganizationsList.slice(0, 4)// 처음 4개 아이템 우선 보임
 
+  const Button = styled.img`
+  width: 2.5vw;
+  height: 2.5vw;
+
+  margin-top: 9vw;
+  cursor: pointer;
+`;
+
+const ButtonLeftStyled = styled(Button)``;
+
+const ButtonRightStyled = styled(Button)``;
 
 
   return (
@@ -233,8 +255,14 @@ const HomePage = () => {
 
         {/*주최자*/}
         <OrganizationListContainer>
-          <h2><span>219</span>명의 주최자</h2>
+          <h2><span>219</span>명의 주최자</h2> {/* 숫자는 나중에 데이터로 받아와야함 */}
           <OrganizationslistWraper>
+          <ButtonLeftStyled
+              src={buttonLeft}
+              alt="ButtonLeft"
+            />
+
+
             <OrganizationListBoxWrapper>
               {organizationsListSlice.map((item)=>{
                 return (
@@ -248,6 +276,13 @@ const HomePage = () => {
               })}
               
             </OrganizationListBoxWrapper>
+
+
+
+            <ButtonRightStyled
+              src={buttonRight}
+              alt="ButtonRight"
+            />
           </OrganizationslistWraper>
         </OrganizationListContainer>
         
