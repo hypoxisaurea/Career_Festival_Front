@@ -14,15 +14,19 @@ const InterestAreaStyle = styled.div`
 
   // 제일 큰 버튼 스타일 정의
   button {
-    width: 200px; // 버튼의 가로 크기 설정
-    padding: 10px; // 안쪽 여백 설정
-    font-size: 16px; // 폰트 크기 설정
+    //width: 10vw; // 버튼의 가로 크기 설정
+    padding: 0.6vw; // 안쪽 여백 설정
+    //font-size: 1rem; // 폰트 크기 설정
     border: 1px solid #000000; // 테두리 추가
-    border-radius: 5px; // 테두리의 둥근 정도 설정
+    border-radius: 0.3vw; // 테두리의 둥근 정도 설정
     cursor: pointer; // 커서를 포인터로 변경
     background-color: #ffffff; // 배경색 설정
-    text-align:left;
-    color:#757575;
+    text-align: left;
+    color: #757575;
+
+    @media screen and (max-width: 600px) {
+      font-size: 1vw;
+    }
   }
 `;
 
