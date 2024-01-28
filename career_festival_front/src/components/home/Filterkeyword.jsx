@@ -4,7 +4,7 @@ import styled from "styled-components";
 const KeywordContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
-  margin-bottom: 5vw;
+  margin-bottom: 1vw;
 `;
 
 const KeywordItem = styled.div`

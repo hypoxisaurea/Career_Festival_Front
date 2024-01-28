@@ -91,10 +91,12 @@ const Eventlist = styled.div`
 // 페스티벌 리스트 래퍼에 대한 스타일링
 const FestivalListWrapper = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, 18vw);
+  grid-template-columns: repeat(3, 15vw);
   gap: 2vw;
-  align-items: top;
-  margin-top: 1vw;
+  font-size: 0.9rem;
+  @media screen and (max-width: 600px) {
+    font-size: 1vw;
+  }
 `;
 //키워드
 const KeywordContainer = styled.div`
@@ -238,20 +240,18 @@ const FestivalListPage = () => {
             removeFilter={removeFilter}
           />
           <FestivalListWrapper>
-            {dummy.RecommendedByPerson.map((item) => {
-              return (
-                <Recommend
-                  //style={{ fontSize: "0.5rem" }}
-                  mainImg={item.mainImg}
-                  eventName={item.eventName}
-                  recruitmentStart={item.recruitmentStart}
-                  recruitmentEnd={item.recruitmentEnd}
-                  isLiked={item.isLiked}
-                  price={item.price}
-                  profile={item.profile}
-                />
-              );
-            })}
+            {dummy.RecommendedByPerson.slice(0, 9).map((item) => (
+              <Recommend
+                key={item.eventName}
+                mainImg={item.mainImg}
+                eventName={item.eventName}
+                recruitmentStart={item.recruitmentStart}
+                recruitmentEnd={item.recruitmentEnd}
+                isLiked={item.isLiked}
+                price={item.price}
+                profile={item.profile}
+              />
+            ))}
           </FestivalListWrapper>
           <Silder>1</Silder>
           <HomeMiddleContainer></HomeMiddleContainer>
