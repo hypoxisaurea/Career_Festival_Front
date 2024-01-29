@@ -5,49 +5,56 @@
         "profile": "https://dummyimage.com/400x400/d9d9d9/fff",
         "OrganizationName":"제주올레여행길센터",
         "uploadedNumber": 111,
-        "subscribed": "false"
+        "subscribed": "false",
+        "subscriberNumber": 11
     },
     {
         "id": 2,
         "profile": "https://dummyimage.com/400x400/d9d9d9/fff",
         "OrganizationName":"제주올레여행길센터",
         "uploadedNumber": 222,
-        "subscribed": "false"
+        "subscribed": "false",
+        "subscriberNumber": 22
     },
     {
         "id": 3,
         "profile": "https://dummyimage.com/400x400/d9d9d9/fff",
         "OrganizationName":"제주올레여행길센터가ㅓ잔쟈ㅜ퍄ㅐㅜ파ㅣㅡ니ㅏㄹㄹ저ㅓㄹ럊랴주ㅑㅐㅜ룾ㄹ즐즈",
         "uploadedNumber": 333,
-        "subscribed": "false"
+        "subscribed": "false",
+        "subscriberNumber": 33
     },
     {
         "id": 4,
         "profile": "https://dummyimage.com/400x400/d9d9d9/fff",
         "OrganizationName":"제주올레여행길센터",
         "uploadedNumber": 444,
-        "subscribed": "false"
+        "subscribed": "false",
+        "subscriberNumber": 44
     },
     {
         "id": 5,
         "profile": "https://dummyimage.com/400x400/d9d9d9/fff",
         "OrganizationName":"제주올레여행길센터",
         "uploadedNumber": 555,
-        "subscribed": "false"
+        "subscribed": "false",
+        "subscriberNumber": 55
     },
     {
         "id": 6,
         "profile": "https://dummyimage.com/400x400/d9d9d9/fff",
         "OrganizationName":"제주올레여행길센터",
         "uploadedNumber": 666,
-        "subscribed": "false"
+        "subscribed": "false",
+        "subscriberNumber": 66
     },
     {
         "id": 7,
         "profile": "https://dummyimage.com/400x400/d9d9d9/fff",
         "OrganizationName":"제주올레여행길센터",
         "uploadedNumber": 777,
-        "subscribed": "false"
+        "subscribed": "false",
+        "subscriberNumber": 77
     }
     ]
 }

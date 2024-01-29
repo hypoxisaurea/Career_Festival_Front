@@ -159,6 +159,8 @@ const HomePage = () => {
   //주최자
   const organizationsListSlice = organizationsData.OrganizationsList.slice(0, 4)// 처음 4개 아이템 우선 보임
 
+
+  //이부분은 banner에서 코드 가져다 씀
   const Button = styled.img`
   width: 2.5vw;
   height: 2.5vw;
@@ -168,7 +170,6 @@ const HomePage = () => {
 `;
 
 const ButtonLeftStyled = styled(Button)``;
-
 const ButtonRightStyled = styled(Button)``;
 
 

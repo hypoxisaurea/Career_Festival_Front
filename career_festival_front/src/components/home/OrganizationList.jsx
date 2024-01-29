@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import  '../../db/organizationsData.json';
+import { useNavigate } from 'react-router-dom';
 
 const OrganizationBox =styled.div`
   //border: 1px solid red;
@@ -89,17 +90,27 @@ const SubscribeButtonWrapper = styled.div`
   }
 `
 
-const OrganizationList = ({profile, OrganizationName, uploadedNumber, subscribed}) => {
+const OrganizationList = (props) => {
+
+  const navigate = useNavigate();
+
+  const onClickOrganizationProfile =()=>{
+    navigate(`/organizationinfo/${props.OrganizationName}`,{
+      state: props
+    })
+  }
+
+
   return (
-    <OrganizationBox>
+    <OrganizationBox onClick={onClickOrganizationProfile}>
       <OrganizationProfileImg>
-        <img src = {profile} alt='주최자 이미지'/>
+        <img src = {props.profile} alt='주최자 이미지'/>
       </OrganizationProfileImg>
 
 
       <OrganizationInfo>
-        <OrganizationNameWrapper title={OrganizationName}>{OrganizationName}</OrganizationNameWrapper>
-        <UploadedNumberWrapper> <span>{uploadedNumber}</span>개의 행사 </UploadedNumberWrapper>
+        <OrganizationNameWrapper title={props.OrganizationName}>{props.OrganizationName}</OrganizationNameWrapper>
+        <UploadedNumberWrapper> <span>{props.uploadedNumber}</span>개의 행사 </UploadedNumberWrapper>
       </OrganizationInfo>
       <SubscribeButtonWrapper><button>구독하기</button></SubscribeButtonWrapper>
     </OrganizationBox>
