@@ -272,6 +272,7 @@ const ButtonRightStyled = styled(Button)``;
                     OrganizationName={item.OrganizationName}
                     uploadedNumber={item.uploadedNumber}
                     subscribed={item.subscribed}
+                    subscriberNumber = {item.subscriberNumber}
                   />
                 );
               })}

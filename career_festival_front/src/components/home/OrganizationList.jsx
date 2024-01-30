@@ -100,6 +100,7 @@ const OrganizationList = (props) => {
     })
   }
 
+  console.log(props);
 
   return (
     <OrganizationBox onClick={onClickOrganizationProfile}>
