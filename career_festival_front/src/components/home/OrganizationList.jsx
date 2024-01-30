@@ -41,7 +41,7 @@ const OrganizationInfo = styled.div`
   text-align: center;
 
   font-size: 1rem;
-  font-weight: 500;
+  font-weight: bold;
 
   position: relative;
   display: flex;
@@ -50,21 +50,21 @@ const OrganizationInfo = styled.div`
 
 const OrganizationNameWrapper = styled.div`
   //border: 1px solid red;
-
+  font-size: 1rem;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-`
+`;
 const UploadedNumberWrapper = styled.div`
   //border: 1px solid red;
 
   margin-top: 0.8em;
   color: #838383;
-
-  span{
+  font-size: 0.8rem;
+  span {
     color: #582fff;
   }
-`
+`;
 
 
 const SubscribeButtonWrapper = styled.div`
@@ -72,23 +72,22 @@ const SubscribeButtonWrapper = styled.div`
 
   width: 100%;
   height: 25%;
-
+  
   display: flex;
   flex-direction: column;
   justify-content: center;
-  button{
+  button {
     width: 60%;
     height: 50%;
-    margin: 0.8em auto;
+    margin: 0.8vw auto;
 
     border: none;
     background-color: #582fff;
     color: #ffff;
-    font-size: 1rem;
-    font-weight: 700;
+    //font-size: 0.9rem;
     border-radius: 5px;
   }
-`
+`;
 
 const OrganizationList = (props) => {
 

@@ -9,12 +9,18 @@ import FilterKeyword from "../components/home/Filterkeyword";
 import Recommend from "../components/home/Recommend";
 import dummy from "../db/RecommendedEvents.json";
 
+//주최자
+import organizationsData from "../db/organizationsData.json"
+import OrganizationList from "../components/home/OrganizationList";
+import buttonLeft from "../assets/images/bannerleftarrow.png";
+import buttonRight from "../assets/images/bannerrightarrow.png";
+
 // 중간 컨테이너에 대한 스타일링
 const MiddleContainer = styled.div`
   display: flex;
   justify-content: center;
   gap: 3vw;
-  padding: 4vw 0 6vw 0;
+  padding: 4vw 0 2vw 0;
 `;
 // 필터 및 지역 컴포넌트를 담는 컨테이너에 대한 스타일링
 const FilterAndAreaContainer = styled.div`
@@ -130,16 +136,58 @@ const LowerContaniner = styled.div`
   flex-direction: row;
   justify-content: center;
   background-color: #f9f7ff;
-  gap: 4vw;
-  padding: 4vw 0 4vw 0;
+  padding: 1vw 0 4vw 0;
 `;
 // 이벤터 컨테이너에 대한 스타일링
-const Eventer = styled.div`
-  width: 50vw;
-  height: 10vw;
-  border-radius: 20px;
-  border: 1px solid;
+// const Eventer = styled.div`
+//   width: 50vw;
+//   height: 10vw;
+//   border-radius: 20px;
+//   border: 1px solid;
+// `;
+
+
+//주최자
+const OrganizationListContainer = styled.div`
+  //background-color: #f9f7ff;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  h2{
+    margin-left: 20vw;
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+
+  span{
+    color: #582fff;
+  }
+`
+
+const OrganizationslistWraper = styled.div`
+  //border: 1px solid red;
+  width: 65vw;
+  margin: auto;
+  display: flex;
+  flex-direction: row;
 `;
+
+const OrganizationListBoxWrapper = styled.div`
+  //border: 1px solid red;
+  width: 70%;
+
+  margin: 0 auto;
+
+  // 그리드
+  display: grid;
+  grid-template-columns: repeat(4, 9.5vw);
+  gap: 3vw;
+`;
+
+
+
 const FestivalListPage = () => {
   const [isModalOpen, setModalOpen] = useState(false);
   const [selectedFilters, setSelectedFilters] = useState([]);
@@ -197,6 +245,22 @@ const FestivalListPage = () => {
     setSelectedCity(city);
     setModalOpen(false);
   };
+
+  //주최자
+  const organizationsListSlice = organizationsData.OrganizationsList.slice(0,4); // 처음 4개 아이템 우선 보임
+
+  //이부분은 banner에서 코드 가져다 씀
+  const Button = styled.img`
+    width: 2vw;
+    height: 2.5vw;
+    margin-top: 6vw;
+    cursor: pointer;
+  `;
+
+  const ButtonLeftStyled = styled(Button)`
+  `;
+  const ButtonRightStyled = styled(Button)`
+  `;
 
   return (
     <div>
@@ -269,7 +333,32 @@ const FestivalListPage = () => {
         </Eventlist>
       </MiddleContainer>
       <LowerContaniner>
-        <Eventer>219 명의 주최자</Eventer>
+        {/*주최자*/}
+        <OrganizationListContainer>
+          <h2>
+            <span>219</span>명의 주최자
+          </h2>{" "}
+          {/* 숫자는 나중에 데이터로 받아와야함 */}
+          <OrganizationslistWraper>
+            <ButtonLeftStyled src={buttonLeft} alt="ButtonLeft" />
+
+            <OrganizationListBoxWrapper>
+              {organizationsListSlice.map((item) => {
+                return (
+                  <OrganizationList
+                    profile={item.profile}
+                    OrganizationName={item.OrganizationName}
+                    uploadedNumber={item.uploadedNumber}
+                    subscribed={item.subscribed}
+                    subscriberNumber={item.subscriberNumber}
+                  />
+                );
+              })}
+            </OrganizationListBoxWrapper>
+
+            <ButtonRightStyled src={buttonRight} alt="ButtonRight" />
+          </OrganizationslistWraper>
+        </OrganizationListContainer>
       </LowerContaniner>
     </div>
   );
