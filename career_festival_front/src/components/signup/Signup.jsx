@@ -71,7 +71,7 @@ const Signup = () => {
       };
       // 백엔드 API 호출 및 응답 처리
       // fetch 함수 호출 또는 axios 등을 사용하여 백엔드로 데이터 전송
-      const response = await fetch("백엔드 API 주소", {
+      const response = await fetch("http://localhost:9000/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"

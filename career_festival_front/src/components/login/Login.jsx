@@ -78,7 +78,7 @@ const Login = () => {
       <HelpText>
         <IDFind as={Link} to="/find-username">아이디 찾기</IDFind> |{"  "}
         <PasswordReset as={Link} to="/password-reset">비밀번호 찾기</PasswordReset> |{"  "}
-        <SignupText as={Link} to="/signup">회원가입</SignupText>
+        <SignupText as={Link} to="/join">회원가입</SignupText>
       </HelpText>
 
       <SocialButtonContainer>
