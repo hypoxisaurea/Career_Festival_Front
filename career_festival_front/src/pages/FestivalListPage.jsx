@@ -29,6 +29,9 @@ const FilterContainer = styled.div`
   color: #582fff;
   font-size: 1.2rem;
   font-weight: bold;
+  @media screen and (max-width: 600px) {
+    font-size: 1vw;
+  }
 `;
 // 필터 초기화 버튼에 스타일을 적용한 컴포넌트
 const StyledResetButton = styled.button`
@@ -39,7 +42,9 @@ const StyledResetButton = styled.button`
   cursor: pointer;
   font-size: 0.8rem;
   margin-left: 4vw;
-
+  @media screen and (max-width: 600px) {
+    font-size: 1vw;
+  }
   &:hover {
     text-decoration: underline;
   }
@@ -48,16 +53,16 @@ const StyledResetButton = styled.button`
 const FilterP = styled.p`
   font-weight: bold;
   color: #000000;
-  font-size: 1rem;
 `;
 
 //지역
 const AreaContainer = styled.div`
   width: 100%;
-  height: 10%;
   color: #000000;
-  font-size: 1rem;
   font-weight: bold;
+  @media screen and (max-width: 600px) {
+    font-size: 1vw;
+  }
 `;
 const Area = styled.div`
   width: 100%;
@@ -73,6 +78,9 @@ const Eventtype = styled.div`
   margin-top: -1vw;
   font-size: 1rem;
   font-weight: bold;
+  @media screen and (max-width: 600px) {
+    font-size: 1vw;
+  }
 `;
 // 홈 중간 컨테이너에 대한 스타일링
 const HomeMiddleContainer = styled.div`
@@ -84,23 +92,28 @@ const HomeMiddleContainer = styled.div`
 
 // 행사 목록 컨테이너에 대한 스타일링
 const Eventlist = styled.div`
-  width: 50vw;
-  height: 85vw;
+  // width: 50vw;
+  // height: 85vw;
 `;
 
 // 페스티벌 리스트 래퍼에 대한 스타일링
 const FestivalListWrapper = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, 16vw);
-  gap: 1vw;
-  align-items: top;
-  margin-top: 1vw;
+  grid-template-columns: repeat(3, 15vw);
+  gap: 2vw;
+  font-size: 0.9rem;
+  @media screen and (max-width: 600px) {
+    font-size: 1vw;
+  }
 `;
 //키워드
 const KeywordContainer = styled.div`
   display: flex;
-  font-size: 26px;
+  font-size: 1.5rem;
   font-weight: bold;
+  @media screen and (max-width: 600px) {
+    font-size: 1.8vw;
+  }
 `;
 //슬라이드 행사목록 넘김
 const Silder = styled.div`
@@ -238,20 +251,18 @@ const FestivalListPage = () => {
             removeFilter={removeFilter}
           />
           <FestivalListWrapper>
-            {dummy.RecommendedByPerson.map((item) => {
-              return (
-                <Recommend
-                  //style={{ fontSize: "0.5rem" }}
-                  mainImg={item.mainImg}
-                  eventName={item.eventName}
-                  recruitmentStart={item.recruitmentStart}
-                  recruitmentEnd={item.recruitmentEnd}
-                  isLiked={item.isLiked}
-                  price={item.price}
-                  profile={item.profile}
-                />
-              );
-            })}
+            {dummy.RecommendedByPerson.slice(0, 9).map((item) => (
+              <Recommend
+                key={item.eventName}
+                mainImg={item.mainImg}
+                eventName={item.eventName}
+                recruitmentStart={item.recruitmentStart}
+                recruitmentEnd={item.recruitmentEnd}
+                isLiked={item.isLiked}
+                price={item.price}
+                profile={item.profile}
+              />
+            ))}
           </FestivalListWrapper>
           <Silder>1</Silder>
           <HomeMiddleContainer></HomeMiddleContainer>

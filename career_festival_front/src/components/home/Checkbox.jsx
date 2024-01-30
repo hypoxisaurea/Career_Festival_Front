@@ -4,19 +4,24 @@ import styled from "styled-components";
 const CheckboxLabel = styled.label`
   display: flex;
   align-items: center;
-  margin-bottom: 8px;
+  margin-bottom: 0.5vw;
   cursor: pointer;
   color: ${(props) => (props.checked ? "#582fff;" : "black")};
-  font-size: 14px;
+  font-size: 0.9rem;
+  @media screen and (max-width: 600px) {
+    font-size: 1vw;
+  }
 `;
 
 const StyledCheckbox = styled.input`
-  margin-right: 8px;
+  margin-right: 0.5vw;
+  width:1vw;
+  height: 1vw;
 `;
 
 const CheckboxContainer = styled.div`
   form {
-    margin-top: 20px; /* form에 마진 탑 추가 */
+    margin-top: 1vw;
   }
 `;
 

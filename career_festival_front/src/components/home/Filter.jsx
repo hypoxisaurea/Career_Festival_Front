@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import checkedImage from "../../assets/images/checked_image.png";
 import uncheckedImage from "../../assets/images/unchecked_image.png";
@@ -6,10 +6,13 @@ import uncheckedImage from "../../assets/images/unchecked_image.png";
 const CheckboxLabel = styled.label`
   display: flex;
   align-items: center;
-  margin-bottom: 8px;
+  margin-bottom: 0.5vw;
   cursor: pointer;
   color: black;
-  font-size: 14px;
+  font-size: 1rem;
+  @media screen and (max-width: 600px) {
+    font-size: 1vw;
+  }
 `;
 
 const StyledCheckbox = styled.input`
@@ -17,16 +20,16 @@ const StyledCheckbox = styled.input`
 `;
 
 const CheckImage = styled.img`
-  width: 14px;
-  height: 14px;
-  margin-right: 8px;
+  width: 1vw;
+  height: 1vw;
+  margin-right: 0.7vw;
   border-radius: 50%;
   border: 1px solid #ccc;
   background-color: white;
   transition: border-color 0.3s, background-color 0.3s;
 `;
 
-const Filter = ({ selectedFilters, setSelectedFilters }) => {
+const Filter = ({ selectedFilters, setSelectedFilters, isSmall }) => {
   const handleCheckboxChange = (category) => {
     if (selectedFilters.includes(category)) {
       setSelectedFilters(
@@ -55,7 +58,7 @@ const Filter = ({ selectedFilters, setSelectedFilters }) => {
         "기타",
       ].map((category) => (
         <div key={category}>
-          <CheckboxLabel>
+          <CheckboxLabel isSmall={isSmall}>
             <StyledCheckbox
               type="checkbox"
               value={category}
