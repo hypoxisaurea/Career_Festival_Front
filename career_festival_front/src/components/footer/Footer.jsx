@@ -3,49 +3,61 @@ import React from 'react';
 import styled from 'styled-components';
 
 const FooterContainer = styled.div`
-  font-size: 15px;
-  font-weight: 500;
+  font-size: 0.8rem;
+  //font-weight: bold;
+  @media screen and (max-width: 600px) {
+    font-size: 1vw;
+  }
 `;
 
 //공지사항 
 const NoticeContainer = styled.div`
   background: #ffffff;
-  border-top: solid 1px #D9D9D9;
-  border-bottom: solid 1px #D9D9D9;
+  border-top: solid 1px #d9d9d9;
+  border-bottom: solid 1px #d9d9d9;
   color: #838383;
-  
-  padding-left: 118px;
-  height: 56px;
+
+  padding-left: 10vw;
+  height: 3vw;
   display: flex;
   align-items: center;
-`
+  @media screen and (max-width: 600px) {
+    font-size: 1vw;
+  }
+`;
 
 //하단 전체
 const FooterInfoContainer = styled.div`
   background: #fbfafa;
-  padding-left: 118px;
-  height: 466px;
+  padding-left: 10vw;
+
 
   display: flex;
   flex-direction: column;
   justify-items: center;
-`
+  @media screen and (max-width: 600px) {
+    font-size: 1vw;
+  }
+`;
 
 //회사소개...., 서비스 이용약관.. 라인 (추후 링크 걸 수 있는 라인)
 const FooterInfoBtnContainer = styled.li`
   display: flex;
-  list-style:none;
-  margin: 15px 0px;
+  list-style: none;
+  margin: 1vw 0;
 
-  li{
-    margin-right: 40px;
+  li {
+    margin-right: 2vw;
   }
-`
+  @media screen and (max-width: 600px) {
+    font-size: 1vw;
+  }
+`;
 
 
 const FooterContactContainer = styled.footer`
   color: #838383;
-  margin-bottom: 20px;
+  margin-bottom: 1vw;
   line-height: 1.5;
 
   a {
@@ -53,44 +65,57 @@ const FooterContactContainer = styled.footer`
     text-decoration: none;
   }
 
-  span{
-    margin-right: 10px;
+  span {
+    margin-right: 0.5vw;
   }
 
-  button{
-    margin-top: 13px;
-    margin-right: 20px;
-    margin-bottom: 10px;
-    padding: 5px 15px;
+  button {
+    margin-top: 1vw;
+    margin-right: 1vw;
+    margin-bottom: 1vw;
+    padding: 0.5vw 0.7vw;
 
     color: #582fff;
-    font-size: 15px;
-    font-weight: 550;
+    //font-size: 0.7rem;
+    font-weight: bold;
 
     border: none;
     background: #dad1fb;
-    border-radius:6px;
+    border-radius: 0.3vw;
   }
-`
+
+  @media screen and (max-width: 600px) {
+    button {
+      margin-top: 1vw;
+      margin-right: 1vw;
+      margin-bottom: 1vw;
+      padding: 0.5vw 1vw;
+      font-size: 1vw;
+    }
+  }
+`;
 
 const FooterCompanyInfoContainer = styled.div`
-  font-size: 13px;
-  margin-right : 118px;
+  margin-right: 30vw;
   line-height: 1.5;
-`
+
+  @media screen and (max-width: 600px) {
+    font-size: 1vw;
+  }
+`;
 
 const Footer = () => {
   return (
     <FooterContainer>
       <NoticeContainer>
-        <span>공지사항</span><span style={{marginLeft: "20px"}}>유료 행사 참가자 신청 프로세스 변경 안내</span>
+        <span>공지사항</span><span style={{marginLeft: "2vw"}}>유료 행사 참가자 신청 프로세스 변경 안내</span>
       </NoticeContainer>
       <FooterInfoContainer>
         <FooterInfoBtnContainer>
           <li>회사소개</li>
-          <li>서비스소개</li>
+          <li>서비스 소개</li>
           <li>공지사항</li>
-          <li>자주묻는질문</li>
+          <li>자주 묻는 질문</li>
           <li>채용</li>
         </FooterInfoBtnContainer>
         <FooterContactContainer>
@@ -100,7 +125,7 @@ const Footer = () => {
           </div>
           <div>
             <span>사업 제휴 문의</span>
-            <a  style={{marginLeft: "18px"}} //채팅상담과 수직 맞추기 
+            <a  style={{marginLeft: "0.5vw"}} //채팅상담과 수직 맞추기 
              href = 'mailto:partnership@careerfestival.co.kr'>partnership@careerfestival.co.kr</a>
           </div>
           <div>
@@ -109,7 +134,7 @@ const Footer = () => {
           </div>
         </FooterContactContainer>
         <FooterCompanyInfoContainer>
-          <div style={{fontSize:"15px", marginBottom: "5px"}}>커리어 페스티벌</div>
+          <div style={{fontSize:"1vw", marginBottom: "0.5vw"}}>커리어 페스티벌</div>
           <div>(주)커리어페스티벌 사업자등록번호 13-87594</div>
           <div>통신판매업 신고번호 제2023-서울마포-1346호</div>
           <div><span>대표 이지영</span><span>  |  개인정보책임자 이지영</span></div>
@@ -126,7 +151,7 @@ const Footer = () => {
             <li>이메일 주소 무단수집 거부</li>
           </FooterInfoBtnContainer>
           <br></br>
-          <div style={{fontSize:"15px", color: "#838383"}}>Copyright CareerFestival Co.   All Rights Reserved</div>
+          <div style={{fontSize:"0.7vw", color: "#838383", marginBottom: "1vw"}}>Copyright CareerFestival Co.   All Rights Reserved</div>
         </FooterCompanyInfoContainer>
       </FooterInfoContainer>
     </FooterContainer>
