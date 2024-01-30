@@ -2,7 +2,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import dummy from "../../db/RecommendedEvents.json";
-import {useState, useEffect} from 'react';
+
 
 import emptyStarIcon from "../../assets/images/emptyStarIcon.png";
 
@@ -38,10 +38,10 @@ const RecommendMainImgWrapper = styled.div`
 const RecommendTitleWrapper = styled.div`
   //border: solid green;
   width: 100%;
-  padding: 0.5em 0;
-
+  padding: 0.7em 0;
   overflow: hidden;
   text-overflow: ellipsis;
+  //word-break: break-all;
 
 
   font-size: 1.2em;
@@ -71,8 +71,11 @@ const RecommandDetailWrapper = styled.div`
 const RecommendTimeInfoWrapper = styled.div`
   //border: solid yellow;
   width: 100%;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  div{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
   
 `
 
@@ -83,7 +86,7 @@ const RecommendIconWapper = styled.div`
   display: flex;
   flex-direction: row;
   align-content: center;
-  padding-top: 0.2em;
+  padding-top: 0.7em;
   
   color: #582fff;
   font-weight: 700;
@@ -92,9 +95,10 @@ const RecommendIconWapper = styled.div`
 
 //즐겨찾기 아이콘
 const StarIcon = styled.img`
-  width: 1.2em;
-  height: 1.2em;
+  width: 1.3em;
+  height: 1.3em;
   margin-right: 0.5rem;
+  align-self: center;
 
 `
 
@@ -124,7 +128,7 @@ const Recommend = ({mainImg, eventName, recruitmentStart, recruitmentEnd, isLike
         <img src={mainImg} alt='행사 이미지'/>
       </RecommendMainImgWrapper>
 
-      <RecommendTitleWrapper> 
+      <RecommendTitleWrapper title={eventName}> 
         {eventName}
       </RecommendTitleWrapper>
 
@@ -132,8 +136,8 @@ const Recommend = ({mainImg, eventName, recruitmentStart, recruitmentEnd, isLike
       <RecommendInfoWrapper>
         <RecommandDetailWrapper>
           <RecommendTimeInfoWrapper>
-            <div>{recruitmentStart}</div>
-            <div>{recruitmentEnd}</div>
+            <div title={recruitmentStart}>{recruitmentStart}</div>
+            <div title={recruitmentEnd}>{recruitmentEnd}</div>
           </RecommendTimeInfoWrapper>
         
 
