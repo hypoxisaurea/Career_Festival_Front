@@ -78,11 +78,16 @@ const OrganizationFestivalListContainer = styled.div`
     gap: 1vw;
 `
 const OrganizationFestivalListWrapper = styled.div`
-    display: grid;
-    grid-template-columns: repeat(3,22vw);
-    gap: 2vw;
-    align-items: top;
-`
+  display: grid;
+  flex-direction: column;
+  justify-content: center;
+  grid-template-columns: repeat(3, 18vw);
+  gap: 2vw;
+  font-size: 0.9rem;
+  @media screen and (max-width: 600px) {
+    font-size: 1vw;
+  }
+`;
 
 
 
