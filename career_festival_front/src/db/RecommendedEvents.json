@@ -14,8 +14,8 @@
             "id":2, 
             "mainImg":"https://dummyimage.com/600x400/d9d9d9/fff",
             "eventName": "2022말레이시아 akjflkjfkwjefjiwfihgjjlkfjsfjpwajfpojwpojfpowjf",
-            "recruitmentStart": "2022년 1월 3일 금요일 8시",
-            "recruitmentEnd": "2022년 2월 22일 금요일 8시까지",
+            "recruitmentStart": "2022년 1월 3일 금요일 8시~",
+            "recruitmentEnd": "2022년 2월 22일 금요일 8시",
             "isLiked": false,
             "price": "무료",
             "profile": "https://dummyimage.com/400x400/d9d9d9/fff"
@@ -25,7 +25,7 @@
             "mainImg":"https://dummyimage.com/600x400/d9d9d9/fff",
             "eventName": "2023말레이시아 K-MOVE 해외취업 세미나",
             "recruitmentStart": "2023년 1월 3일 금요일 8시",
-            "recruitmentEnd": "2023년 2월 22일 금요일 8시까지",
+            "recruitmentEnd": "2023년 12월 22일 금요일 18시까지",
             "isLiked": false,
             "price": "무료",
             "profile": "https://dummyimage.com/400x400/d9d9d9/fff"
@@ -210,7 +210,7 @@
             "id":26, 
             "mainImg":"https://dummyimage.com/600x400/000/fff",
             "eventName": "2026말레이시아 K-MOVE 국내취업 세미나",
-            "recruitmentStart": "2026년 1월 3일 금요일 8시",
+            "recruitmentStart": "2026년 1월 3일 금요일 8시 ",
             "recruitmentEnd": "2026년 2월 22일 금요일 8시까지",
             "isLiked": false,
             "price": "무료",
