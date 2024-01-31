@@ -4,7 +4,13 @@ import Recommend from "../components/home/Recommend";
 import dummy from "../db/RecommendedEvents.json";
 import styled from "styled-components";
 import Banner from "../components/home/Banner";
+
+//주최자
+import organizationsData from "../db/organizationsData.json"
 import OrganizationList from "../components/home/OrganizationList";
+import buttonLeft from "../assets/images/bannerleftarrow.png";
+import buttonRight from "../assets/images/bannerrightarrow.png";
+
 
 
 //Home 전체 페이지
@@ -17,12 +23,23 @@ const HomePageContainer = styled.div`
 `;
 
 
+//모든 행사 보기
+const HomePageShowAll = styled.span`
+  font-size: 1rem;
+  font-weight: 500;
+  color: #838383;
+
+  position: absolute;
+  padding-top: 3rem;
+  align-self: end;
+`
+
 
 /*개인 키워드 추천*/
 
 //개인 키워드 추천 전체
 const RecommendPersonalContainer = styled.div`
-  background-color: beige;
+  //background-color: beige;
   display: flex;
   flex-direction: column;
 
@@ -31,7 +48,7 @@ const RecommendPersonalContainer = styled.div`
 
 //컴포넌트 자리
 const RecommendPersonalWraper = styled.div`
-  background-color: lavender;
+  //background-color: lavender;
 
   width: 100%;
 
@@ -48,7 +65,7 @@ const RecommendPersonalWraper = styled.div`
 
 //위치 근처 추천 전체
 const RecommendPlaceContainer = styled.div`
-  background-color: #f2f2f2; /*임의로 영역 확인용*/
+  //background-color: #f2f2f2; /*임의로 영역 확인용*/
 
   display: flex;
   flex-direction: column;
@@ -75,7 +92,7 @@ const RecommendPlaceContainer = styled.div`
 
 //컴포넌트 자리
 const RecommendPlaceWraper = styled.div`
-  background-color: lavender;
+  //background-color: lavender;
   width: 100%;
 
 
@@ -89,6 +106,46 @@ const RecommendPlaceWraper = styled.div`
 
 
 //주최자
+const OrganizationListContainer = styled.div`
+  //background-color: #f9f7ff;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  h2{
+    margin-left: 15vw;
+    font-size: "1.3rem";
+    font-weight: "900";
+  }
+
+  span{
+    color: #582fff;
+  }
+`
+
+const OrganizationslistWraper = styled.div`
+   //border: 1px solid red;
+   width: 70vw;
+   margin: 0 auto;
+   
+  padding-bottom: 5rem;
+  display: flex;
+  flex-direction: row;
+`
+
+const OrganizationListBoxWrapper = styled.div`
+  //border: 1px solid red;
+  width: 60vw;
+
+  margin: 0 auto;
+
+
+  // 그리드
+  display: grid;
+  grid-template-columns: repeat(4, 13.5vw);
+  gap: 2vw;
+`
 
 
 
@@ -98,6 +155,22 @@ const RecommendPlaceWraper = styled.div`
 const HomePage = () => {
   const recommendedByPersonSlice = dummy.RecommendedByPerson.slice(0, 6); // 처음 6개 아이템만 사용
   const recommendedByPlaceSlice = dummy.RecommendedByPlace.slice(0, 3); // 처음 3개 아이템만 사용
+
+  //주최자
+  const organizationsListSlice = organizationsData.OrganizationsList.slice(0, 4)// 처음 4개 아이템 우선 보임
+
+
+  //이부분은 banner에서 코드 가져다 씀
+  const Button = styled.img`
+  width: 2.5vw;
+  height: 2.5vw;
+
+  margin-top: 9vw;
+  cursor: pointer;
+`;
+
+const ButtonLeftStyled = styled(Button)``;
+const ButtonRightStyled = styled(Button)``;
 
 
   return (
@@ -109,16 +182,17 @@ const HomePage = () => {
             style={{
               fontSize: "1.5rem",
               fontWeight: "900",
-              margin: "2rem 0"
+              margin: "2rem 0 0 0"
             }}
           >
             이런행사 찾으셨죠?
           </h2>
+          <HomePageShowAll>모든행사보기</HomePageShowAll>
           <div
             style={{
               fontSize: "1.3rem",
               fontWeight: "900",
-              marginBottom: "2rem",
+              margin: "0.8rem 0 2rem 0",
             }}
           >
             회원가입 시 선택한
@@ -126,8 +200,6 @@ const HomePage = () => {
             부합한 행사들을 볼 수 있어요!
           </div>
           
-
-
           <RecommendPersonalWraper>
             {recommendedByPersonSlice.map((item) => (
               <Recommend
@@ -148,18 +220,20 @@ const HomePage = () => {
           </RecommendPersonalWraper>
         </RecommendPersonalContainer>
 
+
+
         <RecommendPlaceContainer>
           <h2
             style={{
               fontSize: "1.5rem",
               fontWeight: "900",
-              //paddingTop: "10rem",
-              marginBottom: "2rem",
+              marginBottom: "3rem",
               justifyItems: "center",
             }}
           >
-            <button>지역명</button> 근처 행사
+            <button>지역명</button> 근처 행사 
           </h2>
+          <HomePageShowAll>모든행사보기</HomePageShowAll>
 
           <RecommendPlaceWraper>
             {recommendedByPlaceSlice.map((item) => {
@@ -177,7 +251,43 @@ const HomePage = () => {
             })}
           </RecommendPlaceWraper>
         </RecommendPlaceContainer>
-        <OrganizationList/>
+
+
+
+        {/*주최자*/}
+        <OrganizationListContainer>
+          <h2><span>219</span>명의 주최자</h2> {/* 숫자는 나중에 데이터로 받아와야함 */}
+          <OrganizationslistWraper>
+          <ButtonLeftStyled
+              src={buttonLeft}
+              alt="ButtonLeft"
+            />
+
+
+            <OrganizationListBoxWrapper>
+              {organizationsListSlice.map((item)=>{
+                return (
+                  <OrganizationList
+                    profile={item.profile}
+                    OrganizationName={item.OrganizationName}
+                    uploadedNumber={item.uploadedNumber}
+                    subscribed={item.subscribed}
+                    subscriberNumber = {item.subscriberNumber}
+                  />
+                );
+              })}
+              
+            </OrganizationListBoxWrapper>
+
+
+
+            <ButtonRightStyled
+              src={buttonRight}
+              alt="ButtonRight"
+            />
+          </OrganizationslistWraper>
+        </OrganizationListContainer>
+        
       </HomePageContainer>
     </div>
   );

@@ -20,6 +20,7 @@ import Other from "./components/diary/Other";
 import Symposium from "./components/diary/Symposium";
 import DiaryHeader from "./components/header/DiaryHeader";
 import MyPage from "./pages/MyPage";
+import OrganizationInfoPage from "./pages/OrganizationInfoPage";
 
 import "./App.css";
 
@@ -50,6 +51,8 @@ function App() {
           <Route path="/mypage" element={<><Header /><MyPage /><Footer /></>} />
           {/* 행사 등록하기 */}
           <Route path="/register" element={<><Header /><RegisterPage /><Footer /></>} />
+          {/* 주최자 상세페이지 */}
+          <Route path="/organizationinfo/:OrganizationName" element ={<><Header/><OrganizationInfoPage/><Footer/></>} />
         </Routes>
       </div>
     </Router>
