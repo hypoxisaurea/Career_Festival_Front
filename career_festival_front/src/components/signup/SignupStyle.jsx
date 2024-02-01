@@ -99,6 +99,7 @@ const AgreementContainer = styled.div`
 const SignupButton = styled.button`
   width: 100%;
   padding: 10px;
+  margin-top:1vw;
   background-color: ${(props) => (props.disabled ? "#ccc" : "#582fff")};
   color: #fff;
   border: none;

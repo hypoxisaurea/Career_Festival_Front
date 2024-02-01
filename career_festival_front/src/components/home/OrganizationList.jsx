@@ -3,66 +3,62 @@ import styled from 'styled-components';
 import  '../../db/organizationsData.json';
 import { useNavigate } from 'react-router-dom';
 
-const OrganizationBox =styled.div`
-  //border: 1px solid red;
-  border-radius: 5px;
+const OrganizationBox = styled.div`
+  border-radius: 1vw;
   display: flex;
- 
+  justify-content: space-between;
   flex-direction: column;
   align-items: center;
-
-  aspect-ratio: 2/3;
-
+  width: 80%;
+  gap: 1vw;
+  padding: 1vw;
   background-color: white;
   box-shadow: 0 4px 4px 0 rgb(0, 0, 0, 0.25);
-`
+`;
 
 
 const OrganizationProfileImg = styled.div`
   //border: 1px solid red;
-  width: 100%;
-  height: 50%;
+  //width: 100%;
+  //height: 50%;
   display: flex;
   flex-direction: column;
 
   img{
     width: 50%;
     border-radius: 50%;
-
     align-self: center;
-    margin-top: 10%;
   }
   
 `
 const OrganizationInfo = styled.div`
   //border: 1px solid red;
-  width: 80%;
-  height: 25%;
+  // position: relative;
+  // display: flex;
+  // flex-direction: column;
   text-align: center;
-
-  font-size: 1rem;
   font-weight: bold;
-
-  position: relative;
-  display: flex;
-  flex-direction: column;
-`
+`;
 
 const OrganizationNameWrapper = styled.div`
   //border: 1px solid red;
   font-size: 1rem;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  @media screen and (max-width: 600px) {
+    font-size: 1vw;
+  }
+  // overflow: hidden;
+  // text-overflow: ellipsis;
+  // white-space: nowrap;
 `;
 const UploadedNumberWrapper = styled.div`
   //border: 1px solid red;
 
-  margin-top: 0.8em;
+  margin-top: 1vw;
   color: #838383;
   font-size: 0.8rem;
   span {
     color: #582fff;
+    font-size: 1vw;
   }
 `;
 
@@ -71,21 +67,18 @@ const SubscribeButtonWrapper = styled.div`
   //border: 1px solid red;
 
   width: 100%;
-  height: 25%;
-  
+  height: 20%;
+
   display: flex;
   flex-direction: column;
   justify-content: center;
   button {
-    width: 60%;
-    height: 50%;
-    margin: 0.8vw auto;
-
+    margin: 0 0.5vw auto;
+    padding: 0.5vw;
+    border-radius: 5px;
     border: none;
     background-color: #582fff;
     color: #ffff;
-    //font-size: 0.9rem;
-    border-radius: 5px;
   }
 `;
 
@@ -93,28 +86,35 @@ const OrganizationList = (props) => {
 
   const navigate = useNavigate();
 
-  const onClickOrganizationProfile =()=>{
-    navigate(`/organizationinfo/${props.OrganizationName}`,{
-      state: props
-    })
-  }
-
-  console.log(props);
+    const onClickOrganizationProfile = () => {
+      navigate(`/organizationinfo/${props.OrganizationName}`, {
+        state: props,
+      });
+    };
 
   return (
     <OrganizationBox onClick={onClickOrganizationProfile}>
       <OrganizationProfileImg>
-        <img src = {props.profile} alt='주최자 이미지'/>
+        <img src={props.profile} alt="주최자 이미지" />
       </OrganizationProfileImg>
 
-
       <OrganizationInfo>
-        <OrganizationNameWrapper title={props.OrganizationName}>{props.OrganizationName}</OrganizationNameWrapper>
-        <UploadedNumberWrapper> <span>{props.uploadedNumber}</span>개의 행사 </UploadedNumberWrapper>
+        <OrganizationNameWrapper title={props.OrganizationName}>
+          {props.OrganizationName.length > 15
+            ? `${props.OrganizationName.slice(0, 15)}\.\.\.`
+            : props.OrganizationName}
+        </OrganizationNameWrapper>
+
+        <UploadedNumberWrapper>
+          {" "}
+          <span>{props.uploadedNumber}</span>개의 행사{" "}
+        </UploadedNumberWrapper>
       </OrganizationInfo>
-      <SubscribeButtonWrapper><button>구독하기</button></SubscribeButtonWrapper>
+      <SubscribeButtonWrapper>
+        <button>구독하기</button>
+      </SubscribeButtonWrapper>
     </OrganizationBox>
-  )
+  );
 };
 
 export default OrganizationList;
