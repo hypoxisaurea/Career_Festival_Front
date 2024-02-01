@@ -23,8 +23,7 @@ const TitleText = styled.div`
 const TextInput = styled.textarea`
   width: 100%;
   height: auto;
-  // min-height: 60vh;
-  min-height: 10vh;
+  min-height: 60vh;
   color: #838383;
   font-size: 1vw;
   font-family: "Noto Sans KR";
