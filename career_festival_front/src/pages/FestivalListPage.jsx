@@ -138,13 +138,6 @@ const LowerContaniner = styled.div`
   background-color: #f9f7ff;
   padding: 1vw 0 4vw 0;
 `;
-// 이벤터 컨테이너에 대한 스타일링
-// const Eventer = styled.div`
-//   width: 50vw;
-//   height: 10vw;
-//   border-radius: 20px;
-//   border: 1px solid;
-// `;
 
 
 //주최자
@@ -183,8 +176,10 @@ const OrganizationListBoxWrapper = styled.div`
 
 
 const FestivalListPage = () => {
-  const [isModalOpen, setModalOpen] = useState(false);
   const [selectedFilters, setSelectedFilters] = useState([]);
+
+  //지역
+  const [isModalOpen, setModalOpen] = useState(false);
   const [selectedArea, setSelectedArea] = useState("seoul");
   const [selectedCity, setSelectedCity] = useState("");
   const [selectedEventTypes, setSelectedEventTypes] = useState([]);
@@ -212,6 +207,7 @@ const FestivalListPage = () => {
     setSelectedEventTypes([]);
   };
 
+  //지역
   // useEffect를 사용하여 컴포넌트가 처음 마운트될 때 실행될 로직 추가
   useEffect(() => {
     // 초기값으로 서울을 선택하도록 설정
@@ -288,6 +284,7 @@ const FestivalListPage = () => {
                 isModalOpen={isModalOpen}
                 handleModalToggle={handleModalToggle}
                 closeModal={closeModal}
+                buttonText="전체"
               />
             </Area>
           </AreaContainer>
