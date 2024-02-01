@@ -138,59 +138,48 @@ const LowerContaniner = styled.div`
   background-color: #f9f7ff;
   padding: 1vw 0 4vw 0;
 `;
-// 이벤터 컨테이너에 대한 스타일링
-// const Eventer = styled.div`
-//   width: 50vw;
-//   height: 10vw;
-//   border-radius: 20px;
-//   border: 1px solid;
-// `;
 
 
 //주최자
 const OrganizationListContainer = styled.div`
-  //background-color: #f9f7ff;
-  width: 90%;
+  width: 60%;
   display: flex;
   flex-direction: column;
   justify-content: center;
 
-  h2{
-    margin-left: 20vw;
-    font-size: 1.2rem;
+  h2 {
+    font-size: 1.3rem;
     font-weight: bold;
   }
 
-  span{
+  span {
     color: #582fff;
   }
-`
+`;
 
 const OrganizationslistWraper = styled.div`
-  //border: 1px solid red;
-  width: 65vw;
-  margin: auto;
+  //width: 100%;
+  margin: 0 auto;
+  justify-content: center;
+  padding-bottom: 5rem;
   display: flex;
   flex-direction: row;
 `;
 
 const OrganizationListBoxWrapper = styled.div`
-  //border: 1px solid red;
-  width: 70%;
-
-  margin: 0 auto;
-
   // 그리드
   display: grid;
-  grid-template-columns: repeat(4, 9.5vw);
+  grid-template-columns: repeat(4, 1fr);
   gap: 3vw;
 `;
 
 
 
 const FestivalListPage = () => {
-  const [isModalOpen, setModalOpen] = useState(false);
   const [selectedFilters, setSelectedFilters] = useState([]);
+
+  //지역
+  const [isModalOpen, setModalOpen] = useState(false);
   const [selectedArea, setSelectedArea] = useState("seoul");
   const [selectedCity, setSelectedCity] = useState("");
   const [selectedEventTypes, setSelectedEventTypes] = useState([]);
@@ -218,6 +207,7 @@ const FestivalListPage = () => {
     setSelectedEventTypes([]);
   };
 
+  //지역
   // useEffect를 사용하여 컴포넌트가 처음 마운트될 때 실행될 로직 추가
   useEffect(() => {
     // 초기값으로 서울을 선택하도록 설정
@@ -249,11 +239,10 @@ const FestivalListPage = () => {
   //주최자
   const organizationsListSlice = organizationsData.OrganizationsList.slice(0,4); // 처음 4개 아이템 우선 보임
 
-  //이부분은 banner에서 코드 가져다 씀
   const Button = styled.img`
     width: 2vw;
     height: 2.5vw;
-    margin-top: 6vw;
+    margin: 2vw;
     cursor: pointer;
   `;
 
@@ -295,6 +284,7 @@ const FestivalListPage = () => {
                 isModalOpen={isModalOpen}
                 handleModalToggle={handleModalToggle}
                 closeModal={closeModal}
+                buttonText="전체"
               />
             </Area>
           </AreaContainer>

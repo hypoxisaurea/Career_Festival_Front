@@ -5,7 +5,7 @@ import uncheckedImage from "../../assets/images/unchecked_image.png";
 
 const CheckboxLabel = styled.label`
   display: flex;
-  align-items: center;
+ 
   margin-bottom: 0.5vw;
   cursor: pointer;
   color: black;
