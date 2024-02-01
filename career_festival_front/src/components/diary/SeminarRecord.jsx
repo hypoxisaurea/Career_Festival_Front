@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
 const RecordContainer = styled.div`
@@ -23,7 +23,8 @@ const TitleText = styled.div`
 const TextInput = styled.textarea`
   width: 100%;
   height: auto;
-  min-height: 60vh;
+  // min-height: 60vh;
+  min-height: 10vh;
   color: #838383;
   font-size: 1vw;
   font-family: "Noto Sans KR";
@@ -40,6 +41,7 @@ const TextInput = styled.textarea`
     font-family: "Noto Sans KR";
     font-weight: 400;
   }
+}
 `;
 
 const BottomContainer = styled.div`
@@ -79,14 +81,28 @@ const HorizontalDivider = styled.div`
   margin: 23px 0 0 0;
 `;
 
-function SeminarRecord() {
-  let [inputCount, setInputCount] = useState(0);
+function SeminarRecord({ onComplete }) {
+  const [inputCount, setInputCount] = useState(0);
+  const [isWritten, setIsWritten] = useState(false);
 
   const onInputHandler = (e) => {
-    setInputCount(
-      e.target.value.replace(/[\0-\x7f]|([0-\u07ff]|(.))/g, "$&$1$2").length
-    );
+    const count = e.target.value.replace(/[\0-\x7f]|([0-\u07ff]|(.))/g, "$&$1$2").length;
+    setInputCount(count);
+    setIsWritten(count > 100); // 여기에서 작성 여부 판별 조건을 설정
   };
+
+  // 작성이 완료되었을 때 onComplete 호출
+  useEffect(() => {
+    if (isWritten) {
+      console.log("작성이 완료되었습니다.");
+      onComplete(true);
+    } else {
+      console.log("작성이 아직 완료되지 않았습니다.");
+      onComplete(false);
+    }
+  }, [isWritten, onComplete]);
+
+  console.log("현재 작성 여부:", isWritten);
 
   return (
     <RecordContainer>
@@ -107,10 +123,7 @@ function SeminarRecord() {
           </CountContainer>
         </BottomContainer>
       </InputContainer>
-
-      <InputContainer>
-        <TitleText>인맥 네트워킹</TitleText>
-      </InputContainer>
+      {isWritten && <div>작성이 완료되었습니다.</div>}
     </RecordContainer>
   );
 }
