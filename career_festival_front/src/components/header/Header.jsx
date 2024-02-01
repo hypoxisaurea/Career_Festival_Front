@@ -91,14 +91,15 @@ const LoginButtonStyle = styled.button`
   }
 `;
 // 회원가입 버튼 스타일
-const Join = styled.button`
+const Join = styled(Link)`
   background-color: #ffffff;
   color: #838383;
   font-weight: bold;
   padding: 1vw 1vw 1vw 1vw;
   font-size: 0.8rem;
   border: none;
-
+  text-decoration: none; // 밑줄 없애는 스타일
+  
   &:hover {
     text-decoration: underline;
   }
@@ -223,7 +224,7 @@ const Header = () => {
               {isLoggedIn ? "로그아웃" : "로그인"}
             </LoginButtonStyle>
           </Link>
-          <Join to="/signup">
+          <Join to="/join">
             {isLoggedIn ? (
               <SettingImage src={setting} alt="setting" />
             ) : (
