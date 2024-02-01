@@ -165,6 +165,7 @@ const handleNextInput = () => {
         isModalOpen={isModalOpen}
         handleModalToggle={handleModalToggle}
         closeModal={closeModal}
+        buttonText="선택하기"
       />
 
       {/* 이메일 입력 부분입니다. */}
@@ -180,26 +181,24 @@ const handleNextInput = () => {
 
       {/* 전화번호 입력 부분입니다. */}
       <TelInput>
-      <label>전화번호</label>
-      <input
-        type="tel"
-        placeholder="전화번호를 입력하세요"
-        value={phoneNumber}
-        onChange={(e) => setPhoneNumber(e.target.value)}
-      />
+        <label>전화번호</label>
+        <input
+          type="tel"
+          placeholder="전화번호를 입력하세요"
+          value={phoneNumber}
+          onChange={(e) => setPhoneNumber(e.target.value)}
+        />
       </TelInput>
-
-      
 
       {/* 소속 입력 부분입니다. */}
       <AffiliationInput>
-      <p>소속(회사/기관/학교명)</p>
-      <input
-        type="text"
-        placeholder="소속을 입력하세요"
-        value={affiliation}
-        onChange={(e) => setAffiliation(e.target.value)}
-      />
+        <p>소속(회사/기관/학교명)</p>
+        <input
+          type="text"
+          placeholder="소속을 입력하세요"
+          value={affiliation}
+          onChange={(e) => setAffiliation(e.target.value)}
+        />
       </AffiliationInput>
 
       {/* 추가: 커리어 키워드 입력 부분입니다. */}
@@ -214,7 +213,7 @@ const handleNextInput = () => {
           "인문/사회",
           "과학기술",
           "디자인",
-          "관광/여행"
+          "관광/여행",
         ].map((keyword) => (
           <KeywordButton
             key={keyword}
@@ -250,10 +249,9 @@ const handleNextInput = () => {
       </KeyworldOptionList>
       <hr />
       <TwoButton>
-
-      <LaterSave onClick={handleNextInput}>다음에입력</LaterSave>
+        <LaterSave onClick={handleNextInput}>다음에입력</LaterSave>
         {/* 부가정보 저장하기 버튼 */}
-      <Save
+        <Save
           onClick={saveAdditionalInfo}
           disabled={
             !selectedArea ||
@@ -265,7 +263,7 @@ const handleNextInput = () => {
           }
         >
           부가정보 저장하기
-      </Save>
+        </Save>
       </TwoButton>
     </Container>
   );

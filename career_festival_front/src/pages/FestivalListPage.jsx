@@ -176,8 +176,10 @@ const OrganizationListBoxWrapper = styled.div`
 
 
 const FestivalListPage = () => {
-  const [isModalOpen, setModalOpen] = useState(false);
   const [selectedFilters, setSelectedFilters] = useState([]);
+
+  //지역
+  const [isModalOpen, setModalOpen] = useState(false);
   const [selectedArea, setSelectedArea] = useState("seoul");
   const [selectedCity, setSelectedCity] = useState("");
   const [selectedEventTypes, setSelectedEventTypes] = useState([]);
@@ -205,6 +207,7 @@ const FestivalListPage = () => {
     setSelectedEventTypes([]);
   };
 
+  //지역
   // useEffect를 사용하여 컴포넌트가 처음 마운트될 때 실행될 로직 추가
   useEffect(() => {
     // 초기값으로 서울을 선택하도록 설정
@@ -281,6 +284,7 @@ const FestivalListPage = () => {
                 isModalOpen={isModalOpen}
                 handleModalToggle={handleModalToggle}
                 closeModal={closeModal}
+                buttonText="전체"
               />
             </Area>
           </AreaContainer>

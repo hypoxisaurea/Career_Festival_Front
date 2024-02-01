@@ -1,9 +1,10 @@
 // src/pages/HomePage.jsx
-import React from "react";
+import { useState, useEffect } from "react";
 import Recommend from "../components/home/Recommend";
 import dummy from "../db/RecommendedEvents.json";
 import styled from "styled-components";
 import Banner from "../components/home/Banner";
+import InterestArea from "../components/signup/InterestArea";
 
 
 //Home 전체 페이지
@@ -69,21 +70,12 @@ const RecommendPlaceContainer = styled.div`
   flex-direction: column;
 
   width: 70vw;
-  margin-top: 5rem;
-  margin-bottom:5vw;
+  margin-top: 5vw;
+  margin-bottom: 5vw;
 
-  
   button {
-    width: 113px;
-    height: 42px;
-    padding: 5px;
-
-    color: #582fff;
-    font-size: 1.5rem;
-    font-weight: 900;
-
     border: none;
-    background: #dad1fb;
+    //background: #dad1fb;
     border-radius: 6px;
   }
 `;
@@ -105,13 +97,43 @@ const RecommendPlaceWraper = styled.div`
 
 
 
-
-
 const HomePage = () => {
   const recommendedByPersonSlice = dummy.RecommendedByPerson.slice(0, 6); // 처음 6개 아이템만 사용
   const recommendedByPlaceSlice = dummy.RecommendedByPlace.slice(0, 3); // 처음 3개 아이템만 사용
 
+  //지역명
+  const [isModalOpen, setModalOpen] = useState(false);
+  const [selectedArea, setSelectedArea] = useState("seoul");
+  const [selectedCity, setSelectedCity] = useState("");
 
+  //지역
+  // useEffect를 사용하여 컴포넌트가 처음 마운트될 때 실행될 로직 추가
+  useEffect(() => {
+    // 초기값으로 서울을 선택하도록 설정
+    handleAreaSelect("seoul");
+  }, []);
+
+  // 모달 창을 열거나 닫는 함수를 정의합니다.
+  const handleModalToggle = () => {
+    setModalOpen(!isModalOpen);
+  };
+
+  // 모달 닫기 함수를 정의합니다.
+  const closeModal = () => {
+    setModalOpen(false);
+  };
+
+  // 시/도를 선택할 때 호출되는 함수입니다.
+  const handleAreaSelect = (area) => {
+    setSelectedArea(area);
+    setSelectedCity("");
+  };
+
+  // 시/군/구를 선택할 때 호출되는 함수입니다.
+  const handleCitySelect = (city) => {
+    setSelectedCity(city);
+    setModalOpen(false);
+  };
 
   return (
     <div>
@@ -122,7 +144,7 @@ const HomePage = () => {
             style={{
               fontSize: "1.5rem",
               fontWeight: "900",
-              margin: "2rem 0 0 0"
+              margin: "2rem 0 0 0",
             }}
           >
             이런행사 찾으셨죠?
@@ -139,7 +161,7 @@ const HomePage = () => {
             <span style={{ color: "#582fff" }}> 커리어 키워드</span>에 가장
             부합한 행사들을 볼 수 있어요!
           </div>
-          
+
           <RecommendPersonalWraper>
             {recommendedByPersonSlice.map((item) => (
               <Recommend
@@ -160,8 +182,6 @@ const HomePage = () => {
           </RecommendPersonalWraper>
         </RecommendPersonalContainer>
 
-
-
         <RecommendPlaceContainer>
           <h2
             style={{
@@ -171,7 +191,21 @@ const HomePage = () => {
               justifyItems: "center",
             }}
           >
-            <button>지역명</button> 근처 행사 
+            <button>
+              {/* 지역명 */}
+              <InterestArea
+                style={{}}
+                selectedArea={selectedArea}
+                handleAreaSelect={handleAreaSelect}
+                selectedCity={selectedCity}
+                handleCitySelect={handleCitySelect}
+                isModalOpen={isModalOpen}
+                handleModalToggle={handleModalToggle}
+                closeModal={closeModal}
+                buttonText="지역명"
+              />
+            </button>{" "}
+            근처 행사
           </h2>
           <HomePageShowAll>모든행사보기</HomePageShowAll>
 
@@ -191,7 +225,6 @@ const HomePage = () => {
             })}
           </RecommendPlaceWraper>
         </RecommendPlaceContainer>
-        
       </HomePageContainer>
     </div>
   );
