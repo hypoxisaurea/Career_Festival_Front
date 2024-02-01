@@ -1,156 +1,215 @@
  {
     "RecommendedByPerson":[
-        {
-            "id":1, 
-            "mainImg":"https://dummyimage.com/600x400/d9d9d9/fff",
-            "eventName": "INSIDERS SUMMIT 2024",
-            "recruitmentStart": "2021년 1월 3일 금요일 8시",
-            "recruitmentEnd": "2021년 2월 22일 금요일 8시까지",
-            "isLiked": false,
-            "price": "무료",
-            "profile": "https://dummyimage.com/400x400/d9d9d9/fff"
-        },
-        {
-            "id":2, 
-            "mainImg":"https://dummyimage.com/600x400/d9d9d9/fff",
-            "eventName": "프로젝트D 온라인 사업 설명회",
-            "recruitmentStart": "2022년 1월 3일 금요일 8시~",
-            "recruitmentEnd": "2022년 2월 22일 금요일 8시",
-            "isLiked": false,
-            "price": "무료",
-            "profile": "https://dummyimage.com/400x400/d9d9d9/fff"
-        },
-        {
-            "id":3, 
-            "mainImg":"https://dummyimage.com/600x400/d9d9d9/fff",
-            "eventName": "[빅데이터부트캠프] AI 활용 빅데이터 분석 과정",
-            "recruitmentStart": "2023년 1월 3일 금요일 8시",
-            "recruitmentEnd": "2023년 12월 22일 금요일 18시까지",
-            "isLiked": false,
-            "price": "무료",
-            "profile": "https://dummyimage.com/400x400/d9d9d9/fff"
-        },
-        {
-            "id":4, 
-            "mainImg":"https://dummyimage.com/600x400/d9d9d9/fff",
-            "eventName": "AIUX FORUM",
-            "recruitmentStart": "2024년 1월 3일 금요일 8시",
-            "recruitmentEnd": "2024년 2월 22일 금요일 8시까지",
-            "isLiked": false,
-            "price": "무료",
-            "profile": "https://dummyimage.com/400x400/d9d9d9/fff"
-        },
-        {
-            "id":5, 
-            "mainImg":"https://dummyimage.com/600x400/d9d9d9/fff",
-            "eventName": "1시간 만에 홈페이지 만들기",
-            "recruitmentStart": "2025년 1월 3일 금요일 8시",
-            "recruitmentEnd": "2025년 2월 22일 금요일 8시까지",
-            "isLiked": false,
-            "price": "무료",
-            "profile": "https://dummyimage.com/400x400/d9d9d9/fff"
-        },
-        {
-            "id":6, 
-            "mainImg":"https://dummyimage.com/600x400/d9d9d9/fff",
-            "eventName": "챗GPT x AI툴로 유튜브 쇼츠 만들기 실습 클래스",
-            "recruitmentStart": "2026년 1월 3일 금요일 8시",
-            "recruitmentEnd": "2026년 2월 22일 금요일 8시까지",
-            "isLiked": false,
-            "price": "무료",
-            "profile": "https://dummyimage.com/400x400/d9d9d9/fff"
-        },
-         {
-           "id": 7,
-           "mainImg": "https://dummyimage.com/600x400/d9d9d9/fff",
-           "eventName": "자바(JAVA) 웹개발자 취업연계 과정",
-           "recruitmentStart": "2027년 1월 3일 금요일 8시",
-           "recruitmentEnd": "2027년 2월 22일 금요일 8시까지",
-           "isLiked": false,
-           "price": "무료",
-           "profile": "https://dummyimage.com/400x400/d9d9d9/fff"
-         },
-          {
-            "id": 8,
-            "mainImg": "https://dummyimage.com/600x400/d9d9d9/fff",
-            "eventName": "2026말레이시아 K-MOVE 해외취업 세미나",
-            "recruitmentStart": "2028년 1월 3일 금요일 8시",
-            "recruitmentEnd": "2028년 2월 22일 금요일 8시까지",
-            "isLiked": false,
-            "price": "무료",
-            "profile": "https://dummyimage.com/400x400/d9d9d9/fff"
-          },
-        {
-            "id": 9,
-            "mainImg": "https://dummyimage.com/600x400/d9d9d9/fff",
-            "eventName": "2026말레이시아 K-MOVE 해외취업 세미나",
-            "recruitmentStart": "2029년 1월 3일 금요일 8시",
-            "recruitmentEnd": "2029년 2월 22일 금요일 8시까지",
-            "isLiked": false,
-            "price": "무료",
-            "profile": "https://dummyimage.com/400x400/d9d9d9/fff"
-        },
-        {
-            "id": 10,
-            "mainImg": "https://dummyimage.com/600x400/d9d9d9/fff",
-            "eventName": "2026말레이시아 K-MOVE 해외취업 세미나",
-            "recruitmentStart": "2029년 1월 3일 금요일 8시",
-            "recruitmentEnd": "2029년 2월 22일 금요일 8시까지",
-            "isLiked": false,
-            "price": "무료",
-            "profile": "https://dummyimage.com/400x400/d9d9d9/fff"
-        },
-        {
-            "id": 11,
-            "mainImg": "https://dummyimage.com/600x400/d9d9d9/fff",
-            "eventName": "2026말레이시아 K-MOVE 해외취업 세미나",
-            "recruitmentStart": "2029년 1월 3일 금요일 8시",
-            "recruitmentEnd": "2029년 2월 22일 금요일 8시까지",
-            "isLiked": false,
-            "price": "무료",
-            "profile": "https://dummyimage.com/400x400/d9d9d9/fff"
-        },
-        {
-            "id": 12,
-            "mainImg": "https://dummyimage.com/600x400/d9d9d9/fff",
-            "eventName": "2026말레이시아 K-MOVE 해외취업 세미나",
-            "recruitmentStart": "2029년 1월 3일 금요일 8시",
-            "recruitmentEnd": "2029년 2월 22일 금요일 8시까지",
-            "isLiked": false,
-            "price": "무료",
-            "profile": "https://dummyimage.com/400x400/d9d9d9/fff"
-        },
-        {
-            "id": 13,
-            "mainImg": "https://dummyimage.com/600x400/d9d9d9/fff",
-            "eventName": "2026말레이시아 K-MOVE 해외취업 세미나",
-            "recruitmentStart": "2029년 1월 3일 금요일 8시",
-            "recruitmentEnd": "2029년 2월 22일 금요일 8시까지",
-            "isLiked": false,
-            "price": "무료",
-            "profile": "https://dummyimage.com/400x400/d9d9d9/fff"
-        },
-        {
-            "id": 14,
-            "mainImg": "https://dummyimage.com/600x400/d9d9d9/fff",
-            "eventName": "2026말레이시아 K-MOVE 해외취업 세미나",
-            "recruitmentStart": "2029년 1월 3일 금요일 8시",
-            "recruitmentEnd": "2029년 2월 22일 금요일 8시까지",
-            "isLiked": false,
-            "price": "무료",
-            "profile": "https://dummyimage.com/400x400/d9d9d9/fff"
-        },
-        {
-            "id": 15,
-            "mainImg": "https://dummyimage.com/600x400/d9d9d9/fff",
-            "eventName": "2026말레이시아 K-MOVE 해외취업 세미나",
-            "recruitmentStart": "2029년 1월 3일 금요일 8시",
-            "recruitmentEnd": "2029년 2월 22일 금요일 8시까지",
-            "isLiked": false,
-            "price": "무료",
-            "profile": "https://dummyimage.com/400x400/d9d9d9/fff"
-        }
-
+      {
+        "id": 1,
+        "mainImg": "https://dummyimage.com/600x400/d9d9d9/fff",
+        "eventName": "INSIDERS SUMMIT 2024",
+        "recruitmentStart": "2021년 1월 3일 금요일 8시",
+        "recruitmentEnd": "2021년 2월 22일 금요일 8시까지",
+        "isLiked": false,
+        "price": "무료",
+        "profile": "https://dummyimage.com/400x400/d9d9d9/fff"
+      },
+      {
+        "id": 2,
+        "mainImg": "https://dummyimage.com/600x400/d9d9d9/fff",
+        "eventName": "프로젝트D 온라인 사업 설명회",
+        "recruitmentStart": "2022년 1월 3일 금요일 8시~",
+        "recruitmentEnd": "2022년 2월 22일 금요일 8시",
+        "isLiked": false,
+        "price": "무료",
+        "profile": "https://dummyimage.com/400x400/d9d9d9/fff"
+      },
+      {
+        "id": 3,
+        "mainImg": "https://dummyimage.com/600x400/d9d9d9/fff",
+        "eventName": "[빅데이터부트캠프] AI 활용 빅데이터 분석 과정",
+        "recruitmentStart": "2023년 1월 3일 금요일 8시",
+        "recruitmentEnd": "2023년 12월 22일 금요일 18시까지",
+        "isLiked": false,
+        "price": "무료",
+        "profile": "https://dummyimage.com/400x400/d9d9d9/fff"
+      },
+      {
+        "id": 4,
+        "mainImg": "https://dummyimage.com/600x400/d9d9d9/fff",
+        "eventName": "AIUX FORUM",
+        "recruitmentStart": "2024년 1월 3일 금요일 8시",
+        "recruitmentEnd": "2024년 2월 22일 금요일 8시까지",
+        "isLiked": false,
+        "price": "무료",
+        "profile": "https://dummyimage.com/400x400/d9d9d9/fff"
+      },
+      {
+        "id": 5,
+        "mainImg": "https://dummyimage.com/600x400/d9d9d9/fff",
+        "eventName": "1시간 만에 홈페이지 만들기",
+        "recruitmentStart": "2025년 1월 3일 금요일 8시",
+        "recruitmentEnd": "2025년 2월 22일 금요일 8시까지",
+        "isLiked": false,
+        "price": "무료",
+        "profile": "https://dummyimage.com/400x400/d9d9d9/fff"
+      },
+      {
+        "id": 6,
+        "mainImg": "https://dummyimage.com/600x400/d9d9d9/fff",
+        "eventName": "챗GPT x AI툴로 유튜브 쇼츠 만들기 실습 클래스",
+        "recruitmentStart": "2026년 1월 3일 금요일 8시",
+        "recruitmentEnd": "2026년 2월 22일 금요일 8시까지",
+        "isLiked": false,
+        "price": "무료",
+        "profile": "https://dummyimage.com/400x400/d9d9d9/fff"
+      },
+      {
+        "id": 7,
+        "mainImg": "https://dummyimage.com/600x400/d9d9d9/fff",
+        "eventName": "자바(JAVA) 웹개발자 취업연계 과정",
+        "recruitmentStart": "2027년 1월 3일 금요일 8시",
+        "recruitmentEnd": "2027년 2월 22일 금요일 8시까지",
+        "isLiked": false,
+        "price": "무료",
+        "profile": "https://dummyimage.com/400x400/d9d9d9/fff"
+      },
+      {
+        "id": 8,
+        "mainImg": "https://dummyimage.com/600x400/d9d9d9/fff",
+        "eventName": "2028말레이시아 K-MOVE 해외취업 세미나",
+        "recruitmentStart": "2028년 1월 3일 금요일 8시",
+        "recruitmentEnd": "2028년 2월 22일 금요일 8시까지",
+        "isLiked": false,
+        "price": "무료",
+        "profile": "https://dummyimage.com/400x400/d9d9d9/fff"
+      },
+      {
+        "id": 9,
+        "mainImg": "https://dummyimage.com/600x400/d9d9d9/fff",
+        "eventName": "2029말레이시아 K-MOVE 해외취업 세미나",
+        "recruitmentStart": "2029년 1월 3일 금요일 8시",
+        "recruitmentEnd": "2029년 2월 22일 금요일 8시까지",
+        "isLiked": false,
+        "price": "무료",
+        "profile": "https://dummyimage.com/400x400/d9d9d9/fff"
+      },
+      {
+        "id": 10,
+        "mainImg": "https://dummyimage.com/600x400/d9d9d9/fff",
+        "eventName": "2029한국 K-MOVE 해외취업 세미나",
+        "recruitmentStart": "2029년 1월 3일 금요일 8시",
+        "recruitmentEnd": "2029년 2월 22일 금요일 8시까지",
+        "isLiked": false,
+        "price": "무료",
+        "profile": "https://dummyimage.com/400x400/d9d9d9/fff"
+      },
+      {
+        "id": 11,
+        "mainImg": "https://dummyimage.com/600x400/d9d9d9/fff",
+        "eventName": "2029 캐나다 K-MOVE 해외취업 세미나",
+        "recruitmentStart": "2029년 1월 3일 금요일 8시",
+        "recruitmentEnd": "2029년 2월 22일 금요일 8시까지",
+        "isLiked": false,
+        "price": "무료",
+        "profile": "https://dummyimage.com/400x400/d9d9d9/fff"
+      },
+      {
+        "id": 12,
+        "mainImg": "https://dummyimage.com/600x400/d9d9d9/fff",
+        "eventName": "2029 호주 K-MOVE 해외취업 세미나",
+        "recruitmentStart": "2029년 1월 3일 금요일 8시",
+        "recruitmentEnd": "2029년 2월 22일 금요일 8시까지",
+        "isLiked": false,
+        "price": "무료",
+        "profile": "https://dummyimage.com/400x400/d9d9d9/fff"
+      },
+      {
+        "id": 13,
+        "mainImg": "https://dummyimage.com/600x400/d9d9d9/fff",
+        "eventName": "2029 인도 K-MOVE 해외취업 세미나",
+        "recruitmentStart": "2029년 1월 3일 금요일 8시",
+        "recruitmentEnd": "2029년 2월 22일 금요일 8시까지",
+        "isLiked": false,
+        "price": "무료",
+        "profile": "https://dummyimage.com/400x400/d9d9d9/fff"
+      },
+      {
+        "id": 14,
+        "mainImg": "https://dummyimage.com/600x400/d9d9d9/fff",
+        "eventName": "한성대",
+        "recruitmentStart": "2029년 1월 3일 금요일 8시",
+        "recruitmentEnd": "2029년 2월 22일 금요일 8시까지",
+        "isLiked": false,
+        "price": "무료",
+        "profile": "https://dummyimage.com/400x400/d9d9d9/fff"
+      },
+      {
+        "id": 15,
+        "mainImg": "https://dummyimage.com/600x400/d9d9d9/fff",
+        "eventName": "홍익대",
+        "recruitmentStart": "2029년 1월 3일 금요일 8시",
+        "recruitmentEnd": "2029년 2월 22일 금요일 8시까지",
+        "isLiked": false,
+        "price": "무료",
+        "profile": "https://dummyimage.com/400x400/d9d9d9/fff"
+      },
+      {
+        "id": 16,
+        "mainImg": "https://dummyimage.com/600x400/d9d9d9/fff",
+        "eventName": "AI in Healthcare Summit",
+        "recruitmentStart": "2030년 1월 3일 금요일 8시",
+        "recruitmentEnd": "2030년 2월 22일 금요일 8시까지",
+        "isLiked": false,
+        "price": "무료",
+        "profile": "https://dummyimage.com/400x400/d9d9d9/fff"
+      },
+      {
+        "id": 18,
+        "mainImg": "https://dummyimage.com/600x400/d9d9d9/fff",
+        "eventName": "AAAAAAAAAAAAAAA",
+        "recruitmentStart": "2031년 1월 3일 금요일 8시~",
+        "recruitmentEnd": "2031년 2월 22일 금요일 8시",
+        "isLiked": false,
+        "price": "무료",
+        "profile": "https://dummyimage.com/400x400/d9d9d9/fff"
+      },
+      {
+        "id": 19,
+        "mainImg": "https://dummyimage.com/600x400/d9d9d9/fff",
+        "eventName": "CCCCCCCCCCCCCCCCCC",
+        "recruitmentStart": "2031년 1월 3일 금요일 8시~",
+        "recruitmentEnd": "2031년 2월 22일 금요일 8시",
+        "isLiked": false,
+        "price": "무료",
+        "profile": "https://dummyimage.com/400x400/d9d9d9/fff"
+      },
+      {
+        "id": 20,
+        "mainImg": "https://dummyimage.com/600x400/d9d9d9/fff",
+        "eventName": "ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ",
+        "recruitmentStart": "2031년 1월 3일 금요일 8시~",
+        "recruitmentEnd": "2031년 2월 22일 금요일 8시",
+        "isLiked": false,
+        "price": "무료",
+        "profile": "https://dummyimage.com/400x400/d9d9d9/fff"
+      },
+      {
+        "id": 21,
+        "mainImg": "https://dummyimage.com/600x400/d9d9d9/fff",
+        "eventName": "항공대",
+        "recruitmentStart": "2031년 1월 3일 금요일 8시~",
+        "recruitmentEnd": "2031년 2월 22일 금요일 8시",
+        "isLiked": false,
+        "price": "무료",
+        "profile": "https://dummyimage.com/400x400/d9d9d9/fff"
+      },
+      {
+        "id": 21,
+        "mainImg": "https://dummyimage.com/600x400/d9d9d9/fff",
+        "eventName": "Hello World",
+        "recruitmentStart": "2031년 1월 3일 금요일 8시~",
+        "recruitmentEnd": "2031년 2월 22일 금요일 8시",
+        "isLiked": false,
+        "price": "무료",
+        "profile": "https://dummyimage.com/400x400/d9d9d9/fff"
+      }
     ],
 
 
