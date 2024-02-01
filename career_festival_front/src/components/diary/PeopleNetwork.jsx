@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
 const PeopleNetworkAll = styled.div`
@@ -7,17 +7,15 @@ const PeopleNetworkAll = styled.div`
   border-radius: 5px;
   background-color: #ffffff;
   justify-content: space-between;
-  // position: relative; /* 부모 기준으로 자식의 위치 설정 */
 `;
 
 const VerticalLine = styled.div`
-  // position: absolute;
   top: 0;
   bottom: 0;
-  left: 50%; /* 가운데 정렬을 위해 50% 위치 설정 */
-  width: 2px; /* 세로선의 너비 */
-  background-color: #181818; /* 세로선의 색상 */
-  content: ""; /* 가상 요소를 위한 필수 속성 */
+  left: 50%;
+  width: 2px;
+  background-color: #181818;
+  content: "";
 `;
 
 const HorizontalLine = styled.div`
@@ -38,12 +36,12 @@ const Title = styled.div`
 const Head = styled.div`
   display: flex;
   width: 100%;
-  height: 10%
+  height: 10%;
   flex: 1;
   border-radius: 5px;
   background-color: #e3dcff;
-  justify-content: center; /* 가로 중앙 정렬 */
-  align-items: center; /* 세로 중앙 정렬 */
+  justify-content: center;
+  align-items: center;
 `;
 
 const SectionContainer = styled.div`
@@ -75,6 +73,11 @@ const PeopleNetwork = ({ onComplete }) => {
   const [email1, setEmail1] = useState("");
   const [email2, setEmail2] = useState("");
   const [email3, setEmail3] = useState("");
+
+  useEffect(() => {
+    const isComplete = name1 && name2 && name3 && phone1 && phone2 && phone3 && email1 && email2 && email3;
+    onComplete(isComplete);
+  }, [name1, name2, name3, phone1, phone2, phone3, email1, email2, email3, onComplete]);
 
   const handleNameChange = (event, setter) => {
     const value = event.target.value;

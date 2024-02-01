@@ -1,4 +1,5 @@
-import React from "react";
+// EventInfo.jsx
+import React, { useState } from "react";
 import styled from "styled-components";
 
 const InfoContainer = styled.div`
@@ -39,23 +40,72 @@ const TextInput = styled.textarea`
   }
 `;
 
-const EventInfo = () => {
+const EventInfo = ({ onInfoComplete }) => {
+  const [eventName, setEventName] = useState("");
+  const [title, setTitle] = useState("");
+  const [eventDate, setEventDate] = useState("");
+  const [keywords, setKeywords] = useState("");
+
+  const handleInputChange = (inputType, value) => {
+    switch (inputType) {
+      case "eventName":
+        setEventName(value);
+        break;
+      case "title":
+        setTitle(value);
+        break;
+      case "eventDate":
+        setEventDate(value);
+        break;
+      case "keywords":
+        setKeywords(value);
+        break;
+      default:
+        break;
+    }
+  };
+
+  const checkInfoComplete = () => {
+    return eventName && title && eventDate && keywords;
+  };
+
+  const handleBlur = () => {
+    const isComplete = checkInfoComplete();
+    onInfoComplete(isComplete);
+  };
+
   return (
     <InfoContainer>
       <InputContainer>
         <TitleText>행사 정보</TitleText>
-        <TextInput placeholder="행사명을 입력해주세요." />
-        <TextInput placeholder="글의 제목을 입력해주세요." />
+        <TextInput
+          placeholder="행사명을 입력해주세요."
+          onChange={(e) => handleInputChange("eventName", e.target.value)}
+          onBlur={handleBlur}
+        />
+        <TextInput
+          placeholder="글의 제목을 입력해주세요."
+          onChange={(e) => handleInputChange("title", e.target.value)}
+          onBlur={handleBlur}
+        />
       </InputContainer>
 
       <InputContainer>
         <TitleText>행사 일자</TitleText>
-        <TextInput placeholder="행사를 다녀온 날짜를 입력해주세요." />
+        <TextInput
+          placeholder="행사를 다녀온 날짜를 입력해주세요."
+          onChange={(e) => handleInputChange("eventDate", e.target.value)}
+          onBlur={handleBlur}
+        />
       </InputContainer>
 
       <InputContainer>
         <TitleText>행사 커리어 키워드</TitleText>
-        <TextInput>행사 명</TextInput>
+        <TextInput
+          placeholder="행사 명"
+          onChange={(e) => handleInputChange("keywords", e.target.value)}
+          onBlur={handleBlur}
+        />
       </InputContainer>
     </InfoContainer>
   );
