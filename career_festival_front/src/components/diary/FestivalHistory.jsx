@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+// FestivalHistory.jsx
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import imageIcon from "../../assets/images/frame_gallery_image.png";
 
@@ -137,6 +138,16 @@ const FestivalHistory = ({ onComplete }) => {
   const [content1, setContent1] = useState("");
   const [content2, setContent2] = useState("");
   const [content3, setContent3] = useState("");
+
+  useEffect(() => {
+    const isSection1Complete = section1 && content1;
+    const isSection2Complete = (!section2 && !content2) || (section2 && content2);
+    const isSection3Complete = (!section3 && !content3) || (section3 && content3);
+  
+    const isComplete = isSection1Complete && isSection2Complete && isSection3Complete;
+  
+    onComplete(isComplete);
+  }, [section1, section2, section3, content1, content2, content3, onComplete]);
 
   const handleSectionChange = (event, setter) => {
     const value = event.target.value;
