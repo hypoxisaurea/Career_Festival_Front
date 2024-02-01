@@ -147,7 +147,8 @@ const TwoButton = styled.div`
   display: flex;
   justify-content: center;  // 가로 중앙 정렬
   align-items: center;  // 세로 중앙 정렬
-  gap: 10px;  // 버튼 사이의 간격 조절
+  gap: 2vw;  // 버튼 사이의 간격 조절
+  padding: 2vw;
 `;
 
 const LaterSave = styled.button`
