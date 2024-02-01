@@ -138,13 +138,6 @@ const LowerContaniner = styled.div`
   background-color: #f9f7ff;
   padding: 1vw 0 4vw 0;
 `;
-// 이벤터 컨테이너에 대한 스타일링
-// const Eventer = styled.div`
-//   width: 50vw;
-//   height: 10vw;
-//   border-radius: 20px;
-//   border: 1px solid;
-// `;
 
 
 //주최자
