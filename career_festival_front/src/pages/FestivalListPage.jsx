@@ -63,8 +63,8 @@ const FilterP = styled.p`
 
 //지역
 const AreaContainer = styled.div`
-  width: 100%;
-  color: #000000;
+  //width: 100%;
+  //color: #000000;
   font-weight: bold;
   @media screen and (max-width: 600px) {
     font-size: 1vw;
@@ -161,7 +161,6 @@ const OrganizationslistWraper = styled.div`
   //width: 100%;
   margin: 0 auto;
   justify-content: center;
-  padding-bottom: 5rem;
   display: flex;
   flex-direction: row;
 `;
