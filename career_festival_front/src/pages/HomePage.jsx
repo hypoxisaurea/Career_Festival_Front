@@ -19,7 +19,9 @@ const HomePageContainer = styled.div`
   align-items: center;
   flex-direction: column;
   margin: 0 auto;
-
+  @media screen and (max-width: 600px) {
+    font-size: 1vw;
+  }
 `;
 
 
@@ -32,7 +34,10 @@ const HomePageShowAll = styled.span`
   position: absolute;
   padding-top: 3rem;
   align-self: end;
-`
+  @media screen and (max-width: 600px) {
+    font-size: 2vw;
+  }
+`;
 
 
 /*개인 키워드 추천*/
@@ -42,8 +47,8 @@ const RecommendPersonalContainer = styled.div`
   //background-color: beige;
   display: flex;
   flex-direction: column;
-
   width: 70vw;
+
 `;
 
 //컴포넌트 자리
@@ -80,7 +85,7 @@ const RecommendPlaceContainer = styled.div`
     padding: 5px;
 
     color: #582fff;
-    font-size: 24px;
+    font-size: 1.5rem;
     font-weight: 900;
 
     border: none;
@@ -190,9 +195,9 @@ const ButtonRightStyled = styled(Button)``;
           <HomePageShowAll>모든행사보기</HomePageShowAll>
           <div
             style={{
-              fontSize: "1.3rem",
+              fontSize: "1.2rem",
               fontWeight: "900",
-              margin: "0.8rem 0 2rem 0",
+              margin: "1vw 0 1.5vw 0",
             }}
           >
             회원가입 시 선택한
