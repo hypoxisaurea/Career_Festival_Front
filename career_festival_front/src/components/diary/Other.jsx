@@ -8,10 +8,17 @@ import SubmitButton from "./SubmitButton";
 
 const OtherContainer = styled.div`
   margin: 3.5vw 23vw 3vw 23vw;
+
+  .centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 `;
 
 function Other() {
-  const [isFestivalHistoryComplete, setFestivalHistoryComplete] = useState(false);
+  const [isFestivalHistoryComplete, setFestivalHistoryComplete] =
+    useState(false);
   const [isEventInfoComplete, setEventInfoComplete] = useState(false);
   const [isPeopleNetworkComplete, setPeopleNetworkComplete] = useState(false);
 
@@ -29,15 +36,23 @@ function Other() {
 
   return (
     <OtherContainer>
-      택신<br />
-      Other<br />
+      택신
+      <br />
+      Other
+      <br />
       <Dropdown />
       <EventInfo onInfoComplete={handleEventInfoComplete} />
       <FestivalHistory onComplete={handleFestivalHistoryComplete} />
       <PeopleNetwork onComplete={handlePeopleNetworkComplete} />
-      <SubmitButton
-        isComplete={isFestivalHistoryComplete && isEventInfoComplete && isPeopleNetworkComplete}
-      />
+      <div className="centered">
+        <SubmitButton
+          isComplete={
+            isFestivalHistoryComplete &&
+            isEventInfoComplete &&
+            isPeopleNetworkComplete
+          }
+        />
+      </div>
     </OtherContainer>
   );
 }

@@ -140,8 +140,12 @@ const FestivalHistory = ({ onComplete }) => {
   const [content3, setContent3] = useState("");
 
   useEffect(() => {
-    const isComplete =
-      section1 && section2 && section3 && content1 && content2 && content3;
+    const isSection1Complete = section1 && content1;
+    const isSection2Complete = (!section2 && !content2) || (section2 && content2);
+    const isSection3Complete = (!section3 && !content3) || (section3 && content3);
+  
+    const isComplete = isSection1Complete && isSection2Complete && isSection3Complete;
+  
     onComplete(isComplete);
   }, [section1, section2, section3, content1, content2, content3, onComplete]);
 

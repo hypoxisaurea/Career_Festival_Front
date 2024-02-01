@@ -3,7 +3,8 @@ import styled from "styled-components";
 
 const Button = styled.button`
   padding: 10px;
-  background-color: ${({ isComplete }) => (isComplete ? "#4caf50" : "#ccc")};
+  margin-top: 20px;
+  background-color: ${({ isComplete }) => (isComplete ? "#582fff" : "#cccccc")};
   color: white;
   border: none;
   border-radius: 5px;

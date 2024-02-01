@@ -75,7 +75,11 @@ const PeopleNetwork = ({ onComplete }) => {
   const [email3, setEmail3] = useState("");
 
   useEffect(() => {
-    const isComplete = name1 && name2 && name3 && phone1 && phone2 && phone3 && email1 && email2 && email3;
+    const isName1Complete = name1 && (phone1 || email1);
+    const isName2Complete = !name2 || (name2 && (phone2 || email2));
+    const isName3Complete = !name3 || (name3 && (phone3 || email3));
+  
+    const isComplete = isName1Complete && isName2Complete && isName3Complete;
     onComplete(isComplete);
   }, [name1, name2, name3, phone1, phone2, phone3, email1, email2, email3, onComplete]);
 
