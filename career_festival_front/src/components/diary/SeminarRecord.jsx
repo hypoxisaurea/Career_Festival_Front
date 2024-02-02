@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import styled from "styled-components";
 
 const RecordContainer = styled.div`
-  display: flex;
   flex-direction: column;
 `;
 
