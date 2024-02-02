@@ -52,6 +52,20 @@ const OrganizationInsightBox = styled.div`
         @media screen and (max-width: 600px) {
         font-size: 1.5vw;
         }
+
+
+    }
+
+
+    img{
+        width: 0.7rem;
+        margin-left: 0.5rem;
+    
+
+        @media screen and (max-width: 600px) {
+        width: 1.1vw;
+        margin-left: 0.5vw;
+        }
     }
 
     div{
@@ -62,7 +76,9 @@ const OrganizationInsightBox = styled.div`
     }
 
 `
-
+const showButtonWrapper = styled.span`
+    
+`
 
 
 function OrganizationInsight(props) {
@@ -71,7 +87,7 @@ function OrganizationInsight(props) {
         <h3>프로필 인사이트</h3>
         <OrganizationInsightBoxWrapper>
             <OrganizationInsightBox>
-                <h2>구독자<span><img style={{width: "0.7rem", marginLeft:"0.5rem"}} src={buttonright} alt='구독자 목록 보기'/></span></h2> {/* 버튼 아이콘 바꾸기 */}
+                <h2>구독자<showButtonWrapper><img src={buttonright} alt='구독자 목록 보기'/></showButtonWrapper></h2> {/* 버튼 아이콘 바꾸기 */}
                 <div><span style={{fontSize: "2.2em", fontWeight: '350', color:"#582FFF"}}>{props.subscriberNumber}</span>
                 <span style={{fontSize: "1em", fontWeight: '400', color:"black"}}>명</span>
                 </div>
