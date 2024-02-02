@@ -10,7 +10,7 @@ import Join from "../components/eventDetail/Join";
 import CommentList from "../components/eventDetail/CommentList";
 
 const DetailFestivalPageContainer = styled.div`
-  width: 1453px;
+  width: 100%;
   height: 100%;
   padding: 81px 115px 0 114px;
 `;

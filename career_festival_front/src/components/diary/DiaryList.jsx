@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import Pagination from "./Pagination";
 
 const ListContainer = styled.div``;
 
@@ -108,6 +109,7 @@ const DiaryList = () => {
           <GenreTagContainer>경제/금융</GenreTagContainer>
         </DiaryContainer>
       </ContentContainer>
+      <Pagination />
     </ListContainer>
   );
 };

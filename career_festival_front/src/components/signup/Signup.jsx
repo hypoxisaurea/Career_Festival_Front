@@ -14,7 +14,7 @@ import Organizer from "./Organizer";
 const Signup = () => {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [checkPassword, setCheckPassword] = useState("");
   const [email, setEmail] = useState("");
   const [emailVerificationCode, setEmailVerificationCode] = useState("");
   const [agreements, setAgreements] = useState({
@@ -55,7 +55,7 @@ const Signup = () => {
       console.log("Sending data to the server:", {
         name,
         password,
-        checkPassword: confirmPassword,
+        checkPassword: checkPassword,
         email,
         role
       });
@@ -64,14 +64,14 @@ const Signup = () => {
       const userData = {
         name,
         password,
-        confirmPassword,
+        checkPassword,
         email,
         agreements,
         role: selectedRole
       };
       // 백엔드 API 호출 및 응답 처리
       // fetch 함수 호출 또는 axios 등을 사용하여 백엔드로 데이터 전송
-      const response = await fetch("http://localhost:9000/", {
+      const response = await fetch("http://localhost:9000/join", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -91,7 +91,7 @@ const Signup = () => {
       navigate(url); // navigate 함수 사용
 
       // 선택된 역할에 따라 화면을 설정
-      setRoleComponent(
+      setRoleComponent( 
         role === "participant" ? (
           <Participant />
         ) : role === "organizer" ? (
@@ -203,7 +203,9 @@ const Signup = () => {
 
         {/* 이름 섹션 */}
         <div className="input-section">
-          <div className="input-label">이름</div>
+        <SignupStyle.InputLabel className="input-label">
+            이름
+          </SignupStyle.InputLabel>
           <SignupStyle.InputField
             type="text"
             placeholder="이름"
@@ -214,25 +216,31 @@ const Signup = () => {
 
         {/* 비밀번호 섹션 */}
         <div className="input-section">
-          <div className="input-label">비밀번호</div>
+        <SignupStyle.InputLabel className="input-label">
+            비밀번호
+          </SignupStyle.InputLabel>
           <SignupStyle.InputField
             type="password"
             placeholder="비밀번호"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <div className="input-label">비밀번호 확인</div>
+          <SignupStyle.InputLabel className="input-label">
+            비밀번호 확인
+          </SignupStyle.InputLabel>
           <SignupStyle.InputField
             type="password"
             placeholder="비밀번호 확인"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
+            value={checkPassword}
+            onChange={(e) => setCheckPassword(e.target.value)}
           />
         </div>
 
         {/* 이메일 섹션 */}
         <div className="input-section">
-          <div className="input-label">이메일(ID)</div>
+        <SignupStyle.InputLabel className="input-label">
+            이메일(ID)
+          </SignupStyle.InputLabel>
           <SignupStyle.InputField
             type="email"
             placeholder="example@gmail.com"
