@@ -223,6 +223,16 @@ const BackLink = styled(Link)`
   }
 `;
 
+// SignupStyle.js 파일 내 InputLabel 스타일 추가
+const InputLabel = styled.div`
+&.input-label {
+  font-size: 14px;
+  margin-bottom: 5px;
+  color: #000000;
+`;
+
+
+
 const SignupStyle = {
   SignupContainer,
   InputField,
@@ -239,6 +249,7 @@ const SignupStyle = {
   WelcomeText,
   WelcomeText2,
   BackLink,
+  InputLabel,
 };
 
 export default SignupStyle;
