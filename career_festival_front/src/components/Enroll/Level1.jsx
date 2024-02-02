@@ -10,9 +10,8 @@ const Container = styled.div`
   align-items: center;
   flex-direction: column;
   font-size: 1.5rem;
-  margin-top: 3vw;
   text-align: center;
-  padding: 10vw;
+  padding: 15vw;
 `;
 
 const Main = styled.div`
@@ -63,6 +62,7 @@ const NextButton = styled.button`
     background-color: #4700a6;
   }
 `;
+
 const BackLink = styled(Link)`
   display: flex;
   margin-top: -10vw;
