@@ -19,7 +19,7 @@ const Level4 = () => {
   return (
       <div>
           화이팅~~~~~
-      <Link to="/register/Level5">
+      <Link to="/organization-mypage">
         <NextButton>보기</NextButton>
       </Link>
     </div>
