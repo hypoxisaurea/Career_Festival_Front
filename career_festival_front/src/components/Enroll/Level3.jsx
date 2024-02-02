@@ -15,6 +15,7 @@ const Container = styled.div`
 
 // 주요 제목 스타일 정의
 const Main = styled.div`
+  font-weight: bold;
   font-size: 1.5rem;
   margin-bottom: 1.5rem;
 `;
@@ -22,8 +23,8 @@ const Main = styled.div`
 // 프로그래스바 스타일 정의
 const ProgressBarContainer = styled.div`
   position: relative;
-  width: 30%;
-  height: 1vw;
+  width: 25%;
+  height: 0.5vw;
   background: #ddd;
   border-radius: 1vw;
   margin-top: 2vw;
@@ -32,11 +33,7 @@ const ProgressBarContainer = styled.div`
 const ProgressBar = styled.div`
   width: ${(props) => props.progress}%;
   height: 100%;
-  background: linear-gradient(
-    to right,
-    rgba(88, 47, 255, 0.8),
-    rgba(71, 0, 166, 0.8)
-  );
+  background: linear-gradient(to right, #a597e7, #4632a9);
   border-radius: 1vw;
   transition: width 0.5s ease-in-out;
 `;
@@ -76,15 +73,19 @@ const Level3 = () => {
     }
   }, [progress, navigate]);
 
-
-
   return (
     <div>
       <Container>
         <Main>프로필을 등록 중입니다.</Main>
         <ProgressBarContainer>
           <ProgressBar progress={progress} />
-           <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              width: "100%",
+            }}
+          >
             <ProgressText>In Progress...</ProgressText>
             <ProgressPer>{progress}%</ProgressPer>
           </div>

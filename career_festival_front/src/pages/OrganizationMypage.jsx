@@ -23,9 +23,27 @@ const OrganizationInfoContainer = styled.div`
 
 //주최자 마이페이지 프로필
 const OrganizationMypageProfileContainer = styled.div`
-  background-color: aliceblue;
+  //background-color: aliceblue;
+  border-radius: 12px;
+  box-shadow: 0 4px 4px 0 rgb(0, 0, 0, 0.25);
+
 `
 
+const OrganizationMypageButtonContainer = styled.div`
+  //background-color: aliceblue;
+  margin: 0 auto;
+`
+const CorrectionButton = styled.button`
+  width: 14vw;
+  height: 3vw;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #ffff;
+  background-color: #838383;
+  border-radius: 10px;
+  border: none;
+
+`
 
 
 //주최자 인사이트
@@ -123,6 +141,10 @@ const OrganizationMypage = (props) => {
       <OrganizationMypageProfileContainer>
         <MypageProfile/>
       </OrganizationMypageProfileContainer>
+
+      <OrganizationMypageButtonContainer>
+        <CorrectionButton>수정하기</CorrectionButton>
+      </OrganizationMypageButtonContainer>
 
 
        <OrganizationInsightContainer>
