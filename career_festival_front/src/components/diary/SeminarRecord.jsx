@@ -43,17 +43,20 @@ const TextInput = styled.textarea`
 `;
 
 const BottomContainer = styled.div`
-  display: flex;
+  display: inline-block;
   background-color: red;
+
+  border-bottom-left-radius: 0.6vw;
+  border-bottom-right-radius: 0.6vw;
 `;
 
 const CountContainer = styled.div`
   width: 100px;
   height: 100%;
   display: flex;
-  justify-content: flex-end;
-  margin: 27px 11px 8px 950px;
-  background-color: green;
+  text-align: right;
+  float: right;
+  margin: 4vw 1vw 1.5vw 0;
 `;
 
 const CountText = styled.span`
@@ -103,7 +106,7 @@ function SeminarRecord() {
         <BottomContainer>
           <CountContainer>
             <CountColorText>{inputCount}</CountColorText>
-            <CountText>/500자</CountText>
+            <CountText>/5000자</CountText>
           </CountContainer>
         </BottomContainer>
       </InputContainer>
