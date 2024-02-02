@@ -23,9 +23,13 @@ export const NextButton = styled.button`
   border-radius: 8px;
   cursor: pointer;
 `;
-
-export const Title = styled.h1`
+export const PurpleTitle = styled.h1`
   color: #582fff; // 글자색을 #582fff로 지정
+  font-size: 1rem;
+  text-align: left; // 왼쪽 정렬
+`;
+export const Title = styled.h1`
+  color: #000000; // 글자색을 #582fff로 지정
   font-size: 1rem;
   text-align: left; // 왼쪽 정렬
 `;
@@ -61,5 +65,18 @@ export const KeywordButton = styled.button`
 
   &:hover {
     color: #582fff;
+  }
+`;
+
+export const InputFestivalName = styled.input`
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+
+  &:focus {
+    border-color: #582fff;
+    outline: none;
   }
 `;
