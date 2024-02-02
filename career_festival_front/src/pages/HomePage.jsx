@@ -5,6 +5,7 @@ import dummy from "../db/RecommendedEvents.json";
 import styled from "styled-components";
 import Banner from "../components/home/Banner";
 import InterestArea from "../components/signup/InterestArea";
+import { Link } from "react-router-dom";
 
 
 //Home 전체 페이지
@@ -13,23 +14,21 @@ const HomePageContainer = styled.div`
   align-items: center;
   flex-direction: column;
   margin: 0 auto;
-  @media screen and (max-width: 600px) {
-    font-size: 1vw;
-  }
 `;
 
 
 //모든 행사 보기
-const HomePageShowAll = styled.span`
+const HomePageShowAllLink = styled(Link)`
   font-size: 1rem;
   font-weight: 500;
   color: #838383;
+  text-decoration-line: none;
 
   position: absolute;
   padding-top: 3rem;
   align-self: end;
   @media screen and (max-width: 600px) {
-    font-size: 2vw;
+    font-size: 1.5vw;
   }
 `;
 
@@ -43,7 +42,27 @@ const RecommendPersonalContainer = styled.div`
   flex-direction: column;
   width: 70vw;
 
+  h2{
+    font-size: 1.5rem;
+    font-weight: 900;
+    margin: 2rem 0 0 0;
+
+     @media screen and (max-width: 600px) {
+    font-size: 3vw;
+  }
+  }
 `;
+
+const PersonalContainerDiv = styled.div`
+  font-size: 1.2rem;
+  font-weight: 900;
+  margin: 1vw 0 1.5vw 0;
+  
+
+  @media screen and (max-width: 600px) {
+    font-size: 2vw;
+  }
+`
 
 //컴포넌트 자리
 const RecommendPersonalWraper = styled.div`
@@ -57,6 +76,11 @@ const RecommendPersonalWraper = styled.div`
   align-items: top;
 
   gap: 2vw;
+
+
+  @media screen and (max-width: 600px) {
+    font-size: 1vw;
+  }
 `;
 
 
@@ -73,11 +97,21 @@ const RecommendPlaceContainer = styled.div`
   margin-top: 5vw;
   margin-bottom: 5vw;
 
-  button {
-    border: none;
-    //background: #dad1fb;
-    border-radius: 6px;
+  h2{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    font-size: 1.5rem;
+    font-weight: 900;
+    margin-bottom: 3rem;
+    justify-items: center;
+
+    @media screen and (max-width: 600px) {
+    font-size: 2vw;
   }
+  }
+
 `;
 
 
@@ -93,6 +127,9 @@ const RecommendPlaceWraper = styled.div`
   grid-template-rows: 1fr;
   align-items: top;
   gap: 2vw;
+
+  @media screen and (max-width: 600px) {
+    font-size: 1vw;}
 `;
 
 
@@ -135,32 +172,19 @@ const HomePage = () => {
     setModalOpen(false);
   };
 
+
   return (
     <div>
       <Banner />
       <HomePageContainer>
         <RecommendPersonalContainer>
-          <h2
-            style={{
-              fontSize: "1.5rem",
-              fontWeight: "900",
-              margin: "2rem 0 0 0",
-            }}
-          >
-            이런행사 찾으셨죠?
-          </h2>
-          <HomePageShowAll>모든행사보기</HomePageShowAll>
-          <div
-            style={{
-              fontSize: "1.2rem",
-              fontWeight: "900",
-              margin: "1vw 0 1.5vw 0",
-            }}
-          >
+          <h2>이런행사 찾으셨죠? </h2>
+          <HomePageShowAllLink to ="/festival-list">모든행사보기</HomePageShowAllLink>
+          <PersonalContainerDiv>
             회원가입 시 선택한
             <span style={{ color: "#582fff" }}> 커리어 키워드</span>에 가장
             부합한 행사들을 볼 수 있어요!
-          </div>
+          </PersonalContainerDiv>
 
           <RecommendPersonalWraper>
             {recommendedByPersonSlice.map((item) => (
@@ -183,15 +207,8 @@ const HomePage = () => {
         </RecommendPersonalContainer>
 
         <RecommendPlaceContainer>
-          <h2
-            style={{
-              fontSize: "1.5rem",
-              fontWeight: "900",
-              marginBottom: "3rem",
-              justifyItems: "center",
-            }}
-          >
-            <button>
+          <h2>
+            <span>
               {/* 지역명 */}
               <InterestArea
                 style={{}}
@@ -204,10 +221,10 @@ const HomePage = () => {
                 closeModal={closeModal}
                 buttonText="지역명"
               />
-            </button>{" "}
+            </span>
             근처 행사
           </h2>
-          <HomePageShowAll>모든행사보기</HomePageShowAll>
+          <HomePageShowAllLink to ="/festival-list">모든행사보기</HomePageShowAllLink>
 
           <RecommendPlaceWraper>
             {recommendedByPlaceSlice.map((item) => {

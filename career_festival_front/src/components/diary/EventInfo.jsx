@@ -1,6 +1,7 @@
 // EventInfo.jsx
 import React, { useState } from "react";
 import styled from "styled-components";
+import Calendar from "./Calendar";
 
 const InfoContainer = styled.div`
   width: 100%;
@@ -92,11 +93,7 @@ const EventInfo = ({ onInfoComplete }) => {
 
       <InputContainer>
         <TitleText>행사 일자</TitleText>
-        <TextInput
-          placeholder="행사를 다녀온 날짜를 입력해주세요."
-          onChange={(e) => handleInputChange("eventDate", e.target.value)}
-          onBlur={handleBlur}
-        />
+        <Calendar />
       </InputContainer>
 
       <InputContainer>

@@ -1,35 +1,40 @@
 import React from 'react'
 import styled from 'styled-components'
 import  "../db/organizationsData.json"
-import { useLocation, useParams } from 'react-router-dom'
+import { Link, useLocation, useParams } from 'react-router-dom'
 import OrganizationInsight from '../components/organization/OrganizationInsight'
 import dummy from "../db/RecommendedEvents.json"
 import Recommend from '../components/home/Recommend'
+import Backicon from '../assets/images/keyboard-left-arrow-button.png'
 
 
 //전체 페이지
 const OrganizationInfoContainer = styled.div`
     display: flex;
     flex-direction: column;
-    padding: 0 15vw;
+    padding: 3vw 15vw;
     gap: 3vw
 `
 
 //이전 페이지 이동
 const OrganizationPageReturnContainer = styled.div`
-    display: none;
+    //background-color: beige;
+
+    img{
+        width: 2vw;
+    }
 `
 
 //주최자 상단 
 const OrganizationInsightContainer = styled.div`
-    background-color: beige;
+    //background-color: beige;
     width: 100%;
 
 `
 
 // 프로필 이미지, 이름, 구독 버튼 (수정 버튼)
 const OrganizationProfileWrapper = styled.div`
-    background-color: aliceblue;
+    //background-color: aliceblue;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -49,7 +54,7 @@ const OrganizationNameWrapper = styled.div`
     font-weight: 700;
 
     @media screen and (max-width: 600px) {
-    font-size: 1.5vw;
+    font-size: 3vw;
   }
 `
 
@@ -67,29 +72,52 @@ const OrganizationButton = styled.button`
     color: #ffff;
 
     @media screen and (max-width: 600px) {
-    font-size: 1vw;
+    font-size: 1.5vw;
   }
 `
 
 //행사 리스트
 const OrganizationFestivalListContainer = styled.div`
-    background-color: beige;
+    //background-color: beige;
     width: 100%;
     gap: 1vw;
+
+    h4{
+        font-size: 1.2rem;
+        font-weight: 700;
+        margin: 0;
+
+        @media screen and (max-width: 600px) {
+        font-size: 2.4vw;
+        }
+
+    }
+
+    h2{
+        font-size: 1rem;
+        font-weight: 400;
+        margin: 0.5vw 0 1.5vw 0;
+
+        @media screen and (max-width: 600px) {
+        font-size: 2vw;
+        }
+    }
 `
 const OrganizationFestivalListWrapper = styled.div`
   display: grid;
   flex-direction: column;
   justify-content: center;
-  grid-template-columns: repeat(3, 18vw);
+  grid-template-columns: repeat(3, 22vw);
   gap: 2vw;
   font-size: 0.9rem;
   @media screen and (max-width: 600px) {
     font-size: 1vw;
   }
-`;
+`
 
-
+const BackLink = styled(Link)`
+    
+`
 
 
 
@@ -99,11 +127,15 @@ function OrganizationInfoPage() {
   console.log(OrganizationName);
   console.log(state);
 
+  
+
 
   return (
     <OrganizationInfoContainer>
         <OrganizationPageReturnContainer>
-            {/* 이전 페이지로 이동 (주최자로 로그인시 없어짐) */}
+            <BackLink to="/festival-list"> {/* 메인 화면으로 이동하는 BackLink 컴포넌트 추가 */}
+                 <img src={Backicon} alt="Backicon" />
+            </BackLink>
         </OrganizationPageReturnContainer>
 
 
@@ -124,7 +156,7 @@ function OrganizationInfoPage() {
 
         <OrganizationFestivalListContainer>
             <h4>행사목록</h4>
-            <div>그동안 등록했던 행사들을 볼 수 있습니다.</div>
+            <h2>그동안 등록했던 행사들을 볼 수 있습니다.</h2>
             <OrganizationFestivalListWrapper>
                 {dummy.RecommendedByPerson.slice(0, 3).map((item) => (
                 <Recommend
