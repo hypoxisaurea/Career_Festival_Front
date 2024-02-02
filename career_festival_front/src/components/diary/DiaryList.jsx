@@ -2,6 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import Pagination from "./Pagination";
+import LeftQuote from "../../assets/images/leftQuote.png";
+import RightQuote from "../../assets/images/rightQuote.png";
 
 const ListContainer = styled.div``;
 
@@ -12,13 +14,30 @@ const ContentContainer = styled.div`
 `;
 
 const DiaryContainer = styled.div`
-  width: 30vw;
-  height: 20vw;
-  background-color: white;
+  display: flex;
+
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 0.6vw;
   border: 1px #d9d9d9 solid;
-  padding: 2vw 1.5vw 2vw 1.5vw;
+`;
+
+const ColorContainer = styled.div`
+  width: 1.5vw;
+  height: 100%;
+  background: #582fff;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  display: flex;
+`;
+
+const DiaryContentContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  width: 25vw;
+  height: 15vw;
+  background: white;
+  padding: 3vw 1.5vw 2vw 2.3vw;
 `;
 
 const HorizontalDivider = styled.div`
@@ -53,15 +72,8 @@ const DiaryTitleText = styled.div`
   font-family: "Noto Sans KR";
   font-weight: 700;
   word-wrap: break-word;
-`;
-
-const DiaryContentText = styled.div`
-  color: #838383;
-  font-size: 1vw;
-  font-family: "Noto Sans KR";
-  font-weight: 500;
-  word-wrap: break-word;
-  margin: 3vw 0 7vw 0;
+  text-align: center;
+  margin-top: 1.5vw;
 `;
 
 const TypeTagContainer = styled.div`
@@ -93,20 +105,52 @@ const GenreTagContainer = styled.div`
   word-wrap: break-word;
 `;
 
+const HeaderContainer = styled.div`
+  display: block;
+`;
+
+const TagContainer = styled.div`
+  display: flex;
+  margin-top: auto;
+`;
+
+const QuoteContainer = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
+const LeftQuoteImage = styled.img`
+  display: inline-block;
+  margin-right: 10vw;
+`;
+
+const RightQuoteImage = styled.img`
+  display: inline-block;
+  margin-left: 10vw;
+`;
+
 const DiaryList = () => {
   return (
     <ListContainer>
       <ContentContainer>
         <DiaryContainer>
-          <EventTitleText>5th UMC 해커톤</EventTitleText>
-          <DateText>2024.12.14</DateText>
-          <HorizontalDivider />
-          <DiaryTitleText>나의 첫 해커톤</DiaryTitleText>
-          <DiaryContentText>
-            서버 파트로 해커톤에 참여해 약 1박 2일의 시간 동안 ...
-          </DiaryContentText>
-          <TypeTagContainer>학술대회</TypeTagContainer>
-          <GenreTagContainer>경제/금융</GenreTagContainer>
+          <ColorContainer />
+          <DiaryContentContainer>
+            <HeaderContainer>
+              <EventTitleText>5th UMC 해커톤</EventTitleText>
+              <DateText>2024.12.14</DateText>
+            </HeaderContainer>
+            <HorizontalDivider />
+            <QuoteContainer>
+              <LeftQuoteImage src={LeftQuote}></LeftQuoteImage>
+              <RightQuoteImage src={RightQuote}></RightQuoteImage>
+            </QuoteContainer>
+            <DiaryTitleText>나의 첫 해커톤</DiaryTitleText>
+            <TagContainer>
+              <TypeTagContainer>학술대회</TypeTagContainer>
+              <GenreTagContainer>경제/금융</GenreTagContainer>
+            </TagContainer>
+          </DiaryContentContainer>
         </DiaryContainer>
       </ContentContainer>
       <Pagination />
