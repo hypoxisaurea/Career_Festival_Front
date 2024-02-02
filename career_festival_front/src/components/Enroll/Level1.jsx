@@ -35,7 +35,7 @@ const InputContainer = styled.div`
 const InputField = styled.input`
   width: 300px;
   padding: 10px;
-  margin-top: 10px;
+  margin-top: 2vw;
   font-size: 1rem;
   border: 0.1vw solid #838383;
   border-radius: 0.5vw;
@@ -57,9 +57,9 @@ const StyledText = styled.span`
 
 // 다음 버튼 스타일 정의
 const NextButton = styled.button`
-  margin-top: 20px;
+  margin-top: 2vw;
   padding: 1vw 4vw;
-  font-size: 1rem;
+  font-size: 14px;
   background-color: #582fff;
   color: #fff;
   border: none;
@@ -79,9 +79,13 @@ const Level1 = () => {
   return (
     <Container>
       <Main>주최자 프로필 개설</Main>
-
       <InputContainer>
         <label htmlFor="organizerName">주최자의 이름을 입력해주세요.</label>
+        <Contents>
+        커리어페스티벌에서 <StyledText>프로필명</StyledText>이 됩니다.
+        {"\n"}웹 내에서 공개될 프로필로 참가자들에게 보여질 내용입니다.
+        </Contents>
+        
         <InputField
           type="text"
           placeholder="예시) 박시현"
@@ -90,10 +94,7 @@ const Level1 = () => {
           onChange={handleNameChange}
         />
       </InputContainer>
-      <Contents>
-        커리어페스티벌에서 <StyledText>프로필명</StyledText>이 됩니다.
-        {"\n"}웹 내에서 공개될 프로필로 참가자들에게 보여질 내용입니다.
-      </Contents>
+      
       <Link to="/register/Level2">
         <NextButton>
           다음
