@@ -100,14 +100,14 @@ const AttachmentButton = styled.button`
   }
 `;
 
-const SectionInputField = styled.input`
+const SectionInputField = styled.textarea`
   width: 95%;
   height: 5.5vw; /* 원하는 크기로 조절 */
   padding: 5px;
   border: 0; /* 테두리 없애기 */
   outline: none; /* 포커스 효과 제거 */
 `;
-const ContentInputField = styled.input`
+const ContentInputField = styled.textarea`
   width: 95%;
   height: 5vw; /* 원하는 크기로 조절 */
   padding: 5px;
@@ -141,11 +141,14 @@ const FestivalHistory = ({ onComplete }) => {
 
   useEffect(() => {
     const isSection1Complete = section1 && content1;
-    const isSection2Complete = (!section2 && !content2) || (section2 && content2);
-    const isSection3Complete = (!section3 && !content3) || (section3 && content3);
-  
-    const isComplete = isSection1Complete && isSection2Complete && isSection3Complete;
-  
+    const isSection2Complete =
+      (!section2 && !content2) || (section2 && content2);
+    const isSection3Complete =
+      (!section3 && !content3) || (section3 && content3);
+
+    const isComplete =
+      isSection1Complete && isSection2Complete && isSection3Complete;
+
     onComplete(isComplete);
   }, [section1, section2, section3, content1, content2, content3, onComplete]);
 
