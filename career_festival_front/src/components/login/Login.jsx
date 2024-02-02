@@ -43,40 +43,36 @@ const Login = () => {
           password,
         }),
       });
-  
+      
+      // 서버에서 받은 헤더의 모든 내용을 콘솔에 출력
+    response.headers.forEach((value, name) => {
+      console.log(`${name}: ${value}`);
+      if (name.toLowerCase() === 'authorization') {
+        // authorization 헤더의 값을 localStorage에 저장
+        localStorage.setItem("Authorization", value);
+      }
+    });
+
       console.log("2. 로그인 요청 후");
   
       if (response.ok) {
         console.log("3. 서버 응답 OK");
   
-        // 서버에서 JSON 형식으로 응답하는지 확인
-        const contentType = response.headers.get("content-type");
-        console.log("4. 서버 응답이 JSON 형식_1");
-        if (contentType && contentType.includes("application/json")) {
-          console.log("4. 서버 응답이 JSON 형식_2");
+        // 백엔드에서 넘어온 Authorization 헤더에서 토큰을 추출
+        const jwtToken = response.headers.get("Authorization");
   
-          // JSON 형식인 경우에만 처리
-          const data = await response.json();
-          const { token } = data;
+        // 토큰을 로컬 스토리지에 저장
+        localStorage.setItem("Authorization", jwtToken);
   
-          console.log("5. 토큰 받아옴:", token);
+        console.log("4. 로컬 스토리지에 토큰 저장");
   
-          // 토큰을 로컬 스토리지에 저장
-          localStorage.setItem("token", `Bearer ${token}`);
+        // 로그인 후 리다이렉트
+        navigate("/");
   
-          console.log("6. 로컬 스토리지에 토큰 저장");
+        console.log("5. 리다이렉트 완료");
   
-          // 로그인 후 리다이렉트
-          navigate("/");
-  
-          console.log("7. 리다이렉트 완료");
-  
-          // 로그인 성공 시 토큰을 alert로 보여줌
-          alert(`로그인 성공! 토큰: ${token}`);
-        } else {
-          // JSON 형식이 아닌 경우 처리
-          console.error("서버 응답이 JSON 형식이 아닙니다.");
-        }
+        // 로그인 성공 시 토큰을 alert로 보여줌
+        alert(`로그인 성공! \n현재 사용자의 토큰: ${jwtToken}`);
       } else {
         console.error("로그인 실패:", response.statusText);
       }
@@ -84,6 +80,8 @@ const Login = () => {
       console.error("에러 발생:", error);
     }
   };
+  
+  
   
 
   return (
