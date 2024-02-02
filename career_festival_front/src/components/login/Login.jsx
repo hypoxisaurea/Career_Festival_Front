@@ -1,6 +1,6 @@
 // src/components/login/Login.jsx
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import LoginStyle from "./LoginStyle"; // 스타일 파일 불러오기
 import Backicon from "../../assets/images/keyboard-left-arrow-button.png";
 import Logo from "../../assets/images/logo.png";
@@ -26,43 +26,65 @@ const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
+  const navigate = useNavigate(); // useNavigate 훅 사용
 
   // 로그인 버튼 클릭 시 호출되는 함수
   const handleLogin = async () => {
     try {
-      // 로그인 요청을 보내기 전에 로딩 상태를 표시할 수 있음
-
-      // fetch 함수를 사용하여 백엔드로 로그인 요청 보내기
+      console.log("1. 로그인 요청 전");
+  
       const response = await fetch("http://localhost:9000/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        // 사용자가 입력한 아이디와 비밀번호를 JSON 형태로 백엔드에 전송
         body: JSON.stringify({
           username,
           password,
         }),
       });
-
-      // 응답 확인
+  
+      console.log("2. 로그인 요청 후");
+  
       if (response.ok) {
-        // 로그인 성공
-        console.log("로그인 성공");
-
-        // 실제 프로젝트에서는 토큰을 받아온다면 로컬 스토리지 등에 저장해둘 수 있음
-
-        // 로그인 후 홈페이지로 이동하는 등의 작업 수행
-        // 예시: window.location.href = "/home";
+        console.log("3. 서버 응답 OK");
+  
+        // 서버에서 JSON 형식으로 응답하는지 확인
+        const contentType = response.headers.get("content-type");
+        console.log("4. 서버 응답이 JSON 형식_1");
+        if (contentType && contentType.includes("application/json")) {
+          console.log("4. 서버 응답이 JSON 형식_2");
+  
+          // JSON 형식인 경우에만 처리
+          const data = await response.json();
+          const { token } = data;
+  
+          console.log("5. 토큰 받아옴:", token);
+  
+          // 토큰을 로컬 스토리지에 저장
+          localStorage.setItem("token", `Bearer ${token}`);
+  
+          console.log("6. 로컬 스토리지에 토큰 저장");
+  
+          // 로그인 후 리다이렉트
+          navigate("/");
+  
+          console.log("7. 리다이렉트 완료");
+  
+          // 로그인 성공 시 토큰을 alert로 보여줌
+          alert(`로그인 성공! 토큰: ${token}`);
+        } else {
+          // JSON 형식이 아닌 경우 처리
+          console.error("서버 응답이 JSON 형식이 아닙니다.");
+        }
       } else {
-        // 로그인 실패
         console.error("로그인 실패:", response.statusText);
       }
     } catch (error) {
-      // 네트워크 오류 등 예외 처리
       console.error("에러 발생:", error);
     }
   };
+  
 
   return (
     <>
