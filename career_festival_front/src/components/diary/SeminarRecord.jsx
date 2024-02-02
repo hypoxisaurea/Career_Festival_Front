@@ -22,8 +22,8 @@ const TitleText = styled.div`
 const TextInput = styled.textarea`
   width: 100%;
   height: auto;
-  min-height: 60vh;
-  color: #838383;
+  min-height: 45vh;
+  color: black;
   font-size: 1vw;
   font-family: "Noto Sans KR";
   font-weight: 400;
@@ -48,7 +48,6 @@ const BottomContainer = styled.div`
   display: inline-block;
   border: 0.1vw #838383 solid;
   border-top: none;
-  padding: 0.5vw 0 0 1vw;
   box-sizing: border-box;
 
   border-bottom-left-radius: 0.6vw;
@@ -78,13 +77,6 @@ const CountColorText = styled.span`
   font-family: "Noto Sans KR";
   font-weight: 700;
   word-wrap: break-word;
-`;
-
-const HorizontalDivider = styled.div`
-  width: 100%;
-  height: 1px;
-  background: black;
-  margin: 23px 0 0 0;
 `;
 
 function SeminarRecord({ onComplete }) {
