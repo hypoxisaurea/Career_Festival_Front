@@ -5,7 +5,7 @@ import dummy from "../db/RecommendedEvents.json";
 import styled from "styled-components";
 import Banner from "../components/home/Banner";
 import InterestArea from "../components/signup/InterestArea";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 
 //Home 전체 페이지

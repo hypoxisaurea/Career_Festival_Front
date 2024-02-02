@@ -59,13 +59,13 @@ const Dropdown = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedMenu, setSelectedMenu] = useState("강연/세미나");
   const navigate = useNavigate(); // React Router의 useNavigate 훅 사용
+
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
 
   const handleMenuClick = (menu) => {
     setSelectedMenu(menu);
-    setIsOpen(false);
 
     // 선택한 메뉴에 따라 경로 이동
     switch (menu) {
@@ -92,7 +92,6 @@ const Dropdown = () => {
       <SelectedText> {selectedMenu}</SelectedText>
       <DropDownButton src={ArrowIcon} onClick={toggleMenu} />
       <MenuContainer isOpen={isOpen}>
-
         <MenuItem
           isSelected={selectedMenu === "강연/세미나"}
           onClick={() => handleMenuClick("강연/세미나")}
@@ -120,7 +119,6 @@ const Dropdown = () => {
         >
           기타
         </MenuItem>
-
       </MenuContainer>
     </DropdownContainer>
   );
