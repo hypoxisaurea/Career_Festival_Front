@@ -28,10 +28,12 @@ const TextInput = styled.textarea`
   font-family: "Noto Sans KR";
   font-weight: 400;
   word-wrap: break-word;
-  border-radius: 0.6vw;
+  border-top-left-radius: 0.6vw;
+  border-top-right-radius: 0.6vw;
   border: 0.1vw #838383 solid;
   margin-top: 1.2vw;
   padding: 0.5vw 0 0 1vw;
+  box-sizing: border-box;
 
   &::placeholder {
     color: #838383;
@@ -44,7 +46,10 @@ const TextInput = styled.textarea`
 
 const BottomContainer = styled.div`
   display: inline-block;
-  background-color: red;
+  border: 0.1vw #838383 solid;
+  border-top: none;
+  padding: 0.5vw 0 0 1vw;
+  box-sizing: border-box;
 
   border-bottom-left-radius: 0.6vw;
   border-bottom-right-radius: 0.6vw;
@@ -56,7 +61,7 @@ const CountContainer = styled.div`
   display: flex;
   text-align: right;
   float: right;
-  margin: 4vw 1vw 1.5vw 0;
+  margin: 4vw 0 1.5vw 0;
 `;
 
 const CountText = styled.span`
@@ -87,7 +92,10 @@ function SeminarRecord({ onComplete }) {
   const [isWritten, setIsWritten] = useState(false);
 
   const onInputHandler = (e) => {
-    const count = e.target.value.replace(/[\0-\x7f]|([0-\u07ff]|(.))/g, "$&$1$2").length;
+    const count = e.target.value.replace(
+      /[\0-\x7f]|([0-\u07ff]|(.))/g,
+      "$&$1$2"
+    ).length;
     setInputCount(count);
     setIsWritten(count > 100); // 여기에서 작성 여부 판별 조건을 설정
   };
@@ -109,14 +117,12 @@ function SeminarRecord({ onComplete }) {
     <RecordContainer>
       <InputContainer>
         <TitleText>행사 기록</TitleText>
+
         <TextInput
           placeholder="다녀온 강연/세미나 내용을 정리해주세요."
           onChange={onInputHandler}
           maxLength="5000"
         />
-
-        <HorizontalDivider />
-
         <BottomContainer>
           <CountContainer>
             <CountColorText>{inputCount}</CountColorText>
