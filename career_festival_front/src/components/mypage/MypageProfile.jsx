@@ -9,12 +9,12 @@ const MypageProfileContainer = styled.div`
   gap: 5vw;
   align-items: center;
   //justify-content: center;
-  padding: 5vw 0vw 7vw 6vw;
+  padding: 5vw 0vw 7vw 7vw;
 `
 const MypageProfileImgWrapper = styled.div`
   //border: 1px solid red;
-  width: 20vw;
-  height: 20vw;
+  width: 18vw;
+  height: 18vw;
 
   img{
     width: 100%;
@@ -27,7 +27,7 @@ const MypageInfoWrapper = styled.div`
   flex-direction: column;
 
   h2{
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     font-weight: 500;
     margin: 0 0 2.5vw 0;
   }
@@ -37,19 +37,19 @@ const MypageInfoWrapper = styled.div`
 `
 const EmailWrapper = styled.div`
   h4{
-    font-size: 1.3rem;
+    font-size: 1rem;
     font-weight: 700;
     margin: 0 0;
   }
   div{
-    font-size: 1.3rem;
+    font-size: 0.8rem;
     font-weight: 420;
     margin: 0.7vw 0 2vw 0;
   }
 `
 const PersonalAreaWrapper = styled.div`
 h4{
-    font-size: 1.3rem;
+    font-size: 1rem;
     font-weight: 700;
     margin: 0 0;
   }
@@ -63,16 +63,17 @@ const AreaItem = styled.button`
   height: 2vw;
   background-color: #DAD1FB;
   color: #582FFF;
-  font-size: 1.3rem;
+  font-size: 1rem;
   font-weight: 700;
 `
 const Introduce = styled.div`
 h4{
-    font-size: 1.3rem;
+    font-size: 1rem;
     font-weight: 700;
     margin: 0 0;
   }
   div{
+    font-size: 0.8rem;
     font-weight: 420;
     margin: 0.7vw 0 0 0;
   }
@@ -81,8 +82,8 @@ h4{
 const ShowProfile = styled.div`
   position: absolute;
   margin-top: 25vw;
-  margin-left: 48vw;
-  font-size: 1rem;
+  margin-left: 46vw;
+  font-size: 0.8rem;
   font-weight: 410;
   color: #582FFF;
 `
