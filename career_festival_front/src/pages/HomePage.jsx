@@ -5,6 +5,7 @@ import dummy from "../db/RecommendedEvents.json";
 import styled from "styled-components";
 import Banner from "../components/home/Banner";
 import InterestArea from "../components/signup/InterestArea";
+import { useNavigate } from "react-router-dom";
 
 
 //Home 전체 페이지
@@ -170,13 +171,20 @@ const HomePage = () => {
     setModalOpen(false);
   };
 
+
+  const navigate = useNavigate();
+  const onClickHompageShowall = onclick = () =>{
+    navigate('/festival-list')
+  };
+
+
   return (
     <div>
       <Banner />
       <HomePageContainer>
         <RecommendPersonalContainer>
           <h2>이런행사 찾으셨죠? </h2>
-          <HomePageShowAll>모든행사보기</HomePageShowAll>
+          <HomePageShowAll onCLick = {onClickHompageShowall}>모든행사보기</HomePageShowAll>
           <PersonalContainerDiv>
             회원가입 시 선택한
             <span style={{ color: "#582fff" }}> 커리어 키워드</span>에 가장
@@ -221,7 +229,7 @@ const HomePage = () => {
             </span>
             근처 행사
           </h2>
-          <HomePageShowAll>모든행사보기</HomePageShowAll>
+          <HomePageShowAll onCLick = {onClickHompageShowall}>모든행사보기</HomePageShowAll>
 
           <RecommendPlaceWraper>
             {recommendedByPlaceSlice.map((item) => {
