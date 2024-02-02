@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import Dropdown from "./Dropdown";
 import EventInfo from "./EventInfo";
-import FestivalHistory from "./FestivalHistory";
 import SeminarRecord from "./SeminarRecord";
 import PeopleNetwork from "./PeopleNetwork";
 import SubmitButton from "./SubmitButton";
@@ -18,14 +17,12 @@ const LectureSeminarContainer = styled.div`
 `;
 
 function LectureSeminar() {
-
-  const [isFestivalHistoryComplete, setFestivalHistoryComplete] = useState(false);
   const [isEventInfoComplete, setEventInfoComplete] = useState(false);
   const [isPeopleNetworkComplete, setPeopleNetworkComplete] = useState(false);
-
-  const handleFestivalHistoryComplete = (isComplete) => {
-    setFestivalHistoryComplete(isComplete);
-  };
+  const [isSeminarRecordComplete, setIsSeminarRecordComplete] = useState({
+    isComplete: false,
+    missingInputs: [],
+  });
 
   const handleEventInfoComplete = (isComplete) => {
     setEventInfoComplete(isComplete);
@@ -35,21 +32,23 @@ function LectureSeminar() {
     setPeopleNetworkComplete(isComplete);
   };
 
+  const handleSeminarRecordComplete = (isComplete) => {
+    setIsSeminarRecordComplete(isComplete);
+  };
+
 
   return (
     <LectureSeminarContainer>
       LectureSeminar
       <br />
       <Dropdown />
-      <EventInfo onInfoComplete={handleEventInfoComplete}/>
-      <SeminarRecord />
-      <PeopleNetwork onComplete={handlePeopleNetworkComplete}/>
+      <EventInfo onInfoComplete={handleEventInfoComplete} />
+      <SeminarRecord onComplete={handleSeminarRecordComplete} />
+      <PeopleNetwork onComplete={handlePeopleNetworkComplete} />
       <div className="centered">
         <SubmitButton
           isComplete={
-            isFestivalHistoryComplete &&
-            isEventInfoComplete &&
-            isPeopleNetworkComplete
+            isEventInfoComplete && isPeopleNetworkComplete && isSeminarRecordComplete
           }
         />
       </div>
