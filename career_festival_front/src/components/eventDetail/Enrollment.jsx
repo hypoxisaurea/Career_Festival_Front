@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
+import PopUp from "./PopUp";
 
 const EnrollmentContainer = styled.div`
   width: 390px;
@@ -12,7 +13,6 @@ const EnrollmentContainer = styled.div`
 
 const InfoContainer = styled.div`
   margin: 33px 25px 31px 27px;
-  background: green;
 `;
 
 const ReportContainer = styled.div`
@@ -23,7 +23,7 @@ const ReportContainer = styled.div`
   word-wrap: break-word;
   margin: 2px 0 0 0;
   display: inline-block;
-  background: red;
+  float: right;
 `;
 
 const SponsorContainer = styled.div`
@@ -208,13 +208,30 @@ const BookmarkButton = styled.button`
 `;
 
 function Enrollment() {
+  const [modal, setModal] = useState(false);
+  const [modalContent, setModalContent] = useState(null);
+
+  const openModal = (content) => {
+    setModalContent(content);
+    setModal(true);
+  };
+
+  const closeModal = () => {
+    setModalContent(null);
+    setModal(false);
+  };
+
   return (
     <EnrollmentContainer>
       <InfoContainer>
         <Category1>과학기술</Category1>
         <VerticalDivider />
         <Category2>강연/세미나</Category2>
-        <ReportContainer>신고하기</ReportContainer>
+        <ReportContainer
+          onClick={() => openModal("행사신고가 완료되었습니다!")}
+        >
+          신고하기
+        </ReportContainer>
         <EventTitle>
           제4회 홍익대학교 인공지능 캠프 <br /> [문과생 전용]
         </EventTitle>
@@ -230,11 +247,29 @@ function Enrollment() {
       </InfoContainer>
 
       <ButtonContainer>
-        <ApplyButton>참가 신청하기</ApplyButton>
+        <ApplyButton
+          onClick={() =>
+            openModal(
+              "해당 행사는 외부 사이트 링크가 없습니다. 주최자의 이메일로 신청부탁드립니다."
+            )
+          }
+        >
+          참가 신청하기
+        </ApplyButton>
         <ConfirmButton>참가 확정하기</ConfirmButton>
         <ShareButton>공유</ShareButton>
-        <BookmarkButton>즐겨찾기</BookmarkButton>
+        <BookmarkButton
+          onClick={() => openModal("관심 행사에 등록되었습니다!")}
+        >
+          즐겨찾기
+        </BookmarkButton>
       </ButtonContainer>
+
+      {modal && (
+        <PopUp onClose={closeModal}>
+          <p>{modalContent}</p>
+        </PopUp>
+      )}
     </EnrollmentContainer>
   );
 }

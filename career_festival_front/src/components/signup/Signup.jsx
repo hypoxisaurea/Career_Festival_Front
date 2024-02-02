@@ -14,7 +14,7 @@ import Organizer from "./Organizer";
 const Signup = () => {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [checkPassword, setCheckPassword] = useState("");
   const [email, setEmail] = useState("");
   const [emailVerificationCode, setEmailVerificationCode] = useState("");
   const [agreements, setAgreements] = useState({
@@ -55,7 +55,7 @@ const Signup = () => {
       console.log("Sending data to the server:", {
         name,
         password,
-        checkPassword: confirmPassword,
+        checkPassword: checkPassword,
         email,
         role
       });
@@ -64,14 +64,14 @@ const Signup = () => {
       const userData = {
         name,
         password,
-        confirmPassword,
+        checkPassword,
         email,
         agreements,
         role: selectedRole
       };
       // 백엔드 API 호출 및 응답 처리
       // fetch 함수 호출 또는 axios 등을 사용하여 백엔드로 데이터 전송
-      const response = await fetch("http://localhost:9000/", {
+      const response = await fetch("http://localhost:9000/signup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -87,14 +87,14 @@ const Signup = () => {
         console.error("회원가입 실패:", response.statusText);
       }
       // 역할에 따라 URL 변경
-      const url = role === "participant" ? "/participant" : "/organizer";
+      const url = selectedRole === "ROLE_PARTICIPANT" ? "/participant" : "/organizer";
       navigate(url); // navigate 함수 사용
 
       // 선택된 역할에 따라 화면을 설정
       setRoleComponent(
-        role === "participant" ? (
+        selectedRole === "ROLE_PARTICIPANT" ? (
           <Participant />
-        ) : role === "organizer" ? (
+        ) : selectedRole === "ROLE_ORGANIZER" ? (
           <Organizer />
         ) : null
       );
@@ -119,67 +119,67 @@ const Signup = () => {
   };
 
   // 모달 내용 컴포넌트
-  const Modal = ({ closeModal }) => {
-    const handleOptionChange = (e) => {
-      setSelectedRole(e.target.value);
-    };
-
-    const handleNextButtonClick = () => {
-      // "다음" 버튼이 눌리면 선택된 데이터를 상태에 저장하고 모달을 닫음
-      closeModal();
-      handleModalNext(selectedRole);
-    };
-
-    return (
-      <SignupStyle.Modal>
-        {/* 무조건 나타나는 환영 메시지 */}
-        <SignupStyle.CheckIcon
-          src={require("../../assets/images/check-icon.png")}
-          alt="Check Icon"
-        />
-        <SignupStyle.WelcomeText>
-          <p>
-            <span>{name}</span>님 환영합니다!
-          </p>
-          <br />
-          오늘부터 행사의 참여자도, 주최자도 될 수 있어요.
-        </SignupStyle.WelcomeText>
-
-        <SignupStyle.WelcomeText2>
-          어떤 용도로 사용하실건가요?
-        </SignupStyle.WelcomeText2>
-
-        <SignupStyle.ModalRadioContainer>
-          <label checked={selectedRole === "participant"}>
-            <input
-              type="radio"
-              value="ROLE_PARTICIPANT"
-              checked={selectedRole === "ROLE_PARTICIPANT"}
-              onChange={handleOptionChange}
-            />
-            참가자
-            <br />
-            행사를 신청하고 참여합니다!
-          </label>
-          <label checked={selectedRole === "organizer"}>
-            <input
-              type="radio"
-              value="ROLE_ORGANIZER"
-              checked={selectedRole === "ROLE_ORGANIZER"}
-              onChange={handleOptionChange}
-            />
-            주최자
-            <br />
-            행사를 개설하고 운영합니다!
-          </label>
-        </SignupStyle.ModalRadioContainer>
-
-        <SignupStyle.ModalButton onClick={handleNextButtonClick}>
-          다음
-        </SignupStyle.ModalButton>
-      </SignupStyle.Modal>
-    );
+const Modal = ({ closeModal }) => {
+  const handleOptionChange = (e) => {
+    setSelectedRole(e.target.value);
   };
+
+  const handleNextButtonClick = () => {
+    // "다음" 버튼이 눌리면 선택된 데이터를 상태에 저장하고 모달을 닫음
+    closeModal();
+    handleModalNext(selectedRole);
+  };
+
+  return (
+    <SignupStyle.Modal>
+      {/* 무조건 나타나는 환영 메시지 */}
+      <SignupStyle.CheckIcon
+        src={require("../../assets/images/check-icon.png")}
+        alt="Check Icon"
+      />
+      <SignupStyle.WelcomeText>
+        <p>
+          <span>{name}</span>님 환영합니다!
+        </p>
+        <br />
+        오늘부터 행사의 참여자도, 주최자도 될 수 있어요.
+      </SignupStyle.WelcomeText>
+
+      <SignupStyle.WelcomeText2>
+        어떤 용도로 사용하실건가요?
+      </SignupStyle.WelcomeText2>
+
+      <SignupStyle.ModalRadioContainer>
+        <label checked={selectedRole === "ROLE_PARTICIPANT"}>
+          <input
+            type="radio"
+            value="ROLE_PARTICIPANT"
+            checked={selectedRole === "ROLE_PARTICIPANT"}
+            onChange={handleOptionChange}
+          />
+          참가자
+          <br />
+          행사를 신청하고 참여합니다!
+        </label>
+        <label checked={selectedRole === "ROLE_ORGANIZER"}>
+          <input
+            type="radio"
+            value="ROLE_ORGANIZER"
+            checked={selectedRole === "ROLE_ORGANIZER"}
+            onChange={handleOptionChange}
+          />
+          주최자
+          <br />
+          행사를 개설하고 운영합니다!
+        </label>
+      </SignupStyle.ModalRadioContainer>
+
+      <SignupStyle.ModalButton onClick={handleNextButtonClick}>
+        다음
+      </SignupStyle.ModalButton>
+    </SignupStyle.Modal>
+  );
+};
 
   return (
     <div>
@@ -203,7 +203,9 @@ const Signup = () => {
 
         {/* 이름 섹션 */}
         <div className="input-section">
-          <div className="input-label">이름</div>
+        <SignupStyle.InputLabel className="input-label">
+            이름
+          </SignupStyle.InputLabel>
           <SignupStyle.InputField
             type="text"
             placeholder="이름"
@@ -214,25 +216,31 @@ const Signup = () => {
 
         {/* 비밀번호 섹션 */}
         <div className="input-section">
-          <div className="input-label">비밀번호</div>
+        <SignupStyle.InputLabel className="input-label">
+            비밀번호
+          </SignupStyle.InputLabel>
           <SignupStyle.InputField
             type="password"
             placeholder="비밀번호"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <div className="input-label">비밀번호 확인</div>
+          <SignupStyle.InputLabel className="input-label">
+            비밀번호 확인
+          </SignupStyle.InputLabel>
           <SignupStyle.InputField
             type="password"
             placeholder="비밀번호 확인"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
+            value={checkPassword}
+            onChange={(e) => setCheckPassword(e.target.value)}
           />
         </div>
 
         {/* 이메일 섹션 */}
         <div className="input-section">
-          <div className="input-label">이메일(ID)</div>
+        <SignupStyle.InputLabel className="input-label">
+            이메일(ID)
+          </SignupStyle.InputLabel>
           <SignupStyle.InputField
             type="email"
             placeholder="example@gmail.com"

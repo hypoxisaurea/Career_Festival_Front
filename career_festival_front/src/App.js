@@ -59,6 +59,7 @@ function App() {
           <Route path="/community" element={<><Header /><Community /><Footer /></>} />
           <Route path="/mypage" element={<><Header /><MyPage /><Footer /></>} />
           {/* 행사 등록하기 */}
+
           <Route path="/register" element={<><Header /><RegisterPage /><Footer /></>} />
           <Route path="/register/Level1" element={<><Header /><Level1 /><Footer /></>} />
           <Route path="/register/Level2" element={<><Header /><Level2 /><Footer /></>} />
@@ -67,6 +68,7 @@ function App() {
           {/*<Route path="/register/Level5" element={<><Header /><Level5 /><Footer /></>} />*/}
           <Route path="/register/Level6" element={<><Header /><Level6 /><Footer /></>} />
           <Route path="/register/Level7" element={<><Header /><Level7 /><Footer /></>} />
+
           {/* 주최자 상세페이지 */}
           <Route path="/organizationinfo/:OrganizationName" element ={<><Header/><OrganizationInfoPage/><Footer/></>} />
           {/*마이페이지*/}

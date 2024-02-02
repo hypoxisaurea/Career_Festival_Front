@@ -140,6 +140,7 @@ const QnA = () => {
         />
 
         <HorizontalDivider />
+
         <BottomContainer>
           <CountContainer>
             <CountColorText>{inputCount}</CountColorText>
