@@ -249,7 +249,7 @@ const handleNextInput = () => {
       </KeyworldOptionList>
       <hr />
       <TwoButton>
-        <LaterSave onClick={handleNextInput}>다음에입력</LaterSave>
+        <LaterSave onClick={handleNextInput}>다음에 입력</LaterSave>
         {/* 부가정보 저장하기 버튼 */}
         <Save
           onClick={saveAdditionalInfo}

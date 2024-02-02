@@ -21,6 +21,7 @@ import Symposium from "./components/diary/Symposium";
 import DiaryHeader from "./components/header/DiaryHeader";
 import MyPage from "./pages/MyPage";
 import OrganizationInfoPage from "./pages/OrganizationInfoPage";
+import FooterTwo from "./components/footer/FooterTwo";
 
 import "./App.css";
 
@@ -33,9 +34,9 @@ function App() {
           <Route path="/" element={<><Header /><HomePage /><Footer /></>} />
           {/* 로그인,회원가입 */}
           <Route path="/login" element={<LoginPage />} />
-          <Route path="/join" element={<SignupPage />} />
+          <Route path="/join" element={<><SignupPage /><FooterTwo/></>} />
           <Route path="/participant" element={<Participant />} />
-          <Route path="/organizer" element={<Organizer />} />
+          <Route path="/organizer" element={<Organizer />}/>
           {/* 기록장 */}
           <Route path="/diary" element={<><DiaryHeader /><Diary /><Footer /></>} />
           <Route path="/addDiary" element={<><DiaryHeader /><AddDiary /><Footer /></>} />

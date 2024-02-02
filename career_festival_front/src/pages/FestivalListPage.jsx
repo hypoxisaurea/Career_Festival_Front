@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import styled from "styled-components";
 import Banner from "../components/home/Banner";
 import Filter from "../components/home/Filter";
@@ -8,6 +8,9 @@ import InterestArea from "../components/signup/InterestArea";
 import FilterKeyword from "../components/home/Filterkeyword";
 import Recommend from "../components/home/Recommend";
 import dummy from "../db/RecommendedEvents.json";
+
+//페이징
+import Pagination from "../components/home/Pagination";
 
 //주최자
 import organizationsData from "../db/organizationsData.json"
@@ -63,8 +66,8 @@ const FilterP = styled.p`
 
 //지역
 const AreaContainer = styled.div`
-  width: 100%;
-  color: #000000;
+  //width: 100%;
+  //color: #000000;
   font-weight: bold;
   @media screen and (max-width: 600px) {
     font-size: 1vw;
@@ -87,13 +90,6 @@ const Eventtype = styled.div`
   @media screen and (max-width: 600px) {
     font-size: 1vw;
   }
-`;
-// 홈 중간 컨테이너에 대한 스타일링
-const HomeMiddleContainer = styled.div`
-  padding-top: 2vw;
-  padding-bottom: 1vw;
-  display: flex;
-  justify-content: space-between;
 `;
 
 // 행사 목록 컨테이너에 대한 스타일링
@@ -120,14 +116,6 @@ const KeywordContainer = styled.div`
   @media screen and (max-width: 600px) {
     font-size: 1.8vw;
   }
-`;
-//슬라이드 행사목록 넘김
-const Silder = styled.div`
-  width: 1vw;
-  border: 1px solid;
-  flex-shrink: 0;
-  margin: 5vw auto 0;
-  justify-content: center;
 `;
 
 // 하단-주최자
@@ -161,7 +149,6 @@ const OrganizationslistWraper = styled.div`
   //width: 100%;
   margin: 0 auto;
   justify-content: center;
-  padding-bottom: 5rem;
   display: flex;
   flex-direction: row;
 `;
@@ -236,8 +223,32 @@ const FestivalListPage = () => {
     setModalOpen(false);
   };
 
+
+  
+  // 페이징 관련 state
+  const itemsPerPage = 9; // 페이지당 보여줄 항목 수
+  const [currentPage, setCurrentPage] = useState(1);
+
+  // 페이지에 해당하는 데이터를 반환하는 함수
+  const getCurrentPageData = useCallback(() => {
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    const recommendedByPerson = dummy.RecommendedByPerson || [];
+    return recommendedByPerson.slice(startIndex, endIndex);
+  }, [currentPage, itemsPerPage]);
+
+  // 페이지 변경 시 호출되는 함수
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
+
+
+
   //주최자
-  const organizationsListSlice = organizationsData.OrganizationsList.slice(0,4); // 처음 4개 아이템 우선 보임
+  const organizationsListSlice = organizationsData.OrganizationsList.slice(
+    0,
+    4
+  ); // 처음 4개 아이템 우선 보임
 
   const Button = styled.img`
     width: 2vw;
@@ -246,10 +257,8 @@ const FestivalListPage = () => {
     cursor: pointer;
   `;
 
-  const ButtonLeftStyled = styled(Button)`
-  `;
-  const ButtonRightStyled = styled(Button)`
-  `;
+  const ButtonLeftStyled = styled(Button)``;
+  const ButtonRightStyled = styled(Button)``;
 
   return (
     <div>
@@ -305,7 +314,7 @@ const FestivalListPage = () => {
             removeFilter={removeFilter}
           />
           <FestivalListWrapper>
-            {dummy.RecommendedByPerson.slice(0, 9).map((item) => (
+            {getCurrentPageData().map((item) => (
               <Recommend
                 key={item.eventName}
                 mainImg={item.mainImg}
@@ -318,8 +327,13 @@ const FestivalListPage = () => {
               />
             ))}
           </FestivalListWrapper>
-          <Silder>1</Silder>
-          <HomeMiddleContainer></HomeMiddleContainer>
+          <Pagination
+            currentPage={currentPage}
+            totalPages={Math.ceil(
+              dummy.RecommendedByPerson.length / itemsPerPage
+            )}
+            onPageChange={handlePageChange}
+          />
         </Eventlist>
       </MiddleContainer>
       <LowerContaniner>
