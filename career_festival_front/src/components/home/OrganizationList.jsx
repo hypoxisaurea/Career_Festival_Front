@@ -72,6 +72,7 @@ const SubscribeButtonWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+
   button {
     margin: 0 0.5vw auto;
     padding: 0.5vw;
@@ -79,6 +80,11 @@ const SubscribeButtonWrapper = styled.div`
     border: none;
     background-color: #582fff;
     color: #ffff;
+    cursor: pointer; // 커서를 손가락 모양으로 변경
+    transition: background-color 0.3s; // 호버 효과
+    &:hover {
+      background-color: #401f80; // 호버 시 배경색 변경
+    }
   }
 `;
 
@@ -100,8 +106,8 @@ const OrganizationList = (props) => {
 
       <OrganizationInfo>
         <OrganizationNameWrapper title={props.OrganizationName}>
-          {props.OrganizationName.length > 15
-            ? `${props.OrganizationName.slice(0, 15)}\.\.\.`
+          {props.OrganizationName.length > 10
+            ? `${props.OrganizationName.slice(0, 10)}...`
             : props.OrganizationName}
         </OrganizationNameWrapper>
 
