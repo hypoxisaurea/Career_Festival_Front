@@ -11,6 +11,7 @@ import {
   KeyworldOptionList,
   KeywordButton,
   InputFestivalName, // 추가: InputFestivalName 컴포넌트 import
+  InputIntroduce,
 } from "./Level7Style"; // Level7Style 파일에서 NextButton 스타일을 불러옴
 
 const Level7 = () => {
@@ -116,9 +117,16 @@ const Level7 = () => {
         value={eventName}
         onChange={(e) => setEventName(e.target.value)}
       />
-      
       <Title>간단 소개</Title>
+      <InputIntroduce
+        placeholder="간단소개 입력"
+        value={eventName}
+        onChange={(e) => setEventName(e.target.value)}
+      />
+      ㄴㄴ
       <Title>관심지역</Title>
+      
+
       <Title>행사 대표이미지</Title>
       <Title>행사 일정</Title>
       <Title>행사 신청 외부사이트</Title>

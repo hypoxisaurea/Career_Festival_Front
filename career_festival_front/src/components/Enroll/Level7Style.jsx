@@ -80,3 +80,15 @@ export const InputFestivalName = styled.input`
     outline: none;
   }
 `;
+export const InputIntroduce = styled.input`
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+
+  &:focus {
+    border-color: #582fff;
+    outline: none;
+  }
+`;
