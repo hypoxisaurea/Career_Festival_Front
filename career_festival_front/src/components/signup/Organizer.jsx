@@ -150,6 +150,7 @@ const handleNextInput = () => {
         isModalOpen={isModalOpen}
         handleModalToggle={handleModalToggle}
         closeModal={closeModal}
+        buttonText="선택하기"
       />
 
       {/* 이메일 입력 부분입니다. */}
