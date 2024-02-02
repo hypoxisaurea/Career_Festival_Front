@@ -1,11 +1,11 @@
 import React from 'react'
 import styled from 'styled-components'
 import  "../db/organizationsData.json"
-import { useLocation, useParams } from 'react-router-dom'
+import { Link, useLocation, useParams } from 'react-router-dom'
 import OrganizationInsight from '../components/organization/OrganizationInsight'
 import dummy from "../db/RecommendedEvents.json"
 import Recommend from '../components/home/Recommend'
-import buttonleft from '../assets/images/bannerleftarrow.png'
+import Backicon from '../assets/images/keyboard-left-arrow-button.png'
 
 
 //전체 페이지
@@ -115,7 +115,9 @@ const OrganizationFestivalListWrapper = styled.div`
   }
 `
 
-
+const BackLink = styled(Link)`
+    
+`
 
 
 
@@ -125,11 +127,15 @@ function OrganizationInfoPage() {
   console.log(OrganizationName);
   console.log(state);
 
+  
+
 
   return (
     <OrganizationInfoContainer>
         <OrganizationPageReturnContainer>
-           <img src ={buttonleft} alt ="뒤로가기"/>
+            <BackLink to="/festival-list"> {/* 메인 화면으로 이동하는 BackLink 컴포넌트 추가 */}
+                 <img src={Backicon} alt="Backicon" />
+            </BackLink>
         </OrganizationPageReturnContainer>
 
 
