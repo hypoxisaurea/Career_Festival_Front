@@ -1,7 +1,15 @@
 import React from "react";
 import styled from "styled-components";
+import DiaryIllust from "../../assets/images/diary.png";
 
-const IntroContainer = styled.div``;
+const Container = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const IntroContainer = styled.div`
+  flex: 1;
+`;
 const HelloContainer = styled.div`
   margin-bottom: 2vw;
 `;
@@ -39,19 +47,22 @@ const TitleText = styled.div`
 
 function RecordIntro() {
   return (
-    <IntroContainer>
-      <HelloContainer>
-        <ColorText>김커리</ColorText>
-        <NormalText>님, 안녕하세요?</NormalText>
-      </HelloContainer>
-      <ContentContainer>
-        <NormalText>행사에서 얻었던 정보들을</NormalText>
-      </ContentContainer>
-      <ContentContainer>
-        <TitleText>Career Festival</TitleText>
-        <NormalText>에 모아서 기록해보세요!</NormalText>
-      </ContentContainer>
-    </IntroContainer>
+    <Container>
+      <IntroContainer>
+        <HelloContainer>
+          <ColorText>김커리</ColorText>
+          <NormalText>님, 안녕하세요?</NormalText>
+        </HelloContainer>
+        <ContentContainer>
+          <NormalText>행사에서 얻었던 정보들을</NormalText>
+        </ContentContainer>
+        <ContentContainer>
+          <TitleText>Career Festival</TitleText>
+          <NormalText>에 모아서 기록해보세요!</NormalText>
+        </ContentContainer>
+      </IntroContainer>
+      <img src={DiaryIllust}></img>
+    </Container>
   );
 }
 
