@@ -27,12 +27,41 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
 
-  const handleLogin = () => {
-    // 로그인 로직 구현
-    console.log("Username:", username);
-    console.log("Password:", password);
-    console.log("Remember Me:", rememberMe);
-    // 실제 로그인 처리를 여기에 추가하세요.
+  // 로그인 버튼 클릭 시 호출되는 함수
+  const handleLogin = async () => {
+    try {
+      // 로그인 요청을 보내기 전에 로딩 상태를 표시할 수 있음
+
+      // fetch 함수를 사용하여 백엔드로 로그인 요청 보내기
+      const response = await fetch("http://localhost:9000/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        // 사용자가 입력한 아이디와 비밀번호를 JSON 형태로 백엔드에 전송
+        body: JSON.stringify({
+          username,
+          password,
+        }),
+      });
+
+      // 응답 확인
+      if (response.ok) {
+        // 로그인 성공
+        console.log("로그인 성공");
+
+        // 실제 프로젝트에서는 토큰을 받아온다면 로컬 스토리지 등에 저장해둘 수 있음
+
+        // 로그인 후 홈페이지로 이동하는 등의 작업 수행
+        // 예시: window.location.href = "/home";
+      } else {
+        // 로그인 실패
+        console.error("로그인 실패:", response.statusText);
+      }
+    } catch (error) {
+      // 네트워크 오류 등 예외 처리
+      console.error("에러 발생:", error);
+    }
   };
 
   return (
@@ -74,6 +103,7 @@ const Login = () => {
           <label htmlFor="rememberMe">로그인 유지</label>
         </RememberMe>
       </div>
+      {/* 로그인 버튼 클릭 시 handleLogin 함수 호출 */}
       <Button onClick={handleLogin}>로그인</Button>
       <HelpText>
         <IDFind as={Link} to="/find-username">아이디 찾기</IDFind> |{"  "}
