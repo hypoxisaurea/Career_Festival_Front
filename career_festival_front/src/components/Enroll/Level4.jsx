@@ -2,27 +2,87 @@ import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-// 다음 버튼 스타일 정의
-const NextButton = styled.button`
-  margin-top: 20px;
+const Container = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+  font-size: 1.5rem;
+  padding: 10vw;
+`;
+
+const Main = styled.div`
+  font-weight: bold;
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+`;
+//보기버튼
+const StyledLink = styled(Link)`
+  margin-top: 10vw;
   padding: 1vw 4vw;
   font-size: 1rem;
   background-color: #582fff;
   color: #fff;
   border: none;
-  border-radius: 8px;
+  text-decoration: none;
+  border-radius: 0.5vw;
   cursor: pointer;
+  &:hover {
+    background-color: #4700a6;
+  }
 `;
 
-// 주최자 프로필 개설 페이지 컴포넌트
+const ProgressBarContainer = styled.div`
+  width: 25%;
+  height: 0.5vw;
+  background: #ddd;
+  border-radius: 1vw;
+  margin-top: 2vw;
+`;
+
+const ProgressBar = styled.div`
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    rgba(88, 47, 255, 0.8),
+    rgba(71, 0, 166, 0.8)
+  );
+  border-radius: 1vw;
+`;
+
+const ProgressText = styled.div`
+  text-align: start;
+  font-size: 1rem;
+  color: #582fff;
+`;
+
+const ProgressPer = styled.div`
+  text-align: end;
+  font-size: 1rem;
+  color: #838383;
+`;
+
 const Level4 = () => {
   return (
-      <div>
-          화이팅~~~~~
-      <Link to="/organization-mypage">
-        <NextButton>보기</NextButton>
-      </Link>
-    </div>
+    <Container>
+      <Main>주최자 프로필 등록이 완료되었습니다.</Main>
+      <ProgressBarContainer>
+        <ProgressBar />
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            width: "100%",
+          }}
+        >
+          <ProgressText>complete</ProgressText>
+          <ProgressPer>100%</ProgressPer>
+        </div>
+      </ProgressBarContainer>
+      <StyledLink to="/organization-mypage">보기</StyledLink>
+    </Container>
   );
 };
 

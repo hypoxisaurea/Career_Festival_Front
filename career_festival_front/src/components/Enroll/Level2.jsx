@@ -16,6 +16,7 @@ const Container = styled.div`
 
 // 주요 제목 스타일 정의
 const Main = styled.div`
+  font-weight: bold;
   font-size: 1.5rem;
 `;
 
