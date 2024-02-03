@@ -44,7 +44,7 @@ const SearchImage = styled.img`
 
 // 검색 아이콘과 검색 입력창을 포함하는 컨테이너 스타일
 const SearchItem = styled.div`
-  width: 40%;
+  //width: 40%;
   display: flex;
   align-items: center;
   color: #582fff;
@@ -52,11 +52,11 @@ const SearchItem = styled.div`
 
 // 검색 입력창 스타일
 const SearchInput = styled.input`
-  width: 50%;
+  //width: 50%;
   border: 0.2vw solid transparent;
   border-image: linear-gradient(45deg, #582fff, #0085ff) 1;
   border-radius: 1vw;
-  padding: 0.7vw 1vw 0.7vw 2.5vw;
+  padding: 0.7vw 10vw 0.7vw 2.5vw;
   font-size: 0.8vw;
   outline: none;
 `;
@@ -77,45 +77,35 @@ const SearchButton = styled.button`
   }
 `;
 
-// 로그인 버튼 스타일
-const LoginButtonStyle = styled.button`
-  white-space: nowrap;
+
+// 로그인, 회원가입 버튼 스타일
+const Join = styled(Link)`
   background-color: #ffffff;
   color: #838383;
   font-weight: bold;
-  font-size: 0.8rem;
-  border: none;
+  padding: 1vw 0 1vw 3vw;
+  text-decoration: none;
+
+  @media screen and (max-width: 600px) {
+    font-size: 1vw;
+  }
 
   &:hover {
     text-decoration: underline;
   }
 `;
-// 회원가입 버튼 스타일
-const Join = styled(Link)`
-  background-color: #ffffff;
-  color: #838383;
-  font-weight: bold;
-  padding: 1vw 1vw 1vw 1vw;
-  font-size: 0.8rem;
-  border: none;
-  text-decoration: none; // 밑줄 없애는 스타일
-  
-  &:hover {
-    text-decoration: underline;
-  }
-`;
+
 // 환영 메시지 스타일
 const WelcomeText = styled.span`
   color: #582fff;
-  font-size: 0.8rem;
   margin-left: 1vw;
 `;
 
 
 // 환경설정 아이콘 스타일
 const SettingImage = styled.img`
-  width: 100%;
-  height: 100%;
+  width: 1vw;
+  height: 1vw;
 `;
 
 // 링크 목록을 포함하는 컨테이너 스타일
@@ -127,12 +117,6 @@ const LinkContainer = styled.div`
   flex-wrap: wrap;
   @media (max-width: 950px) {
     font-size: 0.8vw;
-    gap: 5vw;
-  }
-
-  @media (max-width: 500px) {
-    font-size: 0.8vw;
-    gap: 1vw;
   }
 `;
 
@@ -142,7 +126,6 @@ const LinkItem = styled(Link)`
   text-decoration: none;
   font-weight: bold;
   margin-left: 5vw;
-  font-size: 0.8rem;
   transition: color 0.3s; /* 색상 변화에 대한 트랜지션 효과 추가 */
 
   &:hover {
@@ -155,7 +138,6 @@ const RegisterItem = styled(Link)`
   color: #582fff;
   text-decoration: none;
   font-weight: bold;
-  font-size: 0.8rem;
   margin-left: 23vw;
   margin-right: 1vw;
   border: none;
@@ -219,11 +201,11 @@ const Header = () => {
           <SearchButton onClick={handleSearchButtonClick}>검색</SearchButton>
         </SearchItem>
         <AuthButtonsContainer>
-          <Link to="/login">
-            <LoginButtonStyle onClick={handleButtonClick}>
+          <Join to="/login">
+            <Join onClick={handleButtonClick}>
               {isLoggedIn ? "로그아웃" : "로그인"}
-            </LoginButtonStyle>
-          </Link>
+            </Join>
+          </Join>
           <Join to="/join">
             {isLoggedIn ? (
               <SettingImage src={setting} alt="setting" />

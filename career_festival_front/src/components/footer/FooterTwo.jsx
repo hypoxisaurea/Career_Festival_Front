@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import IDcard from "../../assets/images/IDcard.png";
+import CF from "../../assets/images/CareerFestival.png";
 
 const Main = styled.div`
   position: fixed;
@@ -9,15 +10,14 @@ const Main = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #eae8e8;
+  background: #f9f9f9;
   width: 100%;
-  height: 7vh; /* 높이 조절, 필요에 따라 변경하세요 */
+  height: 4vh; /* 높이 조절, 필요에 따라 변경하세요 */
   padding: 2vw;
   font-size: 3rem;
   font-weight: 800;
   color: #582fff;
   border: 1px solid none;
-  font-family: "Arial", sans-serif;//폰트 적용 안됨 어케함
 `;
 
 const LogoImage = styled.img`
@@ -28,12 +28,19 @@ const LogoImage = styled.img`
   margin-right: 1vw;
 `;
 
+const TitleImage = styled.img`
+  display: flex;
+  cursor: pointer;
+  width: 20%;
+  margin-right: 1vw;
+`;
+
 const FooterTwo = () => {
   return (
     <div>
       <Main>
         <LogoImage src={IDcard} alt="logo" />
-        Career Festival
+        <TitleImage src={CF} alt="CareerFestival" />
       </Main>
     </div>
   );
