@@ -178,12 +178,7 @@ const Header = () => {
   };
 
   // 로그인
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  // 로그인 버튼 클릭 핸들러
-  const handleButtonClick = () => {
-    setIsLoggedIn(!isLoggedIn);
-  };
+  const [isLoggedIn] = useState(false);
 
   return (
     <HeaderContainer>
@@ -202,9 +197,9 @@ const Header = () => {
         </SearchItem>
         <AuthButtonsContainer>
           <Join to="/login">
-            <Join onClick={handleButtonClick}>
+            {/* <Join onClick={handleButtonClick}> */}
               {isLoggedIn ? "로그아웃" : "로그인"}
-            </Join>
+            {/* </Join> */}
           </Join>
           <Join to="/join">
             {isLoggedIn ? (
