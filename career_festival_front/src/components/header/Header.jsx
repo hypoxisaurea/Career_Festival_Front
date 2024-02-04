@@ -26,11 +26,12 @@ const LogoSearchContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-right: 3vw;
 `;
 
 // 로고 이미지 스타일
 const LogoImage = styled.img`
-  width: 20vw;
+  width: 25vw;
   cursor: pointer;
   margin-bottom: 1vw;
   padding: 1vw;
@@ -84,7 +85,7 @@ const Join = styled(Link)`
   background-color: #ffffff;
   color: #838383;
   font-weight: bold;
-  padding: 1vw 0 1vw 3vw;
+  padding: 1vw 0 0.5vw 3vw;
   text-decoration: none;
 
   @media screen and (max-width: 600px) {
@@ -115,7 +116,7 @@ const LinkContainer = styled.div`
   justify-content: center;
   padding: 0.7vw;
   flex-wrap: wrap;
-  @media (max-width: 950px) {
+  @media (max-width: 600px) {
     font-size: 0.8vw;
   }
 `;
@@ -165,7 +166,7 @@ const Header = () => {
   // 검색어
   const [searchTerm, setSearchTerm] = useState("");
 
-  const { isLoggedIn, user, login, logout } = useAuth(); // useAuth 훅을 통해 isLoggedIn, user 사용
+  const { isLoggedIn, user, logout } = useAuth(); // useAuth 훅을 통해 isLoggedIn, user 사용
 
   // 검색어 변경 핸들러
   const handleSearchTermChange = (event) => {
