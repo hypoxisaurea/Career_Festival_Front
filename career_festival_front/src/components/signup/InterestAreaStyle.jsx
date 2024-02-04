@@ -42,6 +42,7 @@ const Modal = styled.div`
   display: ${(props) => (props.isOpen ? "flex" : "none")};
   justify-content: center;
   align-items: center;
+  z-index: 1; // 모달의 우선순위를 1로 설정
 
   // 내용 스타일 정의
   > div {
