@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import IDcard from "../../assets/images/IDcard.png";
@@ -66,7 +66,7 @@ const VerticalLine = styled.div`
 
 const DiaryHeader = () => {
   // const [isLoggedIn] = useState(false);
-  const { isLoggedIn, user, login, logout } = useAuth(); // useAuth 훅을 통해 isLoggedIn, user 사용
+  const { isLoggedIn, user } = useAuth(); // useAuth 훅을 통해 isLoggedIn, user 사용
 
   return (
       <LinkContainer>
