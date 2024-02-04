@@ -3,6 +3,9 @@ import React from 'react';
 import styled from 'styled-components';
 import dummy from "../../db/RecommendedEvents.json";
 
+import { Link } from "react-router-dom";
+
+
 
 import emptyStarIcon from "../../assets/images/emptyStarIcon.png";
 
@@ -122,42 +125,51 @@ const RecommendOrganizerImgWrapper = styled.div`
   }
   
 `
+//행사 상세페이지 가는 버튼 링크
+const StyledLink = styled(Link)`
+  text-decoration: none; // 밑줄 제거
+  color: #000000; 
+  // 여기에 추가적인 스타일을 적용할 수 있습니다.
+`;
 
 
-
-
-const Recommend = ({mainImg, eventName, recruitmentStart, recruitmentEnd, isLiked, price, profile}) => {
+const Recommend = ({mainImg, eventName, recruitmentStart, recruitmentEnd, isLiked, price, profile, eventId}) => {
   return (
-    <RecommendCardcontainer>
-    
-      <RecommendMainImgWrapper>
-        <img src={mainImg} alt='행사 이미지'/>
-      </RecommendMainImgWrapper>
+    // <StyledLink to={`/event/detail/${eventId}`}> 나중엔 이걸로 해야함 지금은 영상을 찍기 위함
+    <StyledLink to={"/detail"}>
+      {" "}
+      {/* 지금은 영상을 찍기 위함 */}
+      <RecommendCardcontainer>
+        <RecommendMainImgWrapper>
+          <img src={mainImg} alt="행사 이미지" />
+        </RecommendMainImgWrapper>
 
-      <RecommendTitleWrapper title={eventName}> 
-        {eventName}
-      </RecommendTitleWrapper>
+        <RecommendTitleWrapper title={eventName}>
+          {eventName}
+        </RecommendTitleWrapper>
 
+        <RecommendInfoWrapper>
+          <RecommandDetailWrapper>
+            <RecommendTimeInfoWrapper>
+              <div title={recruitmentStart}>{recruitmentStart}</div>
+              <div title={recruitmentEnd}>{recruitmentEnd}</div>
+            </RecommendTimeInfoWrapper>
 
-      <RecommendInfoWrapper>
-        <RecommandDetailWrapper>
-          <RecommendTimeInfoWrapper>
-            <div title={recruitmentStart}>{recruitmentStart}</div>
-            <div title={recruitmentEnd}>{recruitmentEnd}</div>
-          </RecommendTimeInfoWrapper>
-        
+            <RecommendIconWapper>
+              <div>
+                <StarIcon src={emptyStarIcon} alt="저장" />{" "}
+                {/*백엔드에서 나오면 바꾸기*/}{" "}
+              </div>
+              <div>{price}</div>
+            </RecommendIconWapper>
+          </RecommandDetailWrapper>
 
-          <RecommendIconWapper>
-            <div><StarIcon src={emptyStarIcon} alt='저장'/> {/*백엔드에서 나오면 바꾸기*/} </div>
-            <div>{price}</div>
-          </RecommendIconWapper>
-        </RecommandDetailWrapper>
-
-        <RecommendOrganizerImgWrapper>
-          <img src={profile} alt='주최자 이미지'/>
-        </RecommendOrganizerImgWrapper>
-      </RecommendInfoWrapper>      
-    </RecommendCardcontainer>
+          <RecommendOrganizerImgWrapper>
+            <img src={profile} alt="주최자 이미지" />
+          </RecommendOrganizerImgWrapper>
+        </RecommendInfoWrapper>
+      </RecommendCardcontainer>
+    </StyledLink>
   );
 };
 
