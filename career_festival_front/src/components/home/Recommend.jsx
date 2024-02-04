@@ -26,13 +26,19 @@ const RecommendCardcontainer = styled.div`
 const RecommendMainImgWrapper = styled.div`
   //border: solid green;
   border-radius: 10%;
+  width: 100%;
+  height: 0;
+  padding-bottom: 66.6667%; /* 400 / 600 * 100% */
+  position: relative;
 
-  img{
+  img {
+    position: absolute;
     width: 100%;
     height: 100%;
     border-radius: 10%;
   }
-`
+`;
+
 
 //행사 이름
 const RecommendTitleWrapper = styled.div`
