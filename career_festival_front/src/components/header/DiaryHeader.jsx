@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import IDcard from "../../assets/images/IDcard.png";
@@ -6,18 +6,19 @@ import { useAuth } from "../../context/AuthContext";
 
 const LogoImage = styled.img`
   display: flex;
-  width: 100%;
+  width: 2vw;
   cursor: pointer;
   margin-bottom: 0.5vw;
 `;
 
+// 환영 메시지 스타일
 const WelcomeText = styled.span`
   color: #582fff;
-  font-size: 0.8rem;
   margin-left: 1vw;
 `;
 
 
+// 링크 목록을 포함하는 컨테이너 스타일
 const LinkContainer = styled.div`
   display: flex;
   align-items: center;
@@ -25,35 +26,30 @@ const LinkContainer = styled.div`
   padding: 0.7vw;
   flex-wrap: wrap;
   box-shadow: 0 0.3vw 0.3vw rgba(0, 0, 0, 0.25);
-
-  @media (max-width: 950px) {
-    font-size: 0.8vw;
-  }
-
-  @media (max-width: 500px) {
+  @media (max-width: 600px) {
     font-size: 0.8vw;
   }
 `;
 
+// 각각의 링크 아이템 스타일
 const LinkItem = styled(Link)`
   color: #838383;
   text-decoration: none;
   font-weight: bold;
-  margin-left: 4vw;
-  font-size: 0.8rem;
-  transition: color 0.3s;
+  margin-left: 5vw;
+  transition: color 0.3s; /* 색상 변화에 대한 트랜지션 효과 추가 */
 
   &:hover {
     color: #582fff;
   }
 `;
 
+// 행사등록하기 링크 스타일
 const RegisterItem = styled(Link)`
   color: #582fff;
   text-decoration: none;
   font-weight: bold;
-  font-size: 0.8rem;
-  margin-left: 23vw;
+  margin-left: 15vw;
   margin-right: 1vw;
   border: none;
 
@@ -70,7 +66,7 @@ const VerticalLine = styled.div`
 
 const DiaryHeader = () => {
   // const [isLoggedIn] = useState(false);
-  const { isLoggedIn, user, login, logout } = useAuth(); // useAuth 훅을 통해 isLoggedIn, user 사용
+  const { isLoggedIn, user } = useAuth(); // useAuth 훅을 통해 isLoggedIn, user 사용
 
   return (
       <LinkContainer>
