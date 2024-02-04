@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import Recommend from "../components/home/Recommend";
 import dummy from "../db/RecommendedEvents.json";
 import styled from "styled-components";
+import Header from "../components/header/Header";
 import Banner from "../components/home/Banner";
 import InterestArea from "../components/signup/InterestArea";
 import { Link } from "react-router-dom";
@@ -47,7 +48,7 @@ const RecommendPersonalContainer = styled.div`
     font-weight: 900;
     margin: 2rem 0 0 0;
 
-     @media screen and (max-width: 600px) {
+    @media screen and (max-width: 600px) {
     font-size: 3vw;
   }
   }
@@ -138,6 +139,8 @@ const HomePage = () => {
   const recommendedByPersonSlice = dummy.RecommendedByPerson.slice(0, 6); // 처음 6개 아이템만 사용
   const recommendedByPlaceSlice = dummy.RecommendedByPlace.slice(0, 3); // 처음 3개 아이템만 사용
 
+  const [userName, setUserName] = useState(""); // 사용자 이름 상태
+  
   //지역명
   const [isModalOpen, setModalOpen] = useState(false);
   const [selectedArea, setSelectedArea] = useState("seoul");
@@ -175,6 +178,7 @@ const HomePage = () => {
 
   return (
     <div>
+      <Header userName={userName} />
       <Banner />
       <HomePageContainer>
         <RecommendPersonalContainer>

@@ -36,7 +36,7 @@ const OrganizationMypageButtonContainer = styled.div`
 const CorrectionButton = styled.button`
   width: 14vw;
   height: 3vw;
-  font-size: 1.3rem;
+  font-size: 1rem;
   font-weight: 700;
   color: #ffff;
   background-color: #838383;

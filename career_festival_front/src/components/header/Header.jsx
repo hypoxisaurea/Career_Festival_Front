@@ -1,5 +1,7 @@
+// src/components/header/Header.js
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
 import styled from "styled-components";
 import logo from "../../assets/images/logo.png";
 import search from "../../assets/images/search.png";
@@ -77,7 +79,6 @@ const SearchButton = styled.button`
   }
 `;
 
-
 // 로그인, 회원가입 버튼 스타일
 const Join = styled(Link)`
   background-color: #ffffff;
@@ -100,7 +101,6 @@ const WelcomeText = styled.span`
   color: #582fff;
   margin-left: 1vw;
 `;
-
 
 // 환경설정 아이콘 스타일
 const SettingImage = styled.img`
@@ -165,6 +165,8 @@ const Header = () => {
   // 검색어
   const [searchTerm, setSearchTerm] = useState("");
 
+  const { isLoggedIn, user, login, logout } = useAuth(); // useAuth 훅을 통해 isLoggedIn, user 사용
+
   // 검색어 변경 핸들러
   const handleSearchTermChange = (event) => {
     setSearchTerm(event.target.value);
@@ -176,9 +178,6 @@ const Header = () => {
     // 예를 들면 검색 결과를 가져오거나 페이지를 이동하는 등의 동작
     console.log("검색어:", searchTerm);
   };
-
-  // 로그인
-  const [isLoggedIn] = useState(false);
 
   return (
     <HeaderContainer>
@@ -196,11 +195,20 @@ const Header = () => {
           <SearchButton onClick={handleSearchButtonClick}>검색</SearchButton>
         </SearchItem>
         <AuthButtonsContainer>
-          <Join to="/login">
-            {/* <Join onClick={handleButtonClick}> */}
-              {isLoggedIn ? "로그아웃" : "로그인"}
-            {/* </Join> */}
+          <Join
+            to={isLoggedIn ? "/" : "/login"}
+            onClick={() => {
+              if (isLoggedIn) {
+                const confirmLogout = window.confirm("로그아웃하시겠습니까?");
+                if (confirmLogout) {
+                  logout();
+                }
+              }
+            }}
+          >
+            {isLoggedIn ? "로그아웃" : "로그인"}
           </Join>
+
           <Join to="/join">
             {isLoggedIn ? (
               <SettingImage src={setting} alt="setting" />
@@ -219,7 +227,7 @@ const Header = () => {
         <RegisterItem to="/register">행사등록하기</RegisterItem>
         <VerticalLine />
         <WelcomeText>
-          {isLoggedIn ? "000님 환영합니다!" : "로그인 해주세요!"}
+          {isLoggedIn ? `${user.name} 님 환영합니다!` : "로그인 해주세요!"}
         </WelcomeText>
       </LinkContainer>
     </HeaderContainer>
