@@ -18,7 +18,7 @@ const InterestAreaStyle = styled.div`
     //width: 10vw; // 버튼의 가로 크기 설정
     padding: 0.5vw 5vw 0.5vw 0.5vw; // 안쪽 여백 설정
     //font-size: 1rem; // 폰트 크기 설정
-    border: 0.1vw solid #dfdfdf; // 테두리 추가
+    border: 0.1vw solid #000000; // 테두리 추가
     border-radius: 0.3vw; // 테두리의 둥근 정도 설정
     cursor: pointer; // 커서를 포인터로 변경
     background-color: #ffffff; // 배경색 설정
@@ -42,6 +42,7 @@ const Modal = styled.div`
   display: ${(props) => (props.isOpen ? "flex" : "none")};
   justify-content: center;
   align-items: center;
+  z-index: 1; // 모달의 우선순위를 1로 설정
 
   // 내용 스타일 정의
   > div {

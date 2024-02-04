@@ -26,11 +26,12 @@ const LogoSearchContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-right: 3vw;
 `;
 
 // 로고 이미지 스타일
 const LogoImage = styled.img`
-  width: 20vw;
+  width: 25vw;
   cursor: pointer;
   margin-bottom: 1vw;
   padding: 1vw;
@@ -79,13 +80,12 @@ const SearchButton = styled.button`
   }
 `;
 
-
 // 로그인, 회원가입 버튼 스타일
 const Join = styled(Link)`
   background-color: #ffffff;
   color: #838383;
   font-weight: bold;
-  padding: 1vw 0 1vw 3vw;
+  padding: 1vw 0 0.5vw 3vw;
   text-decoration: none;
 
   @media screen and (max-width: 600px) {
@@ -103,7 +103,6 @@ const WelcomeText = styled.span`
   margin-left: 1vw;
 `;
 
-
 // 환경설정 아이콘 스타일
 const SettingImage = styled.img`
   width: 1vw;
@@ -117,7 +116,7 @@ const LinkContainer = styled.div`
   justify-content: center;
   padding: 0.7vw;
   flex-wrap: wrap;
-  @media (max-width: 950px) {
+  @media (max-width: 600px) {
     font-size: 0.8vw;
   }
 `;
@@ -167,7 +166,7 @@ const Header = () => {
   // 검색어
   const [searchTerm, setSearchTerm] = useState("");
 
-  const { isLoggedIn, user, login, logout } = useAuth(); // useAuth 훅을 통해 isLoggedIn, user 사용
+  const { isLoggedIn, user, logout } = useAuth(); // useAuth 훅을 통해 isLoggedIn, user 사용
 
   // 검색어 변경 핸들러
   const handleSearchTermChange = (event) => {
@@ -180,7 +179,6 @@ const Header = () => {
     // 예를 들면 검색 결과를 가져오거나 페이지를 이동하는 등의 동작
     console.log("검색어:", searchTerm);
   };
-
 
   return (
     <HeaderContainer>
@@ -198,9 +196,20 @@ const Header = () => {
           <SearchButton onClick={handleSearchButtonClick}>검색</SearchButton>
         </SearchItem>
         <AuthButtonsContainer>
-          <Join to="/login">
+          <Join
+            to={isLoggedIn ? "/" : "/login"}
+            onClick={() => {
+              if (isLoggedIn) {
+                const confirmLogout = window.confirm("로그아웃하시겠습니까?");
+                if (confirmLogout) {
+                  logout();
+                }
+              }
+            }}
+          >
             {isLoggedIn ? "로그아웃" : "로그인"}
           </Join>
+
           <Join to="/join">
             {isLoggedIn ? (
               <SettingImage src={setting} alt="setting" />
