@@ -18,7 +18,7 @@ const InterestAreaStyle = styled.div`
     //width: 10vw; // 버튼의 가로 크기 설정
     padding: 0.5vw 5vw 0.5vw 0.5vw; // 안쪽 여백 설정
     //font-size: 1rem; // 폰트 크기 설정
-    border: 0.1vw solid #dfdfdf; // 테두리 추가
+    border: 0.1vw solid #000000; // 테두리 추가
     border-radius: 0.3vw; // 테두리의 둥근 정도 설정
     cursor: pointer; // 커서를 포인터로 변경
     background-color: #ffffff; // 배경색 설정
