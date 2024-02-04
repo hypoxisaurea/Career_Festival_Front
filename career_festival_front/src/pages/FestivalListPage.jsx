@@ -8,6 +8,8 @@ import InterestArea from "../components/signup/InterestArea";
 import FilterKeyword from "../components/home/Filterkeyword";
 import Recommend from "../components/home/Recommend";
 import dummy from "../db/RecommendedEvents.json";
+import { Link } from "react-router-dom";
+
 
 //페이징
 import Pagination from "../components/home/Pagination";
@@ -313,6 +315,7 @@ const FestivalListPage = () => {
             selectedFilters={selectedFilters}
             removeFilter={removeFilter}
           />
+
           <FestivalListWrapper>
             {getCurrentPageData().map((item) => (
               <Recommend
@@ -324,9 +327,11 @@ const FestivalListPage = () => {
                 isLiked={item.isLiked}
                 price={item.price}
                 profile={item.profile}
+                //eventId={item.id} // 이벤트 ID 전달
               />
             ))}
           </FestivalListWrapper>
+
           <Pagination
             currentPage={currentPage}
             totalPages={Math.ceil(
