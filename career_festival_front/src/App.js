@@ -22,6 +22,7 @@ import DiaryHeader from "./components/header/DiaryHeader";
 import MyPage from "./pages/MyPage";
 import OrganizationInfoPage from "./pages/OrganizationInfoPage";
 import FooterTwo from "./components/footer/FooterTwo";
+import { AuthProvider } from "./context/AuthContext";
 
 import "./App.css";
 import Level1 from "./components/Enroll/Level1";
@@ -36,10 +37,11 @@ import OrganizationMypage from "./pages/OrganizationMypage";
 function App() {
   return (
     <Router>
+      <AuthProvider>
       <div className="App">
         <Routes>
           {/* 홈페이지 */}
-          <Route path="/" element={<><Header /><HomePage /><Footer /></>} />
+          <Route path="/" element={<><HomePage /><Footer /></>} />
           {/* 로그인,회원가입 */}
           <Route path="/login" element={<LoginPage />} />
           <Route path="/join" element={<><SignupPage /><FooterTwo/></>} />
@@ -74,6 +76,7 @@ function App() {
           <Route path="organization-mypage" element ={<><Header/><OrganizationMypage/><Footer/></>} />
         </Routes>
       </div>
+      </AuthProvider>
     </Router>
   );
 }

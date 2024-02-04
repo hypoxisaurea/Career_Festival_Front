@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import IDcard from "../../assets/images/IDcard.png";
+import { useAuth } from "../../context/AuthContext";
 
 const LogoImage = styled.img`
   display: flex;
@@ -68,7 +69,8 @@ const VerticalLine = styled.div`
 `;
 
 const DiaryHeader = () => {
-  const [isLoggedIn] = useState(false);
+  // const [isLoggedIn] = useState(false);
+  const { isLoggedIn, user, login, logout } = useAuth(); // useAuth 훅을 통해 isLoggedIn, user 사용
 
   return (
       <LinkContainer>
@@ -82,7 +84,7 @@ const DiaryHeader = () => {
         <RegisterItem to="/register">행사등록하기</RegisterItem>
         <VerticalLine/>
         <WelcomeText>
-          {isLoggedIn ? "000님 환영합니다!" : "로그인 해주세요!"}
+          {isLoggedIn ? `${user.name} 님 환영합니다!` : "로그인 해주세요!"}
         </WelcomeText>
       </LinkContainer>
   );
