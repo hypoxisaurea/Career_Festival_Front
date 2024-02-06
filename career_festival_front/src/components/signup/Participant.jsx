@@ -208,12 +208,13 @@ const handleNextInput = () => {
           "창업",
           "라이프",
           "예술",
+          "IT/프로그래밍",
           "마케팅",
           "경제/금융",
           "인문/사회",
           "과학기술",
           "디자인",
-          "관광/여행",
+          "관광/여행"
         ].map((keyword) => (
           <KeywordButton
             key={keyword}
