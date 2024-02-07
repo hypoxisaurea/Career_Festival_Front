@@ -115,7 +115,7 @@ const Level7 = () => {
       <Title>모집기간</Title>
 
       <PurpleTitle>행사 상세 정보</PurpleTitle>
-      <SubTitle>행사에 대해 자s세히 설명해주세요!</SubTitle>
+      <SubTitle>행사에 대해 자세히 설명해주세요!</SubTitle>
       <HL />
 
       {/* 추가: 커리어 키워드 입력 부분입니다. */}
