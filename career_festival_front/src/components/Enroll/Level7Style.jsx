@@ -92,3 +92,20 @@ export const InputIntroduce = styled.input`
     outline: none;
   }
 `;
+
+export const FestivalInformation = styled.div`
+  margin: 1vw;
+`;
+
+export const FestivalInformationInput = styled.textarea`
+  margin: 1vw;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+
+  &:focus {
+    border-color: #582fff;
+    outline: none;
+  }
+`;
