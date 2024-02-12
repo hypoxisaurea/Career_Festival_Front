@@ -95,10 +95,7 @@ function SeminarRecord({ onComplete }) {
       /[\0-\x7f]|([0-\u07ff]|(.))/g,
       "$&$1$2"
     ).length;
-    const count = e.target.value.replace(
-      /[\0-\x7f]|([0-\u07ff]|(.))/g,
-      "$&$1$2"
-    ).length;
+
     setInputCount(count);
     setIsWritten(count > 100); // 여기에서 작성 여부 판별 조건을 설정
   };
