@@ -13,11 +13,11 @@ const SymposiumContainer = styled.div`
     justify-content: center;
     align-items: center;
   }
-  `;
-
+`;
 
 function Symposium() {
-  const [isFestivalHistoryComplete, setFestivalHistoryComplete] = useState(false);
+  const [isFestivalHistoryComplete, setFestivalHistoryComplete] =
+    useState(false);
   const [isEventInfoComplete, setEventInfoComplete] = useState(false);
   const [isPeopleNetworkComplete, setPeopleNetworkComplete] = useState(false);
 
@@ -34,8 +34,10 @@ function Symposium() {
   };
   return (
     <SymposiumContainer>
-      택신<br/>
-      Symposium<br/>
+      택신
+      <br />
+      Symposium
+      <br />
       <Dropdown />
       <EventInfo onInfoComplete={handleEventInfoComplete} />
       <FestivalHistory onComplete={handleFestivalHistoryComplete} />

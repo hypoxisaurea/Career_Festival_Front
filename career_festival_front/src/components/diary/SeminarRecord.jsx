@@ -60,6 +60,7 @@ const TextInput = styled.textarea`
   border-top-right-radius: 0.6vw;
   border: 0.1vw #838383 solid;
   padding: 0.5vw 0 0 1vw;
+  box-sizing: border-box;
 
   &::placeholder {
     color: #838383;
@@ -90,6 +91,10 @@ function SeminarRecord({ onComplete }) {
   const [isWritten, setIsWritten] = useState(false);
 
   const onInputHandler = (e) => {
+    const count = e.target.value.replace(
+      /[\0-\x7f]|([0-\u07ff]|(.))/g,
+      "$&$1$2"
+    ).length;
     const count = e.target.value.replace(
       /[\0-\x7f]|([0-\u07ff]|(.))/g,
       "$&$1$2"
