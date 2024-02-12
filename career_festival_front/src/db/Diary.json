@@ -1,0 +1,44 @@
+{
+  "DiaryList": [
+    {
+      "id": 1,
+      "eventTitle": "5th UMC 해커톤",
+      "uploadedDate": "2024.12.14",
+      "diaryTitle": "나의 첫 해커톤",
+      "type": "학술대회",
+      "genre": "경제/금융"
+    },
+    {
+      "id": 2,
+      "eventTitle": "5th UMC 해커톤",
+      "uploadedDate": "2024.12.14",
+      "diaryTitle": "나의 첫 해커톤",
+      "type": "학술대회",
+      "genre": "경제/금융"
+    },
+    {
+      "id": 3,
+      "eventTitle": "5th UMC 해커톤",
+      "uploadedDate": "2024.12.14",
+      "diaryTitle": "나의 첫 해커톤",
+      "type": "학술대회",
+      "genre": "경제/금융"
+    },
+    {
+      "id": 4,
+      "eventTitle": "5th UMC 해커톤",
+      "uploadedDate": "2024.12.14",
+      "diaryTitle": "나의 첫 해커톤",
+      "type": "학술대회",
+      "genre": "경제/금융"
+    },
+    {
+      "id": 5,
+      "eventTitle": "5th UMC 해커톤",
+      "uploadedDate": "2024.12.14",
+      "diaryTitle": "나의 첫 해커톤",
+      "type": "학술대회",
+      "genre": "경제/금융"
+    }
+  ]
+}
