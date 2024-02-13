@@ -1,14 +1,34 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import CloseIcon from "../../assets/images/close.png";
 
 const PopUpContainer = styled.div`
   display: flex;
-  width: 100%;
-  height: 100%;
+  z-index: 999;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
   border: 1px #d9d9d9 solid;
   border-radius: 0.3rem;
-  background: #d9d9d9;
-  opacity: 0.85;
+  background: white;
+  opacity: 0.65;
+
+  padding: 1vw;
+`;
+
+const Button = styled.img`
+  width: 0.8vw;
+  height: 0.8vw;
+  cursor: pointer;
+`;
+
+const CloseButton = styled(Button)`
+  position: absolute;
+  top: 0.5vw;
+  right: 0.5vw;
 `;
 
 const PopUpContent = styled.div`
@@ -22,7 +42,7 @@ const PopUp = ({ onClose, children }) => {
   return (
     <PopUpContainer>
       <PopUpContent>
-        <button onClick={onClose}></button>
+        <CloseButton src={CloseIcon} onClick={onClose}></CloseButton>
         {children}
       </PopUpContent>
     </PopUpContainer>

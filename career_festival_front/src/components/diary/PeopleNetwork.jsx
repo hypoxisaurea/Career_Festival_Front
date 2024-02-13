@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const PeopleNetworkAll = styled.div`
   display: flex;
-  border: 1px solid;
+  border: 0.1vw #838383 solid;
   border-radius: 5px;
   background-color: #ffffff;
   justify-content: space-between;
@@ -13,8 +13,8 @@ const VerticalLine = styled.div`
   top: 0;
   bottom: 0;
   left: 50%;
-  width: 2px;
-  background-color: #181818;
+  width: 1.5px;
+  background-color: #838383;
   content: "";
 `;
 
@@ -35,27 +35,31 @@ const Title = styled.div`
 
 const Head = styled.div`
   display: flex;
+  margin: 0.5vw 0 0.5vw 0;
   width: 100%;
   height: 10%;
   flex: 1;
+
+  color: #838383;
+  font-family: "Noto Sans KR";
+  font-size: 1vw;
+  font-weight: light;
+
   border-radius: 5px;
-  background-color: #e3dcff;
   justify-content: center;
   align-items: center;
 `;
 
 const SectionContainer = styled.div`
-  border-radius: 5px;
   width: 50%;
-  color: #000000;
-  font-size: 1.4vw;
+  border-radius: 5px;
   display: flex;
   flex-direction: column;
 `;
 
 const InputField = styled.input`
   width: 90%;
-  padding: 5px;
+  padding: 0.5vw;
   border: none;
   outline: none;
   border-radius: 5px;
@@ -78,10 +82,21 @@ const PeopleNetwork = ({ onComplete }) => {
     const isName1Complete = name1 && (phone1 || email1);
     const isName2Complete = !name2 || (name2 && (phone2 || email2));
     const isName3Complete = !name3 || (name3 && (phone3 || email3));
-  
+
     const isComplete = isName1Complete && isName2Complete && isName3Complete;
     onComplete(isComplete);
-  }, [name1, name2, name3, phone1, phone2, phone3, email1, email2, email3, onComplete]);
+  }, [
+    name1,
+    name2,
+    name3,
+    phone1,
+    phone2,
+    phone3,
+    email1,
+    email2,
+    email3,
+    onComplete,
+  ]);
 
   const handleNameChange = (event, setter) => {
     const value = event.target.value;
