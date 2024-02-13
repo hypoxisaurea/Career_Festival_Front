@@ -25,7 +25,7 @@ export const NextButton = styled.button`
 `;
 export const PurpleTitle = styled.h1`
   color: #582fff; // 글자색을 #582fff로 지정
-  font-size: 1rem;
+  font-size: 1.5rem;
   text-align: left; // 왼쪽 정렬
 `;
 export const Title = styled.h1`
@@ -69,6 +69,7 @@ export const KeywordButton = styled.button`
 `;
 
 export const InputFestivalName = styled.input`
+  width: 30%;
   padding: 8px;
   margin-bottom: 10px;
   border: 1px solid #ccc;
@@ -81,6 +82,7 @@ export const InputFestivalName = styled.input`
   }
 `;
 export const InputIntroduce = styled.input`
+  width: 40%;
   padding: 8px;
   margin-bottom: 10px;
   border: 1px solid #ccc;
@@ -91,4 +93,102 @@ export const InputIntroduce = styled.input`
     border-color: #582fff;
     outline: none;
   }
+`;
+
+export const FestivalInformation = styled.div`
+width:100%;
+  margin: 1vw;
+`;
+
+export const FestivalInformationInput = styled.textarea`
+  margin: 1vw;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+
+  &:focus {
+    border-color: #582fff;
+    outline: none;
+  }
+`;
+
+export const AddOther = styled.input`
+  width: 12%;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+
+  &:focus {
+    border-color: #582fff;
+    outline: none;
+  }
+`;
+
+export const AddOtherButton = styled.button`
+  border: none;
+  padding: 8px;
+  color: #582fff;
+  background: #dad1fb;
+  border: 0.1rem solid;
+  border-radius: 5px;
+
+  &:hover {
+    cursor: pointer;
+    color: #ffffff;
+    background-color: #582fff;
+  }
+`;
+
+export const AddURL = styled.input`
+  width: 40%;
+  margin-bottom: 1vw;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+
+  &:focus {
+    border-color: #582fff;
+    outline: none;
+  }
+`;
+
+export const FestivalFee = styled.input`
+  width: 20%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+
+  &:focus {
+    border-color: #582fff;
+    outline: none;
+  }
+`;
+
+
+export const ManagerName = styled.input`
+  width: 20%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+
+  &:focus {
+    border-color: #582fff;
+    outline: none;
+  }
+
+`;export const ManagerEmail = styled.input`
+width: 20%;
+padding: 8px;
+border: 1px solid #ccc;
+border-radius: 4px;
+font-size: 1rem;
+
+&:focus {
+  border-color: #582fff;
+  outline: none;
+}
 `;

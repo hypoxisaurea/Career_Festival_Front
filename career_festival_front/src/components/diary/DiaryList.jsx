@@ -1,16 +1,19 @@
 import React from "react";
+import { useState, useEffect, useCallback } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import Pagination from "./Pagination";
 import LeftQuote from "../../assets/images/leftQuote.png";
 import RightQuote from "../../assets/images/rightQuote.png";
+import dummy from "../../db/Diary.json";
 
 const ListContainer = styled.div``;
 
 const ContentContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 14px;
+  gap: 2vw;
+  margin-bottom: 5vw;
 `;
 
 const DiaryContainer = styled.div`
@@ -130,30 +133,54 @@ const RightQuoteImage = styled.img`
 `;
 
 const DiaryList = () => {
+  // 페이징 관련 state
+  const itemsPerPage = 4; // 페이지당 보여줄 항목 수
+  const [currentPage, setCurrentPage] = useState(1);
+
+  // 페이지에 해당하는 데이터를 반환하는 함수
+  const getCurrentPageData = useCallback(() => {
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    const myDiary = dummy.DiaryList || [];
+    return myDiary.slice(startIndex, endIndex);
+  }, [currentPage, itemsPerPage]);
+
+  // 페이지 변경 시 호출되는 함수
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
+
   return (
     <ListContainer>
       <ContentContainer>
-        <DiaryContainer>
-          <ColorContainer />
-          <DiaryContentContainer>
-            <HeaderContainer>
-              <EventTitleText>5th UMC 해커톤</EventTitleText>
-              <DateText>2024.12.14</DateText>
-            </HeaderContainer>
-            <HorizontalDivider />
-            <QuoteContainer>
-              <LeftQuoteImage src={LeftQuote}></LeftQuoteImage>
-              <RightQuoteImage src={RightQuote}></RightQuoteImage>
-            </QuoteContainer>
-            <DiaryTitleText>나의 첫 해커톤</DiaryTitleText>
-            <TagContainer>
-              <TypeTagContainer>학술대회</TypeTagContainer>
-              <GenreTagContainer>경제/금융</GenreTagContainer>
-            </TagContainer>
-          </DiaryContentContainer>
-        </DiaryContainer>
+        {getCurrentPageData().map((item) => (
+          <DiaryContainer>
+            <ColorContainer />
+            <DiaryContentContainer>
+              <HeaderContainer>
+                <EventTitleText>{item.eventTitle}</EventTitleText>
+                <DateText>{item.uploadedDate}</DateText>
+              </HeaderContainer>
+              <HorizontalDivider />
+              <QuoteContainer>
+                <LeftQuoteImage src={LeftQuote}></LeftQuoteImage>
+                <RightQuoteImage src={RightQuote}></RightQuoteImage>
+              </QuoteContainer>
+              <DiaryTitleText>{item.diaryTitle}</DiaryTitleText>
+              <TagContainer>
+                <TypeTagContainer>{item.type}</TypeTagContainer>
+                <GenreTagContainer>{item.genre}</GenreTagContainer>
+              </TagContainer>
+            </DiaryContentContainer>
+          </DiaryContainer>
+        ))}
       </ContentContainer>
-      <Pagination />
+
+      <Pagination
+        currentPage={currentPage}
+        totalPages={Math.ceil(dummy.DiaryList.length / itemsPerPage)}
+        onPageChange={handlePageChange}
+      />
     </ListContainer>
   );
 };

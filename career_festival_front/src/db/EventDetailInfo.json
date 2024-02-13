@@ -1,0 +1,24 @@
+{
+  "eventInformation": [
+    {
+      "eventId": 1,
+      "eventName": "INSIDERS SUMMIT 2024",
+      "recruitmentStart": "2021-01-03T08:00:00",
+      "recruitmentEnd": "2021-02-22T20:00:00",
+      "eventCost": "무료"
+    }
+  ],
+  "comments": [
+    {
+      "userId": 101,
+      "eventId": 1,
+      "commentContent": "정말 유익한 행사였습니다!",
+      "parent": null,
+      "Name": "홍길동",
+      "totalLikeCount": 10
+    }
+  ],
+  "currentPage": 0,
+  "totalPages": 5,
+  "totalElements": 50
+}
