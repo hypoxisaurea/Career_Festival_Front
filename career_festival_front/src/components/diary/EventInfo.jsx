@@ -41,6 +41,8 @@ const TextInput = styled.textarea`
   }
 `;
 
+const Hashtag = styled.input``;
+
 const EventInfo = ({ onInfoComplete }) => {
   const [eventName, setEventName] = useState("");
   const [title, setTitle] = useState("");
@@ -64,6 +66,16 @@ const EventInfo = ({ onInfoComplete }) => {
       default:
         break;
     }
+  };
+
+  const isEmptyValue = (value) => {
+    if (!value.length) return true;
+    return false;
+  };
+
+  const keyDownHandler = (e) => {
+    if (e.code !== "Enter") return;
+    e.preventDefault();
   };
 
   const checkInfoComplete = () => {
@@ -98,10 +110,9 @@ const EventInfo = ({ onInfoComplete }) => {
 
       <InputContainer>
         <TitleText>행사 커리어 키워드</TitleText>
-        <TextInput
-          placeholder="행사 명"
-          onChange={(e) => handleInputChange("keywords", e.target.value)}
-          onBlur={handleBlur}
+        <Hashtag
+          placeholder="#행사분야를 더 자세하게 나눠보세요!"
+          onKeyDown={keyDownHandler}
         />
       </InputContainer>
     </InfoContainer>

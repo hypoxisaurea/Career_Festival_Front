@@ -1,46 +1,51 @@
 import React from "react";
 import styled from "styled-components";
 
-const Pagination = ({ postsNum, setCurrentPage, currentPage }) => {
-  const pageList = [];
-  const postsPerPage = 4;
-  const totalPages = Math.ceil(postsNum / postsPerPage);
+const PaginationWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 2vw;
+`;
 
-  for (let i = 1; i <= totalPages; i++) {
-    pageList.push(i);
+const PageButton = styled.button`
+  margin: 0 0.5vw;
+  padding: 0.3vw 0.5vw;
+  border: 1px solid #582fff;
+  border-radius: 3px;
+  background-color: ${(props) => (props.isActive ? "#582fff" : "transparent")};
+  color: ${(props) => (props.isActive ? "#ffffff" : "#582fff")};
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+
+  &:hover {
+    background-color: #582fff;
+    color: #ffffff;
   }
+`;
 
-  const goToNextPage = () => {
-    setCurrentPage(currentPage + 1);
+const Pagination = ({ currentPage, totalPages, onPageChange }) => {
+  const pageButtons = Array.from(
+    { length: totalPages },
+    (_, index) => index + 1
+  );
+
+  const handlePageClick = (page) => {
+    // 페이지를 변경할 때 현재 페이지를 전달하여 누적되지 않게 합니다.
+    onPageChange(page);
   };
 
-  const goToPrevPage = () => {
-    setCurrentPage(currentPage - 1);
-  };
-
-  if (totalPages === 1) {
-    return null;
-  }
   return (
-    <div>
-      <button onClick={goToPrevPage} disabled={currentPage === 1}>
-        prev
-      </button>
-
-      {pageList.map((page) => (
-        <button
+    <PaginationWrapper>
+      {pageButtons.map((page) => (
+        <PageButton
           key={page}
-          onClick={() => setCurrentPage(page)}
-          className={currentPage === page ? "active" : ""}
+          isActive={page === currentPage}
+          onClick={() => handlePageClick(page)}
         >
           {page}
-        </button>
+        </PageButton>
       ))}
-
-      <button onClick={goToNextPage} disabled={currentPage === pageList.length}>
-        next
-      </button>
-    </div>
+    </PaginationWrapper>
   );
 };
 

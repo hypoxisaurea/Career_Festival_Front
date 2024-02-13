@@ -37,7 +37,7 @@ const Calendar = () => {
       dateFormat="yyyy.MM.dd"
       shouldCloseOnSelect
       minDate={new Date("2000-01-01")}
-      maxDate={new Date()}
+      maxDate={new Date()} //이 줄을 지우면 미래 날짜 선택 가능
       selected={selectedDate}
       onChange={(date) => setSelectedDate(date)}
       placeholderText="행사를 다녀온 날짜를 선택해주세요"
