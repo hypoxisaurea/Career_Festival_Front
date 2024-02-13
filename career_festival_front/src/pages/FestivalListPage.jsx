@@ -10,12 +10,11 @@ import Recommend from "../components/home/Recommend";
 import dummy from "../db/RecommendedEvents.json";
 import { Link } from "react-router-dom";
 
-
 //페이징
 import Pagination from "../components/home/Pagination";
 
 //주최자
-import organizationsData from "../db/organizationsData.json"
+import organizationsData from "../db/organizationsData.json";
 import OrganizationList from "../components/home/OrganizationList";
 import buttonLeft from "../assets/images/bannerleftarrow.png";
 import buttonRight from "../assets/images/bannerrightarrow.png";
@@ -129,7 +128,6 @@ const LowerContaniner = styled.div`
   padding: 1vw 0 4vw 0;
 `;
 
-
 //주최자
 const OrganizationListContainer = styled.div`
   width: 60%;
@@ -162,7 +160,28 @@ const OrganizationListBoxWrapper = styled.div`
   gap: 3vw;
 `;
 
+const ButtonContainer = styled.div`
+  display: flex;
+  align-items: center;
+`;
 
+const Button = styled.button`
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 2vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const LeftButton = styled(Button)`
+  margin-right: 10px;
+`;
+
+const RightButton = styled(Button)`
+  margin-left: 10px;
+`;
 
 const FestivalListPage = () => {
   const [selectedFilters, setSelectedFilters] = useState([]);
@@ -225,8 +244,6 @@ const FestivalListPage = () => {
     setModalOpen(false);
   };
 
-
-  
   // 페이징 관련 state
   const itemsPerPage = 9; // 페이지당 보여줄 항목 수
   const [currentPage, setCurrentPage] = useState(1);
@@ -244,23 +261,29 @@ const FestivalListPage = () => {
     setCurrentPage(page);
   };
 
-
-
   //주최자
-  const organizationsListSlice = organizationsData.OrganizationsList.slice(
-    0,
-    4
-  ); // 처음 4개 아이템 우선 보임
+  const organizationsList = organizationsData.OrganizationsList;
+  const [startIndex, setStartIndex] = useState(0);
 
-  const Button = styled.img`
-    width: 2vw;
-    height: 2.5vw;
-    margin: 2vw;
-    cursor: pointer;
-  `;
+  // 주최자 목록에서 보여질 데이터 슬라이스를 계산합니다.
+  const organizationsListSlice = organizationsList.slice(
+    startIndex,
+    startIndex + 4
+  );
 
-  const ButtonLeftStyled = styled(Button)``;
-  const ButtonRightStyled = styled(Button)``;
+  // 오른쪽 버튼 클릭 시 다음 4개의 항목 데이터를 보여주는 함수
+  const handleRightButtonClick = () => {
+    if (startIndex + 4 < organizationsList.length) {
+      setStartIndex(startIndex + 4);
+    }
+  };
+
+  // 왼쪽 버튼 클릭 시 이전 4개의 항목 데이터를 보여주는 함수
+  const handleLeftButtonClick = () => {
+    if (startIndex - 4 >= 0) {
+      setStartIndex(startIndex - 4);
+    }
+  };
 
   return (
     <div>
@@ -349,23 +372,23 @@ const FestivalListPage = () => {
           </h2>{" "}
           {/* 숫자는 나중에 데이터로 받아와야함 */}
           <OrganizationslistWraper>
-            <ButtonLeftStyled src={buttonLeft} alt="ButtonLeft" />
-
-            <OrganizationListBoxWrapper>
-              {organizationsListSlice.map((item) => {
-                return (
-                  <OrganizationList
-                    profile={item.profile}
-                    OrganizationName={item.OrganizationName}
-                    uploadedNumber={item.uploadedNumber}
-                    subscribed={item.subscribed}
-                    subscriberNumber={item.subscriberNumber}
-                  />
-                );
-              })}
-            </OrganizationListBoxWrapper>
-
-            <ButtonRightStyled src={buttonRight} alt="ButtonRight" />
+            <ButtonContainer>
+              <LeftButton onClick={handleLeftButtonClick}>◁</LeftButton>
+              <OrganizationListBoxWrapper>
+                {organizationsListSlice.map((item) => {
+                  return (
+                    <OrganizationList
+                      profile={item.profile}
+                      OrganizationName={item.OrganizationName}
+                      uploadedNumber={item.uploadedNumber}
+                      subscribed={item.subscribed}
+                      subscriberNumber={item.subscriberNumber}
+                    />
+                  );
+                })}
+              </OrganizationListBoxWrapper>
+              <RightButton onClick={handleRightButtonClick}>▷</RightButton>
+            </ButtonContainer>
           </OrganizationslistWraper>
         </OrganizationListContainer>
       </LowerContaniner>
