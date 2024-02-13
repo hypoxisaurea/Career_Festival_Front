@@ -33,6 +33,7 @@ import Level4 from "./components/Enroll/Level4";
 import Level6 from "./components/Enroll/Level6";
 import Level7 from "./components/Enroll/Level7";
 import OrganizationMypage from "./pages/OrganizationMypage";
+import MyPageCorrection from "./pages/MyPageCorrection";
 
 function App() {
   return (
@@ -59,7 +60,7 @@ function App() {
           <Route path="/detail" element={<><Header /><DetailFestivalPage /><Footer /></>} />
           {/* 커뮤니티 */}
           <Route path="/community" element={<><Header /><Community /><Footer /></>} />
-          <Route path="/mypage" element={<><Header /><MyPage /><Footer /></>} />
+          
           {/* 행사 등록하기 */}
           <Route path="/register" element={<><RegisterPage /></>} />
           <Route path="/register/Level1" element={<><Level1 /></>} />
@@ -74,6 +75,8 @@ function App() {
           <Route path="/organizationinfo/:OrganizationName" element ={<><Header/><OrganizationInfoPage/><Footer/></>} />
           {/*마이페이지*/}
           <Route path="organization-mypage" element ={<><Header/><OrganizationMypage/><Footer/></>} />
+          <Route path="/mypage-correction" element={<><Header /><MyPageCorrection /><Footer /></>} />
+          <Route path="/mypage" element={<><Header /><MyPage/><Footer /></>} />
         </Routes>
       </div>
       </AuthProvider>
