@@ -68,30 +68,36 @@ const InputField = styled.input`
   margin-bottom: 10px;
   color: #565656;
   background: none;
-  border: 2px solid #030104;
+  border: 2px solid #030104; /* 기본 테두리 색 */
   border-radius: 5px;
 
   &:focus {
-    + label {
-      transform: translate(0.625rem, -1rem);
-      border-color: #030104;
-    }
+    border-color: #582fff; /* 포커스 됐을 때 테두리 색 */
+    outline: none; /* 기본 포커스 효과 제거 */
+  }
+
+  &:focus + label,
+  &:not(:placeholder-shown) + label {
+    transform: translate(0.625rem, -1rem);
+    border-color: #582fff; /* 포커스 됐을 때 라벨 테두리 색 */
   }
 `;
+
 
 // 입력 필드 레이블 스타일
 const Label = styled.label`
   position: absolute;
-  top: -0.5rem;
-  left: -0.25rem;
-  transform: translate(0.625rem, 0.625rem);
+  top: ${({ isFocusedOrFilled }) => (isFocusedOrFilled ? '-0.6rem' : '1.3rem')};
+  left: ${({ isFocusedOrFilled }) => (isFocusedOrFilled ? '-0.25rem' : '-0.25rem')}; /* 왼쪽으로 10px만큼 이동 */
+  transform: ${({ isFocusedOrFilled }) => (isFocusedOrFilled ? 'translate(0.625rem, -1rem)' : 'translateY(-50%)')};
   color: #030104;
   background-color: #ffffff;
   padding-inline: 0.25rem;
-  border: 2px solid transparent;
+  // border: 2px solid transparent;
   pointer-events: none;
   transition: transform 250ms, background-color 250ms, border-color 250ms;
 `;
+
 
 // 일반 버튼 스타일
 const Button = styled.button`
