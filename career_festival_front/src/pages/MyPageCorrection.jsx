@@ -4,8 +4,8 @@ import { Link, useLocation, useParams, useNavigate } from 'react-router-dom'
 import  "../db/organizationsData.json"
 import dummy from "../db/RecommendedEvents.json"
 import Recommend from '../components/home/Recommend'
-import MypageProfile from '../components/mypage/MypageProfile'
-import MypageInfo from "../components/mypage/MypageInfo";
+import MypageProfileCorrection from '../components/mypage/MypageProfileCorrection'
+import MypageInfoCorrection from "../components/mypage/MypageInfoCorrection";
 
 
 
@@ -49,7 +49,7 @@ const CorrectionButton = styled.button`
   font-size: 1rem;
   font-weight: 700;
   color: #ffff;
-  background-color: #838383;
+  background-color: #582FFF;
   border-radius: 10px;
   border: none;
 
@@ -115,20 +115,20 @@ const DeterminedFestivalListWrapper = styled.div`
 
 
 
-const OrganizationMypage = (props) => {
+const MyPageCorrection = (props) => {
   
 
   return (
     
     <OrganizationInfoContainer>
       <OrganizationMypageProfileContainer>
-        <MypageProfile/>
+        <MypageProfileCorrection/>
         <HorizontalDivider/>
-        <MypageInfo/>
+        <MypageInfoCorrection/>
       </OrganizationMypageProfileContainer>
 
-      <OrganizationMypageButtonContainer link to = "/mypage-correction">
-        <CorrectionButton>수정하기</CorrectionButton>
+      <OrganizationMypageButtonContainer link to = "/mypage">
+        <CorrectionButton>수정완료</CorrectionButton>
       </OrganizationMypageButtonContainer>
 
 
@@ -178,4 +178,4 @@ const OrganizationMypage = (props) => {
   )
 };
 
-export default OrganizationMypage;
+export default MyPageCorrection;
