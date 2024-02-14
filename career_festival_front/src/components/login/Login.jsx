@@ -1,7 +1,6 @@
 // src/components/login/Login.jsx
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import LoginStyle from "./LoginStyle"; // 스타일 파일 불러오기
 import Backicon from "../../assets/images/keyboard-left-arrow-button.png";
 import Logo from "../../assets/images/logo.png";
 import Kakao from "../../assets/images/login_kakao.png";
