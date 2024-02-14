@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import InterestArea from "../signup/InterestArea"; // 관심지역 컴포넌트 import
 import imageIcon from "../../assets/images/frame_gallery_image.png";
+
 import {
   NextButton,
   PurpleTitle,
@@ -146,7 +147,7 @@ const Level7 = () => {
           "인문/사회",
           "과학기술",
           "디자인",
-          "관광/여행"
+          "관광/여행",
         ].map((keyword) => (
           <KeywordButton
             key={keyword}
@@ -218,7 +219,6 @@ const Level7 = () => {
       {/* 파일 업로드를 위한 input 요소 */}
       {/* 파일 업로드를 위한 input 요소 */}
 
-
       {/* 파일 미리보기를 위한 img 요소 */}
       {selectedImage && (
         <img src={URL.createObjectURL(selectedImage)} alt="행사 대표이미지" />
@@ -250,7 +250,7 @@ const Level7 = () => {
         />
 
         {/* AttachmentButton에 onClick 이벤트 핸들러 추가 */}
-        <AttachmentButton >
+        <AttachmentButton>
           <ImageAddButton onClick={handleAttachmentButtonClick}>
             <ImageIcon src={imageIcon} alt="이미지 첨부 아이콘" />
             <span>이미지첨부</span>
@@ -281,7 +281,7 @@ const Level7 = () => {
         onChange={(e) => setContactEmail(e.target.value)}
       />
 
-      <Link to="/">
+      <Link to="/organization-mypage">
         <NextButton>행사개설</NextButton>
       </Link>
     </Level7Container>

@@ -8,7 +8,7 @@ import InterestArea from "../components/signup/InterestArea";
 import FilterKeyword from "../components/home/Filterkeyword";
 import Recommend from "../components/home/Recommend";
 import dummy from "../db/RecommendedEvents.json";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 //페이징
 import Pagination from "../components/home/Pagination";
