@@ -1,18 +1,19 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import PopUp from "./PopUp";
+import SirenImage from "../../assets/images/siren.png";
 
 const EnrollmentContainer = styled.div`
   width: 20vw;
   height: 25vw;
   margin-left: 2vw;
-
+  border-radius: 1vw;
   background: white;
-  box-shadow: 0px 1vw 1vw rgba(0, 0, 0, 0.25);
+  box-shadow: 0 1vw 1vw rgba(0, 0, 0, 0.25);
 `;
 
 const InfoContainer = styled.div`
-margin: 1vw 2vw 1vw 2vw;
+  margin: 1vw 2vw 1vw 2vw;
 `;
 
 const ReportContainer = styled.div`
@@ -21,33 +22,28 @@ const ReportContainer = styled.div`
   font-family: "Noto Sans KR";
   font-weight: 500;
   word-wrap: break-word;
-  margin: 2px 0 0 0;
+  margin: 0.2vw 0 0 0;
   display: inline-block;
   float: right;
 `;
 
+//프로필과 스폰서 감싸는 태그
 const SponsorContainer = styled.div`
   display: flex;
-  margin-top: 15px;
+  margin-top: 1vw;
 `;
 
-const ButtonContainer = styled.div`
-  margin: 1vw 2vw 0 1.5vw;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1vw;
-`;
-
+//과학기술
 const Category1 = styled.div`
   color: black;
   font-size: 0.8vw;
   font-family: "Noto Sans KR";
   font-weight: 500;
   word-wrap: break-word;
-
   display: inline-block;
 `;
 
+//세로바
 const VerticalDivider = styled.div`
   width: 0.1vw;
   height: 1vw;
@@ -56,15 +52,26 @@ const VerticalDivider = styled.div`
   display: inline-block;
 `;
 
+//강연/세미나
 const Category2 = styled.div`
   color: black;
   font-size: 0.8vw;
   font-family: "Noto Sans KR";
   font-weight: 500;
   word-wrap: break-word;
-
   display: inline-block;
 `;
+
+//신고하기를 감싸는 태그
+const Make = styled.div`
+  display: flex;
+`;
+
+//신고하기 아이콘
+const SirenIcon = styled.img`
+  width: 20%; // 이미지 크기 조절
+`;
+
 
 const EventTitle = styled.div`
   width: 100%;
@@ -77,50 +84,63 @@ const EventTitle = styled.div`
   word-wrap: break-word;
 `;
 
+const Tag = styled.div`
+  display: flex;
+`;
+
 const EventTag = styled.div`
   border-radius: 1vw;
-  border: 1px #582fff solid;
-
+  border: 0.1vw #582fff solid;
   color: #582fff;
   font-size: 0.8vw;
   font-family: "Rubik";
   font-weight: 500;
   word-wrap: break-word;
-
   display: inline-block;
-  margin: 1% 3.5% 0 0; 
+  margin: 1% 3.5% 0 0;
   padding: 2% 3.5% 2% 3.33%;
 `;
 
 const HorizontalDivider = styled.div`
-  width: 338px;
-  height: 1px;
+  width: 16vw;
+  height: 0.1vw;
   background: #d9d9d9;
-  margin: 16px 0 0 0;
+  margin: 1vw 0 0 0;
 `;
 
+//프로필
 const Profile = styled.div`
-  width: 29px;
-  height: 29px;
-  background: #d9d9d9; //임시
+  width: 2vw;
+  height: 2vw;
+  background: #d9d9d9;
   border-radius: 70%;
   display: inline-block;
-  //overflow: hidden;
-  //object-fit: cover;
-  margin: 0 8px 0 0;
+  margin: 0 1vw 0 0;
   align-items: flex-start;
 `;
-
+//스폰서
 const Sponsor = styled.div`
   color: black;
   font-size: 0.9vw;
   font-family: "Noto Sans KR";
   font-weight: 500;
   word-wrap: break-word;
-
   display: inline-block;
   align-items: flex-start;
-  margin: 3px 0 0 8px;
+  margin: 0.3vw 0 0 0vw;
+`; 
+
+//과학기술과 강연세미나를 감싸고 있는 태그
+const Body = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
+
+//신고하기 까지 감싸는 태그
+const Cover = styled.div`
+  display: flex;
+  justify-content: space-between;
 `;
 
 const Date = styled.div`
@@ -139,15 +159,21 @@ const Price = styled.div`
   font-family: "Noto Sans KR";
   font-weight: 700;
   word-wrap: break-word;
-
   margin: 1vw 0 0 0;
   display: inline-block;
   float: right;
 `;
 
+const ButtonContainer = styled.div`
+  margin: 2vw 2vw 0 1.5vw;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1vw;
+`;
+
 const ApplyButton = styled.button`
   width: 8vw;
-  height: 3vw;
+  height: 2.5vw;
   background: #582fff;
   border-radius: 0.5vw;
   border: none;
@@ -161,7 +187,7 @@ const ApplyButton = styled.button`
 
 const ConfirmButton = styled.button`
   width: 8vw;
-  height: 3vw;
+  height: 2.5vw;
   background: #582fff;
   border-radius: 0.5vw;
   border: none;
@@ -175,7 +201,7 @@ const ConfirmButton = styled.button`
 
 const ShareButton = styled.button`
   width: 8vw;
-  height: 3vw;
+  height: 2.5vw;
   background: #e3dcff;
   border-radius: 0.5vw;
   border: none;
@@ -189,7 +215,7 @@ const ShareButton = styled.button`
 
 const BookmarkButton = styled.button`
   width: 8vw;
-  height: 3vw;
+  height: 2.5vw;
   background: #e3dcff;
   border-radius: 0.5vw;
   border: none;
@@ -218,26 +244,36 @@ function Enrollment() {
   return (
     <EnrollmentContainer>
       <InfoContainer>
-        <Category1>과학기술</Category1>
-        <VerticalDivider />
-        <Category2>강연/세미나</Category2>
-        <ReportContainer
-          onClick={() => openModal("행사신고가 완료되었습니다!")}
-        >
-          신고하기
-        </ReportContainer>
+        <Cover>
+        <Body>
+          <Category1>과학기술</Category1>
+          <VerticalDivider />
+          <Category2>강연/세미나</Category2>
+        </Body>
+        <Make>
+          <ReportContainer
+            onClick={() => openModal("행사신고가 완료되었습니다!")}
+          >
+            신고하기
+            <SirenIcon src={SirenImage} alt="siren" />{" "}
+          </ReportContainer>
+        </Make></Cover>
         <EventTitle>
           제4회 홍익대학교 인공지능 캠프 <br /> [문과생 전용]
         </EventTitle>
-        <EventTag>IT/프로그래밍</EventTag>
-        <EventTag>과학기술</EventTag>
+        <Tag>
+          <EventTag>IT/프로그래밍</EventTag>
+          <EventTag>과학기술</EventTag>
+        </Tag>
         <HorizontalDivider />
         <SponsorContainer>
           <Profile />
           <Sponsor>뉴럴웍스랩</Sponsor>
         </SponsorContainer>
-        <Date>2024년 1월 13일</Date>
-        <Price>무료</Price>
+        <Body>
+          <Date>2024년 1월 13일</Date>
+          <Price>무료</Price>
+        </Body>
       </InfoContainer>
 
       <ButtonContainer>
