@@ -255,7 +255,10 @@ const Level7 = () => {
             <ImageIcon src={imageIcon} alt="이미지 첨부 아이콘" />
             <span>이미지첨부</span>
           </ImageAddButton>
-          <p>{eventInfo.length}/5000 글자 입력됨</p>
+          <p>
+            <span style={{ color: "#582fff" }}>{eventInfo.length}</span>/5000
+            글자 입력됨
+          </p>
         </AttachmentButton>
       </FestivalInformation>
       <Title>행사 참가비</Title>
