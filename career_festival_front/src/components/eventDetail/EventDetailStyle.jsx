@@ -1,13 +1,12 @@
 import styled from "styled-components";
 
 const DetailContainer = styled.div`
-  width: 808px;
-  backgroud: green;
+  width: 50%;
 `;
 
 const Thumbnail = styled.div`
-  width: 100%;
-  height: 471px;
+  width: 50vw;
+  height: 25vw;
   background: #d9d9d9;
 `;
 

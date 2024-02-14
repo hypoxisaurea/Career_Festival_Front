@@ -20,19 +20,21 @@ import Other from "./components/diary/Other";
 import Symposium from "./components/diary/Symposium";
 import DiaryHeader from "./components/header/DiaryHeader";
 import MyPage from "./pages/MyPage";
+import SettingPage from "./pages/SettingPage";
 import OrganizationInfoPage from "./pages/OrganizationInfoPage";
 import FooterTwo from "./components/footer/FooterTwo";
 import { AuthProvider } from "./context/AuthContext";
 
 import "./App.css";
-import Level1 from "./components/Enroll/Level1";
-import Level2 from "./components/Enroll/Level2";
-import Level3 from "./components/Enroll/Level3";
-import Level4 from "./components/Enroll/Level4";
-//import Level5 from "./components/Enroll/Level5";
+// import Level1 from "./components/Enroll/Level1";
+// import Level2 from "./components/Enroll/Level2";
+// import Level3 from "./components/Enroll/Level3";
+// import Level4 from "./components/Enroll/Level4";
+// import Level5 from "./components/Enroll/Level5";
 import Level6 from "./components/Enroll/Level6";
 import Level7 from "./components/Enroll/Level7";
 import OrganizationMypage from "./pages/OrganizationMypage";
+import MyPageCorrection from "./pages/MyPageCorrection";
 
 function App() {
   return (
@@ -59,13 +61,13 @@ function App() {
           <Route path="/detail" element={<><Header /><DetailFestivalPage /><Footer /></>} />
           {/* 커뮤니티 */}
           <Route path="/community" element={<><Header /><Community /><Footer /></>} />
-          <Route path="/mypage" element={<><Header /><MyPage /><Footer /></>} />
+          
           {/* 행사 등록하기 */}
           <Route path="/register" element={<><RegisterPage /></>} />
-          <Route path="/register/Level1" element={<><Level1 /></>} />
+          {/* <Route path="/register/Level1" element={<><Level1 /></>} />
           <Route path="/register/Level2" element={<><Level2 /></>} />
           <Route path="/register/Level3" element={<><Level3 /></>} />
-          <Route path="/register/Level4" element={<><Level4 /></>} />
+          <Route path="/register/Level4" element={<><Level4 /></>} /> */}
           {/*<Route path="/register/Level5" element={<><Header /><Level5 /><Footer /></>} />*/}
           <Route path="/register/Level6" element={<><Level6 /></>} />
           <Route path="/register/Level7" element={<><Level7 /></>} />
@@ -74,6 +76,10 @@ function App() {
           <Route path="/organizationinfo/:OrganizationName" element ={<><Header/><OrganizationInfoPage/><Footer/></>} />
           {/*마이페이지*/}
           <Route path="organization-mypage" element ={<><Header/><OrganizationMypage/><Footer/></>} />
+          <Route path="/mypage-correction" element={<><Header /><MyPageCorrection /><Footer /></>} />
+          <Route path="/mypage" element={<><Header /><MyPage /><Footer /></>} />
+            {/* 설정 */}
+             <Route path="settingPage" element ={<><Header/><SettingPage/><Footer/></>} />
         </Routes>
       </div>
       </AuthProvider>

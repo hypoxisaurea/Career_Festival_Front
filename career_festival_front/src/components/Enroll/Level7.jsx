@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import InterestArea from "../signup/InterestArea"; // 관심지역 컴포넌트 import
+import imageIcon from "../../assets/images/frame_gallery_image.png";
+
 import {
   NextButton,
   PurpleTitle,
@@ -19,7 +21,10 @@ import {
   AddURL,
   FestivalFee,
   ManagerName,
-  ManagerEmail
+  ManagerEmail,
+  AttachmentButton,
+  ImageIcon,
+  ImageAddButton
 } from "./Level7Style"; // Level7Style 파일에서 스타일 요소들을 불러옴
 
 const Level7 = () => {
@@ -74,6 +79,13 @@ const Level7 = () => {
     setCustomKeywords((prevCustomKeywords) =>
       prevCustomKeywords.filter((kw) => kw !== keywordToRemove)
     );
+  };
+  // 파일 업로드 input에 대한 참조 생성
+  const fileInputRef = useRef(null);
+
+  // AttachmentButton 클릭 시 파일 업로드 input 클릭
+  const handleAttachmentButtonClick = () => {
+    fileInputRef.current.click();
   };
 
   // 파일 선택 시 실행될 함수
@@ -135,7 +147,7 @@ const Level7 = () => {
           "인문/사회",
           "과학기술",
           "디자인",
-          "관광/여행"
+          "관광/여행",
         ].map((keyword) => (
           <KeywordButton
             key={keyword}
@@ -199,7 +211,13 @@ const Level7 = () => {
 
       <Title>행사 대표이미지</Title>
       {/* 파일 업로드를 위한 input 요소 */}
-      <input type="file" accept="image/*" onChange={handleFileUpload} />
+      {/* 파일 업로드를 위한 input 요소 */}
+      {/* 파일 업로드를 위한 input 요소 */}
+      {/* 파일 업로드를 위한 input 요소 */}
+      {/* 파일 업로드를 위한 input 요소 */}
+      {/* 파일 업로드를 위한 input 요소 */}
+      {/* 파일 업로드를 위한 input 요소 */}
+      {/* 파일 업로드를 위한 input 요소 */}
 
       {/* 파일 미리보기를 위한 img 요소 */}
       {selectedImage && (
@@ -222,8 +240,23 @@ const Level7 = () => {
           value={eventInfo}
           onChange={(e) => setEventInfo(e.target.value)}
         />
-        <input type="file" onChange={handleFileUpload} />
-        <p>{eventInfo.length}/5000 글자 입력됨</p>
+        {/* 파일 업로드 input */}
+        <input
+          type="file"
+          accept="image/*"
+          onChange={handleFileUpload}
+          style={{ display: "none" }} // 화면에 보이지 않도록 스타일 지정
+          ref={fileInputRef} // ref 연결
+        />
+
+        {/* AttachmentButton에 onClick 이벤트 핸들러 추가 */}
+        <AttachmentButton>
+          <ImageAddButton onClick={handleAttachmentButtonClick}>
+            <ImageIcon src={imageIcon} alt="이미지 첨부 아이콘" />
+            <span>이미지첨부</span>
+          </ImageAddButton>
+          <p>{eventInfo.length}/5000 글자 입력됨</p>
+        </AttachmentButton>
       </FestivalInformation>
       <Title>행사 참가비</Title>
       <FestivalFee
@@ -232,7 +265,7 @@ const Level7 = () => {
         value={entryFee}
         onChange={(e) => setEntryFee(e.target.value)}
       />
-      <h3>담당자 정보</h3>
+      <h2>담당자 정보</h2>
       <Title>이름</Title>
       <ManagerName
         type="text"
@@ -248,7 +281,7 @@ const Level7 = () => {
         onChange={(e) => setContactEmail(e.target.value)}
       />
 
-      <Link to="/">
+      <Link to="/organization-mypage">
         <NextButton>행사개설</NextButton>
       </Link>
     </Level7Container>

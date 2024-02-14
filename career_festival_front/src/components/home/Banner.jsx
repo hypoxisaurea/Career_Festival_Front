@@ -25,7 +25,7 @@ const BannerAndPopular = styled.div`
 
 const HomeP = styled.p`
   color: #000000;
-  font-size: 1.3vw;
+  font-size: 1.4vw;
   font-weight: bold;
   padding: 0.5vw 0 0 17vw;
 `;
@@ -33,10 +33,12 @@ const HomeP = styled.p`
 const PickText = styled.span`
   color: #582fff;
   font-weight: bold;
+  font-size: 1.4vw;
 `;
 const TextP = styled.span`
   color: #000000;
   font-weight: bold;
+  font-size: 1.4vw;
 `;
 
 // 배너 스타일 정의
@@ -45,7 +47,6 @@ const BannerB = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
- 
 `;
 
 const BannerContainer = styled.div`

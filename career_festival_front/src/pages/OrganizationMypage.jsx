@@ -6,6 +6,7 @@ import OrganizationInsight from '../components/organization/OrganizationInsight'
 import dummy from "../db/RecommendedEvents.json"
 import Recommend from '../components/home/Recommend'
 import MypageProfile from '../components/mypage/MypageProfile'
+import MypageInfo from "../components/mypage/MypageInfo";
 
 
 
@@ -26,6 +27,7 @@ const OrganizationMypageProfileContainer = styled.div`
   //background-color: aliceblue;
   border-radius: 12px;
   box-shadow: 0 4px 4px 0 rgb(0, 0, 0, 0.25);
+  padding: 5vw 7vw 5vw 7vw;
 
 `
 
@@ -129,6 +131,7 @@ const OrganizationFestivalListWrapper = styled.div`
 
 // 주최자 프로필 개설 페이지 컴포넌트
 const OrganizationMypage = (props) => {
+  //이 부분은 불필요 데이터 들어오면 수정
   const {OrganizationName} = useParams();
   const {state} = useLocation();
   console.log(OrganizationName);

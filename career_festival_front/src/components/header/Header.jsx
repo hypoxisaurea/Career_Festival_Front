@@ -11,14 +11,8 @@ import setting from "../../assets/images/setting.png";
 const HeaderContainer = styled.div`
   width: 100%;
   height: 100%;
-
   box-shadow: 0 0.3vw 0.3vw rgba(0, 0, 0, 0.25);
   margin: 2vw 0 0.5vw 0;
-`;
-
-// 로그인과 회원가입을 포함하는 컨테이너 스타일
-const AuthButtonsContainer = styled.div`
-  align-items: center;
 `;
 
 // 로고와 검색창을 포함한 컨테이너 스타일
@@ -26,21 +20,22 @@ const LogoSearchContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-right: 3vw;
+  gap: 1vw;
+  margin-bottom: 1vw;
+  //margin-right: 3vw;
 `;
 
 // 로고 이미지 스타일
 const LogoImage = styled.img`
-  width: 25vw;
+  width: 18vw;
   cursor: pointer;
-  margin-bottom: 1vw;
   padding: 1vw;
 `;
 
 // 검색 아이콘 스타일
 const SearchImage = styled.img`
-  width: 1vw;
-  height: 1vw;
+  width: 1.3%;
+  //height: 1vw;
   margin-left: 1vw;
   position: absolute;
 `;
@@ -54,15 +49,25 @@ const SearchItem = styled.div`
 `;
 
 // 검색 입력창 스타일
+// const SearchInput = styled.input`
+//   /* width: 50%; */
+//   border: 0.2vw solid transparent;
+//   border-image: linear-gradient(45deg, #582fff, #0085ff) 1;
+//   border-radius: 1vw;
+//   padding: 0.7vw 15vw 0.7vw 2.5vw;
+//   font-size: 0.8vw;
+//   outline: none;
+//   overflow: hidden;
+// `; 
 const SearchInput = styled.input`
-  //width: 50%;
-  border: 0.2vw solid transparent;
-  border-image: linear-gradient(45deg, #582fff, #0085ff) 1;
-  border-radius: 1vw;
-  padding: 0.7vw 10vw 0.7vw 2.5vw;
+  // width: 50%;
+  border: 0.2vw solid #582fff;
+  border-radius: 0.5vw;
+  padding: 0.7vw 15vw 0.7vw 2.7vw;
   font-size: 0.8vw;
   outline: none;
 `;
+
 
 // 검색 버튼 스타일
 const SearchButton = styled.button`
@@ -76,15 +81,25 @@ const SearchButton = styled.button`
   margin-left: 1vw;
 
   &:hover {
-    background-color: #838383;
+    background-color: #1472ff;
   }
 `;
+
+// 로그인과 회원가입을 포함하는 컨테이너 스타일
+const AuthButtonsContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-left: 5vw;
+`;
+
 
 // 로그인, 회원가입 버튼 스타일
 const Join = styled(Link)`
   background-color: #ffffff;
   color: #838383;
   font-weight: bold;
+  font-size: 0.8vw;
   padding: 1vw 0 0.5vw 3vw;
   text-decoration: none;
 
@@ -97,10 +112,11 @@ const Join = styled(Link)`
   }
 `;
 
-// 환영 메시지 스타일
-const WelcomeText = styled.span`
-  color: #582fff;
-  margin-left: 1vw;
+const TextContiner = styled.div`
+  display: flex;
+  align-items: center;
+  margin-left: 5vw;
+  font-size: 0.9vw;
 `;
 
 // 환경설정 아이콘 스타일
@@ -113,7 +129,8 @@ const SettingImage = styled.img`
 const LinkContainer = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+  margin-left:16vw;
   padding: 0.7vw;
   flex-wrap: wrap;
   @media (max-width: 600px) {
@@ -126,7 +143,8 @@ const LinkItem = styled(Link)`
   color: #838383;
   text-decoration: none;
   font-weight: bold;
-  margin-left: 5vw;
+  margin-right: 5vw;
+  font-size: 0.8vw;
   transition: color 0.3s; /* 색상 변화에 대한 트랜지션 효과 추가 */
 
   &:hover {
@@ -146,6 +164,12 @@ const RegisterItem = styled(Link)`
   &:hover {
     color: #838383;
   }
+`;
+
+// 환영 메시지 스타일
+const WelcomeText = styled.span`
+  color: #582fff;
+  margin-left: 1vw;
 `;
 
 // 라인 1
@@ -211,8 +235,8 @@ const Header = () => {
           </Join>
 
           <Join to="/join">
-            {isLoggedIn ? (
-              <SettingImage src={setting} alt="setting" />
+            {isLoggedIn ? ( <Link to="settingPage">
+              <SettingImage src={setting} alt="setting" /></Link>
             ) : (
               "회원가입"
             )}
@@ -223,13 +247,14 @@ const Header = () => {
       <LinkContainer>
         <LinkItem to="/festival-list">행사목록</LinkItem>
         <LinkItem to="/diary">기록장</LinkItem>
-        <LinkItem to="/community">커뮤니티</LinkItem>
         <LinkItem to="/mypage">마이페이지</LinkItem>
-        <RegisterItem to="/register">행사등록하기</RegisterItem>
+        <TextContiner>
+        <RegisterItem to="/register">행사개설하기</RegisterItem>
         <VerticalLine />
         <WelcomeText>
           {isLoggedIn ? `${user.name} 님 환영합니다!` : "로그인 해주세요!"}
-        </WelcomeText>
+          </WelcomeText>
+        </TextContiner>
       </LinkContainer>
     </HeaderContainer>
   );
