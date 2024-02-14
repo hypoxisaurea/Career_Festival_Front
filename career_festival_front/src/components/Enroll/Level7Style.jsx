@@ -15,14 +15,17 @@ export const HL = styled.hr`
 `;
 // 다음 버튼 스타일 정의
 export const NextButton = styled.button`
-  margin-top: 20px;
-  padding: 1vw 4vw;
+  margin-top: 2vw;
+  padding: 0.8vw 4vw;
   font-size: 1rem;
   background-color: #582fff;
   color: #fff;
   border: none;
-  border-radius: 8px;
+  border-radius: 0.5vw;
   cursor: pointer;
+  &:hover {
+    background-color: #4700a6;
+  }
 `;
 export const PurpleTitle = styled.h1`
   color: #582fff; // 글자색을 #582fff로 지정

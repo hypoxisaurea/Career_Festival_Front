@@ -9,6 +9,7 @@ const LogoImage = styled.img`
   width: 2vw;
   cursor: pointer;
   margin-bottom: 0.5vw;
+  margin-right: 5vw;
 `;
 
 // 환영 메시지 스타일
@@ -36,7 +37,7 @@ const LinkItem = styled(Link)`
   color: #838383;
   text-decoration: none;
   font-weight: bold;
-  margin-left: 5vw;
+  margin-right: 5vw;
   transition: color 0.3s; /* 색상 변화에 대한 트랜지션 효과 추가 */
 
   &:hover {
@@ -75,7 +76,6 @@ const DiaryHeader = () => {
         </Link>
         <LinkItem to="/festival-list">행사목록</LinkItem>
         <LinkItem to="/diary">기록장</LinkItem>
-        <LinkItem to="/community">커뮤니티</LinkItem>
         <LinkItem to="/mypage">마이페이지</LinkItem>
         <RegisterItem to="/register">행사등록하기</RegisterItem>
         <VerticalLine/>

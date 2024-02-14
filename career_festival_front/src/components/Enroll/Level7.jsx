@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import InterestArea from "../signup/InterestArea"; // 관심지역 컴포넌트 import
 import imageIcon from "../../assets/images/frame_gallery_image.png";
+
 import {
   NextButton,
   PurpleTitle,
@@ -166,7 +167,7 @@ const Level7 = () => {
           "인문/사회",
           "과학기술",
           "디자인",
-          "관광/여행"
+          "관광/여행",
         ].map((keyword) => (
           <KeywordButton
             key={keyword}
@@ -323,7 +324,7 @@ const Level7 = () => {
         onChange={(e) => setContactEmail(e.target.value)}
       />
 
-      <Link to="/">
+      <Link to="/organization-mypage">
         <NextButton>행사개설</NextButton>
       </Link>
     </Level7Container>
