@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 // 컨테이너 스타일 정의
 const Container = styled.div`
@@ -23,7 +23,7 @@ const Main = styled.div`
 // 프로그래스바 스타일 정의
 const ProgressBarContainer = styled.div`
   position: relative;
-  width: 25%;
+  width: 300px;
   height: 0.5vw;
   background: #ddd;
   border-radius: 1vw;

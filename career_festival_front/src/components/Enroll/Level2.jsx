@@ -146,7 +146,7 @@ const Level2 = () => {
         />
         <ButtonsContainer>
           <PrevButton to="/register/Level1">이전 단계</PrevButton>
-          <NextButton to="/register/Level3">프로필 등록단계</NextButton>
+          <NextButton to="/register/Level3">프로필 등록 완료</NextButton>
         </ButtonsContainer>
         <SkipButton to="/register/Level3">이 단계 건너뛰기</SkipButton>
       </Container>
