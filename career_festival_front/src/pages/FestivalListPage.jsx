@@ -167,6 +167,7 @@ const ButtonContainer = styled.div`
 
 const Button = styled.button`
   background: transparent;
+  color:#838383;
   border: none;
   cursor: pointer;
   font-size: 2vw;

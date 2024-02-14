@@ -51,7 +51,7 @@ const StyledText = styled.span`
 // 다음 버튼 스타일 정의
 const NextButton = styled.button`
   margin-top: 2vw;
-  padding: 1vw 4vw;
+  padding: 0.8vw 4vw;
   font-size: 1rem;
   background-color: #582fff;
   color: #fff;
