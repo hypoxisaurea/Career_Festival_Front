@@ -18,14 +18,15 @@ export const AuthProvider = ({ children }) => {
     }
   }, []);
 
-  const login = (userData) => {
-    // 로그인 시 로컬 스토리지에 로그인 정보 저장
-    localStorage.setItem("isLoggedIn", "true");
-    localStorage.setItem("user", JSON.stringify(userData));
-    setIsLoggedIn(true);
-    setUser(userData);
-    console.log("로그인 정보가 로컬 스토리지에 저장되었습니다.");
-  };
+const login = (userData) => {
+  console.log("로그인 데이터:", userData); // userData를 로그에 출력
+  // 로그인 시 로컬 스토리지에 로그인 정보 저장
+  localStorage.setItem("isLoggedIn", "true");
+  localStorage.setItem("user", JSON.stringify(userData));
+  setIsLoggedIn(true);
+  setUser(userData);
+  console.log("로그인 정보가 로컬 스토리지에 저장되었습니다.");
+};
 
   const logout = () => {
     // 로그아웃 시 로컬 스토리지에서 로그인 정보 삭제
