@@ -19,6 +19,7 @@ const DetailFestivalPageContainer = styled.div`
 
 const DetailContainer = styled.div`
   display: flex;
+  width: 100%;
 `;
 
 const DetailFestivalPage = () => {
