@@ -16,8 +16,8 @@ import Pagination from "../components/home/Pagination";
 //주최자
 import organizationsData from "../db/organizationsData.json";
 import OrganizationList from "../components/home/OrganizationList";
-import buttonLeft from "../assets/images/bannerleftarrow.png";
-import buttonRight from "../assets/images/bannerrightarrow.png";
+// import buttonLeft from "../assets/images/bannerleftarrow.png";
+// import buttonRight from "../assets/images/bannerrightarrow.png";
 
 // 중간 컨테이너에 대한 스타일링
 const MiddleContainer = styled.div`

@@ -20,6 +20,7 @@ import Other from "./components/diary/Other";
 import Symposium from "./components/diary/Symposium";
 import DiaryHeader from "./components/header/DiaryHeader";
 import MyPage from "./pages/MyPage";
+import SettingPage from "./pages/SettingPage";
 import OrganizationInfoPage from "./pages/OrganizationInfoPage";
 import FooterTwo from "./components/footer/FooterTwo";
 import { AuthProvider } from "./context/AuthContext";
@@ -76,7 +77,9 @@ function App() {
           {/*마이페이지*/}
           <Route path="organization-mypage" element ={<><Header/><OrganizationMypage/><Footer/></>} />
           <Route path="/mypage-correction" element={<><Header /><MyPageCorrection /><Footer /></>} />
-          <Route path="/mypage" element={<><Header /><MyPage/><Footer /></>} />
+          <Route path="/mypage" element={<><Header /><MyPage /><Footer /></>} />
+            {/* 설정 */}
+             <Route path="settingPage" element ={<><Header/><SettingPage/><Footer/></>} />
         </Routes>
       </div>
       </AuthProvider>

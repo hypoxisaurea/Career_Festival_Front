@@ -7,6 +7,9 @@ const FooterContainer = styled.div`
   //font-weight: bold;
   @media screen and (max-width: 600px) {
     font-size: 1vw;
+    // position: fixed; /* 화면에 고정 */
+    // bottom: 0; /* 화면 하단에 배치 */
+    // width: 100%; /* 화면 전체 너비를 차지 */
   }
 `;
 

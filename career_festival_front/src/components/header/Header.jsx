@@ -235,8 +235,8 @@ const Header = () => {
           </Join>
 
           <Join to="/join">
-            {isLoggedIn ? (
-              <SettingImage src={setting} alt="setting" />
+            {isLoggedIn ? ( <Link to="settingPage">
+              <SettingImage src={setting} alt="setting" /></Link>
             ) : (
               "회원가입"
             )}
