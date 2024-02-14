@@ -3,21 +3,21 @@ import styled from "styled-components";
 import PopUp from "./PopUp";
 
 const EnrollmentContainer = styled.div`
-  width: 390px;
-  height: 471px;
-  margin-left: 26px;
+  width: 20vw;
+  height: 25vw;
+  margin-left: 2vw;
 
   background: white;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 1vw 1vw rgba(0, 0, 0, 0.25);
 `;
 
 const InfoContainer = styled.div`
-  margin: 33px 25px 31px 27px;
+margin: 1vw 2vw 1vw 2vw;
 `;
 
 const ReportContainer = styled.div`
   color: #582fff;
-  font-size: 11px;
+  font-size: 0.7vw;
   font-family: "Noto Sans KR";
   font-weight: 500;
   word-wrap: break-word;
@@ -32,15 +32,15 @@ const SponsorContainer = styled.div`
 `;
 
 const ButtonContainer = styled.div`
-  margin: 0 39px 35px 27px;
+  margin: 1vw 2vw 0 1.5vw;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 14px;
+  gap: 1vw;
 `;
 
 const Category1 = styled.div`
   color: black;
-  font-size: 14px;
+  font-size: 0.8vw;
   font-family: "Noto Sans KR";
   font-weight: 500;
   word-wrap: break-word;
@@ -49,16 +49,16 @@ const Category1 = styled.div`
 `;
 
 const VerticalDivider = styled.div`
-  width: 1px;
-  height: 18px;
+  width: 0.1vw;
+  height: 1vw;
   background: #838383;
-  margin: 0 7px 0 7px;
+  margin: 0 1vw 0 1vw;
   display: inline-block;
 `;
 
 const Category2 = styled.div`
   color: black;
-  font-size: 14px;
+  font-size: 0.8vw;
   font-family: "Noto Sans KR";
   font-weight: 500;
   word-wrap: break-word;
@@ -67,30 +67,29 @@ const Category2 = styled.div`
 `;
 
 const EventTitle = styled.div`
-  width: 324px;
-  height: 72px;
-  margin: 20px 0 0 0;
-
+  width: 100%;
+  height: 4vw;
+  margin: 1vw 0 0 0;
   color: black;
-  font-size: 20px;
+  font-size: 1.1vw;
   font-family: "Noto Sans KR";
   font-weight: 700;
   word-wrap: break-word;
 `;
 
 const EventTag = styled.div`
-  border-radius: 10px;
+  border-radius: 1vw;
   border: 1px #582fff solid;
 
   color: #582fff;
-  font-size: 14px;
+  font-size: 0.8vw;
   font-family: "Rubik";
   font-weight: 500;
   word-wrap: break-word;
 
   display: inline-block;
-  margin: 4px 13px 0 0;
-  padding: 8px 13px 8px 12px;
+  margin: 1% 3.5% 0 0; 
+  padding: 2% 3.5% 2% 3.33%;
 `;
 
 const HorizontalDivider = styled.div`
@@ -114,7 +113,7 @@ const Profile = styled.div`
 
 const Sponsor = styled.div`
   color: black;
-  font-size: 16px;
+  font-size: 0.9vw;
   font-family: "Noto Sans KR";
   font-weight: 500;
   word-wrap: break-word;
@@ -126,85 +125,80 @@ const Sponsor = styled.div`
 
 const Date = styled.div`
   color: black;
-  font-size: 16px;
+  font-size: 0.8vw;
   font-family: "Noto Sans KR";
   font-weight: 700;
   word-wrap: break-word;
-
-  margin: 41px 0 0 2px;
+  margin: 1vw 0 0 0;
   display: inline-block;
 `;
 
 const Price = styled.div`
   color: #582fff;
-  font-size: 16px;
+  font-size: 0.8vw;
   font-family: "Noto Sans KR";
   font-weight: 700;
   word-wrap: break-word;
 
-  margin: 44px 14px 31px 0;
+  margin: 1vw 0 0 0;
   display: inline-block;
   float: right;
 `;
 
 const ApplyButton = styled.button`
-  width: 155px;
-  height: 48px;
+  width: 8vw;
+  height: 3vw;
   background: #582fff;
-  border-radius: 10px;
+  border-radius: 0.5vw;
   border: none;
-
   color: white;
-  font-size: 14px;
+  font-size: 0.8vw;
   font-family: "Noto Sans KR";
   font-weight: 700;
   word-wrap: break-word;
-
   display: inline-block;
 `;
 
 const ConfirmButton = styled.button`
-  width: 155px;
-  height: 48px;
+  width: 8vw;
+  height: 3vw;
   background: #582fff;
-  border-radius: 10px;
+  border-radius: 0.5vw;
   border: none;
-
   color: white;
-  font-size: 14px;
+  font-size: 0.8vw;
   font-family: "Noto Sans KR";
   font-weight: 700;
   word-wrap: break-word;
-
   display: inline-block;
 `;
 
 const ShareButton = styled.button`
-  width: 155px;
-  height: 48px;
-  background: rgba(88.35, 46.69, 255, 0.17);
-  border-radius: 10px;
+  width: 8vw;
+  height: 3vw;
+  background: #e3dcff;
+  border-radius: 0.5vw;
   border: none;
-
-  color: #582fff;
-  font-size: 14px;
+  color: white;
+  font-size: 0.8vw;
   font-family: "Noto Sans KR";
   font-weight: 700;
   word-wrap: break-word;
+  display: inline-block;
 `;
 
 const BookmarkButton = styled.button`
-  width: 155px;
-  height: 48px;
-  background: rgba(88.35, 46.69, 255, 0.17);
-  border-radius: 10px;
+  width: 8vw;
+  height: 3vw;
+  background: #e3dcff;
+  border-radius: 0.5vw;
   border: none;
-
-  color: #582fff;
-  font-size: 14px;
+  color: white;
+  font-size: 0.8vw;
   font-family: "Noto Sans KR";
   font-weight: 700;
   word-wrap: break-word;
+  display: inline-block;
 `;
 
 function Enrollment() {
@@ -261,7 +255,7 @@ function Enrollment() {
         <BookmarkButton
           onClick={() => openModal("관심 행사에 등록되었습니다!")}
         >
-          즐겨찾기
+          즐겨찾기★
         </BookmarkButton>
       </ButtonContainer>
 
