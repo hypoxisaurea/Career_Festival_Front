@@ -29,6 +29,8 @@ const Login = () => {
   const [rememberMe, setRememberMe] = useState(false);
   const { login } = useAuth(); // useAuth 훅을 사용하여 login 함수 가져옴
   const navigate = useNavigate(); // useNavigate 훅 사용
+  const [isFocusedOrFilled, setIsFocusedOrFilled] = useState(false);
+  const [isPasswordFocusedOrFilled, setIsPasswordFocusedOrFilled] = useState(false);
 
 // 로그인 버튼 클릭 시 호출되는 함수
 const handleLogin = async () => {
@@ -82,7 +84,6 @@ const handleLogin = async () => {
         userName = response.headers.get("username");
       }
       
-      console.log("username: ", userName);
 
       // 로그인 성공 시 사용자의 이름과 토큰을 alert로 보여줌
       const jwtToken = response.headers.get("Authorization");
@@ -98,7 +99,7 @@ const handleLogin = async () => {
       });
 
       // 서버에서 받은 userName 로그 및 알림
-      console.log("❤. userNameResponse:");
+      console.log("❤.");
       console.log(userNameResponse);
 
       if (userNameResponse.ok) {
@@ -131,9 +132,6 @@ const handleLogin = async () => {
 };
 
 
-
-
-
   return (
     <>
       <br />
@@ -143,24 +141,33 @@ const handleLogin = async () => {
       <LoginContainer>
         <img src={Logo} alt="Logo" /> {/* 로고 이미지 추가 */}
         <Welcome>커리어 페스티벌에 오신걸 환영합니다!</Welcome>
+
         <Field>
-          <InputField
-            type="text"
-            id="username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-          <Label for="username">이메일(ID)</Label>
+        <InputField
+          type="text"
+          id="username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          onFocus={() => setIsFocusedOrFilled(true)}
+          onBlur={() => setIsFocusedOrFilled(!!username)}
+        />
+        <Label for="username" isFocusedOrFilled={isFocusedOrFilled}>이메일(ID)</Label>
         </Field>
+
         <Field>
-          <InputField
-            type="password"
-            id="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <Label for="password">비밀번호</Label>
-        </Field>
+  <InputField
+    type="password"
+    id="password"
+    value={password}
+    onChange={(e) => setPassword(e.target.value)}
+    onFocus={() => setIsPasswordFocusedOrFilled(true)}
+    onBlur={() => setIsPasswordFocusedOrFilled(!!password)}
+  />
+  <Label for="password" isFocusedOrFilled={isPasswordFocusedOrFilled}>
+    비밀번호
+  </Label>
+</Field>
+
         <div>
           <RememberMe>
             <input
