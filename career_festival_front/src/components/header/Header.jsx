@@ -210,13 +210,13 @@ const Header = () => {
             {isLoggedIn ? "로그아웃" : "로그인"}
           </Join>
 
-          <Join to="/join">
-            {isLoggedIn ? (
-              <SettingImage src={setting} alt="setting" />
-            ) : (
-              "회원가입"
-            )}
-          </Join>
+          <Join to={isLoggedIn ? "/setting" : "/join"}>
+    {isLoggedIn ? (
+      <SettingImage src={setting} alt="setting" />
+    ) : (
+      "회원가입"
+    )}
+  </Join>
         </AuthButtonsContainer>
       </LogoSearchContainer>
       <Line />

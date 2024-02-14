@@ -1,26 +1,39 @@
 // src/context/AuthContext.js
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useState, useEffect } from "react";
 
-// AuthContext 생성
 const AuthContext = createContext();
 
-// AuthProvider 생성
 export const AuthProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [user, setUser] = useState(null);
 
-  const login = (userName) => {
-    // 로그인 로직을 추가할 수 있습니다.
+  useEffect(() => {
+    // 페이지 로드 시 로컬 스토리지에서 로그인 정보 확인
+    const loggedIn = localStorage.getItem("isLoggedIn");
+    const userInfo = JSON.parse(localStorage.getItem("user"));
+
+    if (loggedIn && userInfo) {
+      setIsLoggedIn(true);
+      setUser(userInfo);
+    }
+  }, []);
+
+  const login = (userData) => {
+    // 로그인 시 로컬 스토리지에 로그인 정보 저장
+    localStorage.setItem("isLoggedIn", "true");
+    localStorage.setItem("user", JSON.stringify(userData));
     setIsLoggedIn(true);
-    // 사용자 정보를 설정하는 로직도 추가 가능
-    setUser({ name: userName });
+    setUser(userData);
+    console.log("로그인 정보가 로컬 스토리지에 저장되었습니다.");
   };
 
   const logout = () => {
-    // 로그아웃 로직을 추가할 수 있습니다.
+    // 로그아웃 시 로컬 스토리지에서 로그인 정보 삭제
+    localStorage.removeItem("isLoggedIn");
+    localStorage.removeItem("user");
     setIsLoggedIn(false);
-    // 사용자 정보 초기화
     setUser(null);
+    console.log("로그인 정보가 로컬 스토리지에서 삭제되었습니다.");
   };
 
   return (
@@ -30,7 +43,6 @@ export const AuthProvider = ({ children }) => {
   );
 };
 
-// useAuth 커스텀 훅 생성
 export const useAuth = () => {
   const context = useContext(AuthContext);
   if (!context) {

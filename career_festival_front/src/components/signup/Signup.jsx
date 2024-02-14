@@ -83,6 +83,7 @@ const Signup = () => {
       if (response.ok) {
         // 백엔드에서 온 응답 처리
         console.log("회원가입 성공");
+        console.log(response);
       } else {
         console.error("회원가입 실패:", response.statusText);
       }
