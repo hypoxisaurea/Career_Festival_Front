@@ -219,8 +219,8 @@ const FestivalHistory = ({ onComplete }) => {
             />
             <ContentAttachment>
               <AttachmentButton>
-                <span>이미지첨부</span>
                 <ImageIcon src={imageIcon} alt="이미지 첨부 아이콘" />
+                <span>이미지첨부</span>
               </AttachmentButton>
               <CharacterCount>{content1.length} /2000자</CharacterCount>
             </ContentAttachment>

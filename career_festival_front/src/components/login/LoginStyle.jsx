@@ -88,7 +88,7 @@ const InputField = styled.input`
 const Label = styled.label`
   position: absolute;
   top: ${({ isFocusedOrFilled }) => (isFocusedOrFilled ? '-0.6rem' : '1.3rem')};
-  left: ${({ isFocusedOrFilled }) => (isFocusedOrFilled ? '-0.25rem' : '-0.25rem')}; /* 왼쪽으로 10px만큼 이동 */
+  left: ${({ isFocusedOrFilled }) => (isFocusedOrFilled ? '-0.25rem' : '-0.25rem')};
   transform: ${({ isFocusedOrFilled }) => (isFocusedOrFilled ? 'translate(0.625rem, -1rem)' : 'translateY(-50%)')};
   color: #030104;
   background-color: #ffffff;
