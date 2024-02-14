@@ -124,7 +124,7 @@ const SettingPage = () => {
       <Line />
       <ContentWrapper>
         <GrayContent>
-          회원탈퇴 <RightArrow>></RightArrow>
+          회원탈퇴 <RightArrow>➜</RightArrow>
         </GrayContent>
       </ContentWrapper>
     </Wrapper>
