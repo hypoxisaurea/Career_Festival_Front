@@ -34,7 +34,7 @@ const StyledLink = styled(Link)`
 `;
 
 const ProgressBarContainer = styled.div`
-  width: 25%;
+  width: 300px;
   height: 0.5vw;
   background: #ddd;
   border-radius: 1vw;

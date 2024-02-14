@@ -14,9 +14,10 @@ const Container = styled.div`
   padding: 15vw;
 `;
 
+// 주요 제목 스타일 정의
 const Main = styled.div`
+  font-weight: bold;
   font-size: 1.5rem;
-  margin-top: 20px;
 `;
 
 const InputContainer = styled.div`
@@ -51,7 +52,7 @@ const StyledText = styled.span`
 // 다음 버튼 스타일 정의
 const NextButton = styled.button`
   margin-top: 2vw;
-  padding: 1vw 4vw;
+  padding: 0.8vw 4vw;
   font-size: 1rem;
   background-color: #582fff;
   color: #fff;
@@ -68,7 +69,7 @@ const BackLink = styled(Link)`
   margin-top: -10vw;
   margin-right: 70vw;
   img {
-    width: 40%;
+    width: 20px;
     margin: 2vw;
   }
 `;

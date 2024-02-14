@@ -35,8 +35,8 @@ const Content = styled.div`
 
 // 이미지 스타일 정의
 const Image = styled.img`
-  width: 10%;
-  height: 10%;
+  width: 140px;
+  //height: 10%;
   margin-top: 1.5vw;
 `;
 
@@ -57,11 +57,12 @@ const Contents = styled.div`
 // 버튼 컨테이너 스타일 정의
 const ButtonsContainer = styled.div`
   display: flex;
-  margin-top: 20px;
+  margin-top: 2vw;
+  gap:1vw;
 `;
 
 // 다음 버튼 스타일 정의
-const NextButton = styled.button`
+const NextButton = styled(Link)`
   padding: 1vw 3vw;
   font-size: 1rem;
   background-color: #582fff;
@@ -69,6 +70,7 @@ const NextButton = styled.button`
   border: none;
   border-radius: 0.5vw;
   cursor: pointer;
+  text-decoration: none;
   &:hover {
     background-color: #4700a6;
   }
@@ -76,17 +78,17 @@ const NextButton = styled.button`
 
 // 이전 단계로 돌아가는 버튼 스타일 정의
 const PrevButton = styled(Link)`
-  margin-right: 1vw;
   padding: 1vw 3vw;
   font-size: 1rem;
-  text-decoration: none;
-  cursor: pointer;
-  &:hover {
-    background-color: #dfdfdf;
-  }
+  background-color: #dfdfdf;
+  color: #fff;
+  border: none;
   border-radius: 0.5vw;
-  border: 1px solid #ccc;
-  background-color: white;
+  cursor: pointer;
+  text-decoration: none;
+  &:hover {
+    background-color: #838383;
+  }
 `;
 
 // 건너뛰기 버튼 스타일 정의
@@ -95,6 +97,11 @@ const SkipButton = styled(Link)`
   margin-top: 2vw;
   margin-left: 20vw;
   color: #838383;
+  text-decoration: none;
+  @media screen and (max-width: 600px) {
+    font-size: 3vw;
+    margin-left: 50vw;
+  }
 `;
 
 // 파일 업로드 버튼 스타일 정의
@@ -139,9 +146,7 @@ const Level2 = () => {
         />
         <ButtonsContainer>
           <PrevButton to="/register/Level1">이전 단계</PrevButton>
-          <Link to="/register/Level3">
-            <NextButton>프로필 등록 완료</NextButton>
-          </Link>
+          <NextButton to="/register/Level3">프로필 등록 완료</NextButton>
         </ButtonsContainer>
         <SkipButton to="/register/Level3">이 단계 건너뛰기</SkipButton>
       </Container>
