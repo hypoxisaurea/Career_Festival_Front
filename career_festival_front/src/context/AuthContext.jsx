@@ -36,13 +36,28 @@ export const AuthProvider = ({ children }) => {
         const userData = await response.json();
         const jwtToken = response.headers.get("Authorization"); // 토큰 헤더에서 추출
   
-        localStorage.setItem("isLoggedIn", "true");
-        localStorage.setItem("user", JSON.stringify(userData));
-        localStorage.setItem("token", jwtToken); // 토큰 저장
+        // 사용자 정보를 추가로 가져오는 API 호출
+        const userInfoResponse = await fetch("http://localhost:9000/", {
+          method: "GET",
+          headers: {
+            Authorization: jwtToken
+          }
+        });
   
-        setIsLoggedIn(true);
-        setUser(userData);
-        console.log("로그인 정보 및 토큰이 로컬 스토리지에 저장되었습니다.");
+        if (userInfoResponse.ok) {
+          const userInfo = await userInfoResponse.json();
+  
+          // 로컬 스토리지에 사용자 정보 저장
+          localStorage.setItem("isLoggedIn", "true");
+          localStorage.setItem("user", JSON.stringify(userInfo));
+          localStorage.setItem("token", jwtToken); // 토큰 저장
+  
+          setIsLoggedIn(true);
+          setUser(userInfo);
+          console.log("로그인 정보 및 토큰이 로컬 스토리지에 저장되었습니다.");
+        } else {
+          console.error("사용자 정보 가져오기 실패:", userInfoResponse.statusText);
+        }
       } else {
         console.error("로그인 실패:", response.statusText);
       }
@@ -50,11 +65,14 @@ export const AuthProvider = ({ children }) => {
       console.error("에러 발생:", error);
     }
   };
+  
 
   const logout = () => {
     // 로그아웃 시 로컬 스토리지에서 로그인 정보 및 인증 정보 삭제
     localStorage.removeItem("isLoggedIn");
     localStorage.removeItem("user");
+    localStorage.removeItem("token");
+    localStorage.removeItem("Authorization");
     setIsLoggedIn(false);
     setUser(null);
     console.log("로그인 정보 및 인증 정보가 로컬 스토리지에서 삭제되었습니다.");
