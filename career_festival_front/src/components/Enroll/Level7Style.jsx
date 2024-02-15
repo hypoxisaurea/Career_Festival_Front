@@ -181,7 +181,7 @@ export const FestivalFee = styled.input`
 `;
 
 export const ManagerName = styled.input`
-  width: 20%;
+  width: 30%;
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -195,7 +195,7 @@ export const ManagerName = styled.input`
 `;
 
 export const ManagerEmail = styled.input`
-  width: 20%;
+  width: 30%;
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -223,6 +223,28 @@ export const ImageAddButton = styled.div`
   align-items: center;
   background-color: #4cc390;
   cursor: pointer;
+  span {
+    font-size: 0.7rem; /* 이미지첨부 글씨에 대한 스타일 조절 */
+  }
+`;
+export const ImageAddButton2 = styled.div`
+  width: 15%;
+  display: flex;
+  align-items: center;
+  margin-left:1vw;
+  background-color: #4cc390;
+  cursor: pointer;
+  span {
+    font-size: 0.7rem; /* 이미지첨부 글씨에 대한 스타일 조절 */
+  }
+`;
+export const TitleImage = styled.div`
+  width: 60%;
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  // justify-content: space-between; /* 자식 요소들을 양쪽으로 정렬합니다 */
   span {
     font-size: 0.7rem; /* 이미지첨부 글씨에 대한 스타일 조절 */
   }
