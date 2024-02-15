@@ -1,5 +1,10 @@
+// 키워드를 어떤걸 고르는지에 따라 되거나 안되거나 그럼 수정필요!!!!!!
+
 import React, { useState, useEffect } from "react";
 import InterestArea from "./InterestArea";
+import AffiliationInput from "./AffiliationInput";
+import { useNavigate } from "react-router-dom";
+import axios from "axios"; // Axios를 임포트합니다.
 import {
   Container,
   Title,
@@ -7,32 +12,46 @@ import {
   Subtitle2,
   EmailInput,
   TelInput,
-  AffiliationInput,
   KeyworldOptionList,
   KeywordButton,
   TwoButton,
   LaterSave,
-  Save,
-  
+  Save
 } from "./OrganizerStyle";
 
 const Organizer = () => {
-  // 모달 창의 열림 여부와 선택된 지역 정보 및 추가 정보를 상태로 관리합니다.
   const [isModalOpen, setModalOpen] = useState(false);
   const [selectedArea, setSelectedArea] = useState("seoul");
   const [selectedCity, setSelectedCity] = useState("");
   const [email, setEmail] = useState(""); // 추가: 이메일 상태
   const [phoneNumber, setPhoneNumber] = useState(""); // 추가: 전화번호 상태
   const [affiliation, setAffiliation] = useState(""); // 추가: 소속 상태
+  const [department, setDepartment] = useState("");
   const [selectedKeywords, setSelectedKeywords] = useState([]); // 추가: 선택된 키워드 상태
   // 기타 키워드 입력을 위한 상태 추가
   const [customKeyword, setCustomKeyword] = useState("");
   const [customKeywords, setCustomKeywords] = useState([]);
+
+  const [token, setToken] = useState("");
+
   // useEffect를 사용하여 컴포넌트가 처음 마운트될 때 실행될 로직 추가
   useEffect(() => {
-    // 초기값으로 서울을 선택하도록 설정
-    handleAreaSelect("seoul");
+
+    const tokenFromStorage = getTokenFromLocalStorage();
+    if (tokenFromStorage) {
+      setToken(tokenFromStorage);
+      console.log("로컬 스토리지에서 토큰을 가져왔습니다:", tokenFromStorage);
+    } else {
+      // 토큰이 없는 경우 다른 작업 수행
+    }
   }, []);
+
+  const navigate = useNavigate();
+
+  const getTokenFromLocalStorage = () => {
+    const token = localStorage.getItem("token");
+    return token;
+  };
 
   // 모달 창을 열거나 닫는 함수를 정의합니다.
   const handleModalToggle = () => {
@@ -90,18 +109,20 @@ const Organizer = () => {
     );
   };
 
-// "다음에입력" 버튼을 눌렀을 때 실행되는 함수
-const handleNextInput = () => {
-  const confirmNextInput = window.confirm("정말 다음에 입력하세요?");
-  if (confirmNextInput) {
-    // 여기서 홈화면으로 이동하도록 설정
-    window.location.href = "/"; // 홈화면의 경로에 따라 수정하세요.
-  }
-  // 다음에 입력하지 않을 경우, 아무 동작도 하지 않음
-};
+  // "다음에입력" 버튼을 눌렀을 때 실행되는 함수
+  const handleNextInput = () => {
+    const confirmNextInput = window.confirm("정말 다음에 입력하세요?");
+    if (confirmNextInput) {
+      // 여기서 홈화면으로 이동하도록 설정
+      window.location.href = "/"; // 홈화면의 경로에 따라 수정하세요.
+    }
+    // 다음에 입력하지 않을 경우, 아무 동작도 하지 않음
+  };
 
   // 부가정보를 저장하는 함수입니다.
   const saveAdditionalInfo = () => {
+    console.log("부가정보 저장 함수가 호출되었습니다.");
+
     // 모든 항목이 입력되었는지 확인
     if (
       selectedArea &&
@@ -109,20 +130,40 @@ const handleNextInput = () => {
       email &&
       phoneNumber &&
       affiliation &&
-      selectedKeywords.length > 0
+      department &&
+      (selectedKeywords.length > 0 || customKeywords.length > 0) // 선택된 키워드 또는 기타 키워드가 있어야 함
     ) {
-      // 데이터를 백엔드로 전달하는 로직 추가
-      console.log("부가정보 저장:", {
-        selectedArea,
-        selectedCity,
+      console.log("부가정보가 유효합니다.");
+
+      // 데이터를 백엔드로 전달할 데이터
+      const userData = {
+        city: selectedArea,
+        addressLine: selectedCity,
         email,
         phoneNumber,
-        affiliation,
-        selectedKeywords
-      });
-      // 추가로 필요한 로직 수행
+        company: affiliation,
+        department,
+        keywordName: [...selectedKeywords, ...customKeywords] // 선택된 키워드와 기타 키워드를 합침
+      };
+
+      console.log("보낼 사용자 토큰:", token);
+      console.log("보낼 사용자 데이터:", userData);
+
+      axios
+        .patch("http://localhost:9000/organizer", userData, {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `${token}`
+          }
+        })
+        .then((response) => {
+          console.log("부가정보 저장 완료:", response.data);
+          navigate("/");
+        })
+        .catch((error) => {
+          console.error("부가정보 저장 실패:", error.message);
+        });
     } else {
-      // 모든 항목이 완료되지 않았을 때 처리
       console.error("모든 항목을 완료해야 합니다.");
     }
   };
@@ -176,15 +217,12 @@ const handleNextInput = () => {
       </TelInput>
 
       {/* 소속 입력 부분입니다. */}
-      <AffiliationInput>
-        <p>소속(회사/기관/학교명)</p>
-        <input
-          type="text"
-          placeholder="소속을 입력하세요"
-          value={affiliation}
-          onChange={(e) => setAffiliation(e.target.value)}
-        />
-      </AffiliationInput>
+      <AffiliationInput
+        affiliation={affiliation}
+        department={department}
+        setAffiliation={setAffiliation}
+        setDepartment={setDepartment}
+      />
 
       {/* 커리어 키워드 입력 부분입니다. */}
       <p>커리어 키워드</p>
@@ -234,12 +272,11 @@ const handleNextInput = () => {
         ))}
       </KeyworldOptionList>
       <hr />
-      
-      <TwoButton>
 
-      <LaterSave onClick={handleNextInput}>다음에입력</LaterSave>
+      <TwoButton>
+        <LaterSave onClick={handleNextInput}>다음에입력</LaterSave>
         {/* 부가정보 저장하기 버튼 */}
-      <Save
+        <Save
           onClick={saveAdditionalInfo}
           disabled={
             !selectedArea ||
@@ -251,7 +288,7 @@ const handleNextInput = () => {
           }
         >
           부가정보 저장하기
-      </Save>
+        </Save>
       </TwoButton>
     </Container>
   );

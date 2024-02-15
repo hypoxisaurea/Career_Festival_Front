@@ -1,5 +1,9 @@
+// 키워드를 어떤걸 고르는지에 따라 되거나 안되거나 그럼 수정필요!!!!!!
+
 import React, { useState, useEffect } from "react";
 import InterestArea from "./InterestArea";
+import AffiliationInput from "./AffiliationInput";
+import { useNavigate } from "react-router-dom";
 import {
   Container,
   Title,
@@ -9,60 +13,77 @@ import {
   Age,
   EmailInput,
   TelInput,
-  AffiliationInput,
   KeyworldOptionList,
   KeywordButton,
   TwoButton,
   LaterSave,
   Save
 } from "./ParticipantStyle";
+import axios from "axios"; // Axios를 임포트합니다.
 
 const Participant = () => {
-  const [isModalOpen, setModalOpen] = useState(false);
-  const [selectedArea, setSelectedArea] = useState("seoul");
-  const [selectedCity, setSelectedCity] = useState("");
-  const [email, setEmail] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [affiliation, setAffiliation] = useState("");
-  const [department, setDepartment] = useState(""); // 부서 상태 추가
-  const [selectedKeywords, setSelectedKeywords] = useState([]);
-  const [customKeyword, setCustomKeyword] = useState("");
-  const [customKeywords, setCustomKeywords] = useState([]);
-  const [gender, setGender] = useState(""); // 성별 상태 추가
-  const [age, setAge] = useState(""); // 나이 상태 추가
-  const [token, setToken] = useState(""); // 토큰 상태 추가
+  // 각 입력값을 상태로 관리합니다.
+  const [isModalOpen, setModalOpen] = useState(false); // 모달 창의 열림/닫힘 상태
+  const [selectedArea, setSelectedArea] = useState("seoul"); // 선택된 관심지역 (시/도)
+  const [selectedCity, setSelectedCity] = useState(""); // 선택된 관심지역 (시/군/구)
+  const [email, setEmail] = useState(""); // 이메일 입력 상태
+  const [phoneNumber, setPhoneNumber] = useState(""); // 전화번호 입력 상태
+  const [affiliation, setAffiliation] = useState(""); // 소속 입력 상태
+  const [department, setDepartment] = useState(""); // 부서 입력 상태
+  const [selectedKeywords, setSelectedKeywords] = useState([]); // 선택된 커리어 키워드들
+  // 기타 키워드 입력을 위한 상태 추가
+  const [customKeyword, setCustomKeyword] = useState(""); // 추가된 기타 키워드
+  const [customKeywords, setCustomKeywords] = useState([]); // 추가된 모든 기타 키워드들
+  const [gender, setGender] = useState(""); // 성별 입력 상태
+  const [age, setAge] = useState(""); // 나이 입력 상태
+  const [token, setToken] = useState(""); // 토큰 상태 (인증에 사용)
 
   useEffect(() => {
-    handleAreaSelect("seoul");
-    // 토큰을 받아오는 함수를 호출하고, 받아온 토큰을 상태에 저장합니다.
-    fetchToken();
+    // 컴포넌트가 마운트될 때 초기 작업을 수행합니다.
+
+
+    // 로컬 스토리지에서 토큰을 가져와 설정합니다.
+    const tokenFromStorage = getTokenFromLocalStorage();
+    if (tokenFromStorage) {
+      setToken(tokenFromStorage);
+      console.log("로컬 스토리지에서 토큰을 가져왔습니다:", tokenFromStorage);
+    } else {
+      // 토큰이 없는 경우 다른 작업 수행
+    }
   }, []);
 
-  const fetchToken = () => {
-    // 토큰을 받아오는 비동기 요청을 보내고, 받아온 토큰을 상태에 저장합니다.
-    // 예를 들어, 로그인 후 토큰을 받아오는 함수를 호출하고 그 결과를 상태에 저장합니다.
-    const token = "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6IjEyM0BuYXZlci5jb20iLCJyb2xlIjoiUk9MRV9QQVJUSUNJUEFOVCIsImlhdCI6MTcwNzkzMTA2MiwiZXhwIjoxNzA3OTMxNjYyfQ.T-KdkGf5r0JfuEPSZoboElLjY9nhy6BR5jNp5GIFU-E"; // 여기에 토큰 값을 받아오는 비동기 요청을 작성합니다.
-    setToken(token);
+  // useNavigate 훅을 사용하여 페이지 이동 기능을 설정합니다.
+  const navigate = useNavigate();
+
+  // 로컬 스토리지에서 토큰을 가져오는 함수
+  const getTokenFromLocalStorage = () => {
+    const token = localStorage.getItem("token");
+    return token;
   };
 
+  // 모달 창을 열거나 닫는 함수를 정의합니다.
   const handleModalToggle = () => {
     setModalOpen(!isModalOpen);
   };
 
+  // 모달 닫기 함수를 정의합니다.
   const closeModal = () => {
     setModalOpen(false);
   };
 
+  // 시/도를 선택할 때 호출되는 함수입니다.
   const handleAreaSelect = (area) => {
     setSelectedArea(area);
     setSelectedCity("");
   };
 
+  // 시/군/구를 선택할 때 호출되는 함수입니다.
   const handleCitySelect = (city) => {
     setSelectedCity(city);
     setModalOpen(false);
   };
 
+  // 커리어 키워드를 선택하거나 해제하는 함수입니다.
   const handleKeywordSelect = (keyword) => {
     if (selectedKeywords.includes(keyword)) {
       setSelectedKeywords((prevKeywords) =>
@@ -73,6 +94,7 @@ const Participant = () => {
     }
   };
 
+  // 기타 키워드를 추가하는 함수입니다.
   const addCustomKeyword = () => {
     if (customKeyword.trim() !== "") {
       setSelectedKeywords((prevKeywords) => [...prevKeywords, customKeyword]);
@@ -80,10 +102,11 @@ const Participant = () => {
         ...prevCustomKeywords,
         customKeyword
       ]);
-      setCustomKeyword("");
+      setCustomKeyword(""); // 입력 필드 초기화
     }
   };
 
+  // 기타 키워드를 삭제하는 함수입니다.
   const removeCustomKeyword = (keywordToRemove) => {
     setSelectedKeywords((prevKeywords) =>
       prevKeywords.filter((kw) => kw !== keywordToRemove)
@@ -93,53 +116,65 @@ const Participant = () => {
     );
   };
 
+  // "다음에 입력" 버튼을 눌렀을 때 실행되는 함수입니다.
   const handleNextInput = () => {
     const confirmNextInput = window.confirm("정말 다음에 입력하세요?");
     if (confirmNextInput) {
-      window.location.href = "/";
+      // 여기서 다음 페이지로 이동하도록 설정
+      window.location.href = "/"; // 이동할 페이지의 경로에 따라 수정하세요.
     }
+    // 다음에 입력하지 않을 경우, 아무 동작도 하지 않음
   };
 
+  // 부가정보를 저장하는 함수입니다.
   const saveAdditionalInfo = () => {
+    console.log("부가정보 저장 함수가 호출되었습니다.");
+
+    // 모든 항목이 입력되었는지 확인합니다.
     if (
+      gender &&
+      age &&
       selectedArea &&
       selectedCity &&
       email &&
       phoneNumber &&
       affiliation &&
-      selectedKeywords.length > 0 &&
-      gender &&
-      age // 성별과 나이 모두 입력되었는지 확인
+      department &&
+      (selectedKeywords.length > 0 || customKeywords.length > 0)
     ) {
+      console.log("부가정보가 유효합니다.");
+
+      // 나이를 정수형으로 변환합니다.
+      const intAge = parseInt(age);
+
+      // 데이터를 백엔드로 전달할 객체를 생성합니다.
       const userData = {
         gender,
-        age,
-        city:selectedArea,              // 시도
-        addressLine:selectedCity,       // 시구군
+        age: intAge,
+        city: selectedArea,
+        addressLine: selectedCity,
         email,
         phoneNumber,
-        company:affiliation,            // 소속
-        department,                     // 부서/학과
-        keywordName:selectedKeywords,
+        company: affiliation,
+        department,
+        keywordName: [...selectedKeywords, ...customKeywords] // 선택된 키워드와 기타 키워드를 합칩니다.
       };
 
-      fetch("http://localhost:9000/signup/participant", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${token}` // 헤더에 토큰 추가
-        },
-        body: JSON.stringify(userData)
-      })
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error("Network response was not ok");
+      console.log("보낼 사용자 토큰:", token);
+      console.log("보낼 사용자 데이터:", userData);
+
+      // Axios를 사용하여 서버에 데이터를 전송합니다.
+      axios
+        .patch("http://localhost:9000/participant", userData, {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `${token}`
           }
-          return response.json();
         })
-        .then((data) => {
-          console.log("부가정보 저장 완료:", data);
-          // 원하는 작업 수행
+        .then((response) => {
+          console.log("부가정보 저장 완료:", response.data);
+          // 저장이 성공하면 홈 페이지로 이동합니다.
+          navigate("/");
         })
         .catch((error) => {
           console.error("부가정보 저장 실패:", error.message);
@@ -149,11 +184,14 @@ const Participant = () => {
     }
   };
 
+  // Participant 컴포넌트의 렌더링 부분입니다.
   return (
     <Container>
+      {/* 화면 제목 및 설명을 출력합니다. */}
       <Title>김커리님, Career Festival에 가입해주셔서 감사합니다.</Title>
       <Subtitle>나에게 맞는 오프라인 커리어 행사를 찾고 싶으신가요?</Subtitle>
 
+      {/* 부가정보 입력 안내 메시지를 출력합니다. */}
       <Subtitle2>
         부가정보를 미리 입력하면 더 빠르게 행사 매칭이 가능합니다.
         <br />
@@ -161,33 +199,35 @@ const Participant = () => {
       </Subtitle2>
       <hr />
 
+      {/* 성별 입력 부분입니다. */}
       <p>성별</p>
       <Gender>
         <input
           type="radio"
           id="male"
           name="gender"
-          value="male"
-          onChange={() => setGender("male")} // 선택 시 gender 상태 업데이트
+          value="남성"
+          onChange={() => setGender("남성")}
         />
         <label htmlFor="male">남성</label>
         <input
           type="radio"
           id="female"
           name="gender"
-          value="female"
-          onChange={() => setGender("female")} // 선택 시 gender 상태 업데이트
+          value="여성"
+          onChange={() => setGender("여성")}
         />
         <label htmlFor="female">여성</label>
       </Gender>
 
+      {/* 나이 입력 부분입니다. */}
       <Age>
         <label>나이</label>
         <input
           type="number"
           placeholder="나이를 입력하세요"
           value={age}
-          onChange={(e) => setAge(e.target.value)} // 입력 시 age 상태 업데이트
+          onChange={(e) => setAge(e.target.value)}
         />
       </Age>
 
@@ -227,24 +267,14 @@ const Participant = () => {
       </TelInput>
 
       {/* 소속 입력 부분입니다. */}
-      <AffiliationInput>
-        <p>소속(회사/기관/학교명)</p>
-        <input
-          type="text"
-          placeholder="소속을 입력하세요"
-          value={affiliation}
-          onChange={(e) => setAffiliation(e.target.value)}
-        />
-        {/* 부서 입력 필드 */}
-        <input
-          type="text"
-          placeholder="부서를 입력하세요"
-          value={department}
-          onChange={(e) => setDepartment(e.target.value)}
-        />
-      </AffiliationInput>
+      <AffiliationInput
+        affiliation={affiliation}
+        department={department}
+        setAffiliation={setAffiliation}
+        setDepartment={setDepartment}
+      />
 
-      {/* 추가: 커리어 키워드 입력 부분입니다. */}
+      {/* 커리어 키워드 입력 부분입니다. */}
       <p>커리어 키워드</p>
       <KeyworldOptionList>
         {[
@@ -275,11 +305,11 @@ const Participant = () => {
           value={customKeyword}
           onChange={(e) => setCustomKeyword(e.target.value)}
         />
-
+        
         {/* 기타 키워드 추가 버튼 */}
         <button onClick={addCustomKeyword}>추가</button>
 
-        {/* 기타 키워드 목록 */}
+        {/* 추가된 기타 키워드들 */}
         {customKeywords.map((customKeyword) => (
           <KeywordButton
             key={customKeyword}
@@ -292,9 +322,10 @@ const Participant = () => {
         ))}
       </KeyworldOptionList>
       <hr />
+
+      {/* "다음에 입력"과 "부가정보 저장하기" 버튼 */}
       <TwoButton>
         <LaterSave onClick={handleNextInput}>다음에 입력</LaterSave>
-        {/* 부가정보 저장하기 버튼 */}
         <Save
           onClick={saveAdditionalInfo}
           disabled={
@@ -317,4 +348,3 @@ const Participant = () => {
 };
 
 export default Participant;
-
