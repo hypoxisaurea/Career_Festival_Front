@@ -18,23 +18,46 @@ export const AuthProvider = ({ children }) => {
     }
   }, []);
 
-const login = (userData) => {
-  console.log("로그인 데이터:", userData); // userData를 로그에 출력
-  // 로그인 시 로컬 스토리지에 로그인 정보 저장
-  localStorage.setItem("isLoggedIn", "true");
-  localStorage.setItem("user", JSON.stringify(userData));
-  setIsLoggedIn(true);
-  setUser(userData);
-  console.log("로그인 정보가 로컬 스토리지에 저장되었습니다.");
-};
+  const login = async (username, password) => {
+    try {
+      // 서버에 로그인 정보를 전송하고 응답을 기다림
+      const response = await fetch("http://localhost:9000/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          username,
+          password
+        })
+      });
+  
+      if (response.ok) {
+        const userData = await response.json();
+        const jwtToken = response.headers.get("Authorization"); // 토큰 헤더에서 추출
+  
+        localStorage.setItem("isLoggedIn", "true");
+        localStorage.setItem("user", JSON.stringify(userData));
+        localStorage.setItem("token", jwtToken); // 토큰 저장
+  
+        setIsLoggedIn(true);
+        setUser(userData);
+        console.log("로그인 정보 및 토큰이 로컬 스토리지에 저장되었습니다.");
+      } else {
+        console.error("로그인 실패:", response.statusText);
+      }
+    } catch (error) {
+      console.error("에러 발생:", error);
+    }
+  };
 
   const logout = () => {
-    // 로그아웃 시 로컬 스토리지에서 로그인 정보 삭제
+    // 로그아웃 시 로컬 스토리지에서 로그인 정보 및 인증 정보 삭제
     localStorage.removeItem("isLoggedIn");
     localStorage.removeItem("user");
     setIsLoggedIn(false);
     setUser(null);
-    console.log("로그인 정보가 로컬 스토리지에서 삭제되었습니다.");
+    console.log("로그인 정보 및 인증 정보가 로컬 스토리지에서 삭제되었습니다.");
   };
 
   return (

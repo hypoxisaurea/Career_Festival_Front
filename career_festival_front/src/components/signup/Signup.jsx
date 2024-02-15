@@ -78,11 +78,12 @@ const Signup = () => {
         },
         body: JSON.stringify(userData)
       });
-
+      const responseData = await response.text(); // 서버 응답을 문자열로 받음
+      console.log("회원가입 응답 데이터:", responseData);
       // 응답 확인
       if (response.ok) {
         // 백엔드에서 온 응답 처리
-        console.log("회원가입 성공");
+        console.log("99회원가입 성공");
         console.log(response);
       } else {
         console.error("회원가입 실패:", response.statusText);
