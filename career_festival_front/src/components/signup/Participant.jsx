@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
 import InterestArea from "./InterestArea";
 import {
+  BrowserRouter as Router,
+useNavigate
+} from "react-router-dom";
+import {
   Container,
   Title,
   Subtitle,
@@ -16,6 +20,7 @@ import {
   LaterSave,
   Save
 } from "./ParticipantStyle";
+import axios from 'axios'; // Axios를 임포트합니다.
 
 const Participant = () => {
   const [isModalOpen, setModalOpen] = useState(false);
@@ -24,25 +29,30 @@ const Participant = () => {
   const [email, setEmail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [affiliation, setAffiliation] = useState("");
-  const [department, setDepartment] = useState(""); // 부서 상태 추가
+  const [department, setDepartment] = useState("");
   const [selectedKeywords, setSelectedKeywords] = useState([]);
   const [customKeyword, setCustomKeyword] = useState("");
   const [customKeywords, setCustomKeywords] = useState([]);
-  const [gender, setGender] = useState(""); // 성별 상태 추가
-  const [age, setAge] = useState(""); // 나이 상태 추가
-  const [token, setToken] = useState(""); // 토큰 상태 추가
+  const [gender, setGender] = useState("");
+  const [age, setAge] = useState("");
+  const [token, setToken] = useState("");
 
   useEffect(() => {
     handleAreaSelect("seoul");
-    // 토큰을 받아오는 함수를 호출하고, 받아온 토큰을 상태에 저장합니다.
-    fetchToken();
+    const tokenFromStorage = getTokenFromLocalStorage();
+    if (tokenFromStorage) {
+      setToken(tokenFromStorage);
+      console.log("로컬 스토리지에서 토큰을 가져왔습니다:", tokenFromStorage);
+    } else {
+      // 토큰이 없는 경우 다른 작업 수행
+    }
   }, []);
 
-  const fetchToken = () => {
-    // 토큰을 받아오는 비동기 요청을 보내고, 받아온 토큰을 상태에 저장합니다.
-    // 예를 들어, 로그인 후 토큰을 받아오는 함수를 호출하고 그 결과를 상태에 저장합니다.
-    const token = "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6IjEyM0BuYXZlci5jb20iLCJyb2xlIjoiUk9MRV9QQVJUSUNJUEFOVCIsImlhdCI6MTcwNzkzMTA2MiwiZXhwIjoxNzA3OTMxNjYyfQ.T-KdkGf5r0JfuEPSZoboElLjY9nhy6BR5jNp5GIFU-E"; // 여기에 토큰 값을 받아오는 비동기 요청을 작성합니다.
-    setToken(token);
+  const navigate = useNavigate();
+
+  const getTokenFromLocalStorage = () => {
+    const token = localStorage.getItem("token");
+    return token;
   };
 
   const handleModalToggle = () => {
@@ -101,45 +111,48 @@ const Participant = () => {
   };
 
   const saveAdditionalInfo = () => {
+    console.log("부가정보 저장 함수가 호출되었습니다.");
+  
     if (
       selectedArea &&
       selectedCity &&
       email &&
       phoneNumber &&
       affiliation &&
+      department &&
       selectedKeywords.length > 0 &&
       gender &&
-      age // 성별과 나이 모두 입력되었는지 확인
+      age
     ) {
+      console.log("부가정보가 유효합니다.");
+  
+      // age를 정수형으로 변환
+      const intAge = parseInt(age);
+
       const userData = {
         gender,
-        age,
-        city:selectedArea,              // 시도
-        addressLine:selectedCity,       // 시구군
+        age: intAge, // 정수형으로 변환된 age 사용
+        city: selectedArea,
+        addressLine: selectedCity,
         email,
         phoneNumber,
-        company:affiliation,            // 소속
-        department,                     // 부서/학과
-        keywordName:selectedKeywords,
+        company: affiliation,
+        department,
+        keywordName: selectedKeywords,
       };
-
-      fetch("http://localhost:9000/signup/participant", {
-        method: "POST",
+  
+      console.log("보낼 사용자 토큰:", token);
+      console.log("보낼 사용자 데이터:", userData);
+  
+      axios.patch("http://localhost:9000/participant", userData, {
         headers: {
           "Content-Type": "application/json",
-          "Authorization": `Bearer ${token}` // 헤더에 토큰 추가
+          Authorization: `${token}`,
         },
-        body: JSON.stringify(userData)
       })
         .then((response) => {
-          if (!response.ok) {
-            throw new Error("Network response was not ok");
-          }
-          return response.json();
-        })
-        .then((data) => {
-          console.log("부가정보 저장 완료:", data);
-          // 원하는 작업 수행
+          console.log("부가정보 저장 완료:", response.data);
+          navigate("/");
         })
         .catch((error) => {
           console.error("부가정보 저장 실패:", error.message);
@@ -167,16 +180,16 @@ const Participant = () => {
           type="radio"
           id="male"
           name="gender"
-          value="male"
-          onChange={() => setGender("male")} // 선택 시 gender 상태 업데이트
+          value="남성"
+          onChange={() => setGender("남성")}
         />
         <label htmlFor="male">남성</label>
         <input
           type="radio"
           id="female"
           name="gender"
-          value="female"
-          onChange={() => setGender("female")} // 선택 시 gender 상태 업데이트
+          value="여성"
+          onChange={() => setGender("여성")}
         />
         <label htmlFor="female">여성</label>
       </Gender>
@@ -187,11 +200,10 @@ const Participant = () => {
           type="number"
           placeholder="나이를 입력하세요"
           value={age}
-          onChange={(e) => setAge(e.target.value)} // 입력 시 age 상태 업데이트
+          onChange={(e) => setAge(e.target.value)}
         />
       </Age>
 
-      {/* 관심지역 입력 부분입니다. */}
       <p>관심지역</p>
       <InterestArea
         selectedArea={selectedArea}
@@ -204,7 +216,6 @@ const Participant = () => {
         buttonText="선택하기"
       />
 
-      {/* 이메일 입력 부분입니다. */}
       <EmailInput>
         <label>이메일</label>
         <input
@@ -215,7 +226,6 @@ const Participant = () => {
         />
       </EmailInput>
 
-      {/* 전화번호 입력 부분입니다. */}
       <TelInput>
         <label>전화번호</label>
         <input
@@ -226,7 +236,6 @@ const Participant = () => {
         />
       </TelInput>
 
-      {/* 소속 입력 부분입니다. */}
       <AffiliationInput>
         <p>소속(회사/기관/학교명)</p>
         <input
@@ -235,7 +244,6 @@ const Participant = () => {
           value={affiliation}
           onChange={(e) => setAffiliation(e.target.value)}
         />
-        {/* 부서 입력 필드 */}
         <input
           type="text"
           placeholder="부서를 입력하세요"
@@ -244,7 +252,6 @@ const Participant = () => {
         />
       </AffiliationInput>
 
-      {/* 추가: 커리어 키워드 입력 부분입니다. */}
       <p>커리어 키워드</p>
       <KeyworldOptionList>
         {[
@@ -268,7 +275,6 @@ const Participant = () => {
           </KeywordButton>
         ))}
 
-        {/* 기타 키워드 입력 필드 */}
         <input
           type="text"
           placeholder="기타 키워드 추가"
@@ -276,10 +282,8 @@ const Participant = () => {
           onChange={(e) => setCustomKeyword(e.target.value)}
         />
 
-        {/* 기타 키워드 추가 버튼 */}
         <button onClick={addCustomKeyword}>추가</button>
 
-        {/* 기타 키워드 목록 */}
         {customKeywords.map((customKeyword) => (
           <KeywordButton
             key={customKeyword}
@@ -294,7 +298,6 @@ const Participant = () => {
       <hr />
       <TwoButton>
         <LaterSave onClick={handleNextInput}>다음에 입력</LaterSave>
-        {/* 부가정보 저장하기 버튼 */}
         <Save
           onClick={saveAdditionalInfo}
           disabled={
@@ -317,4 +320,3 @@ const Participant = () => {
 };
 
 export default Participant;
-

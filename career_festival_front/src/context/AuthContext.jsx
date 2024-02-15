@@ -1,4 +1,3 @@
-// src/context/AuthContext.js
 import React, { createContext, useContext, useState, useEffect } from "react";
 
 const AuthContext = createContext();
@@ -6,20 +5,26 @@ const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [user, setUser] = useState(null);
+  const [token, setToken] = useState(""); // 토큰 상태 추가
 
   useEffect(() => {
-    // 페이지 로드 시 로컬 스토리지에서 로그인 정보 확인
+    // 페이지 로드 시 로컬 스토리지에서 로그인 정보 및 토큰 확인
     const loggedIn = localStorage.getItem("isLoggedIn");
     const userInfo = JSON.parse(localStorage.getItem("user"));
+    const storedToken = localStorage.getItem("token");
 
-    if (loggedIn && userInfo) {
+    if (loggedIn && userInfo && storedToken) {
       setIsLoggedIn(true);
       setUser(userInfo);
+      setToken(storedToken); // 저장된 토큰 상태로 설정
+      console.log("로컬 스토리지에서 로그인 정보 및 토큰을 가져왔습니다.");
     }
   }, []);
 
   const login = async (username, password) => {
     try {
+      console.log("로그인 시도 중...");
+
       // 서버에 로그인 정보를 전송하고 응답을 기다림
       const response = await fetch("http://localhost:9000/login", {
         method: "POST",
@@ -33,6 +38,7 @@ export const AuthProvider = ({ children }) => {
       });
   
       if (response.ok) {
+        console.log("로그인 성공!");
         const userData = await response.json();
         const jwtToken = response.headers.get("Authorization"); // 토큰 헤더에서 추출
   
@@ -51,7 +57,7 @@ export const AuthProvider = ({ children }) => {
           localStorage.setItem("isLoggedIn", "true");
           localStorage.setItem("user", JSON.stringify(userInfo));
           localStorage.setItem("token", jwtToken); // 토큰 저장
-  
+          
           setIsLoggedIn(true);
           setUser(userInfo);
           console.log("로그인 정보 및 토큰이 로컬 스토리지에 저장되었습니다.");
