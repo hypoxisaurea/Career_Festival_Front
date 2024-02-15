@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams, useLocation } from "react-router-dom";
 import InterestArea from "../signup/InterestArea"; // 관심지역 컴포넌트 import
 import imageIcon from "../../assets/images/frame_gallery_image.png";
 import StartCalendar from "../Enroll/StartCalendar";
@@ -36,7 +36,6 @@ import {
 } from "./Level7Style"; // Level7Style 파일에서 스타일 요소들을 불러옴
 
 const Level7 = () => {
-  // 상태 정의
   // 키워드
   const [selectedKeywords, setSelectedKeywords] = useState([]);
   const [customKeyword, setCustomKeyword] = useState("");
@@ -61,6 +60,15 @@ const Level7 = () => {
   const [entryFee, setEntryFee] = useState("");
   const [contactName, setContactName] = useState("");
   const [contactEmail, setContactEmail] = useState("");
+
+  // URL 파라미터에서 part 값 받기
+  const location = useLocation();
+
+  const searchParams = new URLSearchParams(location.search);
+
+  let part = decodeURIComponent(searchParams.get("part"));
+  part = part.endsWith("/") ? part.slice(0, -1) : part; // 맨 뒤에 있는 '/' 문자 제거
+  console.log("part:", part);
 
   // 함수 정의
   const handleKeywordSelect = (keyword) => {
@@ -120,12 +128,6 @@ const Level7 = () => {
     eventInfoImageInputRef.current.click();
   };
 
-  // 관심지역
-  // useEffect를 사용하여 컴포넌트가 처음 마운트될 때 실행될 로직 추가
-  useEffect(() => {
-    // 초기값으로 서울을 선택하도록 설정
-    handleAreaSelect("seoul");
-  }, []);
 
   // 모달 창을 열거나 닫는 함수를 정의합니다.
   const handleModalToggle = () => {
@@ -156,8 +158,16 @@ const Level7 = () => {
       <HL />
       <Title>모집기간</Title>
       <Term>
-      <StartDate>시작일<StartCalendar/><Clock/></StartDate>
-      <EndDate>마감일<EndCalendar/><Clock/></EndDate>
+        <StartDate>
+          시작일
+          <StartCalendar />
+          <Clock />
+        </StartDate>
+        <EndDate>
+          마감일
+          <EndCalendar />
+          <Clock />
+        </EndDate>
       </Term>
       <PurpleTitle>행사 상세 정보</PurpleTitle>
       <SubTitle>행사에 대해 자세히 설명해주세요!</SubTitle>
@@ -175,7 +185,7 @@ const Level7 = () => {
           "인문/사회",
           "과학기술",
           "디자인",
-          "관광/여행",
+          "관광/여행"
         ].map((keyword) => (
           <KeywordButton
             key={keyword}
@@ -260,7 +270,7 @@ const Level7 = () => {
                 width: "100%",
                 maxWidth: "300px",
                 height: "auto",
-                marginLeft: "10vw",
+                marginLeft: "10vw"
               }} // 이미지 크기 조절 스타일 추가
             />
           </div>
