@@ -1,0 +1,25 @@
+{
+    "Event":[
+        {
+        "id": 1,
+        "mainImg":"행사 대표 이미지",
+        "eventName": "행사명",
+        "recruitmentStart": "모집시작일",
+        "recruitmentEnd": "모집마감일",
+        "isLiked": "관심행사",
+        "eventCost": "가격",
+        "profile": "프로필",
+        "?????":"주최자",
+        "managerName":"담당자",
+        "managerEmail":"담당자 이메일",
+        "keywordName":"행사분야",
+        "category":"행사유형",
+        "eventEnd":"행사일시=>행사 일정 시작일과 마감일은 없나요?",
+        "eventContent": "행사 정보, 상세설명=>간단한설명은 상세페이지에서 어디에 띄울지",
+        "descriptionfileurl":"상세설명이미지",
+        "region":"용산구",
+        "specAddress": "행사위치=>장소입력",
+        "????":"외부사이트"
+        }
+    ]
+}
