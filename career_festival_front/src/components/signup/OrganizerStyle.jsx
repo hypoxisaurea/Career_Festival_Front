@@ -78,30 +78,6 @@ const TelInput = styled.div`
   }
 `;
 
-const AffiliationInput = styled.div`
-  margin-bottom: 20px;
-
-  label {
-    display: block;
-    font-size: 16px;
-    margin-bottom: 5px;
-  }
-
-  input {
-    width: 180px;
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid;
-    border-radius: 5px;
-
-
-    &:focus {
-      border: 3px solid;
-      border-color: #582fff;
-      outline: none; // 선택 효과를 제거합니다.
-    }
-  }
-`;
 
 const KeyworldOptionList = styled.div`
   display: flex;
@@ -171,7 +147,6 @@ export {
   Subtitle2,
   EmailInput,
   TelInput,
-  AffiliationInput,
   KeyworldOptionList,
   KeywordButton,
   TwoButton,
