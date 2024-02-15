@@ -98,23 +98,6 @@ const TelInput = styled.div`
   }
 `;
 
-const AffiliationInput = styled.div`
-  margin-bottom: 20px;
-
-  label {
-    display: block;
-    font-size: 16px;
-    margin-bottom: 5px;
-  }
-
-  input {
-    width: 180px;
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid;
-    border-radius: 5px;
-  }
-`;
 
 const KeyworldOptionList = styled.div`
   display: flex;
@@ -166,17 +149,18 @@ const LaterSave = styled.button`
 `;
 
 const Save = styled.button`
-  background-color: #582fff;
-  color: #ffffff;
+  background-color: ${(props) => (props.disabled ? "#d9d9d9" : "#582fff")};
+  color: ${(props) => (props.disabled ? "#582fff" : "#ffffff")};
   border: none;
   padding: 10px;
-  cursor: pointer;
+  cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
   border-radius: 10px;
 
   &:hover {
-    background-color: #4018cc;
+    background-color: ${(props) => (props.disabled ? "#d9d9d9" : "#4018cc")};
   }
 `;
+
 
 
 export {
@@ -188,7 +172,6 @@ export {
   Age,
   EmailInput,
   TelInput,
-  AffiliationInput,
   KeyworldOptionList,
   KeywordButton,
   TwoButton,

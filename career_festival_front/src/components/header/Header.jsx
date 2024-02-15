@@ -58,7 +58,7 @@ const SearchItem = styled.div`
 //   font-size: 0.8vw;
 //   outline: none;
 //   overflow: hidden;
-// `; 
+// `;
 const SearchInput = styled.input`
   // width: 50%;
   border: 0.2vw solid #582fff;
@@ -67,7 +67,6 @@ const SearchInput = styled.input`
   font-size: 0.8vw;
   outline: none;
 `;
-
 
 // 검색 버튼 스타일
 const SearchButton = styled.button`
@@ -92,7 +91,6 @@ const AuthButtonsContainer = styled.div`
   justify-content: flex-start;
   margin-left: 5vw;
 `;
-
 
 // 로그인, 회원가입 버튼 스타일
 const Join = styled(Link)`
@@ -130,7 +128,7 @@ const LinkContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  margin-left:16vw;
+  margin-left: 16vw;
   padding: 0.7vw;
   flex-wrap: wrap;
   @media (max-width: 600px) {
@@ -234,9 +232,9 @@ const Header = () => {
             {isLoggedIn ? "로그아웃" : "로그인"}
           </Join>
 
-          <Join to="/join">
-            {isLoggedIn ? ( <Link to="settingPage">
-              <SettingImage src={setting} alt="setting" /></Link>
+          <Join to={isLoggedIn ? "/settingpage" : "/join"}>
+            {isLoggedIn ? (
+              <SettingImage src={setting} alt="setting" />
             ) : (
               "회원가입"
             )}
@@ -249,10 +247,11 @@ const Header = () => {
         <LinkItem to="/diary">기록장</LinkItem>
         <LinkItem to="/mypage">마이페이지</LinkItem>
         <TextContiner>
-        <RegisterItem to="/register">행사개설하기</RegisterItem>
-        <VerticalLine />
-        <WelcomeText>
-          {isLoggedIn ? `${user.name} 님 환영합니다!` : "로그인 해주세요!"}
+          <RegisterItem to="/register">행사개설하기</RegisterItem>
+          <VerticalLine />
+          <WelcomeText>
+            {isLoggedIn ? `${user.userName} 님 환영합니다!` : "로그인 해주세요!"}
+            {/* {isLoggedIn ? `${user} 님 환영합니다!` : "로그인 해주세요!"}/ */}
           </WelcomeText>
         </TextContiner>
       </LinkContainer>

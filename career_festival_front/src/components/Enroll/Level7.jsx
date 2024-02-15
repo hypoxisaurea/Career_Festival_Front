@@ -2,6 +2,9 @@ import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import InterestArea from "../signup/InterestArea"; // 관심지역 컴포넌트 import
 import imageIcon from "../../assets/images/frame_gallery_image.png";
+import StartCalendar from "../Enroll/StartCalendar";
+import EndCalendar from "../Enroll/EndCalendar";
+import Clock from "../Enroll/Clock";
 
 import {
   NextButton,
@@ -24,7 +27,12 @@ import {
   ManagerEmail,
   AttachmentButton,
   ImageIcon,
-  ImageAddButton
+  ImageAddButton,
+  ImageAddButton2,
+  TitleImage,
+  StartDate,
+  EndDate,
+  Term
 } from "./Level7Style"; // Level7Style 파일에서 스타일 요소들을 불러옴
 
 const Level7 = () => {
@@ -38,6 +46,11 @@ const Level7 = () => {
   // 이미지 추가
   const [selectedImage, setSelectedImage] = useState(null); // 선택된 이미지 파일 상태 추가
   const [externalSiteUrl, setExternalSiteUrl] = useState(""); // 외부 사이트 URL 상태 추가
+  // 이미지 업로드 및 관련 상태와 함수 정의
+  const [selectedMainImage, setSelectedMainImage] = useState(null); // 대표이미지 파일 상태 추가
+  // 행사정보이미지 업로드 및 관련 상태와 함수 정의
+  const [selectedEventInfoImage, setSelectedEventInfoImage] = useState(null); // 행사정보이미지 파일 상태 추가
+
   // 관심지역
   const [isModalOpen, setModalOpen] = useState(false);
   const [selectedArea, setSelectedArea] = useState("seoul");
@@ -80,18 +93,31 @@ const Level7 = () => {
       prevCustomKeywords.filter((kw) => kw !== keywordToRemove)
     );
   };
-  // 파일 업로드 input에 대한 참조 생성
-  const fileInputRef = useRef(null);
+  // 대표 이미지 파일 업로드 input에 대한 참조 생성
+  const mainImageInputRef = useRef(null);
 
-  // AttachmentButton 클릭 시 파일 업로드 input 클릭
-  const handleAttachmentButtonClick = () => {
-    fileInputRef.current.click();
+  // 대표이미지 파일 선택 시 실행될 함수
+  const handleMainImageUpload = (e) => {
+    const file = e.target.files[0]; // 선택된 파일 가져오기
+    setSelectedMainImage(file); // 선택된 파일 상태 업데이트
   };
 
-  // 파일 선택 시 실행될 함수
-  const handleFileUpload = (e) => {
+  // 대표이미지 업로드 버튼 클릭 시 실행될 함수
+  const handleMainImageUploadButtonClick = () => {
+    mainImageInputRef.current.click();
+  };
+  // 행사정보이미지 파일 업로드 input에 대한 참조 생성
+  const eventInfoImageInputRef = useRef(null);
+
+  // 행사정보이미지 파일 선택 시 실행될 함수
+  const handleEventInfoImageUpload = (e) => {
     const file = e.target.files[0]; // 선택된 파일 가져오기
-    setSelectedImage(file); // 선택된 파일 상태 업데이트
+    setSelectedEventInfoImage(file); // 선택된 파일 상태 업데이트
+  };
+
+  // 행사정보이미지 업로드 버튼 클릭 시 실행될 함수
+  const handleEventInfoImageUploadButtonClick = () => {
+    eventInfoImageInputRef.current.click();
   };
 
   // 관심지역
@@ -129,13 +155,15 @@ const Level7 = () => {
       <SubTitle>행사에 대한 기본설정이에요.</SubTitle>
       <HL />
       <Title>모집기간</Title>
-
+      <Term>
+      <StartDate>시작일<StartCalendar/><Clock/></StartDate>
+      <EndDate>마감일<EndCalendar/><Clock/></EndDate>
+      </Term>
       <PurpleTitle>행사 상세 정보</PurpleTitle>
       <SubTitle>행사에 대해 자세히 설명해주세요!</SubTitle>
       <HL />
-
       {/* 추가: 커리어 키워드 입력 부분입니다. */}
-      <p>행사분야</p>
+      <Title>행사분야</Title>
       <KeyworldOptionList>
         {[
           "창업",
@@ -181,7 +209,6 @@ const Level7 = () => {
           </KeywordButton>
         ))}
       </KeyworldOptionList>
-
       <Title>행사명</Title>
       {/* 행사명 입력 부분을 컴포넌트로 교체 */}
       <InputFestivalName
@@ -195,7 +222,6 @@ const Level7 = () => {
         value={eventName} // 이 부분은 입력된 간단 소개를 표시할 값으로 변경 필요
         onChange={(e) => setEventName(e.target.value)}
       />
-
       <Title>관심지역</Title>
       {/* 관심지역 컴포넌트 */}
       <InterestArea
@@ -208,23 +234,39 @@ const Level7 = () => {
         closeModal={closeModal}
         buttonText="관심지역 선택"
       />
+      <Title>대표이미지</Title>
+      <TitleImage>
+        <ImageAddButton2 onClick={handleMainImageUploadButtonClick}>
+          <ImageIcon src={imageIcon} alt="이미지 첨부 아이콘" />
+          <span>이미지 추가</span>
+        </ImageAddButton2>
 
-      <Title>행사 대표이미지</Title>
-      {/* 파일 업로드를 위한 input 요소 */}
-      {/* 파일 업로드를 위한 input 요소 */}
-      {/* 파일 업로드를 위한 input 요소 */}
-      {/* 파일 업로드를 위한 input 요소 */}
-      {/* 파일 업로드를 위한 input 요소 */}
-      {/* 파일 업로드를 위한 input 요소 */}
-      {/* 파일 업로드를 위한 input 요소 */}
-      {/* 파일 업로드를 위한 input 요소 */}
+        {/* 대표 이미지 파일 업로드 input */}
+        <input
+          type="file"
+          accept="image/*"
+          onChange={handleMainImageUpload}
+          style={{ display: "none" }} // 화면에 보이지 않도록 스타일 지정
+          ref={mainImageInputRef} // ref 연결
+        />
 
-      {/* 파일 미리보기를 위한 img 요소 */}
-      {selectedImage && (
-        <img src={URL.createObjectURL(selectedImage)} alt="행사 대표이미지" />
-      )}
+        {/* 대표 이미지 파일 미리보기를 위한 img 요소 */}
+        {selectedMainImage && (
+          <div>
+            <img
+              src={URL.createObjectURL(selectedMainImage)}
+              alt="대표 이미지"
+              style={{
+                width: "100%",
+                maxWidth: "300px",
+                height: "auto",
+                marginLeft: "10vw",
+              }} // 이미지 크기 조절 스타일 추가
+            />
+          </div>
+        )}
+      </TitleImage>
       <Title>행사 일정</Title>
-
       <Title>행사 신청 외부사이트</Title>
       <AddURL
         type="url"
@@ -240,22 +282,29 @@ const Level7 = () => {
           value={eventInfo}
           onChange={(e) => setEventInfo(e.target.value)}
         />
-        {/* 파일 업로드 input */}
+        {/* 행사정보이미지 업로드 input */}
         <input
           type="file"
           accept="image/*"
-          onChange={handleFileUpload}
+          onChange={handleEventInfoImageUpload}
           style={{ display: "none" }} // 화면에 보이지 않도록 스타일 지정
-          ref={fileInputRef} // ref 연결
+          ref={eventInfoImageInputRef} // ref 연결
+          id="event-info-image-upload-input" // id 추가
         />
 
         {/* AttachmentButton에 onClick 이벤트 핸들러 추가 */}
         <AttachmentButton>
-          <ImageAddButton onClick={handleAttachmentButtonClick}>
-            <ImageIcon src={imageIcon} alt="이미지 첨부 아이콘" />
-            <span>이미지첨부</span>
+          <ImageAddButton onClick={handleEventInfoImageUploadButtonClick}>
+            <ImageIcon src={imageIcon} alt="행사 정보 이미지 첨부 아이콘" />
+            <span>이미지 추가</span>
           </ImageAddButton>
-          <p>{eventInfo.length}/5000 글자 입력됨</p>
+          {/* 선택된 이미지 파일 이름 표시 */}
+          {selectedEventInfoImage && <p>{selectedEventInfoImage.name}</p>}
+          {/* 글자 입력 수 표시 */}
+          <p>
+            <span style={{ color: "#582fff" }}>{eventInfo.length}</span>/5000
+            글자 입력됨
+          </p>
         </AttachmentButton>
       </FestivalInformation>
       <Title>행사 참가비</Title>
@@ -280,7 +329,6 @@ const Level7 = () => {
         value={contactEmail}
         onChange={(e) => setContactEmail(e.target.value)}
       />
-
       <Link to="/organization-mypage">
         <NextButton>행사개설</NextButton>
       </Link>
