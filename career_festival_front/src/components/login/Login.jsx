@@ -22,7 +22,7 @@ import {
 } from "./LoginStyle"; // 수정된 부분
 
 const Login = () => {
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { login } = useAuth(); // useAuth 훅을 사용하여 login 함수 가져옴
   const navigate = useNavigate(); // useNavigate 훅 사용
@@ -30,7 +30,7 @@ const Login = () => {
 
   // 로그인 버튼 클릭 시 호출되는 함수
   const handleLogin = () => {
-    login(username, password);
+    login(email, password);
     navigate("/");
   };
 
@@ -48,13 +48,13 @@ const Login = () => {
         <Field>
           <InputField
             type="text"
-            id="username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            id="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             onFocus={() => setIsFocusedOrFilled(true)} // 추가
-            onBlur={() => setIsFocusedOrFilled(!!username)} // 추가
+            onBlur={() => setIsFocusedOrFilled(!!email)} // 추가
           />
-          <Label for="username" isFocusedOrFilled={isFocusedOrFilled}> {/* 수정 */}
+          <Label for="email" isFocusedOrFilled={isFocusedOrFilled}> {/* 수정 */}
             이메일(ID)
           </Label>
         </Field>
@@ -72,7 +72,7 @@ const Login = () => {
         {/* 로그인 버튼 클릭 시 handleLogin 함수 호출 */}
         <Button onClick={handleLogin}>로그인</Button>
         <HelpText>
-          <IDFind as={Link} to="/find-username">
+          <IDFind as={Link} to="/find-email">
             아이디 찾기
           </IDFind>{" "}
           |{"  "}

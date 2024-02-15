@@ -2,6 +2,9 @@ import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import InterestArea from "../signup/InterestArea"; // 관심지역 컴포넌트 import
 import imageIcon from "../../assets/images/frame_gallery_image.png";
+import StartCalendar from "../Enroll/StartCalendar";
+import EndCalendar from "../Enroll/EndCalendar";
+import Clock from "../Enroll/Clock";
 
 import {
   NextButton,
@@ -26,7 +29,10 @@ import {
   ImageIcon,
   ImageAddButton,
   ImageAddButton2,
-  TitleImage
+  TitleImage,
+  StartDate,
+  EndDate,
+  Term
 } from "./Level7Style"; // Level7Style 파일에서 스타일 요소들을 불러옴
 
 const Level7 = () => {
@@ -149,13 +155,15 @@ const Level7 = () => {
       <SubTitle>행사에 대한 기본설정이에요.</SubTitle>
       <HL />
       <Title>모집기간</Title>
-
+      <Term>
+      <StartDate>시작일<StartCalendar/><Clock/></StartDate>
+      <EndDate>마감일<EndCalendar/><Clock/></EndDate>
+      </Term>
       <PurpleTitle>행사 상세 정보</PurpleTitle>
       <SubTitle>행사에 대해 자세히 설명해주세요!</SubTitle>
       <HL />
-
       {/* 추가: 커리어 키워드 입력 부분입니다. */}
-      <p>행사분야</p>
+      <Title>행사분야</Title>
       <KeyworldOptionList>
         {[
           "창업",
@@ -201,7 +209,6 @@ const Level7 = () => {
           </KeywordButton>
         ))}
       </KeyworldOptionList>
-
       <Title>행사명</Title>
       {/* 행사명 입력 부분을 컴포넌트로 교체 */}
       <InputFestivalName
@@ -215,7 +222,6 @@ const Level7 = () => {
         value={eventName} // 이 부분은 입력된 간단 소개를 표시할 값으로 변경 필요
         onChange={(e) => setEventName(e.target.value)}
       />
-
       <Title>관심지역</Title>
       {/* 관심지역 컴포넌트 */}
       <InterestArea
@@ -228,7 +234,6 @@ const Level7 = () => {
         closeModal={closeModal}
         buttonText="관심지역 선택"
       />
-
       <Title>대표이미지</Title>
       <TitleImage>
         <ImageAddButton2 onClick={handleMainImageUploadButtonClick}>
@@ -251,13 +256,17 @@ const Level7 = () => {
             <img
               src={URL.createObjectURL(selectedMainImage)}
               alt="대표 이미지"
-              style={{ width: "100%", maxWidth: "300px", height: "auto", marginLeft: "10vw" }} // 이미지 크기 조절 스타일 추가
+              style={{
+                width: "100%",
+                maxWidth: "300px",
+                height: "auto",
+                marginLeft: "10vw",
+              }} // 이미지 크기 조절 스타일 추가
             />
           </div>
         )}
       </TitleImage>
       <Title>행사 일정</Title>
-
       <Title>행사 신청 외부사이트</Title>
       <AddURL
         type="url"
@@ -265,8 +274,6 @@ const Level7 = () => {
         value={externalSiteUrl}
         onChange={(e) => setExternalSiteUrl(e.target.value)}
       />
-
-
       <Title>행사 정보</Title>
       {/* 행사 정보 입력 부분 */}
       <FestivalInformation>
@@ -300,7 +307,6 @@ const Level7 = () => {
           </p>
         </AttachmentButton>
       </FestivalInformation>
-
       <Title>행사 참가비</Title>
       <FestivalFee
         type="text"
@@ -323,7 +329,6 @@ const Level7 = () => {
         value={contactEmail}
         onChange={(e) => setContactEmail(e.target.value)}
       />
-
       <Link to="/organization-mypage">
         <NextButton>행사개설</NextButton>
       </Link>

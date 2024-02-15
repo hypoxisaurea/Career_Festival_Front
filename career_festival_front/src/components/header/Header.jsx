@@ -250,8 +250,8 @@ const Header = () => {
           <RegisterItem to="/register">행사개설하기</RegisterItem>
           <VerticalLine />
           <WelcomeText>
-            {/* {isLoggedIn ? `${user.name} 님 환영합니다!` : "로그인 해주세요!"} */}
-            {isLoggedIn ? `${user} 님 환영합니다!` : "로그인 해주세요!"}
+            {isLoggedIn ? `${user.userName} 님 환영합니다!` : "로그인 해주세요!"}
+            {/* {isLoggedIn ? `${user} 님 환영합니다!` : "로그인 해주세요!"}/ */}
           </WelcomeText>
         </TextContiner>
       </LinkContainer>
