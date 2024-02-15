@@ -105,6 +105,10 @@ const Signup = () => {
           <Organizer />
         ) : null
       );
+
+      // 선택된 역할을 로컬 스토리지에 저장
+      localStorage.setItem("userRole", selectedRole);
+      
     } catch (error) {
       console.error('에러 발생:', error);
     }

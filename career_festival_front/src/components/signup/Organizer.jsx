@@ -135,6 +135,9 @@ const Organizer = () => {
     ) {
       console.log("부가정보가 유효합니다.");
 
+      // 선택된 키워드와 기타 키워드를 합침
+      const allKeywords = [...selectedKeywords, ...customKeywords];
+
       // 데이터를 백엔드로 전달할 데이터
       const userData = {
         city: selectedArea,
@@ -143,7 +146,7 @@ const Organizer = () => {
         phoneNumber,
         company: affiliation,
         department,
-        keywordName: [...selectedKeywords, ...customKeywords] // 선택된 키워드와 기타 키워드를 합침
+        keywordName: allKeywords // 선택된 키워드와 기타 키워드를 합친 배열을 전송
       };
 
       console.log("보낼 사용자 토큰:", token);
