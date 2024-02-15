@@ -6,7 +6,7 @@ export const Level7Container = styled.div`
   flex-direction: column;
   height: 100vh; // 컨테이너가 화면 전체를 차지하도록 설정
   margin-bottom: 40vw;
-  padding: 10vw;
+  padding: 3vw 0 0 10vw;
 `;
 export const HL = styled.hr`
   border: 0.1px solid #838383; // 가로선 스타일 지정
@@ -36,13 +36,23 @@ export const Title = styled.h1`
   color: #000000; // 글자색을 #582fff로 지정
   font-size: 1rem;
   text-align: left; // 왼쪽 정렬
+  //margin-bottom:5vw;
 `;
-
+export const Term = styled.div`
+  display: flex;
+`;
+export const StartDate = styled.div`
+  font-size: 1vw;
+  margin-right:5vw;
+`;
+export const EndDate = styled.div`
+  font-size: 1vw;
+`;
 export const SubTitle = styled.h1`
   color: #838383;
-  font-size: 0.8rem;
+  font-size: 1vw;
   text-align: left; // 왼쪽 정렬
-  margin-bottom: 20px; // 아래 여백 추가
+  //margin-bottom: 1vw; // 아래 여백 추가
 `;
 
 export const KeyworldOptionList = styled.div`
