@@ -1,4 +1,8 @@
 // src/components/header/Header.js
+
+// 유저의 정보가 주최자일때만 행사 등록하기 버튼 보이게하기
+
+
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
@@ -247,11 +251,11 @@ const Header = () => {
         <LinkItem to="/diary">기록장</LinkItem>
         <LinkItem to="/mypage">마이페이지</LinkItem>
         <TextContiner>
-          <RegisterItem to="/register">행사개설하기</RegisterItem>
+          <RegisterItem to="/register/level6">행사개설하기</RegisterItem>
           <VerticalLine />
           <WelcomeText>
-            {/* {isLoggedIn ? `${user.name} 님 환영합니다!` : "로그인 해주세요!"} */}
-            {isLoggedIn ? `${user} 님 환영합니다!` : "로그인 해주세요!"}
+            {isLoggedIn ? `${user.userName} 님 환영합니다!` : "로그인 해주세요!"}
+            {/* {isLoggedIn ? `${user} 님 환영합니다!` : "로그인 해주세요!"}/ */}
           </WelcomeText>
         </TextContiner>
       </LinkContainer>

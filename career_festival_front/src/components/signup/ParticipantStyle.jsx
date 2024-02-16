@@ -98,18 +98,6 @@ const TelInput = styled.div`
   }
 `;
 
-const AffiliationInput = styled.div`
-  margin-bottom: 20px;
-
-  input {
-    width: 180px;
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid;
-    border-radius: 5px;
-    margin-right: 1.5vw;
-  }
-`;
 
 const KeyworldOptionList = styled.div`
   display: flex;
@@ -184,7 +172,6 @@ export {
   Age,
   EmailInput,
   TelInput,
-  AffiliationInput,
   KeyworldOptionList,
   KeywordButton,
   TwoButton,

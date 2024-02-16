@@ -14,7 +14,7 @@ const Container = styled.div`
 
 const Title = styled.div`
   font-size: 1.5rem;
-  font-weight:bold;
+  font-weight: bold;
   margin-top: 20px;
 `;
 
@@ -44,7 +44,7 @@ const EventTypeButton = styled.button`
 
 const CustomInput = styled.input`
   //padding: 1vw;
-  margin:0.5vw;
+  margin: 0.5vw;
   font-size: 1rem;
   border: 2px solid #ccc;
   border-radius: 8px;
@@ -66,12 +66,28 @@ const Level6 = () => {
   const [selectedEventType, setSelectedEventType] = useState(null);
   const [customEventType, setCustomEventType] = useState("");
 
+  // EventTypeButton 클릭 핸들러
   const handleEventTypeClick = (eventType) => {
     setSelectedEventType(eventType);
   };
 
+  // CustomInput 변경 핸들러
   const handleCustomEventTypeChange = (event) => {
     setCustomEventType(event.target.value);
+  };
+
+  // 다음 버튼 클릭 핸들러
+  const handleNextButtonClick = () => {
+    // Level7 컴포넌트로 전달할 정보 객체 생성
+    const eventData = {
+      part: `${selectedEventType || ""}%2F${customEventType || ""}`
+    };
+
+    // JSON 문자열로 변환하여 URL 쿼리 파라미터로 전달
+    const queryString = new URLSearchParams(eventData).toString();
+
+    // Level7 컴포넌트로 이동하면서 URL 쿼리 파라미터 전달
+    window.location.href = `/register/Level7?${queryString}`;
   };
 
   return (
@@ -81,8 +97,8 @@ const Level6 = () => {
         <Content>5분이면 행사를 개설할 수 있어요!</Content>
         <ButtonContainer>
           <EventTypeButton
-            isSelected={selectedEventType === "강연/세미나"}
-            onClick={() => handleEventTypeClick("강연/세미나")}
+            isSelected={selectedEventType === "강연세미나"}
+            onClick={() => handleEventTypeClick("강연세미나")}
           >
             강연/세미나
           </EventTypeButton>
@@ -93,8 +109,8 @@ const Level6 = () => {
             학술대회
           </EventTypeButton>
           <EventTypeButton
-            isSelected={selectedEventType === "전시/박람회"}
-            onClick={() => handleEventTypeClick("전시/박람회")}
+            isSelected={selectedEventType === "전시박람회"}
+            onClick={() => handleEventTypeClick("전시박람회")}
           >
             전시/박람회
           </EventTypeButton>
@@ -102,7 +118,8 @@ const Level6 = () => {
             isSelected={selectedEventType === "기타"}
             onClick={() => handleEventTypeClick("기타")}
           >
-            기타<br></br>            <CustomInput
+            기타<br></br>{" "}
+            <CustomInput
               type="text"
               placeholder="기타 행사 유형 입력하세요."
               value={customEventType}
@@ -110,7 +127,7 @@ const Level6 = () => {
             />
           </EventTypeButton>
           <Link to="/register/Level7">
-            <NextButton>다음</NextButton>
+            <NextButton onClick={handleNextButtonClick}>다음</NextButton>
           </Link>
         </ButtonContainer>
       </Container>

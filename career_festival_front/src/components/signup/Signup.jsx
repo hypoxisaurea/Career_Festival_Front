@@ -10,8 +10,10 @@ import styled from "styled-components";
 import SignupStyle from "./SignupStyle";
 import Participant from "./Participant";
 import Organizer from "./Organizer";
+import { useAuth } from "../../context/AuthContext"; // AuthContext import 추가
 
 const Signup = () => {
+  const { login } = useAuth(); // useAuth 훅을 사용하여 login 함수 가져옴
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [checkPassword, setCheckPassword] = useState("");
@@ -44,7 +46,7 @@ const Signup = () => {
     setModalOpen(false);
     document.body.style.overflow = "auto"; // 모달이 닫힐 때 스크롤을 다시 허용
   };
-
+  
   // 역할에 따라 URL 변경 및 모달 닫기
   const handleModalNext = async (role) => {
     // "다음" 버튼이 눌리면 선택된 데이터를 상태에 저장하고 모달을 닫음
@@ -78,12 +80,16 @@ const Signup = () => {
         },
         body: JSON.stringify(userData)
       });
-
+      const responseData = await response.text(); // 서버 응답을 문자열로 받음
+      console.log("회원가입 응답 데이터:", responseData);
       // 응답 확인
       if (response.ok) {
         // 백엔드에서 온 응답 처리
-        console.log("회원가입 성공");
+        console.log("99회원가입 성공");
         console.log(response);
+        login(email, password);
+        navigate("/");
+
       } else {
         console.error("회원가입 실패:", response.statusText);
       }
@@ -99,6 +105,10 @@ const Signup = () => {
           <Organizer />
         ) : null
       );
+
+      // 선택된 역할을 로컬 스토리지에 저장
+      localStorage.setItem("userRole", selectedRole);
+      
     } catch (error) {
       console.error('에러 발생:', error);
     }

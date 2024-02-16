@@ -42,13 +42,13 @@ const InterestArea = ({
 
   // 컴포넌트가 마운트될 때 서울로 초기 선택
   useEffect(() => {
-    handleAreaSelect("서울");
+    handleAreaSelect("서울특별시");
   }, []); 
 
   // 모달이 열릴 때 서울로 선택
   useEffect(() => {
     if (isModalOpen) {
-      handleAreaSelect("서울");
+      handleAreaSelect("서울특별시");
     }
   }, [isModalOpen]);
 
