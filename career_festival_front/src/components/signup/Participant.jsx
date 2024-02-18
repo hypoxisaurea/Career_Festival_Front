@@ -19,7 +19,7 @@ import {
   LaterSave,
   Save
 } from "./ParticipantStyle";
-import axios from "axios"; // Axios를 임포트합니다.
+import { useAuth } from "../../context/AuthContext"; // useAuth를 추가로 임포트합니다.
 
 const Participant = () => {
   // 각 입력값을 상태로 관리합니다.
@@ -37,6 +37,9 @@ const Participant = () => {
   const [gender, setGender] = useState(""); // 성별 입력 상태
   const [age, setAge] = useState(""); // 나이 입력 상태
   const [token, setToken] = useState(""); // 토큰 상태 (인증에 사용)
+
+  // useAuth 훅을 사용하여 인증 관련 기능을 가져옵니다.
+  const { saveAdditionalInfo } = useAuth();
 
   useEffect(() => {
     // 컴포넌트가 마운트될 때 초기 작업을 수행합니다.
@@ -127,7 +130,7 @@ const Participant = () => {
   };
 
   // 부가정보를 저장하는 함수입니다.
-  const saveAdditionalInfo = () => {
+  const handleSaveAdditionalInfo = () => {
     console.log("부가정보 저장 함수가 호출되었습니다.");
 
     // 모든 항목이 입력되었는지 확인합니다.
@@ -163,26 +166,12 @@ const Participant = () => {
       console.log("보낼 사용자 토큰:", token);
       console.log("보낼 사용자 데이터:", userData);
 
-      // Axios를 사용하여 서버에 데이터를 전송합니다.
-      axios
-        .patch("http://localhost:9000/participant", userData, {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `${token}`
-          }
-        })
-        .then((response) => {
-          console.log("부가정보 저장 완료:", response.data);
-          // 저장이 성공하면 홈 페이지로 이동합니다.
-          navigate("/");
-        })
-        .catch((error) => {
-          console.error("부가정보 저장 실패:", error.message);
-        });
+      saveAdditionalInfo(userData);
     } else {
       console.error("모든 항목을 완료해야 합니다.");
     }
   };
+
 
   // Participant 컴포넌트의 렌더링 부분입니다.
   return (
@@ -327,7 +316,7 @@ const Participant = () => {
       <TwoButton>
         <LaterSave onClick={handleNextInput}>다음에 입력</LaterSave>
         <Save
-          onClick={saveAdditionalInfo}
+          onClick={handleSaveAdditionalInfo}
           disabled={
             !gender ||
             !age ||
