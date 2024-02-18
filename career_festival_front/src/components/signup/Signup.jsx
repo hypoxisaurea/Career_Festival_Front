@@ -210,7 +210,6 @@ const Modal = ({ closeModal }) => {
           <div></div>또는
           <div></div>
         </SignupStyle.OrDivider>
-
         {/* 이름 섹션 */}
         <div className="input-section">
           <SignupStyle.InputLabel className="input-label">
@@ -223,7 +222,6 @@ const Modal = ({ closeModal }) => {
             onChange={(e) => setName(e.target.value)}
           />
         </div>
-
         {/* 비밀번호 섹션 */}
         <div className="input-section">
           <SignupStyle.InputLabel className="input-label">
@@ -245,7 +243,6 @@ const Modal = ({ closeModal }) => {
             onChange={(e) => setCheckPassword(e.target.value)}
           />
         </div>
-
         {/* 이메일 섹션 */}
         <div className="input-section">
           <SignupStyle.InputLabel className="input-label">
@@ -268,7 +265,7 @@ const Modal = ({ closeModal }) => {
           />
         </div>
 
-        {/* 이용약관 세션 */}
+        {/*  이용약관 세션 */}
         <SignupStyle.AgreementContainer>
           <label>
             <input
@@ -295,6 +292,18 @@ const Modal = ({ closeModal }) => {
               }
             />
             [필수] 이용약관
+            <button
+              style={{
+                color: "#582FFF",
+                fontSize: "10px",
+                backgroundColor: "transparent",
+                border: "none",
+                textDecoration: "underline",
+              }}
+            >
+              {" "}
+              보기
+            </button>
           </label>
           <label>
             <input
@@ -308,9 +317,20 @@ const Modal = ({ closeModal }) => {
               }
             />
             [필수] 개인정보 수집·이용 동의서
+            <button
+              style={{
+                color: "#582FFF",
+                fontSize: "10px",
+                backgroundColor: "transparent",
+                border: "none",
+                textDecoration: "underline",
+              }}
+            >
+              {" "}
+              보기
+            </button>
           </label>
         </SignupStyle.AgreementContainer>
-
         {/* 회원가입 버튼 */}
         <SignupStyle.SignupButton
           disabled={isSignupButtonDisabled()}
@@ -318,7 +338,6 @@ const Modal = ({ closeModal }) => {
         >
           회원가입
         </SignupStyle.SignupButton>
-
         {/* 모달 컴포넌트 */}
         {modalOpen && (
           <>

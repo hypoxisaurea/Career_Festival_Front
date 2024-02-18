@@ -5,29 +5,23 @@ import styled from "styled-components";
 // 스타일드 컴포넌트를 사용하여 스타일 정의
 const InterestAreaStyle = styled.div`
   margin-bottom: 20px; // 하단 여백 추가
-  //width:100%;
 
   label {
     display: block; // 라벨 숨김
-    font-size: 16px; // 폰트 크기 설정
     margin-bottom: 5px; // 하단 여백 추가
   }
 
   // 제일 큰 버튼 스타일 정의
   button {
-    //width: 10vw; // 버튼의 가로 크기 설정
-    padding: 0.5vw 5vw 0.5vw 0.5vw; // 안쪽 여백 설정
-    //font-size: 1rem; // 폰트 크기 설정
-    border: 0.1vw solid #000000; // 테두리 추가
-    border-radius: 0.3vw; // 테두리의 둥근 정도 설정
-    cursor: pointer; // 커서를 포인터로 변경
-    background-color: #ffffff; // 배경색 설정
     text-align: start;
-    color: #757575;
-
-    @media screen and (max-width: 600px) {
-      font-size: 1vw;
-    }
+    width: 200px;
+    padding: 8px;
+    border: 1px solid #838383;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 12px; // 폰트 크기 설정
+    color: #838383;
+    background-color: #ffffff;
   }
 `;
 

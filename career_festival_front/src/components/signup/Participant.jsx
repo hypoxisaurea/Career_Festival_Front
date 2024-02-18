@@ -178,7 +178,11 @@ const Participant = () => {
     <Container>
       {/* 화면 제목 및 설명을 출력합니다. */}
       <Title>김커리님, Career Festival에 가입해주셔서 감사합니다.</Title>
-      <Subtitle>나에게 맞는 오프라인 커리어 행사를 찾고 싶으신가요?</Subtitle>
+      <Subtitle>
+        나에게 맞는
+        <span style={{ fontWeight: "bold" }}> 오프라인 커리어 행사</span>를 찾고
+        싶으신가요?
+      </Subtitle>
 
       {/* 부가정보 입력 안내 메시지를 출력합니다. */}
       <Subtitle2>
@@ -189,7 +193,7 @@ const Participant = () => {
       <hr />
 
       {/* 성별 입력 부분입니다. */}
-      <p>성별</p>
+      <p style={{ fontWeight: "bold", fontSize: "15px" }}>성별</p>
       <Gender>
         <input
           type="radio"
@@ -211,17 +215,18 @@ const Participant = () => {
 
       {/* 나이 입력 부분입니다. */}
       <Age>
-        <label>나이</label>
+        <label style={{ fontWeight: "bold", fontSize: "15px" }}>나이</label>
         <input
+          style={{ fontSize: "12px" }}
           type="number"
-          placeholder="나이를 입력하세요"
+          placeholder="숫자로만 적어주세요!"
           value={age}
           onChange={(e) => setAge(e.target.value)}
         />
       </Age>
 
       {/* 관심지역 입력 부분입니다. */}
-      <p>관심지역</p>
+      <p style={{ fontWeight: "bold", fontSize: "15px" }}>관심지역</p>
       <InterestArea
         selectedArea={selectedArea}
         handleAreaSelect={handleAreaSelect}
@@ -235,10 +240,11 @@ const Participant = () => {
 
       {/* 이메일 입력 부분입니다. */}
       <EmailInput>
-        <label>이메일</label>
+        <label style={{ fontWeight: "bold", fontSize: "15px" }}>이메일</label>
         <input
+          style={{ fontSize: "12px" }}
           type="email"
-          placeholder="이메일을 입력하세요"
+          placeholder="예시) test@gmail.com"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
@@ -246,10 +252,11 @@ const Participant = () => {
 
       {/* 전화번호 입력 부분입니다. */}
       <TelInput>
-        <label>전화번호</label>
+        <label style={{ fontWeight: "bold", fontSize: "15px" }}>전화번호</label>
         <input
+          style={{ fontSize: "12px" }}
           type="tel"
-          placeholder="전화번호를 입력하세요"
+          placeholder="예시) 010-1234-1234"
           value={phoneNumber}
           onChange={(e) => setPhoneNumber(e.target.value)}
         />
@@ -264,7 +271,18 @@ const Participant = () => {
       />
 
       {/* 커리어 키워드 입력 부분입니다. */}
-      <p>커리어 키워드</p>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          marginTop: "30px",
+        }}
+      >
+        <p style={{ fontSize: "15px", fontWeight: "bold" }}>커리어 키워드</p>
+        <p style={{ fontSize: "12px", color: "#583fff" }}>
+          관심분야를 골라주세요!
+        </p>
+      </div>
       <KeyworldOptionList>
         {[
           "창업",
@@ -276,7 +294,7 @@ const Participant = () => {
           "인문/사회",
           "과학기술",
           "디자인",
-          "관광/여행"
+          "관광/여행",
         ].map((keyword) => (
           <KeywordButton
             key={keyword}
@@ -294,7 +312,7 @@ const Participant = () => {
           value={customKeyword}
           onChange={(e) => setCustomKeyword(e.target.value)}
         />
-        
+
         {/* 기타 키워드 추가 버튼 */}
         <button onClick={addCustomKeyword}>추가</button>
 
