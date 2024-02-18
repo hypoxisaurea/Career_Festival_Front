@@ -19,12 +19,11 @@ const Title = styled.h1`
 
 const Subtitle = styled.p`
   font-size: 18px;
-  margin-bottom: 40px;
 `;
 
 const Subtitle2 = styled.p`
   font-size: 14px;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
   color: #838383;
 `;
 
@@ -32,15 +31,14 @@ const Gender = styled.div`
   display: flex;
   align-items: center;
   margin-bottom: 20px;
-  
-  input[type="radio"] {
-    margin-right: 5px;
+
+  label {
+    margin-right: 50px;
+    font-size:14px; // 여성과 남성 사이의 간격을 조정합니다.
   }
-  input[type="radio"][value="male"] {
-    margin-left: 10px; /* 남성 라디오버튼에 추가된 마진값 */
-  }
-  input[type="radio"][value="female"] {
-    margin-left: 40px; /* 여성 라디오버튼에 추가된 마진값 */
+
+  label:last-child {
+    margin-right: 0; // 마지막 라벨에 마진을 주지 않습니다.
   }
 `;
 
@@ -56,8 +54,7 @@ const Age = styled.div`
   input {
     width: 180px;
     padding: 10px;
-    font-size: 16px;
-    border: 1px solid;
+    border: 1px solid #838383;
     border-radius: 5px;
   }
 `;
@@ -74,8 +71,7 @@ const EmailInput = styled.div`
   input {
     width: 180px;
     padding: 10px;
-    font-size: 16px;
-    border: 1px solid;
+    border: 1px solid #838383;
     border-radius: 5px;
   }
 `;
@@ -93,7 +89,7 @@ const TelInput = styled.div`
     width: 180px;
     padding: 10px;
     font-size: 16px;
-    border: 1px solid;
+    border: 1px solid #838383;
     border-radius: 5px;
   }
 `;
@@ -103,16 +99,23 @@ const KeyworldOptionList = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
+  input {
+    padding: 8px;
+    cursor: pointer;
+    background: #ffffff;
+    color: #838383;
+    border-radius: 18px;
+    border: 1px solid #838383;
+  }
 `;
 
 const KeywordButton = styled.button`
-  border: none;
   padding: 8px;
   cursor: pointer;
-  color: #838383;
   background: #ffffff;
-  border: 2px solid;
-  border-radius: 20px;
+  color:#838383;
+  border-radius: 18px;
+  border: 1px solid #838383;
 
   ${(props) =>
     props.selected &&
