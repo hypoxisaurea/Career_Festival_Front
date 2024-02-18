@@ -6,7 +6,6 @@ import { useNavigate } from 'react-router-dom';
 const OrganizationBox = styled.div`
   border-radius: 1vw;
   display: flex;
-  justify-content: space-between;
   flex-direction: column;
   align-items: center;
   width: 80%;
@@ -55,7 +54,7 @@ const UploadedNumberWrapper = styled.div`
 
   margin-top: 1vw;
   color: #838383;
-  font-size: 0.8rem;
+  font-size: 1vw;
   span {
     color: #582fff;
     font-size: 1vw;
@@ -74,6 +73,7 @@ const SubscribeButtonWrapper = styled.div`
   justify-content: center;
 
   button {
+    font-size:1vw;
     margin: 0 0.5vw auto;
     padding: 0.5vw;
     border-radius: 5px;
@@ -112,8 +112,7 @@ const OrganizationList = (props) => {
         </OrganizationNameWrapper>
 
         <UploadedNumberWrapper>
-          {" "}
-          <span>{props.uploadedNumber}</span>개의 행사{" "}
+          <span>{props.uploadedNumber}</span>개의 행사
         </UploadedNumberWrapper>
       </OrganizationInfo>
       <SubscribeButtonWrapper>
