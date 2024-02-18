@@ -146,13 +146,24 @@ const Level2 = () => {
     } else {
       try {
         const formData = new FormData();
-        formData.append("organizerName", organizerName);
+
+        formData.append(
+          "registerOrganizerDto",
+          new Blob([JSON.stringify(storedOrganizerName)], { type: 'application/json' })
+        );
         formData.append("organizerProfileImage", selectedFile);
-        
+
+        Object.entries(selectedFile).forEach(([key, value]) => {
+          if (value.type === 'file') {
+            // value: {type: string, value: File}
+            formData.append(key, value.value);
+          }
+        });
+
         // 폼데이터 로그
         console.log("FormData entries:");
         for (let pair of formData.entries()) {
-          console.log("\t"+pair[0] + ", " + pair[1]);
+          console.log("\t" + pair[0] + ", " + pair[1]);
         }
 
         // 주최자 등록이 끝나면 자동으로 level3 이동

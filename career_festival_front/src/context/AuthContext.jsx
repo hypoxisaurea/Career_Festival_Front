@@ -105,6 +105,7 @@ export const AuthProvider = ({ children }) => {
     localStorage.removeItem("token");
     localStorage.removeItem("userRole");
     localStorage.removeItem("organizerName");
+    localStorage.removeItem("userInfo");
     setIsLoggedIn(false);
     setUser(null);
     console.log("로그인 정보 및 인증 정보가 로컬 스토리지에서 삭제되었습니다.");
@@ -118,9 +119,46 @@ export const AuthProvider = ({ children }) => {
   // -----------------------------------------------------------------------------
   const saveAdditionalInfo = async (userData) => {
     try {
-      console.log("부가정보 저장 시도 중...");
+      console.log("부가정보 저장 함수 호출됨 ...");
+      
+      // 토큰 가져오기
+      const token = getTokenFromLocalStorage();
 
       const response = await fetch("http://localhost:9000/participant", {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `${token}`
+        },
+        body: JSON.stringify(userData)
+      });
+
+      if (response.ok) {
+        console.log("부가정보 저장 완료:", response.data);
+        // 저장이 성공하면 홈 페이지로 이동합니다.
+        navigate("/");
+      } else {
+        console.error("부가정보 저장 실패:", response.statusText);
+      }
+    } catch (error) {
+      console.error("에러 발생:", error);
+    }
+  };
+  
+  // -----------------------------------------------------------------------------
+  // - Name : saveAdditionalOOInfo
+  // - Desc : 서버에 부가정보를 저장하는 함수
+  // - Input
+  //   1) userData : 사용자 데이터
+  // -----------------------------------------------------------------------------
+  const saveAdditionalOOInfo = async (userData) => {
+    try {
+      console.log("부가정보 저장 함수 호출됨 ...");
+      
+      // 토큰 가져오기
+      const token = getTokenFromLocalStorage();
+
+      const response = await fetch("http://localhost:9000/organizer", {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -222,7 +260,6 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-
   // AuthProvider 컴포넌트 내에 새로운 함수 추가
 const fetchMypageInfo = async () => {
   try {
@@ -241,8 +278,12 @@ const fetchMypageInfo = async () => {
     console.log("서버 응답:", response); // 수정된 부분: 응답 전체 객체 출력
 
     if (response.status === 200) {
-      const mypageInfo = response.data;
-      console.log("마이페이지 정보:", mypageInfo);
+      const { userInfo } = response.data; // userInfo 객체 추출
+
+      // userInfo 객체를 로컬 스토리지에 저장
+      localStorage.setItem("userInfo", JSON.stringify(userInfo));
+
+      console.log("마이페이지 정보:", userInfo);
       // 가져온 정보를 상태에 설정하거나 필요한 작업 수행
     } else {
       console.error("마이페이지 정보 가져오기 실패:", response.statusText);
@@ -253,6 +294,40 @@ const fetchMypageInfo = async () => {
 };
 
 
+  // AuthProvider 컴포넌트 내에 새로운 함수 추가
+  const updateMypageInfo = async (updatedInfo) => {
+    try {
+      console.log("마이페이지 정보를 업데이트하는 중...");
+
+      // 토큰 가져오기
+      const token = getTokenFromLocalStorage();
+
+      // 서버에 PATCH 요청 보내기
+      const response = await axios.patch(
+        "http://localhost:9000/mypage/update",
+        updatedInfo,
+        {
+          headers: {
+            Authorization: `${token}`,
+            "Content-Type": "application/json"
+          }
+        }
+      );
+
+      console.log("서버 응답:", response); // 응답 전체 객체 출력
+
+      if (response.status === 200) {
+        console.log("마이페이지 정보 업데이트 성공!");
+        // 업데이트가 성공하면 필요한 작업 수행
+        // 예: 페이지 리로드 또는 다른 작업 수행
+      } else {
+        console.error("마이페이지 정보 업데이트 실패:", response.statusText);
+      }
+    } catch (error) {
+      console.error("에러 발생:", error);
+    }
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -261,9 +336,11 @@ const fetchMypageInfo = async () => {
         login,
         logout,
         saveAdditionalInfo,
+        saveAdditionalOOInfo,
         registerEventStep12,
         testtest,
-        fetchMypageInfo
+        fetchMypageInfo,
+        updateMypageInfo
       }}
     >
       {children}

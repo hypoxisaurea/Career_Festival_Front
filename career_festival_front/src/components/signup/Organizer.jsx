@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import InterestArea from "./InterestArea";
 import AffiliationInput from "./AffiliationInput";
 import { useNavigate } from "react-router-dom";
-import axios from "axios"; // Axios를 임포트합니다.
+import { useAuth } from "../../context/AuthContext";
 import {
   Container,
   Title,
@@ -32,26 +32,9 @@ const Organizer = () => {
   const [customKeyword, setCustomKeyword] = useState("");
   const [customKeywords, setCustomKeywords] = useState([]);
 
-  const [token, setToken] = useState("");
-
-  // useEffect를 사용하여 컴포넌트가 처음 마운트될 때 실행될 로직 추가
-  useEffect(() => {
-
-    const tokenFromStorage = getTokenFromLocalStorage();
-    if (tokenFromStorage) {
-      setToken(tokenFromStorage);
-      console.log("로컬 스토리지에서 토큰을 가져왔습니다:", tokenFromStorage);
-    } else {
-      // 토큰이 없는 경우 다른 작업 수행
-    }
-  }, []);
+  const { saveAdditionalOOInfo } = useAuth();
 
   const navigate = useNavigate();
-
-  const getTokenFromLocalStorage = () => {
-    const token = localStorage.getItem("token");
-    return token;
-  };
 
   // 모달 창을 열거나 닫는 함수를 정의합니다.
   const handleModalToggle = () => {
@@ -120,7 +103,7 @@ const Organizer = () => {
   };
 
   // 부가정보를 저장하는 함수입니다.
-  const saveAdditionalInfo = () => {
+  const handleSaveAdditionalInfo = () => {
     console.log("부가정보 저장 함수가 호출되었습니다.");
 
     // 모든 항목이 입력되었는지 확인
@@ -149,23 +132,14 @@ const Organizer = () => {
         keywordName: allKeywords // 선택된 키워드와 기타 키워드를 합친 배열을 전송
       };
 
-      console.log("보낼 사용자 토큰:", token);
       console.log("보낼 사용자 데이터:", userData);
 
-      axios
-        .patch("http://localhost:9000/organizer", userData, {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `${token}`
-          }
-        })
-        .then((response) => {
-          console.log("부가정보 저장 완료:", response.data);
-          navigate("/");
-        })
-        .catch((error) => {
-          console.error("부가정보 저장 실패:", error.message);
-        });
+      saveAdditionalOOInfo(userData);
+    setTimeout(() => {
+      saveAdditionalOOInfo(userData); // 첫 번째 호출
+      saveAdditionalOOInfo(userData); // 두 번째 호출
+      saveAdditionalOOInfo(userData); // 세 번째 호출
+    }, 1000);
     } else {
       console.error("모든 항목을 완료해야 합니다.");
     }
@@ -304,7 +278,7 @@ const Organizer = () => {
         <LaterSave onClick={handleNextInput}>다음에 입력</LaterSave>
         {/* 부가정보 저장하기 버튼 */}
         <Save
-          onClick={saveAdditionalInfo}
+          onClick={handleSaveAdditionalInfo}
           disabled={
             !selectedArea ||
             !selectedCity ||
