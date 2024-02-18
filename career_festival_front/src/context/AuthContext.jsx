@@ -104,6 +104,7 @@ export const AuthProvider = ({ children }) => {
     localStorage.removeItem("user");
     localStorage.removeItem("token");
     localStorage.removeItem("userRole");
+    localStorage.removeItem("organizerName");
     setIsLoggedIn(false);
     setUser(null);
     console.log("로그인 정보 및 인증 정보가 로컬 스토리지에서 삭제되었습니다.");
@@ -221,6 +222,37 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+
+  // AuthProvider 컴포넌트 내에 새로운 함수 추가
+const fetchMypageInfo = async () => {
+  try {
+    console.log("마이페이지 정보를 가져오는 중...");
+
+    // 토큰 가져오기
+    const token = getTokenFromLocalStorage();
+
+    // 서버에 GET 요청 보내기
+    const response = await axios.get("http://localhost:9000/mypage", {
+      headers: {
+        Authorization: `${token}`
+      }
+    });
+
+    console.log("서버 응답:", response); // 수정된 부분: 응답 전체 객체 출력
+
+    if (response.status === 200) {
+      const mypageInfo = response.data;
+      console.log("마이페이지 정보:", mypageInfo);
+      // 가져온 정보를 상태에 설정하거나 필요한 작업 수행
+    } else {
+      console.error("마이페이지 정보 가져오기 실패:", response.statusText);
+    }
+  } catch (error) {
+    console.error("에러 발생:", error);
+  }
+};
+
+
   return (
     <AuthContext.Provider
       value={{
@@ -230,7 +262,8 @@ export const AuthProvider = ({ children }) => {
         logout,
         saveAdditionalInfo,
         registerEventStep12,
-        testtest
+        testtest,
+        fetchMypageInfo
       }}
     >
       {children}
