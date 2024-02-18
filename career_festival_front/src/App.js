@@ -34,6 +34,7 @@ import Level4 from "./components/Enroll/Level4";
 import Level6 from "./components/Enroll/Level6";
 import Level7 from "./components/Enroll/Level7";
 import OrganizationMypage from "./pages/OrganizationMypage";
+import OrganizationMypageCorrection from "./pages/OrganizationMypageCorrection";
 import MyPageCorrection from "./pages/MyPageCorrection";
 
 function App() {
@@ -205,6 +206,17 @@ function App() {
                 </>
               }
             />
+            <Route
+              path="organization-mypage-correction"
+              element={
+                <>
+                  <Header />
+                  <OrganizationMypageCorrection />
+                  <Footer />
+                </>
+              }
+            />
+
             <Route
               path="/mypage-correction"
               element={
