@@ -175,7 +175,10 @@ const Organizer = () => {
   return (
     <Container>
       <Title>김커리님, Career Festival에 가입해주셔서 감사합니다.</Title>
-      <Subtitle>직접 오프라인 커리어 행사를 개설하고 싶으신가요?</Subtitle>
+      <Subtitle>
+        직접 <span style={{ fontWeight: "bold" }}>오프라인 커리어 행사</span>를
+        개설하고 싶으신가요?
+      </Subtitle>
 
       <Subtitle2>
         부가정보를 미리 입력하면 더 빠르게 행사 매칭이 가능합니다.
@@ -183,9 +186,14 @@ const Organizer = () => {
         또, 행사에 함께 갈 팀원 모집 시 서로의 프로필 열람이 가능합니다.
       </Subtitle2>
       <hr />
+      <br></br>
 
       {/* 관심지역 입력 부분입니다. */}
-      <p>관심지역</p>
+      <label
+        style={{ marginTop: "50px", fontWeight: "bold", fontSize: "15px" }}
+      >
+        관심지역
+      </label>
       <InterestArea
         selectedArea={selectedArea}
         handleAreaSelect={handleAreaSelect}
@@ -199,10 +207,11 @@ const Organizer = () => {
 
       {/* 이메일 입력 부분입니다. */}
       <EmailInput>
-        <label>이메일</label>
+        <label style={{ fontWeight: "bold", fontSize: "15px" }}>이메일</label>
         <input
+          style={{ fontSize: "12px" }}
           type="email"
-          placeholder="이메일을 입력하세요"
+          placeholder="예시) test@gmail.com"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
@@ -210,10 +219,11 @@ const Organizer = () => {
 
       {/* 전화번호 입력 부분입니다. */}
       <TelInput>
-        <label>전화번호</label>
+        <label style={{ fontWeight: "bold", fontSize: "15px" }}>전화번호</label>
         <input
+          style={{ fontSize: "12px" }}
           type="tel"
-          placeholder="전화번호를 입력하세요"
+          placeholder="예시) 010-1234-1234"
           value={phoneNumber}
           onChange={(e) => setPhoneNumber(e.target.value)}
         />
@@ -228,7 +238,21 @@ const Organizer = () => {
       />
 
       {/* 커리어 키워드 입력 부분입니다. */}
-      <p>커리어 키워드</p>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          marginTop: "30px",
+          marginBottom: "10px",
+        }}
+      >
+        <label style={{ fontSize: "15px", fontWeight: "bold" }}>
+          커리어 키워드
+        </label>
+        <label style={{ fontSize: "12px", color: "#583fff" }}>
+          관심분야를 골라주세요!
+        </label>
+      </div>
       <KeyworldOptionList>
         {[
           "창업",
@@ -240,7 +264,7 @@ const Organizer = () => {
           "인문/사회",
           "과학기술",
           "디자인",
-          "관광/여행"
+          "관광/여행",
         ].map((keyword) => (
           <KeywordButton
             key={keyword}
@@ -277,7 +301,7 @@ const Organizer = () => {
       <hr />
 
       <TwoButton>
-        <LaterSave onClick={handleNextInput}>다음에입력</LaterSave>
+        <LaterSave onClick={handleNextInput}>다음에 입력</LaterSave>
         {/* 부가정보 저장하기 버튼 */}
         <Save
           onClick={saveAdditionalInfo}

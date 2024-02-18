@@ -35,7 +35,7 @@ const Welcome = styled.div`
   margin-left: -50%;
   font-family: "Your Desired Font", sans-serif;
   font-weight: bold;
-  font-size: 30px;
+  font-size: 25px;
   text-align: center;
 `;
 
@@ -66,9 +66,9 @@ const InputField = styled.input`
   width: 93.5%;
   padding: 9px;
   margin-bottom: 10px;
-  color: #565656;
+  //color: #565656;
   background: none;
-  border: 2px solid #030104; /* 기본 테두리 색 */
+  border: 2px solid #838383; /* 기본 테두리 색 */
   border-radius: 5px;
 
   &:focus {
@@ -108,7 +108,7 @@ const Button = styled.button`
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  margin-top: 40px;
+  margin-top: 20px;
   &:hover {
     background-color: #401f91;
   }

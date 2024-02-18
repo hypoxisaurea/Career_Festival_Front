@@ -19,12 +19,11 @@ const Title = styled.h1`
 
 const Subtitle = styled.p`
   font-size: 18px;
-  margin-bottom: 40px;
 `;
 
 const Subtitle2 = styled.p`
   font-size: 14px;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
   color: #838383;
 `;
 
@@ -40,16 +39,8 @@ const EmailInput = styled.div`
   input {
     width: 180px;
     padding: 10px;
-    font-size: 16px;
-    border: 1px solid;
+    border: 1px solid #838383;
     border-radius: 5px;
-
-
-    &:focus {
-      border: 3px solid;
-      border-color: #582fff;
-      outline: none; // 선택 효과를 제거합니다.
-    }
   }
 `;
 
@@ -62,19 +53,12 @@ const TelInput = styled.div`
     margin-bottom: 5px;
   }
 
-  input {
+ input {
     width: 180px;
     padding: 10px;
     font-size: 16px;
-    border: 1px solid;
+    border: 1px solid #838383;
     border-radius: 5px;
-
-
-    &:focus {
-      border: 3px solid;
-      border-color: #582fff;
-      outline: none; // 선택 효과를 제거합니다.
-    }
   }
 `;
 
@@ -83,16 +67,23 @@ const KeyworldOptionList = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
+  input {
+    padding: 8px;
+    cursor: pointer;
+    background: #ffffff;
+    color: #838383;
+    border-radius: 18px;
+    border: 1px solid #838383;
+  }
 `;
 
 const KeywordButton = styled.button`
-  border: none;
   padding: 8px;
   cursor: pointer;
-  color: #838383;
   background: #ffffff;
-  border: 2px solid;
-  border-radius: 20px;
+  color: #838383;
+  border-radius: 18px;
+  border: 1px solid #838383;
 
   ${(props) =>
     props.selected &&
