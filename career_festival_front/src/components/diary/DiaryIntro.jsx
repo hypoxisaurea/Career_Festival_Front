@@ -40,9 +40,14 @@ const TitleText = styled.div`
   font-family: Rubik;
   font-size: 1.4vw;
   font-style: normal;
-  font-weight: 500;
+  font-weight: bold;
   line-height: normal;
   display: inline-block;
+`;
+
+const DiaryImage = styled.img`
+  width: 30%;
+  height: auto;
 `;
 
 function RecordIntro() {
@@ -61,7 +66,7 @@ function RecordIntro() {
           <NormalText>에 모아서 기록해보세요!</NormalText>
         </ContentContainer>
       </IntroContainer>
-      <img src={DiaryIllust}></img>
+      <DiaryImage src={DiaryIllust} alt="diaryIllust" />
     </Container>
   );
 }
