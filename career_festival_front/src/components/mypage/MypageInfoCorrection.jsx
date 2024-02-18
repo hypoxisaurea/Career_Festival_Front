@@ -1,6 +1,10 @@
 import React,{useState} from 'react'
 import styled from 'styled-components'
-import { KeyworldOptionList, KeywordButton, Gender} from "../signup/ParticipantStyle"
+import {
+  KeywordOptionList,
+  KeywordButton,
+  Gender,
+} from "../signup/ParticipantStyle";
 
 
 const MypageInfoContainer = styled.div`
@@ -159,7 +163,7 @@ function MypageInfoCorrection() {
    <MypageInfoContainer>
         <CareerKeywordContainer>
             <h4>내 커리어 키워드</h4>
-            <KeyworldOptionList>
+            <KeywordOptionList>
                 {[
                 "창업",
                 "라이프",
@@ -203,7 +207,7 @@ function MypageInfoCorrection() {
                     {customKeyword}
                 </KeywordButton>
                 ))}
-            </KeyworldOptionList>
+            </KeywordOptionList>
         </CareerKeywordContainer>
 
         <DepartmentContainer>
