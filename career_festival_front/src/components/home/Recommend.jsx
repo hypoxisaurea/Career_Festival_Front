@@ -1,7 +1,7 @@
 // src/components/home/Recommend.jsx
 import React from 'react';
 import styled from 'styled-components';
-import dummy from "../../db/RecommendedEvents.json";
+// import dummy from "../../db/RecommendedEvents.json";
 
 import { Link } from "react-router-dom";
 
