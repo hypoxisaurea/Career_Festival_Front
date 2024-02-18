@@ -95,7 +95,7 @@ const TelInput = styled.div`
 `;
 
 
-const KeyworldOptionList = styled.div`
+const KeywordOptionList = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
@@ -175,7 +175,7 @@ export {
   Age,
   EmailInput,
   TelInput,
-  KeyworldOptionList,
+  KeywordOptionList,
   KeywordButton,
   TwoButton,
   LaterSave,

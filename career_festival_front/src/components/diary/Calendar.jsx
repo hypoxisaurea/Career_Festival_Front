@@ -4,7 +4,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 const StyledDatePicker = styled(DatePicker)`
-  width: 250px;
+  width: 120%;
   height: auto;
   color: #838383;
   font-size: 1vw;
@@ -21,28 +21,6 @@ const StyledDatePicker = styled(DatePicker)`
     font-size: 1vw;
     font-family: "Noto Sans KR";
     font-weight: 400;
-  }
-
-  .react-datepicker__header {
-    background: black; // 원하는 배경색
-    color: white; // 원하는 글자색
-  }
-
-  .react-datepicker__day-name,
-  .react-datepicker__day {
-    color: black; // 텍스트 색상을 검정색으로 변경
-  }
-
-  .react-datepicker__current-month {
-    color: black; // 텍스트 색상을 검정색으로 변경
-  }
-
-  .react-datepicker__day--selected {
-    background-color: blue; // 선택된 날짜의 배경색을 변경
-  }
-
-  .react-datepicker__day--keyboard-selected {
-    background-color: blue; // 키보드로 선택된 날짜의 배경색을 변경
   }
 `;
 

@@ -13,11 +13,11 @@ import {
   Age,
   EmailInput,
   TelInput,
-  KeyworldOptionList,
+  KeywordOptionList,
   KeywordButton,
   TwoButton,
   LaterSave,
-  Save
+  Save,
 } from "./ParticipantStyle";
 import { useAuth } from "../../context/AuthContext"; // useAuth를 추가로 임포트합니다.
 
@@ -286,7 +286,7 @@ const Participant = () => {
           관심분야를 골라주세요!
         </label>
       </div>
-      <KeyworldOptionList>
+      <KeywordOptionList>
         {[
           "창업",
           "라이프",
@@ -330,7 +330,7 @@ const Participant = () => {
             {customKeyword}
           </KeywordButton>
         ))}
-      </KeyworldOptionList>
+      </KeywordOptionList>
       <hr />
 
       {/* "다음에 입력"과 "부가정보 저장하기" 버튼 */}
