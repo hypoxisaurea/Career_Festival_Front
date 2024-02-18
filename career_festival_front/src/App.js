@@ -26,10 +26,10 @@ import FooterTwo from "./components/footer/FooterTwo";
 import { AuthProvider } from "./context/AuthContext";
 
 import "./App.css";
-// import Level1 from "./components/Enroll/Level1";
-// import Level2 from "./components/Enroll/Level2";
-// import Level3 from "./components/Enroll/Level3";
-// import Level4 from "./components/Enroll/Level4";
+import Level1 from "./components/Enroll/Level1";
+import Level2 from "./components/Enroll/Level2";
+import Level3 from "./components/Enroll/Level3";
+import Level4 from "./components/Enroll/Level4";
 // import Level5 from "./components/Enroll/Level5";
 import Level6 from "./components/Enroll/Level6";
 import Level7 from "./components/Enroll/Level7";
