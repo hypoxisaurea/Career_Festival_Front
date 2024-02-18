@@ -17,21 +17,21 @@ const TitleText = styled.div`
   font-size: 1.4vw;
   font-family: "Noto Sans KR";
   font-weight: 700;
-  word-wrap: break-word;
+  // word-wrap: break-word;
 `;
 
-const TextInput = styled.textarea`
+const TextInput = styled.input`
   width: 100%;
   height: auto;
   color: #838383;
   font-size: 1vw;
   font-family: "Noto Sans KR";
-  font-weight: 400;
+  //font-weight: 400;
   word-wrap: break-word;
   border-radius: 0.6vw;
   border: 0.1vw #838383 solid;
   margin-top: 1.2vw;
-  padding: 0.5vw 0 0 1vw;
+  padding: 1vw 0 1vw 1vw;
 
   &::placeholder {
     color: #838383;
