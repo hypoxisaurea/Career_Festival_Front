@@ -5,7 +5,8 @@ import  "../db/organizationsData.json"
 import OrganizationInsight from '../components/organization/OrganizationInsight'
 import dummy from "../db/RecommendedEvents.json"
 import Recommend from '../components/home/Recommend'
-import MypageProfile from '../components/mypage/MypageProfile'
+import MypageProfileCorrection from '../components/mypage/MypageProfileCorrection'
+
 
 
 
@@ -30,21 +31,31 @@ const OrganizationMypageProfileContainer = styled.div`
 
 `
 
-const OrganizationMypageButtonContainer = styled(Link)`
+//수정하기 버튼
+const MypageButtonContainer = styled(Link)`
   //background-color: aliceblue;
   margin: 0 auto;
 `
+
+
+//수정하기 버튼
 const CorrectionButton = styled.button`
   width: 14vw;
   height: 3vw;
   font-size: 1rem;
   font-weight: 700;
   color: #ffff;
-  background-color: #838383;
+  background-color: #582FFF;
   border-radius: 10px;
   border: none;
 
+  @media screen and (max-width: 600px) {
+        font-size: 2vw;
+        }
+
 `
+
+
 
 
 //주최자 인사이트
@@ -129,7 +140,7 @@ const OrganizationFestivalListWrapper = styled.div`
 
 
 // 주최자 프로필 개설 페이지 컴포넌트
-const OrganizationMypage = (props) => {
+const OrganizationMypageCorrection = (props) => {
   //이 부분은 불필요 데이터 들어오면 수정
   const {OrganizationName} = useParams();
   const {state} = useLocation();
@@ -141,13 +152,12 @@ const OrganizationMypage = (props) => {
     
     <OrganizationInfoContainer>
       <OrganizationMypageProfileContainer>
-        <MypageProfile/>
+        <MypageProfileCorrection/>
       </OrganizationMypageProfileContainer>
 
-      <OrganizationMypageButtonContainer Link to ="/organization-mypage-correction">
-        <CorrectionButton>수정하기</CorrectionButton>
-      </OrganizationMypageButtonContainer>
-
+      <MypageButtonContainer link to = "/organization-mypage">
+        <CorrectionButton>수정완료</CorrectionButton>
+      </MypageButtonContainer>
 
        <OrganizationInsightContainer>
             <OrganizationInsight
@@ -189,4 +199,4 @@ const OrganizationMypage = (props) => {
   )
 };
 
-export default OrganizationMypage;
+export default OrganizationMypageCorrection;
