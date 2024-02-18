@@ -40,8 +40,9 @@ const Level7 = () => {
   const [selectedKeywords, setSelectedKeywords] = useState([]);
   const [customKeyword, setCustomKeyword] = useState("");
   const [customKeywords, setCustomKeywords] = useState([]); // 초기값을 빈 배열로 변경
-  // 행사명
+  // 행사명 및 간단 소개
   const [eventName, setEventName] = useState("");
+  const [eventIntroduction, setEventIntroduction] = useState(""); // 간단 소개 상태 추가
   // 이미지 추가
   const [selectedImage, setSelectedImage] = useState(null); // 선택된 이미지 파일 상태 추가
   const [externalSiteUrl, setExternalSiteUrl] = useState(""); // 외부 사이트 URL 상태 추가
@@ -60,6 +61,9 @@ const Level7 = () => {
   const [entryFee, setEntryFee] = useState("");
   const [contactName, setContactName] = useState("");
   const [contactEmail, setContactEmail] = useState("");
+
+  // 버튼의 활성화 여부를 결정할 상태 추가
+  const [isButtonEnabled, setIsButtonEnabled] = useState(false);
 
   // URL 파라미터에서 part 값 받기
   const location = useLocation();
@@ -128,7 +132,6 @@ const Level7 = () => {
     eventInfoImageInputRef.current.click();
   };
 
-
   // 모달 창을 열거나 닫는 함수를 정의합니다.
   const handleModalToggle = () => {
     setModalOpen(!isModalOpen);
@@ -151,6 +154,42 @@ const Level7 = () => {
     setModalOpen(false);
   };
 
+  // 모든 요소가 입력되었는지 확인하는 함수 정의
+  const checkAllInputsFilled = () => {
+    // 필수 입력 요소의 상태를 모두 검사하여 빈 문자열인지 여부를 확인
+    const isEventNameFilled = eventName.trim() !== "";
+    const isEventIntroductionFilled = eventIntroduction.trim() !== ""; // 간단 소개 입력 여부 확인
+    const isEventInfoFilled = eventInfo.trim() !== "";
+    const isEntryFeeFilled = entryFee.trim() !== "";
+    const isContactNameFilled = contactName.trim() !== "";
+    const isContactEmailFilled = contactEmail.trim() !== "";
+    const isMainImageUploaded = selectedMainImage !== null; // 대표이미지 업로드 여부 확인
+
+    // 모든 필수 입력 요소가 채워져 있으면 버튼을 활성화하고,
+    // 하나라도 비어 있으면 버튼을 비활성화
+    setIsButtonEnabled(
+      isEventNameFilled &&
+        isEventIntroductionFilled && // 간단 소개 입력 여부 추가
+        isEventInfoFilled &&
+        isEntryFeeFilled &&
+        isContactNameFilled &&
+        isContactEmailFilled &&
+        isMainImageUploaded // 대표이미지가 업로드되었는지 여부 추가
+    );
+  };
+  // useEffect를 사용하여 모든 입력 요소의 상태 변화를 감지하고,
+  // 상태가 변경될 때마다 모든 요소가 입력되었는지 확인하는 함수를 호출합니다.
+  useEffect(() => {
+    checkAllInputsFilled();
+  }, [
+    eventName,
+    eventIntroduction, // 간단 소개 상태 추가
+    eventInfo,
+    entryFee,
+    contactName,
+    contactEmail,
+    selectedMainImage
+  ]);
   return (
     <Level7Container>
       <PurpleTitle>기본설정</PurpleTitle>
@@ -227,10 +266,11 @@ const Level7 = () => {
         onChange={(e) => setEventName(e.target.value)}
       />
       <Title>간단 소개</Title>
+      {/* 간단 소개 입력 부분을 컴포넌트로 교체 */}
       <InputIntroduce
         placeholder="간단소개 입력 (최대 30자)"
-        value={eventName} // 이 부분은 입력된 간단 소개를 표시할 값으로 변경 필요
-        onChange={(e) => setEventName(e.target.value)}
+        value={eventIntroduction} // 간단 소개 상태 값으로 변경
+        onChange={(e) => setEventIntroduction(e.target.value)}
       />
       <Title>관심지역</Title>
       {/* 관심지역 컴포넌트 */}
@@ -339,8 +379,10 @@ const Level7 = () => {
         value={contactEmail}
         onChange={(e) => setContactEmail(e.target.value)}
       />
+      {/* 버튼의 disabled 속성을 isButtonEnabled 상태에 바인딩하여 활성화 여부를
+      조절합니다. */}
       <Link to="/organization-mypage">
-        <NextButton>행사개설</NextButton>
+        <NextButton disabled={!isButtonEnabled}>행사개설</NextButton>
       </Link>
     </Level7Container>
   );

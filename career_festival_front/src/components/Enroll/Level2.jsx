@@ -147,7 +147,7 @@ const Level2 = () => {
       try {
         const formData = new FormData();
         formData.append("organizerName", organizerName);
-        formData.append("profileImage", selectedFile);
+        formData.append("organizerProfileImage", selectedFile);
         
         // 폼데이터 로그
         console.log("FormData entries:");

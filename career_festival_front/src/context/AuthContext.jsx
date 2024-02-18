@@ -23,13 +23,23 @@ export const AuthProvider = ({ children }) => {
     }
   }, []);
 
-  // 로컬 스토리지에서 토큰을 가져오는 함수
+  // -----------------------------------------------------------------------------
+  // - Name : getTokenFromLocalStorage
+  // - Desc : 로컬 스토리지에서 토큰을 가져오는 함수
+  // -----------------------------------------------------------------------------
   const getTokenFromLocalStorage = () => {
     const token = localStorage.getItem("token");
     return token;
   };
 
-  
+  // -----------------------------------------------------------------------------
+  // - Name : login
+  // - Desc : 사용자를 로그인하는 함수
+  // - Input
+  //   1) username : 사용자 이름
+  //   2) password : 사용자 비밀번호
+  // - Output
+  // -----------------------------------------------------------------------------
 
   const login = async (username, password) => {
     try {
@@ -84,7 +94,10 @@ export const AuthProvider = ({ children }) => {
       console.error("에러 발생:", error);
     }
   };
-
+  // -----------------------------------------------------------------------------
+  // - Name : logout
+  // - Desc : 사용자를 로그아웃하는 함수
+  // -----------------------------------------------------------------------------
   const logout = () => {
     // 로그아웃 시 로컬 스토리지에서 로그인 정보 및 인증 정보 삭제
     localStorage.removeItem("isLoggedIn");
@@ -96,7 +109,12 @@ export const AuthProvider = ({ children }) => {
     console.log("로그인 정보 및 인증 정보가 로컬 스토리지에서 삭제되었습니다.");
   };
 
-  // 서버에 부가정보를 저장하는 함수
+  // -----------------------------------------------------------------------------
+  // - Name : saveAdditionalInfo
+  // - Desc : 서버에 부가정보를 저장하는 함수
+  // - Input
+  //   1) userData : 사용자 데이터
+  // -----------------------------------------------------------------------------
   const saveAdditionalInfo = async (userData) => {
     try {
       console.log("부가정보 저장 시도 중...");
@@ -122,78 +140,86 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  // 주최자 등록하기 1 + 2 단계
-const registerEventStep12 = (formData) => {
-  try {
-    console.log("주최자 등록 함수가 호출되었습니다.");
+  // -----------------------------------------------------------------------------
+  // - Name : registerEventStep12
+  // - Desc : 주최자 등록하기 1 + 2 단계 함수
+  // - Input
+  //   1) formData : 주최자 등록 폼 데이터
+  // -----------------------------------------------------------------------------
+  const registerEventStep12 = (formData) => {
+    try {
+      console.log("주최자 등록 함수가 호출되었습니다.");
 
-    // 토큰 가져오기
-    const token = getTokenFromLocalStorage();
+      // 토큰 가져오기
+      const token = getTokenFromLocalStorage();
 
-    // API 엔드포인트 설정
-    const url = `http://localhost:9000/event/organizer`;
-    console.log("URL:" + url)
+      // API 엔드포인트 설정
+      const url = `http://localhost:9000/event/organizer`;
+      console.log("URL:" + url);
 
-    // Axios를 사용하여 데이터 전송
-    axios
-      .post(url, formData, {
+      // Axios를 사용하여 데이터 전송
+      axios
+        .post(url, formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `${token}`
+          }
+        })
+        .then((response) => {
+          console.log("주최자 등록 완료:", response.data);
+          // 다음 단계로 이동하거나 필요에 따라 다른 작업 수행
+          navigate("/register/Level3");
+        })
+        .catch((error) => {
+          console.error("주최자 등록 실패:", error.message);
+        });
+    } catch (error) {
+      console.error("에러 발생:", error);
+    }
+  };
+
+  // -----------------------------------------------------------------------------
+  // - Name : testtest
+  // - Desc : 서버와 통신을 테스트하는 함수
+  // -----------------------------------------------------------------------------
+  const testtest = async () => {
+    try {
+      console.log("서버랑 통신을 테스트합니다.");
+
+      // API 엔드포인트 설정
+      const url = "http://localhost:9000/event/organizer";
+
+      // 토큰 가져오기
+      const token = getTokenFromLocalStorage();
+
+      // FormData 객체 생성
+      const formData = new FormData();
+
+      // 이미지 파일 추가
+      const imagePath =
+        "https://careerfestival.s3.ap-northeast-2.amazonaws.com/event_main/684f126a-4107-4935-8d57-ae13938f31b6imagetest.png"; // 변경 필요
+      const imageFile = await fetch(imagePath).then((response) =>
+        response.blob()
+      );
+      formData.append("organizerProfileImage", imageFile);
+
+      // 기타 필드 추가
+      formData.append("organizerName", "ㅐㅐㅐㅐ");
+
+      // Axios를 사용하여 데이터 전송
+      const response = await axios.post(url, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
           Authorization: `${token}`
         }
-      })
-      .then((response) => {
-        console.log("주최자 등록 완료:", response.data);
-        // 다음 단계로 이동하거나 필요에 따라 다른 작업 수행
-        navigate("/register/Level3");
-      })
-      .catch((error) => {
-        console.error("주최자 등록 실패:", error.message);
       });
-  } catch (error) {
-    console.error("에러 발생:", error);
-  }
-};
 
-
-
-// 서버랑 통신을 테스트하는 함수
-const testtest = async () => {
-  try {
-    console.log("서버랑 통신을 테스트합니다.");
-
-    // API 엔드포인트 설정
-    const url = 'http://localhost:9000/event/organizer';
-
-    // 토큰 가져오기
-    const token = getTokenFromLocalStorage();
-
-    // FormData 객체 생성
-    const formData = new FormData();
-
-    // 이미지 파일 추가
-    const imagePath = "https://careerfestival.s3.ap-northeast-2.amazonaws.com/event_main/684f126a-4107-4935-8d57-ae13938f31b6imagetest.png"; // 변경 필요
-    const imageFile = await fetch(imagePath).then((response) => response.blob());
-    formData.append("organizerProfileImage", imageFile);
-
-    // 기타 필드 추가
-    formData.append("organizerName", "ㅐㅐㅐㅐ");
-
-    // Axios를 사용하여 데이터 전송
-    const response = await axios.post(url, formData, {
-      headers: {
-        "Content-Type": "multipart/form-data",
-        Authorization: `${token}`
-      }
-    });
-
-    console.log("서버 응답:", response.data);
-  } catch (error) {
-    // 오류 처리
-    console.error("서버와의 통신 중 오류 발생:", error.message);
-  }
-};
-
+      console.log("서버 응답:", response.data);
+    } catch (error) {
+      // 오류 처리
+      console.error("서버와의 통신 중 오류 발생:", error.message);
+    }
+  };
 
   return (
     <AuthContext.Provider
