@@ -3,7 +3,7 @@
 // 유저의 정보가 주최자일때만 행사 등록하기 버튼 보이게하기
 
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import styled from "styled-components";
@@ -84,7 +84,7 @@ const SearchButton = styled.button`
   margin-left: 1vw;
 
   &:hover {
-    background-color: #1472ff;
+    background-color: #838383;
   }
 `;
 
@@ -191,8 +191,7 @@ const VerticalLine = styled.div`
 const Header = () => {
   // 검색어
   const [searchTerm, setSearchTerm] = useState("");
-
-  const { isLoggedIn, user, logout } = useAuth(); // useAuth 훅을 통해 isLoggedIn, user 사용
+  const { isLoggedIn, user, logout, fetchMypageInfo } = useAuth(); // useAuth 훅을 통해 isLoggedIn, user 사용
 
   // 검색어 변경 핸들러
   const handleSearchTermChange = (event) => {
@@ -204,6 +203,15 @@ const Header = () => {
     // 여기에서 검색 버튼이 클릭되었을 때 수행할 동작을 추가
     // 예를 들면 검색 결과를 가져오거나 페이지를 이동하는 등의 동작
     console.log("검색어:", searchTerm);
+  };
+  
+  // 마이페이지 버튼 클릭 시 fetchMypageInfo 함수 호출 및 2초 대기 설정
+  const handleMypageButtonClick = () => {
+    fetchMypageInfo(); // fetchMypageInfo 함수 호출
+    setTimeout(() => {
+      // 2초 대기 후 실행
+      console.log("2초가 경과했습니다.");
+    }, 2000);
   };
 
   return (
@@ -249,7 +257,10 @@ const Header = () => {
       <LinkContainer>
         <LinkItem to="/festival-list">행사목록</LinkItem>
         <LinkItem to="/diary">기록장</LinkItem>
-        <LinkItem to="/mypage">마이페이지</LinkItem>
+        {/* 마이페이지 버튼 */}
+      <LinkItem to="/mypage" onClick={handleMypageButtonClick}>
+        마이페이지
+      </LinkItem>
         <TextContiner>
           <RegisterItem to="/register/level1">행사개설하기</RegisterItem>
           {/* <RegisterItem to="/register/level1">행사개설하기</RegisterItem> 

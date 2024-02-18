@@ -94,10 +94,7 @@ const Eventtype = styled.div`
 `;
 
 // 행사 목록 컨테이너에 대한 스타일링
-const Eventlist = styled.div`
-  // width: 50vw;
-  // height: 85vw;
-`;
+const Eventlist = styled.div``;
 
 // 페스티벌 리스트 래퍼에 대한 스타일링
 const FestivalListWrapper = styled.div`
@@ -109,6 +106,7 @@ const FestivalListWrapper = styled.div`
     font-size: 1vw;
   }
 `;
+
 //키워드
 const KeywordContainer = styled.div`
   display: flex;
@@ -136,12 +134,13 @@ const OrganizationListContainer = styled.div`
   justify-content: center;
 
   h2 {
-    font-size: 1.3rem;
+    font-size: 1.3vw;
     font-weight: bold;
   }
 
   span {
     color: #582fff;
+    font-size: 1.3vw;
   }
 `;
 
@@ -163,6 +162,7 @@ const OrganizationListBoxWrapper = styled.div`
 const ButtonContainer = styled.div`
   display: flex;
   align-items: center;
+  margin-top:2vw;
 `;
 
 const Button = styled.button`
@@ -368,10 +368,7 @@ const FestivalListPage = () => {
       <LowerContaniner>
         {/*주최자*/}
         <OrganizationListContainer>
-          <h2>
-            <span>219</span>명의 주최자
-          </h2>{" "}
-          {/* 숫자는 나중에 데이터로 받아와야함 */}
+            <span>인기 주최자가 궁금하세요?</span>
           <OrganizationslistWraper>
             <ButtonContainer>
               <LeftButton onClick={handleLeftButtonClick}>◁</LeftButton>
