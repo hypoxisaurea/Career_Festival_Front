@@ -84,7 +84,7 @@ const SearchButton = styled.button`
   margin-left: 1vw;
 
   &:hover {
-    background-color: #1472ff;
+    background-color: #838383;
   }
 `;
 
