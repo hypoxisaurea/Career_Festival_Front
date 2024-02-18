@@ -11,8 +11,9 @@ const InputField = styled.input`
   width: 93.5%;
   margin-bottom: 10px;
   padding: 8px;
+  font-size: 13px;
   border: 1px solid;
-  border-radius:5px;
+  border-radius: 5px;
   &:hover,
   &:focus {
     border-color: #582fff;
@@ -52,6 +53,8 @@ const OrDivider = styled.div`
   margin: 10px 0;
   display: flex;
   align-items: center;
+  font-size: 12px;
+  color: #838383;
   div {
     flex: 1;
     height: 1px;
@@ -61,25 +64,36 @@ const OrDivider = styled.div`
   }
 `;
 
+
 const EmailVerificationContainer = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-bottom:10px;
-  
-  input{
+
+  input {
     width: 70%;
+    margin-bottom: 10px;
+    padding: 8px;
+    font-size: 13px;
     border: 1px solid;
-    border-radius:5px;
+    border-radius: 5px;
+    &:hover,
+    &:focus {
+      border-color: #582fff;
+      outline: none; // 선택 효과를 제거합니다.
+    }
   }
 
   button {
     width: 30%;
     background-color: #ffffff;
-    border: 3px solid #582fff;
-    padding: 10px;
+    //border: 3px solid #582fff;
+    padding: 8px;
     margin-left: 10px;
-    color: #582fff;  // 텍스트 색상을 버튼 테두리 색상과 일치하도록 수정
+    margin-bottom: 10px;
+    font-size: 13px;
+    border: 1px solid;
     border-radius: 5px;
+    color: #582fff; // 텍스트 색상을 버튼 테두리 색상과 일치하도록 수정
     cursor: pointer;
 
     &:hover {
@@ -89,7 +103,8 @@ const EmailVerificationContainer = styled.div`
   }
 `;
 const AgreementContainer = styled.div`
-  margin-bottom: 10px;
+  margin-top: 2vw;
+  font-size: 14px;
   label {
     display: block;
     margin-bottom: 5px;
@@ -241,6 +256,7 @@ const SignupStyle = {
   AgreementContainer,
   SignupButton,
   OrDivider,
+
   Modal: ModalStyle,
   ModalButton,
   ModalRadioContainer,

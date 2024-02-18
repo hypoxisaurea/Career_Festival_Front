@@ -207,32 +207,29 @@ const Modal = ({ closeModal }) => {
           <button>네이버로 시작하기</button>
         </SignupStyle.SocialLoginButtons>
         <SignupStyle.OrDivider>
-          <div></div>
-          <div>또는</div>
+          <div></div>또는
           <div></div>
         </SignupStyle.OrDivider>
-
         {/* 이름 섹션 */}
         <div className="input-section">
-        <SignupStyle.InputLabel className="input-label">
+          <SignupStyle.InputLabel className="input-label">
             이름
           </SignupStyle.InputLabel>
           <SignupStyle.InputField
             type="text"
-            placeholder="이름"
+            //placeholder="이름"
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
         </div>
-
         {/* 비밀번호 섹션 */}
         <div className="input-section">
-        <SignupStyle.InputLabel className="input-label">
+          <SignupStyle.InputLabel className="input-label">
             비밀번호
           </SignupStyle.InputLabel>
           <SignupStyle.InputField
             type="password"
-            placeholder="비밀번호"
+            //placeholder="비밀번호"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
@@ -241,36 +238,34 @@ const Modal = ({ closeModal }) => {
           </SignupStyle.InputLabel>
           <SignupStyle.InputField
             type="password"
-            placeholder="비밀번호 확인"
+            //placeholder="비밀번호 확인"
             value={checkPassword}
             onChange={(e) => setCheckPassword(e.target.value)}
           />
         </div>
-
         {/* 이메일 섹션 */}
         <div className="input-section">
-        <SignupStyle.InputLabel className="input-label">
+          <SignupStyle.InputLabel className="input-label">
             이메일(ID)
           </SignupStyle.InputLabel>
+          <SignupStyle.EmailVerificationContainer>
+            <input
+              type="text"
+              placeholder="example@gmail.com"
+              value={emailVerificationCode}
+              onChange={(e) => setEmailVerificationCode(e.target.value)}
+            />
+            <button>인증하기</button>
+          </SignupStyle.EmailVerificationContainer>
           <SignupStyle.InputField
             type="email"
-            placeholder="example@gmail.com"
+            placeholder="인증번호 6자리를 입력해주세요."
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>
 
-        <SignupStyle.EmailVerificationContainer>
-          <input
-            type="text"
-            placeholder="인증번호 6자리를 입력해주세요."
-            value={emailVerificationCode}
-            onChange={(e) => setEmailVerificationCode(e.target.value)}
-          />
-          <button>인증하기</button>
-        </SignupStyle.EmailVerificationContainer>
-
-        {/* 이용약관 세션 */}
+        {/*  이용약관 세션 */}
         <SignupStyle.AgreementContainer>
           <label>
             <input
@@ -279,11 +274,11 @@ const Modal = ({ closeModal }) => {
               onChange={() =>
                 setAgreements({
                   ...agreements,
-                  agreement1: !agreements.agreement1
+                  agreement1: !agreements.agreement1,
                 })
               }
             />
-            [필수] 만14세 이상입니다.
+            [필수] 만 14세 이상입니다.
           </label>
           <label>
             <input
@@ -292,11 +287,23 @@ const Modal = ({ closeModal }) => {
               onChange={() =>
                 setAgreements({
                   ...agreements,
-                  agreement2: !agreements.agreement2
+                  agreement2: !agreements.agreement2,
                 })
               }
             />
             [필수] 이용약관
+            <button
+              style={{
+                color: "#582FFF",
+                fontSize: "10px",
+                backgroundColor: "transparent",
+                border: "none",
+                textDecoration: "underline",
+              }}
+            >
+              {" "}
+              보기
+            </button>
           </label>
           <label>
             <input
@@ -305,14 +312,25 @@ const Modal = ({ closeModal }) => {
               onChange={() =>
                 setAgreements({
                   ...agreements,
-                  agreement3: !agreements.agreement3
+                  agreement3: !agreements.agreement3,
                 })
               }
             />
             [필수] 개인정보 수집·이용 동의서
+            <button
+              style={{
+                color: "#582FFF",
+                fontSize: "10px",
+                backgroundColor: "transparent",
+                border: "none",
+                textDecoration: "underline",
+              }}
+            >
+              {" "}
+              보기
+            </button>
           </label>
         </SignupStyle.AgreementContainer>
-
         {/* 회원가입 버튼 */}
         <SignupStyle.SignupButton
           disabled={isSignupButtonDisabled()}
@@ -320,7 +338,6 @@ const Modal = ({ closeModal }) => {
         >
           회원가입
         </SignupStyle.SignupButton>
-
         {/* 모달 컴포넌트 */}
         {modalOpen && (
           <>
