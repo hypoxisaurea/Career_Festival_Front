@@ -9,7 +9,7 @@ const Container = styled.div`
 
 const DropdownButton = styled.button`
   text-align: start;
-  width: 100px;
+  width: 80px;
   background-color: #ffffff;
   color: #838383;
   padding: 10px;
@@ -27,7 +27,7 @@ const Modal = styled.div`
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
   margin-top: 5px;
-  width: 6%; // 모달 창의 폭을 조정합니다.
+  width: 5%; // 모달 창의 폭을 조정합니다.
   display: ${({ isModalOpen }) =>
     isModalOpen ? "flex" : "none"}; // 모달이 열리고 닫히도록 수정
 `;
@@ -49,7 +49,7 @@ const InputField = styled.input`
   border: 1px solid #838383;
   border-radius: 5px;
   width: 200px;
-  margin-left: 1vw;
+  margin-left: 5px;
   ${DropdownButton} {
     margin-right: 1vw;
   }
@@ -78,9 +78,14 @@ const AffiliationInput = ({
 
   return (
     <>
-      <p style={{ fontWeight: "bold", fontSize: "15px" }}>
+      <label
+        style={{
+          fontWeight: "bold",
+          fontSize: "15px",
+        }}
+      >
         소속(회사/기관/학교명)
-      </p>
+      </label>
       <Container>
         <div className="dropdown">
           <DropdownButton onClick={handleModalToggle}>

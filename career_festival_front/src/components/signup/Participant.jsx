@@ -193,7 +193,7 @@ const Participant = () => {
       <hr />
 
       {/* 성별 입력 부분입니다. */}
-      <p style={{ fontWeight: "bold", fontSize: "15px" }}>성별</p>
+      <label style={{ fontWeight: "bold", fontSize: "15px" }}>성별</label>
       <Gender>
         <input
           type="radio"
@@ -226,7 +226,7 @@ const Participant = () => {
       </Age>
 
       {/* 관심지역 입력 부분입니다. */}
-      <p style={{ fontWeight: "bold", fontSize: "15px" }}>관심지역</p>
+      <label style={{ fontWeight: "bold", fontSize: "15px" }}>관심지역</label>
       <InterestArea
         selectedArea={selectedArea}
         handleAreaSelect={handleAreaSelect}
@@ -276,12 +276,15 @@ const Participant = () => {
           display: "flex",
           justifyContent: "space-between",
           marginTop: "30px",
+          marginBottom: "10px",
         }}
       >
-        <p style={{ fontSize: "15px", fontWeight: "bold" }}>커리어 키워드</p>
-        <p style={{ fontSize: "12px", color: "#583fff" }}>
+        <label style={{ fontSize: "15px", fontWeight: "bold" }}>
+          커리어 키워드
+        </label>
+        <label style={{ fontSize: "12px", color: "#583fff" }}>
           관심분야를 골라주세요!
-        </p>
+        </label>
       </div>
       <KeyworldOptionList>
         {[
