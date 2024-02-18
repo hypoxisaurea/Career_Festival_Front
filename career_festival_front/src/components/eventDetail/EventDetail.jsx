@@ -2,6 +2,7 @@ import React from "react";
 import Menu from "../eventDetail/Menu";
 import Info from "../eventDetail/Info";
 import styled from "styled-components";
+import Map from "./Map";
 
 const DetailContainer = styled.div`
   width: 50%;
@@ -47,7 +48,7 @@ const Subtitle = styled.div`
 function EventDetail({ mainImg }) {
   return (
     <DetailContainer>
-      <Thumbnail/>
+      <Thumbnail />
       <Menu />
       <HorizontalDivider />
       <Info />
