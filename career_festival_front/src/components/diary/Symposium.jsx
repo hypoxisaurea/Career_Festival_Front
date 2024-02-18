@@ -34,8 +34,7 @@ function Symposium() {
   };
   return (
     <SymposiumContainer>
-      택신
-      <br />
+     학술대회
       Symposium
       <br />
       <Dropdown />
