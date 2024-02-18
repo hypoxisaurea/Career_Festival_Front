@@ -11,15 +11,15 @@ import MypageInfoCorrection from "../components/mypage/MypageInfoCorrection";
 
 
 //전체 페이지
-const OrganizationInfoContainer = styled.div`
+const InfoContainer = styled.div`
     display: flex;
     flex-direction: column;
     padding: 3vw 15vw;
     gap: 3vw;
 `
 
-//주최자 마이페이지 프로필
-const OrganizationMypageProfileContainer = styled.div`
+//마이페이지 프로필
+const MypageProfileContainer = styled.div`
   //background-color: aliceblue;
   border-radius: 12px;
   box-shadow: 0 4px 4px 0 rgb(0, 0, 0, 0.25);
@@ -36,7 +36,7 @@ const HorizontalDivider = styled.div`
 
 
 
-const OrganizationMypageButtonContainer = styled(Link)`
+const MypageButtonContainer = styled(Link)`
   //background-color: aliceblue;
   margin: 0 auto;
 `
@@ -120,16 +120,16 @@ const MyPageCorrection = (props) => {
 
   return (
     
-    <OrganizationInfoContainer>
-      <OrganizationMypageProfileContainer>
+    <InfoContainer>
+      <MypageProfileContainer>
         <MypageProfileCorrection/>
         <HorizontalDivider/>
         <MypageInfoCorrection/>
-      </OrganizationMypageProfileContainer>
+      </MypageProfileContainer>
 
-      <OrganizationMypageButtonContainer link to = "/mypage">
+      <MypageButtonContainer link to = "/mypage">
         <CorrectionButton>수정완료</CorrectionButton>
-      </OrganizationMypageButtonContainer>
+      </MypageButtonContainer>
 
 
       <FestivalListContainer>
@@ -174,7 +174,7 @@ const MyPageCorrection = (props) => {
           ))}
           </DeterminedFestivalListWrapper>
       </FestivalListContainer>
-  </OrganizationInfoContainer>  
+  </InfoContainer>  
   )
 };
 
