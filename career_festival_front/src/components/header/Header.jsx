@@ -251,7 +251,11 @@ const Header = () => {
         <LinkItem to="/diary">기록장</LinkItem>
         <LinkItem to="/mypage">마이페이지</LinkItem>
         <TextContiner>
-          <RegisterItem to="/register/level6">행사개설하기</RegisterItem>
+          <RegisterItem to="/register/level1">행사개설하기</RegisterItem>
+          {/* <RegisterItem to="/register/level1">행사개설하기</RegisterItem> 
+            해당 ID에 주최자 페이지가 있다면
+            level1말고 level6으로 이동해서 행사등록만하기
+          */}
           <VerticalLine />
           <WelcomeText>
             {isLoggedIn ? `${user.userName} 님 환영합니다!` : "로그인 해주세요!"}
