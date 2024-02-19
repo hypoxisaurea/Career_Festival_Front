@@ -7,6 +7,7 @@ import Header from "../components/header/Header";
 import Banner from "../components/home/Banner";
 import InterestArea from "../components/signup/InterestArea";
 import { Link } from "react-router-dom";
+import axios from 'axios';
 
 
 //Home 전체 페이지
@@ -140,13 +141,17 @@ const HomePage = () => {
   const recommendedByPlaceSlice = dummy.RecommendedByPlace.slice(0, 3); // 처음 3개 아이템만 사용
 
   const [userName, setUserName] = useState(""); // 사용자 이름 상태
+
+  //------------------------------------------------------
+  // 지역 설정 모달
+  //------------------------------------------------------
   
   //지역명
   const [isModalOpen, setModalOpen] = useState(false);
   const [selectedArea, setSelectedArea] = useState("seoul");
   const [selectedCity, setSelectedCity] = useState("");
 
-  //지역
+  
   // useEffect를 사용하여 컴포넌트가 처음 마운트될 때 실행될 로직 추가
   useEffect(() => {
     // 초기값으로 서울을 선택하도록 설정
@@ -198,6 +203,37 @@ const HomePage = () => {
     setModalOpen(false);
   };
 
+//------------------------------------------------------
+// api
+//------------------------------------------------------
+const [eventNames, setEventNames] = useState([]);
+const [eventRandom, setEventRandom] = useState([]);
+const [eventViews, setEventViews] = useState([]);
+const [eventRegion, setEventRegion] = useState([]);
+
+useEffect(() => {
+  const fetchEventData = async () => {
+    try {
+      const response = await axios.get('http://localhost:9000');
+      
+      setEventNames(response.data.eventNames);
+      setEventRandom(response.data.eventRandom);
+      setEventViews(response.data.eventViews);
+      setEventRegion(response.data.eventRegion);
+
+
+      console.log('데이터 fetching에 성공했습니다.');
+
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+
+  fetchEventData();
+}, []);
+
+
+
 
   return (
     <div>
@@ -214,20 +250,20 @@ const HomePage = () => {
           </PersonalContainerDiv>
 
           <RecommendPersonalWraper>
-            {recommendedByPersonSlice.map((item) => (
+            {eventViews.map((eventViews) => (
               <Recommend
                 style={{
                   color: "white",
                   fontSize: "0.8rem",
                 }}
-                key={item.eventName} // 유일한 키가 필요합니다.
-                mainImg={item.mainImg}
-                eventName={item.eventName}
-                recruitmentStart={item.recruitmentStart}
-                recruitmentEnd={item.recruitmentEnd}
-                isLiked={item.isLiked}
-                price={item.price}
-                profile={item.profile}
+                key={eventViews.eventName} // 유일한 키가 필요합니다.
+                eventMainFileUrl={eventViews.eventMainFileUrl}
+                eventName={eventViews.eventName}
+                recruitmentStart={eventViews.recruitmentStart}
+                recruitmentEnd={eventViews.recruitmentEnd}
+                isLiked={eventViews.isLiked}
+                eventCost={eventViews.eventCost}
+                organizerProfileUrl={eventViews.organizerProfileUrl}
               />
             ))}
           </RecommendPersonalWraper>
