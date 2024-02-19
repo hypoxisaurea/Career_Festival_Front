@@ -44,13 +44,13 @@ const Subtitle = styled.div`
   word-wrap: break-word;
 `;
 
-function EventDetail({ mainImg }) {
+function EventDetail({ eventData }) {
   return (
     <DetailContainer>
-      <Thumbnail/>
+      <Thumbnail />
       <Menu />
       <HorizontalDivider />
-      <Info />
+      <Info eventData={eventData} />
       <HorizontalDivider />
       <FileContainer>상세 내용</FileContainer>
       <PlaceContainer>

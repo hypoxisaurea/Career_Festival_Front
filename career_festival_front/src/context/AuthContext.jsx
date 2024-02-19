@@ -49,12 +49,12 @@ export const AuthProvider = ({ children }) => {
       const response = await fetch("http://localhost:9000/login", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           username,
-          password
-        })
+          password,
+        }),
       });
 
       if (response.ok) {
@@ -66,8 +66,8 @@ export const AuthProvider = ({ children }) => {
         const userInfoResponse = await fetch("http://localhost:9000/", {
           method: "GET",
           headers: {
-            Authorization: jwtToken
-          }
+            Authorization: jwtToken,
+          },
         });
 
         if (userInfoResponse.ok) {
@@ -120,7 +120,7 @@ export const AuthProvider = ({ children }) => {
   const saveAdditionalInfo = async (userData) => {
     try {
       console.log("부가정보 저장 함수 호출됨 ...");
-      
+
       // 토큰 가져오기
       const token = getTokenFromLocalStorage();
 
@@ -128,9 +128,9 @@ export const AuthProvider = ({ children }) => {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `${token}`
+          Authorization: `${token}`,
         },
-        body: JSON.stringify(userData)
+        body: JSON.stringify(userData),
       });
 
       if (response.ok) {
@@ -144,7 +144,7 @@ export const AuthProvider = ({ children }) => {
       console.error("에러 발생:", error);
     }
   };
-  
+
   // -----------------------------------------------------------------------------
   // - Name : saveAdditionalOOInfo
   // - Desc : 서버에 부가정보를 저장하는 함수
@@ -154,7 +154,7 @@ export const AuthProvider = ({ children }) => {
   const saveAdditionalOOInfo = async (userData) => {
     try {
       console.log("부가정보 저장 함수 호출됨 ...");
-      
+
       // 토큰 가져오기
       const token = getTokenFromLocalStorage();
 
@@ -162,9 +162,9 @@ export const AuthProvider = ({ children }) => {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `${token}`
+          Authorization: `${token}`,
         },
-        body: JSON.stringify(userData)
+        body: JSON.stringify(userData),
       });
 
       if (response.ok) {
@@ -201,8 +201,8 @@ export const AuthProvider = ({ children }) => {
         .post(url, formData, {
           headers: {
             "Content-Type": "multipart/form-data",
-            Authorization: `${token}`
-          }
+            Authorization: `${token}`,
+          },
         })
         .then((response) => {
           console.log("주최자 등록 완료:", response.data);
@@ -249,8 +249,8 @@ export const AuthProvider = ({ children }) => {
       const response = await axios.post(url, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
-          Authorization: `${token}`
-        }
+          Authorization: `${token}`,
+        },
       });
 
       console.log("서버 응답:", response.data);
@@ -260,46 +260,45 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  
   //
-  // 마이 페이지 
+  // 마이 페이지
   //
   // AuthProvider 컴포넌트 내에 새로운 함수 추가
-const fetchMypageInfo = async () => {
-  try {
-    console.log("마이페이지 정보를 가져오는 중...");
+  const fetchMypageInfo = async () => {
+    try {
+      console.log("마이페이지 정보를 가져오는 중...");
 
-    // 토큰 가져오기
-    const token = getTokenFromLocalStorage();
+      // 토큰 가져오기
+      const token = getTokenFromLocalStorage();
 
-    // 서버에 GET 요청 보내기
-    const response = await axios.get("http://localhost:9000/mypage", {
-      headers: {
-        Authorization: `${token}`
+      // 서버에 GET 요청 보내기
+      const response = await axios.get("http://localhost:9000/mypage", {
+        headers: {
+          Authorization: `${token}`,
+        },
+      });
+
+      console.log("서버 응답:", response); // 수정된 부분: 응답 전체 객체 출력
+
+      if (response.status === 200) {
+        const { userInfo } = response.data; // userInfo 객체 추출
+
+        // userInfo 객체를 로컬 스토리지에 저장
+        localStorage.setItem("userInfo", JSON.stringify(userInfo));
+
+        console.log("마이페이지 정보:", userInfo);
+        // 가져온 정보를 상태에 설정하거나 필요한 작업 수행
+      } else {
+        console.error("마이페이지 정보 가져오기 실패:", response.statusText);
       }
-    });
-
-    console.log("서버 응답:", response); // 수정된 부분: 응답 전체 객체 출력
-
-    if (response.status === 200) {
-      const { userInfo } = response.data; // userInfo 객체 추출
-
-      // userInfo 객체를 로컬 스토리지에 저장
-      localStorage.setItem("userInfo", JSON.stringify(userInfo));
-
-      console.log("마이페이지 정보:", userInfo);
-      // 가져온 정보를 상태에 설정하거나 필요한 작업 수행
-    } else {
-      console.error("마이페이지 정보 가져오기 실패:", response.statusText);
+    } catch (error) {
+      console.error("에러 발생:", error);
     }
-  } catch (error) {
-    console.error("에러 발생:", error);
-  }
-};
+  };
 
   //
-  // 마이페이지 수정하기 
-  //  
+  // 마이페이지 수정하기
+  //
   // AuthProvider 컴포넌트 내에 새로운 함수 추가
   const updateMypageInfo = async (updatedInfo) => {
     try {
@@ -315,8 +314,8 @@ const fetchMypageInfo = async () => {
         {
           headers: {
             Authorization: `${token}`,
-            "Content-Type": "application/json"
-          }
+            "Content-Type": "application/json",
+          },
         }
       );
 
@@ -348,8 +347,8 @@ const fetchMypageInfo = async () => {
       // 서버에 GET 요청 보내기
       const response = await axios.get("http://localhost:9000", {
         headers: {
-          Authorization: `${token}`
-        }
+          Authorization: `${token}`,
+        },
       });
 
       console.log("서버 응답:", response); // 수정된 부분: 응답 전체 객체 출력
@@ -384,8 +383,8 @@ const fetchMypageInfo = async () => {
       // 서버에 GET 요청 보내기
       const response = await axios.get("http://localhost:9000/festival-list", {
         headers: {
-          Authorization: `${token}`
-        }
+          Authorization: `${token}`,
+        },
       });
 
       console.log("서버 응답:", response); // 수정된 부분: 응답 전체 객체 출력
@@ -406,6 +405,32 @@ const fetchMypageInfo = async () => {
     }
   };
 
+  //
+  // 디테일 페이지
+  //
+  // AuthProvider 컴포넌트 내에 새로운 함수 추가
+  const fetchEventDetailData = async () => {
+    try {
+      console.log("소연씨");
+
+      // 토큰 가져오기
+      const token = getTokenFromLocalStorage();
+
+      const response = await axios.get(`/detail/${eventid}`, {
+        headers: {
+          Authorization: `${token}`,
+        },
+      });
+
+      console.log("서버 응답:", response);
+
+      return response.data;
+    } catch (error) {
+      console.error("이벤트 정보를 가져오지 못했습니다", error);
+      throw error;
+    }
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -420,7 +445,8 @@ const fetchMypageInfo = async () => {
         fetchMypageInfo,
         updateMypageInfo,
         fetchMainpageInfo,
-        fetchfestivalListpageInfo
+        fetchfestivalListpageInfo,
+        fetchEventDetailData,
       }}
     >
       {children}

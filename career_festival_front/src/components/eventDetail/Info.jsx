@@ -39,7 +39,7 @@ const Content = styled.div`
   display: inline-block;
 `;
 
-function Info() {
+function Info({ eventData }) {
   return (
     <InfoContainer>
       <DateContainer>
@@ -52,11 +52,11 @@ function Info() {
       </ApplyContainer>
       <PriceContainer>
         <Title>비용</Title>
-        <Content>무료</Content>
+        <Content>{eventData.eventCost}</Content>
       </PriceContainer>
       <PlaceContainer>
         <Title>위치</Title>
-        <Content>홍익대학교 T동 3층</Content>
+        <Content>{eventData.specAddress}</Content>
       </PlaceContainer>
     </InfoContainer>
   );
