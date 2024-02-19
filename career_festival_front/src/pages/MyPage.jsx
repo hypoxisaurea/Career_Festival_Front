@@ -5,8 +5,6 @@ import  "../db/organizationsData.json"
 import dummy from "../db/RecommendedEvents.json"
 import Recommend from '../components/home/Recommend'
 import MypageProfile from '../components/mypage/MypageProfile'
-import MypageInfo from "../components/mypage/MypageInfo";
-
 
 
 
@@ -34,13 +32,10 @@ const HorizontalDivider = styled.div`
   margin: 4vw 0 4vw 0;
 `
 
-
-
 const MypageButtonContainer = styled(Link)`
   //background-color: aliceblue;
   margin: 0 auto;
 `
-
 
 //수정하기 버튼
 const CorrectionButton = styled.button`
@@ -58,7 +53,6 @@ const CorrectionButton = styled.button`
         }
 
 `
-
 
 
 //행사 리스트
@@ -113,8 +107,6 @@ const DeterminedFestivalListWrapper = styled.div`
 
 
 
-
-
 const OrganizationMypage = (props) => {
   
 
@@ -124,7 +116,6 @@ const OrganizationMypage = (props) => {
       <MypageProfileContainer>
         <MypageProfile/>
         <HorizontalDivider/>
-        <MypageInfo/>
       </MypageProfileContainer>
 
       <MypageButtonContainer link to = "/mypage-correction">

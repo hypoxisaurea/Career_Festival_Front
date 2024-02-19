@@ -5,7 +5,7 @@ import  "../db/organizationsData.json"
 import dummy from "../db/RecommendedEvents.json"
 import Recommend from '../components/home/Recommend'
 import MypageProfileCorrection from '../components/mypage/MypageProfileCorrection'
-import MypageInfoCorrection from "../components/mypage/MypageInfoCorrection";
+
 
 
 
@@ -124,7 +124,6 @@ const MyPageCorrection = (props) => {
       <MypageProfileContainer>
         <MypageProfileCorrection/>
         <HorizontalDivider/>
-        <MypageInfoCorrection/>
       </MypageProfileContainer>
 
       <MypageButtonContainer link to = "/mypage">
