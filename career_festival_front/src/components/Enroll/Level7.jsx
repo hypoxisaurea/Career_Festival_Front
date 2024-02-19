@@ -68,13 +68,13 @@ const Level7 = () => {
 
   // Level7 컴포넌트 내에서 모든 입력 요소들의 상태를 수집하여 addData 객체로 만듦
   const addData = {
-    keywords: selectedKeywords,
+    keywordName: selectedKeywords,
     eventName: eventName,
     eventIntroduction: eventIntroduction,
     selectedArea: selectedArea,
     selectedCity: selectedCity,
     externalSiteUrl: externalSiteUrl,
-    eventInfo: eventInfo,
+    description: eventInfo,
     entryFee: entryFee,
     contactName: contactName,
     contactEmail: contactEmail,
@@ -172,10 +172,12 @@ const handleEventRegistration = () => {
 
   // 만약 category 값이 "기타"라면 customEventType 값을 가져옴
   let categoryValue = storedCategory;
+  let value = storedCategory ;
   if (storedCategory === "기타") {
     const storedCustomEventType = localStorage.getItem("customEventType");
     console.log("사용자 정의 이벤트 유형:", storedCustomEventType);
     categoryValue = storedCustomEventType; // "기타"일 경우 customEventType 값을 categoryValue에 할당
+    value = storedCustomEventType
   }
   
   // 로그 출력
@@ -185,7 +187,7 @@ const handleEventRegistration = () => {
   // addData 객체에 category 값을 설정
   const updatedAddData = {
     ...addData,
-    category: categoryValue
+    category: value
   };
 
   // 로그 출력
