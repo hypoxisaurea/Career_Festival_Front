@@ -118,6 +118,28 @@ const CareerKeywordContainer = styled.div`
     font-size: 1vw;
     font-weight: 700;
   }
+`
+const EmailContainer = styled.div`
+  input {
+    padding: 0.7vw 0 0.7vw 0.7vw;
+    border: 0.1rem solid #838383;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: #ffffff;
+    text-align: start;
+    color: #757575;
+    width: 25vw;
+
+    @media screen and (max-width: 600px) {
+      font-size: 1.5vw;
+      width: 20vw;
+      border-radius: 5px;
+      border: 0.05rem solid #838383;
+      padding: 0.7vw 0 0.7vw 0.7vw;
+    }
+  }
+`
+
 
   @media screen and (max-width: 600px) {
     font-size: 2vw;
@@ -265,6 +287,7 @@ function MypageProfileCorrection() {
             />
           </NameContainer>
 
+
           <EmailContainer>
             <h2>이메일</h2>
             <input
@@ -285,6 +308,7 @@ function MypageProfileCorrection() {
               handleModalToggle={handleModalToggle}
               closeModal={closeModal}
               buttonText="선택하기"
+
             />
           </PlaceContainer>
 
