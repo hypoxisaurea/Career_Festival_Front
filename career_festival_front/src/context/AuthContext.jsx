@@ -345,8 +345,11 @@ const fetchMypageInfo = async () => {
       // 토큰 가져오기
       const token = getTokenFromLocalStorage();
 
+     
+
       // 서버에 GET 요청 보내기
       const response = await axios.get("http://localhost:9000", {
+
         headers: {
           Authorization: `${token}`
         }
@@ -356,7 +359,7 @@ const fetchMypageInfo = async () => {
 
       if (response.status === 200) {
         const { userInfo } = response.data; // userInfo 객체 추출
-
+        
         // userInfo 객체를 로컬 스토리지에 저장
         localStorage.setItem("userInfo", JSON.stringify(userInfo));
 
