@@ -75,7 +75,7 @@ export const AuthProvider = ({ children }) => {
 
           // 로컬 스토리지에 사용자 정보 저장
           localStorage.setItem("isLoggedIn", "true");
-          // localStorage.setItem("user", JSON.stringify(userInfo));
+          localStorage.setItem("user", JSON.stringify(userInfo));
           localStorage.setItem("token", jwtToken); // 토큰 저장
 
           setIsLoggedIn(true);
@@ -147,7 +147,7 @@ export const AuthProvider = ({ children }) => {
   
   // -----------------------------------------------------------------------------
   // - Name : saveAdditionalOOInfo
-  // - Desc : 서버에 주최자(Organizer) 부가정보를 저장하는 함수
+  // - Desc : 서버에 부가정보를 저장하는 함수
   // - Input
   //   1) userData : 사용자 데이터
   // -----------------------------------------------------------------------------
@@ -260,6 +260,10 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  
+  //
+  // 마이 페이지 
+  //
   // AuthProvider 컴포넌트 내에 새로운 함수 추가
 const fetchMypageInfo = async () => {
   try {
@@ -293,7 +297,9 @@ const fetchMypageInfo = async () => {
   }
 };
 
-
+  //
+  // 마이페이지 수정하기 
+  //  
   // AuthProvider 컴포넌트 내에 새로운 함수 추가
   const updateMypageInfo = async (updatedInfo) => {
     try {
@@ -328,36 +334,80 @@ const fetchMypageInfo = async () => {
     }
   };
 
+  //
+  // 메인페이지
+  //
   // AuthProvider 컴포넌트 내에 새로운 함수 추가
-const registerEvent = async (addData) => {
-  try {
-    console.log("행사 등록 요청 중...");
+  const fetchMainpageInfo = async () => {
+    try {
+      console.log("메인페이지 정보를 가져오는 중...");
 
-    // 토큰 가져오기
-    const token = getTokenFromLocalStorage();
+      // 토큰 가져오기
+      const token = getTokenFromLocalStorage();
 
-    // 서버에 POST 요청 보내기
-    const response = await axios.post("http://localhost:9000/event/register/", addData, {
-      headers: {
-        Authorization: `${token}`,
-        "Content-Type": "application/json"
+     
+
+      // 서버에 GET 요청 보내기
+      const response = await axios.get("http://localhost:9000", {
+
+        headers: {
+          Authorization: `${token}`
+        }
+      });
+
+      console.log("서버 응답:", response); // 수정된 부분: 응답 전체 객체 출력
+
+      if (response.status === 200) {
+        const { userInfo } = response.data; // userInfo 객체 추출
+        
+        // userInfo 객체를 로컬 스토리지에 저장
+        localStorage.setItem("userInfo", JSON.stringify(userInfo));
+
+        console.log("메인페이지 정보:", userInfo);
+        // 가져온 정보를 상태에 설정하거나 필요한 작업 수행
+      } else {
+        console.error("메인페이지 정보 가져오기 실패:", response.statusText);
       }
-    });
-
-    console.log("서버 응답:", response); // 응답 전체 객체 출력
-
-    if (response.status === 200) {
-      console.log("행사 등록 성공!");
-      alert("행사 등록 완료");
-      navigate("/");
-      
-    } else {
-      console.error("행사 등록 실패:", response.statusText);
+    } catch (error) {
+      console.error("에러 발생:", error);
     }
-  } catch (error) {
-    console.error("에러 발생:", error);
-  }
-};
+  };
+
+  //
+  // 메인페이지
+  //
+  // AuthProvider 컴포넌트 내에 새로운 함수 추가
+  const fetchfestivalListpageInfo = async () => {
+    try {
+      console.log("메인페이지 정보를 가져오는 중...");
+
+      // 토큰 가져오기
+      const token = getTokenFromLocalStorage();
+
+      // 서버에 GET 요청 보내기
+      const response = await axios.get("http://localhost:9000/festival-list", {
+        headers: {
+          Authorization: `${token}`
+        }
+      });
+
+      console.log("서버 응답:", response); // 수정된 부분: 응답 전체 객체 출력
+
+      if (response.status === 200) {
+        const { userInfo } = response.data; // userInfo 객체 추출
+
+        // userInfo 객체를 로컬 스토리지에 저장
+        localStorage.setItem("userInfo", JSON.stringify(userInfo));
+
+        console.log("메인페이지 정보:", userInfo);
+        // 가져온 정보를 상태에 설정하거나 필요한 작업 수행
+      } else {
+        console.error("메인페이지 정보 가져오기 실패:", response.statusText);
+      }
+    } catch (error) {
+      console.error("에러 발생:", error);
+    }
+  };
 
   return (
     <AuthContext.Provider
@@ -372,7 +422,8 @@ const registerEvent = async (addData) => {
         testtest,
         fetchMypageInfo,
         updateMypageInfo,
-        registerEvent
+        fetchMainpageInfo,
+        fetchfestivalListpageInfo
       }}
     >
       {children}
