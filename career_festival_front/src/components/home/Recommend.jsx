@@ -133,7 +133,7 @@ const StyledLink = styled(Link)`
 `;
 
 
-const Recommend = ({mainImg, eventName, recruitmentStart, recruitmentEnd, isLiked, price, profile, eventId}) => {
+const Recommend = ({eventMainFileUrl, eventName, recruitmentStart, recruitmentEnd, isLiked, eventCost, organizerProfileUrl, eventId}) => {
   return (
     // <StyledLink to={`/event/detail/${eventId}`}> 나중엔 이걸로 해야함 지금은 영상을 찍기 위함
     <StyledLink to={"/detail"}>
@@ -141,7 +141,7 @@ const Recommend = ({mainImg, eventName, recruitmentStart, recruitmentEnd, isLike
       {/* 지금은 영상을 찍기 위함 */}
       <RecommendCardcontainer>
         <RecommendMainImgWrapper>
-          <img src={mainImg} alt="행사 이미지" />
+          <img src={eventMainFileUrl} alt="행사 이미지" />
         </RecommendMainImgWrapper>
 
         <RecommendTitleWrapper title={eventName}>
@@ -160,12 +160,12 @@ const Recommend = ({mainImg, eventName, recruitmentStart, recruitmentEnd, isLike
                 <StarIcon src={emptyStarIcon} alt="저장" />{" "}
                 {/*백엔드에서 나오면 바꾸기*/}{" "}
               </div>
-              <div>{price}</div>
+              <div>{eventCost}</div>
             </RecommendIconWapper>
           </RecommandDetailWrapper>
 
           <RecommendOrganizerImgWrapper>
-            <img src={profile} alt="주최자 이미지" />
+            <img src={organizerProfileUrl} alt="주최자 이미지" />
           </RecommendOrganizerImgWrapper>
         </RecommendInfoWrapper>
       </RecommendCardcontainer>
