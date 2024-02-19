@@ -1,5 +1,8 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled, { css } from "styled-components";
+import { useParams } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext"; // AuthContext import 추가
+import dummy from "../../db/RecommendedEvents.json";
 
 const InfoContainer = styled.div`
   width: 100%;
@@ -39,7 +42,7 @@ const Content = styled.div`
   display: inline-block;
 `;
 
-function Info() {
+function Info({ eventData }) {
   return (
     <InfoContainer>
       <DateContainer>
@@ -52,7 +55,7 @@ function Info() {
       </ApplyContainer>
       <PriceContainer>
         <Title>비용</Title>
-        <Content>무료</Content>
+        <Content>{eventData.price}</Content>
       </PriceContainer>
       <PlaceContainer>
         <Title>위치</Title>

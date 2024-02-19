@@ -2,7 +2,7 @@ import React from "react";
 import Menu from "../eventDetail/Menu";
 import Info from "../eventDetail/Info";
 import styled from "styled-components";
-import Map from "./Map";
+import dummy from "../../db/RecommendedEvents.json";
 
 const DetailContainer = styled.div`
   width: 50%;
@@ -45,13 +45,13 @@ const Subtitle = styled.div`
   word-wrap: break-word;
 `;
 
-function EventDetail({ mainImg }) {
+function EventDetail({ eventData }) {
   return (
     <DetailContainer>
       <Thumbnail />
       <Menu />
       <HorizontalDivider />
-      <Info />
+      <Info eventData={eventData} />
       <HorizontalDivider />
       <FileContainer>상세 내용</FileContainer>
       <PlaceContainer>

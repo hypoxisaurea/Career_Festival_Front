@@ -63,6 +63,7 @@ const InputField = styled.input`
   border: none;
   outline: none;
   border-radius: 5px;
+  font-size:1vw;
 `;
 
 const PeopleNetwork = ({ onComplete }) => {

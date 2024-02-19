@@ -139,7 +139,7 @@ function App() {
               }
             />
             <Route
-              path="/detail"
+              path="/detail/:eventId"
               element={
                 <>
                   <Header />
