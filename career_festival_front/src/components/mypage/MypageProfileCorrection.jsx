@@ -75,13 +75,13 @@ const NameContainer = styled.div`
 const EmailContainer = styled.div`
   input {
     padding: 0.7vw 0 0.7vw 0.7vw;
-    border: 0.1rem solid #838383;
+    border: none;
     border-radius: 8px;
-    cursor: pointer;
+    // cursor: pointer;
     background-color: #ffffff;
     text-align: start;
     color: #757575;
-    width: 25vw;
+    width: 19vw;
 
     @media screen and (max-width: 600px) {
       font-size: 1.5vw;
@@ -220,10 +220,15 @@ function MypageProfileCorrection() {
   const [introduce, setIntroduce] = useState(""); // 한줄 소개 추가
 
   // useEffect를 사용하여 컴포넌트가 처음 마운트될 때 실행될 로직 추가
+  // useEffect를 사용하여 컴포넌트가 처음 마운트될 때 실행될 로직 추가
   useEffect(() => {
-    // 초기값으로 서울을 선택하도록 설정
-    handleAreaSelect("seoul");
+    // 로컬 스토리지에서 사용자 정보를 가져와서 이메일을 설정합니다.
+    const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+    if (userInfo && userInfo.email) {
+      setEmail(userInfo.email);
+    }
   }, []);
+
   // 모달 창을 열거나 닫는 함수를 정의합니다.
   const handleModalToggle = () => {
     setModalOpen(!isModalOpen);
@@ -247,7 +252,6 @@ function MypageProfileCorrection() {
   };
 
   //모든 항목이 입력되었는지 확인
-
 
   const [affiliation, setAffiliation] = useState(""); // 추가: 소속 상태
 
@@ -290,7 +294,6 @@ function MypageProfileCorrection() {
     );
   };
 
-
   return (
     <div>
       <MypageProfileContainer>
@@ -312,9 +315,8 @@ function MypageProfileCorrection() {
             <h4>이메일</h4>
             <input
               type="email"
-              placeholder="예시) example@gmail.com"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              disabled // 수정 불가능하도록 설정
             />
           </EmailContainer>
 
@@ -333,7 +335,7 @@ function MypageProfileCorrection() {
           </PlaceContainer>
 
           <IntroduceContainer>
-            <h4>한줄소개</h4>
+            <h4>연락처</h4>
             <input
               type="text"
               placeholder="본인을 간략하게 표한할 한 줄 소개를 작성해보세요!"
