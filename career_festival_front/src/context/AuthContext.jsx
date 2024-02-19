@@ -75,7 +75,7 @@ export const AuthProvider = ({ children }) => {
 
           // 로컬 스토리지에 사용자 정보 저장
           localStorage.setItem("isLoggedIn", "true");
-          localStorage.setItem("user", JSON.stringify(userInfo));
+          // localStorage.setItem("user", JSON.stringify(userInfo));
           localStorage.setItem("token", jwtToken); // 토큰 저장
 
           setIsLoggedIn(true);
@@ -147,7 +147,7 @@ export const AuthProvider = ({ children }) => {
   
   // -----------------------------------------------------------------------------
   // - Name : saveAdditionalOOInfo
-  // - Desc : 서버에 부가정보를 저장하는 함수
+  // - Desc : 서버에 주최자(Organizer) 부가정보를 저장하는 함수
   // - Input
   //   1) userData : 사용자 데이터
   // -----------------------------------------------------------------------------
@@ -334,6 +334,38 @@ const fetchMypageInfo = async () => {
     }
   };
 
+
+  // AuthProvider 컴포넌트 내에 새로운 함수 추가
+const registerEvent = async (addData) => {
+  try {
+    console.log("행사 등록 요청 중...");
+
+    // 토큰 가져오기
+    const token = getTokenFromLocalStorage();
+
+    // 서버에 POST 요청 보내기
+    const response = await axios.post("http://localhost:9000/event/register/", addData, {
+      headers: {
+        Authorization: `${token}`,
+        "Content-Type": "application/json"
+      }
+    });
+
+    console.log("서버 응답:", response); // 응답 전체 객체 출력
+
+    if (response.status === 200) {
+      console.log("행사 등록 성공!");
+      alert("행사 등록 완료");
+      navigate("/");
+      
+    } else {
+      console.error("행사 등록 실패:", response.statusText);
+    }
+  } catch (error) {
+    console.error("에러 발생:", error);
+  }
+};
+
   //
   // 메인페이지
   //
@@ -419,6 +451,7 @@ const fetchMypageInfo = async () => {
         testtest,
         fetchMypageInfo,
         updateMypageInfo,
+        registerEvent
         fetchMainpageInfo,
         fetchfestivalListpageInfo
       }}

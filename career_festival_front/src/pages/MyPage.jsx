@@ -59,6 +59,7 @@ const CorrectionButton = styled.button`
 
 `
 
+
 //행사 리스트
 const FestivalListContainer = styled.div`
     //background-color: beige;
