@@ -33,7 +33,8 @@ import {
   TitleImage,
   StartDate,
   EndDate,
-  Term
+  Term,
+  DetailedLocationInput
 } from "./Level7Style"; // Level7Style 파일에서 스타일 요소들을 불러옴
 
 const Level7 = () => {
@@ -66,20 +67,23 @@ const Level7 = () => {
   const [contactEmail, setContactEmail] = useState("");
   const { registerEvent } = useAuth(); // AuthContext에서 registerEventStep12 함수 가져오기
 
+  const [detailedLocation, setDetailedLocation] = useState("");
+
   // Level7 컴포넌트 내에서 모든 입력 요소들의 상태를 수집하여 addData 객체로 만듦
   const addData = {
     keywordName: selectedKeywords,
     eventName: eventName,
-    eventIntroduction: eventIntroduction,
-    selectedArea: selectedArea,
-    selectedCity: selectedCity,
-    externalSiteUrl: externalSiteUrl,
-    description: eventInfo,
-    entryFee: entryFee,
-    contactName: contactName,
-    contactEmail: contactEmail,
+    description: eventIntroduction,
+    city: selectedArea,
+    addressLine: selectedCity,
+    link: externalSiteUrl,
+    eventContent: eventInfo,
+    eventCost: entryFee,
+    managerName: contactName,
+    managerEmail: contactEmail,
     selectedMainImage: selectedMainImage,
-    selectedEventInfoImage: selectedEventInfoImage
+    selectedEventInfoImage: selectedEventInfoImage,
+    address: detailedLocation
   };
 
   // 버튼의 활성화 여부를 결정할 상태 추가
@@ -165,38 +169,37 @@ const Level7 = () => {
     setModalOpen(false);
   };
 
-// 버튼 클릭 시 행사 등록 함수 호출
-const handleEventRegistration = () => {
-  // 로컬 스토리지에서 category 값 가져오기
-  const storedCategory = localStorage.getItem("category");
+  // 버튼 클릭 시 행사 등록 함수 호출
+  const handleEventRegistration = () => {
+    // 로컬 스토리지에서 category 값 가져오기
+    const storedCategory = localStorage.getItem("category");
 
-  // 만약 category 값이 "기타"라면 customEventType 값을 가져옴
-  let categoryValue = storedCategory;
-  let value = storedCategory ;
-  if (storedCategory === "기타") {
-    const storedCustomEventType = localStorage.getItem("customEventType");
-    console.log("사용자 정의 이벤트 유형:", storedCustomEventType);
-    categoryValue = storedCustomEventType; // "기타"일 경우 customEventType 값을 categoryValue에 할당
-    value = storedCustomEventType
-  }
-  
-  // 로그 출력
-  console.log("저장된 카테고리 값:", storedCategory);
-  console.log("최종 카테고리 값:", categoryValue);
-  
-  // addData 객체에 category 값을 설정
-  const updatedAddData = {
-    ...addData,
-    category: value
+    // 만약 category 값이 "기타"라면 customEventType 값을 가져옴
+    let categoryValue = storedCategory;
+    let value = storedCategory;
+    if (storedCategory === "기타") {
+      const storedCustomEventType = localStorage.getItem("customEventType");
+      console.log("사용자 정의 이벤트 유형:", storedCustomEventType);
+      categoryValue = storedCustomEventType; // "기타"일 경우 customEventType 값을 categoryValue에 할당
+      value = storedCustomEventType;
+    }
+
+    // 로그 출력
+    console.log("저장된 카테고리 값:", storedCategory);
+    console.log("최종 카테고리 값:", categoryValue);
+
+    // addData 객체에 category 값을 설정
+    const updatedAddData = {
+      ...addData,
+      category: value
+    };
+
+    // 로그 출력
+    console.log("업데이트된 추가 데이터:", updatedAddData);
+
+    // registerEvent 함수를 호출하고 updatedAddData 객체를 전달
+    registerEvent(updatedAddData);
   };
-
-  // 로그 출력
-  console.log("업데이트된 추가 데이터:", updatedAddData);
-
-  // registerEvent 함수를 호출하고 updatedAddData 객체를 전달
-  registerEvent(updatedAddData);
-};
-
 
   // 모든 요소가 입력되었는지 확인하는 함수 정의
   const checkAllInputsFilled = () => {
@@ -316,7 +319,7 @@ const handleEventRegistration = () => {
         value={eventIntroduction} // 간단 소개 상태 값으로 변경
         onChange={(e) => setEventIntroduction(e.target.value)}
       />
-      <Title>관심지역</Title>
+      <Title>행사 위치</Title>
       {/* 관심지역 컴포넌트 */}
       <InterestArea
         selectedArea={selectedArea}
@@ -326,7 +329,13 @@ const handleEventRegistration = () => {
         isModalOpen={isModalOpen}
         handleModalToggle={handleModalToggle}
         closeModal={closeModal}
-        buttonText="관심지역 선택"
+        buttonText="행사위치 선택"
+      />
+      <DetailedLocationInput
+        type="text"
+        placeholder="자세한 위치를 입력하세요"
+        value={detailedLocation}
+        onChange={(e) => setDetailedLocation(e.target.value)}
       />
       <Title>대표이미지</Title>
       <TitleImage>
@@ -361,6 +370,19 @@ const handleEventRegistration = () => {
         )}
       </TitleImage>
       <Title>행사 일정</Title>
+      <Term>
+        <StartDate>
+          시작일
+          <StartCalendar />
+          <Clock />
+        </StartDate>
+        <EndDate>
+          마감일
+          <EndCalendar />
+          <Clock />
+        </EndDate>
+      </Term>
+
       <Title>행사 신청 외부사이트</Title>
       <AddURL
         type="url"
