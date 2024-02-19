@@ -59,6 +59,7 @@ const DetailFestivalPage = () => {
     <DetailFestivalPageContainer>
       <DetailContainer>
         <EventDetail eventData={eventData} />
+        <EventDetail eventData={eventData} />
         <Enrollment />
       </DetailContainer>
       <QnA />

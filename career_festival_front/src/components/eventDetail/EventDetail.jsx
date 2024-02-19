@@ -2,6 +2,7 @@ import React from "react";
 import Menu from "../eventDetail/Menu";
 import Info from "../eventDetail/Info";
 import styled from "styled-components";
+import dummy from "../../db/RecommendedEvents.json";
 
 const DetailContainer = styled.div`
   width: 50%;

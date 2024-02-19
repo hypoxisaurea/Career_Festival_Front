@@ -1,5 +1,8 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled, { css } from "styled-components";
+import { useParams } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext"; // AuthContext import 추가
+import dummy from "../../db/RecommendedEvents.json";
 
 const InfoContainer = styled.div`
   width: 100%;
