@@ -203,6 +203,32 @@ const HomePage = () => {
     setModalOpen(false);
   };
 
+
+
+//-----------------------------------------------------
+// 날짜 형변환
+// datetime 형식을 "-년 -월 -일 -시 -분" 형태로 변환하는 함수
+//------------------------------------------------------
+function formatDateTime(datetimeString) {
+  const dateTime = new Date(datetimeString); // 문자열을 Date 객체로 변환
+  const year = dateTime.getFullYear(); // 연도 추출
+  const month = dateTime.getMonth() + 1; // 월 추출 (0부터 시작하므로 1을 더함)
+  const day = dateTime.getDate(); // 일 추출
+  const hours = dateTime.getHours(); // 시간 추출
+  const minutes = dateTime.getMinutes(); // 분 추출
+
+  // 한 자리 숫자일 경우 앞에 0을 추가하여 두 자리로 만듦
+  const formattedMonth = month < 10 ? '0' + month : month;
+  const formattedDay = day < 10 ? '0' + day : day;
+  const formattedHours = hours < 10 ? '0' + hours : hours;
+  const formattedMinutes = minutes < 10 ? '0' + minutes : minutes;
+
+  // 포맷된 문자열 반환
+  return `${year}년 ${formattedMonth}월 ${formattedDay}일 ${formattedHours}시 ${formattedMinutes}분`;
+}
+
+
+
 //------------------------------------------------------
 // api
 //------------------------------------------------------
@@ -215,11 +241,27 @@ useEffect(() => {
   const fetchEventData = async () => {
     try {
       const response = await axios.get('http://localhost:9000');
-      
+
+      // eventViews datetime 변환 함수
+      const modifiedEvent = (events) =>{
+        return events.map(event => ({
+        ...event,
+        recruitmentStart: formatDateTime(event.recruitmentStart),
+        recruitmentEnd: formatDateTime(event.recruitmentEnd)
+      }))};
+
+      const modifiedEventViews = modifiedEvent(response.data.eventViews);
+      const modifiedEventRandom = modifiedEvent(response.data.eventRandom);
+
+
+
+
       setEventNames(response.data.eventNames);
-      setEventRandom(response.data.eventRandom);
-      setEventViews(response.data.eventViews);
+      setEventRandom(modifiedEventRandom);
+      setEventViews(modifiedEventViews);
       setEventRegion(response.data.eventRegion);
+      console.log(modifiedEventViews);
+      console.log(modifiedEventRandom);
 
 
       console.log('데이터 fetching에 성공했습니다.');
@@ -231,6 +273,9 @@ useEffect(() => {
 
   fetchEventData();
 }, []);
+
+
+
 
 
 
@@ -250,20 +295,20 @@ useEffect(() => {
           </PersonalContainerDiv>
 
           <RecommendPersonalWraper>
-            {eventViews.map((eventViews) => (
+            {eventViews.map((item) => (
               <Recommend
                 style={{
                   color: "white",
                   fontSize: "0.8rem",
                 }}
-                key={eventViews.eventName} // 유일한 키가 필요합니다.
-                eventMainFileUrl={eventViews.eventMainFileUrl}
-                eventName={eventViews.eventName}
-                recruitmentStart={eventViews.recruitmentStart}
-                recruitmentEnd={eventViews.recruitmentEnd}
-                isLiked={eventViews.isLiked}
-                eventCost={eventViews.eventCost}
-                organizerProfileUrl={eventViews.organizerProfileUrl}
+                key={item.eventName} // 유일한 키가 필요합니다.
+                eventMainFileUrl={item.eventMainFileUrl}
+                eventName={item.eventName}
+                recruitmentStart={item.recruitmentStart}
+                recruitmentEnd={item.recruitmentEnd}
+                isLiked={item.isLiked}
+                eventCost={item.eventCost}
+                organizerProfileUrl={item.organizerProfileUrl}
               />
             ))}
           </RecommendPersonalWraper>
@@ -290,19 +335,22 @@ useEffect(() => {
           <HomePageShowAllLink to ="/festival-list">모든행사보기</HomePageShowAllLink>
 
           <RecommendPlaceWraper>
-            {recommendedByPlaceSlice.map((item) => {
-              return (
-                <Recommend
-                  mainImg={item.mainImg}
-                  eventName={item.eventName}
-                  recruitmentStart={item.recruitmentStart}
-                  recruitmentEnd={item.recruitmentEnd}
-                  isLiked={item.isLiked}
-                  price={item.price}
-                  profile={item.profile}
-                />
-              );
-            })}
+          {eventRandom.map((item) => (
+              <Recommend
+                style={{
+                  color: "white",
+                  fontSize: "0.8rem",
+                }}
+                key={item.eventName} // 유일한 키가 필요합니다.
+                eventMainFileUrl={item.eventMainFileUrl}
+                eventName={item.eventName}
+                recruitmentStart={item.recruitmentStart}
+                recruitmentEnd={item.recruitmentEnd}
+                isLiked={item.isLiked}
+                eventCost={item.eventCost}
+                organizerProfileUrl={item.organizerProfileUrl}
+              />
+            ))}
           </RecommendPlaceWraper>
         </RecommendPlaceContainer>
       </HomePageContainer>
