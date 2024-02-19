@@ -3,6 +3,7 @@ import styled from "styled-components";
 import MypageProfileImg from "../../assets/images/mypage_profile.png";
 import Area from "../home/Area";
 import KeywordList from "../home/KeywordList";
+import AffiliationInput from "../signup/AffiliationInput";
 
 import {
   Gender,
@@ -119,32 +120,6 @@ const CareerKeywordContainer = styled.div`
     font-weight: 700;
   }
 `
-const EmailContainer = styled.div`
-  input {
-    padding: 0.7vw 0 0.7vw 0.7vw;
-    border: 0.1rem solid #838383;
-    border-radius: 8px;
-    cursor: pointer;
-    background-color: #ffffff;
-    text-align: start;
-    color: #757575;
-    width: 25vw;
-
-    @media screen and (max-width: 600px) {
-      font-size: 1.5vw;
-      width: 20vw;
-      border-radius: 5px;
-      border: 0.05rem solid #838383;
-      padding: 0.7vw 0 0.7vw 0.7vw;
-    }
-  }
-`
-
-
-  @media screen and (max-width: 600px) {
-    font-size: 2vw;
-  }
-`;
 
 const DepartmentContainer = styled.div`
   h2 {
@@ -269,7 +244,8 @@ function MypageProfileCorrection() {
   //모든 항목이 입력되었는지 확인
 
   const [affiliation, setAffiliation] = useState(""); // 추가: 소속 상태
-
+  const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+  
   return (
     <div>
       <MypageProfileContainer>
@@ -281,7 +257,7 @@ function MypageProfileCorrection() {
             <h2>이름</h2>
             <input
               type="text"
-              placeholder="예시) 김커리"
+              placeholder={userInfo.name}
               value={name}
               onChange={(e) => setName(e.target.value)}
             />
@@ -327,17 +303,12 @@ function MypageProfileCorrection() {
       <MypageInfoContainer>
         <CareerKeywordContainer>
           <h2>내 커리어 키워드</h2>
-          <KeywordList/>
+          <KeywordList />
         </CareerKeywordContainer>
 
         <DepartmentContainer>
-          <h2>내가 속한 학교 혹은 단체 및 회사</h2>
-          <input
-            type="text"
-            placeholder="소속을 입력하세요"
-            value={affiliation}
-            onChange={(e) => setAffiliation(e.target.value)}
-          />
+          {/* <h2>내가 속한 학교 혹은 단체 및 회사</h2> */}
+       <AffiliationInput/>
         </DepartmentContainer>
 
         <PersonalContainer>
