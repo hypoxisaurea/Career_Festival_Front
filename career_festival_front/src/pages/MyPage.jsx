@@ -104,9 +104,6 @@ const DeterminedFestivalListWrapper = styled.div`
   }
 `
 
-
-
-
 const OrganizationMypage = (props) => {
   
 
