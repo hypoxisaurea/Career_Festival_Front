@@ -408,6 +408,7 @@ const fetchMypageInfo = async () => {
       console.error("에러 발생:", error);
     }
   };
+  
 
   return (
     <AuthContext.Provider
