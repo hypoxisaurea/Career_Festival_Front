@@ -4,7 +4,6 @@ import MypageProfileImg from "../../assets/images/mypage_profile.png";
 
 //전체 페이지
 const MypageProfileContainer = styled.div`
-  //border: 1px solid red;
   display: flex;
   flex-direction: row;
   gap: 12vw;
@@ -12,7 +11,6 @@ const MypageProfileContainer = styled.div`
 `;
 //프로필 이미지
 const MypageProfileImgWrapper = styled.div`
-  //border: 1px solid red;
   width: 18vw;
   height: 18vw;
 
@@ -82,7 +80,7 @@ const AreaItem = styled.button`
   font-weight: 700;
 
   @media screen and (max-width: 600px) {
-    font-size: 1vw;
+    font-size: 0.7vw;
   }
 `;
 

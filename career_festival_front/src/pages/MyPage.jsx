@@ -21,8 +21,8 @@ const MypageProfileContainer = styled.div`
   //background-color: aliceblue;
   border-radius: 12px;
   box-shadow: 0 4px 4px 0 rgb(0, 0, 0, 0.25);
-  padding: 1vw 7vw 1vw 7vw;
-`
+  padding: 5vw 7vw 5vw 7vw;
+`;
 
 // 나누기 선
 const HorizontalDivider = styled.div`
