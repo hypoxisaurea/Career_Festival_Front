@@ -36,8 +36,7 @@ function ExhibitionFair() {
 
   return (
     <ExhibitionFairContainer>
-      택신<br/>
-      ExhibitionFair<br/>
+     전시박람회 ExhibitionFair<br/>
       <Dropdown />
       <EventInfo onInfoComplete={handleEventInfoComplete} />
       <FestivalHistory onComplete={handleFestivalHistoryComplete} />

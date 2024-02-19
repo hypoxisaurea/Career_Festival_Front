@@ -39,7 +39,7 @@ function LectureSeminar() {
 
   return (
     <LectureSeminarContainer>
-      LectureSeminar
+      강연 세미나LectureSeminar
       <br />
       <Dropdown />
       <EventInfo onInfoComplete={handleEventInfoComplete} />
