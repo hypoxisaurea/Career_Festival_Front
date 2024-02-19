@@ -119,15 +119,15 @@ const LaterSave = styled.button`
 `;
 
 const Save = styled.button`
-  background-color: #582fff;
-  color: #ffffff;
+  background-color: ${(props) => (props.disabled ? "#d9d9d9" : "#582fff")};
+  color: ${(props) => (props.disabled ? "#582fff" : "#ffffff")};
   border: none;
   padding: 10px;
-  cursor: pointer;
+  cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
   border-radius: 10px;
 
   &:hover {
-    background-color: #4018cc;
+    background-color: ${(props) => (props.disabled ? "#d9d9d9" : "#4018cc")};
   }
 `;
 
