@@ -74,27 +74,25 @@ const NameContainer = styled.div`
         }
     }
 `
-
 const EmailContainer = styled.div`
-    input{
-        padding: 0.7vw 0 0.7vw 0.7vw;
-        border: 0.1rem solid #838383;
-        border-radius: 8px;
-        cursor: pointer;
-        background-color: #ffffff;
-        text-align: start;
-        color: #757575;
-        width: 25vw;
+  input {
+    padding: 0.7vw 0 0.7vw 0.7vw;
+    border: 0.1rem solid #838383;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: #ffffff;
+    text-align: start;
+    color: #757575;
+    width: 25vw;
 
-        @media screen and (max-width: 600px) {
-        font-size: 1.5vw;
-        width: 20vw;
-        border-radius: 5px;
-        border: 0.05rem solid #838383;
-        padding: 0.7vw 0 0.7vw 0.7vw;
-        }
-
+    @media screen and (max-width: 600px) {
+      font-size: 1.5vw;
+      width: 20vw;
+      border-radius: 5px;
+      border: 0.05rem solid #838383;
+      padding: 0.7vw 0 0.7vw 0.7vw;
     }
+  }
 `
 
 const PlaceContainer = styled.div`
@@ -135,9 +133,13 @@ function MypageProfileCorrection() {
 
   // useEffect를 사용하여 컴포넌트가 처음 마운트될 때 실행될 로직 추가
   useEffect(() => {
-    // 초기값으로 서울을 선택하도록 설정
-    handleAreaSelect("seoul");
+    // 로컬 스토리지에서 사용자 정보를 가져와서 이메일을 설정합니다.
+    const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+    if (userInfo && userInfo.email) {
+      setEmail(userInfo.email);
+    }
   }, []);
+  
   // 모달 창을 열거나 닫는 함수를 정의합니다.
   const handleModalToggle = () => {
     setModalOpen(!isModalOpen);
@@ -185,13 +187,12 @@ function MypageProfileCorrection() {
 
 
         <EmailContainer>
-            <h4>이메일</h4>
-            <input
-             type="email"
-             placeholder="예시) example@gmail.com"
-             value={email}
-             onChange={(e) => setEmail(e.target.value)}
-            />
+        <h4>이메일</h4>
+          <input
+            type="email"
+            value={email}
+            disabled // 수정 불가능하도록 설정
+          />
         </EmailContainer>
 
         <PlaceContainer>

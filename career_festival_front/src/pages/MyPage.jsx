@@ -59,8 +59,6 @@ const CorrectionButton = styled.button`
 
 `
 
-
-
 //행사 리스트
 const FestivalListContainer = styled.div`
     //background-color: beige;
@@ -109,10 +107,6 @@ const DeterminedFestivalListWrapper = styled.div`
     font-size: 1vw;
   }
 `
-
-
-
-
 
 
 const OrganizationMypage = (props) => {
