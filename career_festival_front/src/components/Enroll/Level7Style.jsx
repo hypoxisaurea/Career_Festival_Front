@@ -268,3 +268,16 @@ export const ImageIcon = styled.img`
   margin-top: 5px; /* 이미지 아래 여백 추가 */
 `;
 
+export const DetailedLocationInput = styled.input`
+  width: 40%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+
+  &:focus {
+    border-color: #582fff;
+    outline: none;
+  }
+
+`;
