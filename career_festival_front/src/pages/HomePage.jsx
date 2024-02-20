@@ -156,6 +156,39 @@ const HomePage = () => {
   const [selectedArea, setSelectedArea] = useState("seoul");
   const [selectedCity, setSelectedCity] = useState("");
   
+<<<<<<< HEAD
+=======
+  // useEffect를 사용하여 컴포넌트가 처음 마운트될 때 실행될 로직 추가
+  // 로그인 정보 확인 및 로그 출력
+  useEffect(() => {
+    console.log("isLoggedIn:", isLoggedIn);
+    console.log("🟡🟡🟡user 정보:", user);
+  }, [isLoggedIn, user]);
+
+  useEffect(() => {
+    // 서버에서 데이터를 가져오는 함수
+    const fetchData = async () => {
+      try {
+        // 서버로 요청 보내기
+        console.log("1. 서버로 요청을 보내겠습니다");
+        const response = await fetch("https://www.career-festival/");
+        if (!response.ok) {
+          throw new Error("서버로부터 데이터를 가져오는데 실패했습니다.");
+        }
+        // JSON 형태로 응답을 받아옴
+        const data = await response.json();
+        // 받아온 데이터 로그로 출력
+        console.log("서버로부터 받은 데이터:", data);
+      } catch (error) {
+        console.error("데이터를 가져오는 중 에러가 발생했습니다:", error);
+      }
+    };
+
+    // fetchData 함수 실행
+    fetchData();
+    fetchfestivalListpageInfo();
+  }, []); // 컴포넌트가 처음 렌더링될 때 한 번만 실행
+>>>>>>> 3246f425c1c5bf24aa57ab41c3f0569bb58028ce
 
   // 모달 창을 열거나 닫는 함수를 정의합니다.
   const handleModalToggle = () => {

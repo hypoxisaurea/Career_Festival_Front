@@ -17,7 +17,6 @@ const InputContainer = styled.div`
 
 const ContentContainer = styled.div`
   width: 100%;
-  display: column;
 `;
 
 const TextContainer = styled.div`
@@ -67,16 +66,13 @@ function SeminarRecord({ onComplete }) {
       <InputContainer>
         <TitleText>행사 기록</TitleText>
         <ContentContainer>
-          <TextContainer>
+          <TextContainer style={{ marginTop: "2vw" }}>
             <div>
               <Editor value={desc} onChange={(value) => setDesc(value)} />
             </div>
           </TextContainer>
           <div className="pd12">
-            <button
-              className="lf-button primary"
-              onClick={onSaveData}
-            >
+            <button style={{ fontSize:"1vw" }} className="lf-button primary" onClick={onSaveData}>
               데이터 저장
             </button>
           </div>

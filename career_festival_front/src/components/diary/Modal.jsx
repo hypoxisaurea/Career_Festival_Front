@@ -17,6 +17,7 @@ const ModalContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  font-size:1vw;
 `;
 
 const ModalOverlay = styled.div`
@@ -41,11 +42,12 @@ const Modal = ({ onClose }) => {
         <p>{item.type}</p>
         <p>{item.genre}</p>
         <button
-          style={{
+            style={{
+            fontSize:"1vw",
             background: "#582fff",
             color: "white",
-            padding: "10px",
-            borderRadius: "5px",
+            padding: "1vw",
+            borderRadius: "1vw",
             border: "none",
             cursor: "pointer",
           }}

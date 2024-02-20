@@ -4,6 +4,7 @@ import styled from "styled-components";
 import EventInfo from "./EventInfo";
 import SeminarRecord from "./SeminarRecord";
 import PeopleNetwork from "./PeopleNetwork";
+import Pick from "./Pick";
 import { Link } from "react-router-dom";
 
 const LectureSeminarContainer = styled.div`
@@ -18,12 +19,14 @@ const LectureSeminarContainer = styled.div`
 `;
 
 const Button = styled(Link)`
-  padding: 10px;
+  padding: 1vw;
   background-color: #582fff;
   color: white;
+  font-size: 1vw;
   border: none;
-  border-radius: 5px;
+  border-radius: 1vw;
   cursor: pointer;
+  text-decoration: none;
 `;
 
 function LectureSeminar() {
@@ -46,12 +49,9 @@ function LectureSeminar() {
     setIsSeminarRecordComplete(isComplete);
   };
 
-  const onClick = () => {
-    // 여기에 버튼을 클릭했을 때 실행할 코드를 작성합니다.
-  };
-
   return (
     <LectureSeminarContainer>
+      <Pick/>
       <EventInfo onInfoComplete={handleEventInfoComplete} />
       <SeminarRecord onComplete={handleSeminarRecordComplete} />
       <PeopleNetwork onComplete={handlePeopleNetworkComplete} />
