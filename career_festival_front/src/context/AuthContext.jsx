@@ -71,6 +71,7 @@ export const AuthProvider = ({ children }) => {
 
           setIsLoggedIn(true);
           setUser(userInfo);
+          fetchMypageInfo();
           console.log("로그인 정보 및 토큰이 로컬 스토리지에 저장되었습니다.");
         } else {
           console.error(

@@ -169,12 +169,12 @@ function App() {
                 </>
               }
             />
-            {/* <Route path="/register/Level1" element={<><Level1 /></>} />
+            <Route path="/register/Level1" element={<><Level1 /></>} />
           <Route path="/register/Level2" element={<><Level2 /></>} />
           <Route path="/register/Level3" element={<><Level3 /></>} />
-          <Route path="/register/Level4" element={<><Level4 /></>} /> */}
+          <Route path="/register/Level4" element={<><Level4 /></>} /> 
             {/*<Route path="/register/Level5" element={<><Header /><Level5 /><Footer /></>} />*/}
-            {/* <Route path="/register/Level6" element={<><Level6 /></>} /> */}
+            <Route path="/register/Level6" element={<><Level6 /></>} />
             <Route
               path="/register/Level7"
               element={
