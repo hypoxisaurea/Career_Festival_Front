@@ -2,34 +2,34 @@ import React, { useState } from "react";
 import styled from "styled-components";
 
 const ContactContainer = styled.div`
-  width: 1223px;
+  width: 65vw;
   height: 100%;
   background: rgba(88.35, 46.69, 255, 0.04);
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  box-shadow: 0vw 0.7vw 0.7vw rgba(0, 0, 0, 0.25);
 
-  margin: 33px 0 89px 0;
-  padding: 12px 0 16px 0;
+  margin: 3vw 0 7vw 0;
+  padding: 1.5vw 0 1.5vw 0;
 
   display: block;
 `;
 
 const EmailContainer = styled.div`
-  margin: 14px 0 14px 0;
+  margin: 0.8vw 0 0 0;
 `;
 
 const ContactTitle = styled.div`
   color: #838383;
-  font-size: 14px;
+  font-size: 0.9rem;
   font-family: "Noto Sans KR";
   font-weight: 500;
   word-wrap: break-word;
-  margin: 0 20px 0 20px;
+  margin: 0 1.7vw 0 2vw;
   display: inline-block;
 `;
 
 const ContactContent = styled.div`
   color: black;
-  font-size: 14px;
+  font-size: 0.9rem;
   font-family: "Noto Sans KR";
   font-weight: 500;
   word-wrap: break-word;
