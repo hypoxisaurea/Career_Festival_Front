@@ -15,16 +15,16 @@ const Thumbnail = styled.img`
 
 const HorizontalDivider = styled.div`
   width: 100%;
-  height: 2px;
+  height: 0.1vw;
   background: #d9d9d9;
-  margin: 19px 0 29px 0; //임시
+  margin: 1vw 0 1px 0; //임시
 `;
 
 const FileContainer = styled.img`
   width: 100%;
   height: auto;
   background: #d9d9d9;
-  margin: 56px 0 56px 0;
+  margin: 5vw 0 5vw 0;
   text-align: center;
   align-items: center;
 `;
@@ -32,16 +32,17 @@ const FileContainer = styled.img`
 const PlaceContainer = styled.div`
   width: 100%;
   height: 100%;
-  margin: 65px 0 50px 0;
+  margin: 4vw 0 4vw 0;
   display: block;
 `;
 
 const Subtitle = styled.div`
   color: black;
-  font-size: 20px;
+  font-size: 1.25rem;
   font-family: "Noto Sans KR";
   font-weight: 500;
   word-wrap: break-word;
+  margin-bottom: 0.5vw;
 `;
 
 function EventDetail({
