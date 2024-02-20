@@ -423,6 +423,7 @@ const FestivalListPage = () => {
                   isLiked={item.isLiked}
                   eventCost={item.eventCost}
                   organizerProfileUrl={item.organizerProfileUrl}
+                  onClick={() => (window.location.href = `/event/${item.id}`)}
                 />
             ))}
           </FestivalListWrapper>
