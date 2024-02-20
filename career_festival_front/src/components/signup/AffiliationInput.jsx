@@ -81,7 +81,7 @@ const AffiliationInput = ({
       <label
         style={{
           fontWeight: "bold",
-          fontSize: "15px",
+          fontSize: "1vw",
         }}
       >
         소속(회사/기관/학교명)

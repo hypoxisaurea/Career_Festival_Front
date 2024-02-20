@@ -151,8 +151,8 @@ const Recommend = ({eventMainFileUrl, eventName, recruitmentStart, recruitmentEn
         <RecommendInfoWrapper>
           <RecommandDetailWrapper>
             <RecommendTimeInfoWrapper>
-              <div title={recruitmentStart}>{recruitmentStart}</div>
-              <div title={recruitmentEnd}>{recruitmentEnd}</div>
+              <div title={recruitmentStart}>{recruitmentStart} 부터</div>
+              <div title={recruitmentEnd}>{recruitmentEnd} 까지</div>
             </RecommendTimeInfoWrapper>
 
             <RecommendIconWapper>
