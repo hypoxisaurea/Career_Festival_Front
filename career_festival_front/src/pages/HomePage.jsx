@@ -142,7 +142,7 @@ const HomePage = () => {
   const recommendedByPlaceSlice = dummy.RecommendedByPlace.slice(0, 3); // 처음 3개 아이템만 사용
 
   const [userName, setUserName] = useState(""); // 사용자 이름 상태
-  const { isLoggedIn, user, logout, fetchfestivalListpageInfo } = useAuth(); // useAuth 훅을 통해 isLoggedIn, user 사용
+  const { isLoggedIn, user, logout, fetchMainpageInfo, getTokenFromLocalStorage } = useAuth(); // useAuth 훅을 통해 isLoggedIn, user 사용
 
   //------------------------------------------------------
   // 지역 설정 모달
@@ -180,10 +180,19 @@ const HomePage = () => {
       }
     };
 
-    // fetchData 함수 실행
-    fetchData();
-    fetchfestivalListpageInfo();
-  }, []); // 컴포넌트가 처음 렌더링될 때 한 번만 실행
+    const fetchDataBasedOnLoginStatus = async () => {
+      if (isLoggedIn) {
+        console.log("🟢로그인 O  -> fetchMainpageInfo 실행합니다")
+        fetchMainpageInfo();
+      } else {
+        console.log("🔴로그인 X  -> fetchData 실행합니다")
+        fetchData();
+      }
+    };
+
+    // 페이지가 처음 로드될 때와 로그인 상태가 변경될 때마다 데이터 가져오기
+  fetchDataBasedOnLoginStatus();
+  }, [isLoggedIn, user]);
 
   // 모달 창을 열거나 닫는 함수를 정의합니다.
   const handleModalToggle = () => {
@@ -261,8 +270,8 @@ useEffect(() => {
       setEventRandom(modifiedEventRandom);
       setEventViews(modifiedEventViews);
       setEventRegion(response.data.eventRegion);
-      console.log(modifiedEventViews);
-      console.log(modifiedEventRandom);
+      // console.log(modifiedEventViews);
+      // console.log(modifiedEventRandom);
 
 
       console.log('데이터 fetching에 성공했습니다.');
