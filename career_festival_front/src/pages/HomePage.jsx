@@ -8,7 +8,7 @@ import Banner from "../components/home/Banner";
 import InterestArea from "../components/signup/InterestArea";
 import { Link } from "react-router-dom";
 import axios from 'axios';
-
+import { useAuth } from '../context/AuthContext';
 
 //Home 전체 페이지
 const HomePageContainer = styled.div`
@@ -106,12 +106,17 @@ const RecommendPlaceContainer = styled.div`
 
     font-size: 1.5rem;
     font-weight: 900;
-    margin-bottom: 3rem;
+    margin-bottom: 1rem;
     justify-items: center;
 
     @media screen and (max-width: 600px) {
     font-size: 2vw;
   }
+  }
+
+  h4{
+    margin-bottom: 1rem;
+    margin-top: 0rem;
   }
 
 `;
@@ -137,49 +142,19 @@ const RecommendPlaceWraper = styled.div`
 
 
 const HomePage = () => {
-  const recommendedByPersonSlice = dummy.RecommendedByPerson.slice(0, 6); // 처음 6개 아이템만 사용
-  const recommendedByPlaceSlice = dummy.RecommendedByPlace.slice(0, 3); // 처음 3개 아이템만 사용
-
   const [userName, setUserName] = useState(""); // 사용자 이름 상태
+  const { isLoggedIn, user, logout, fetchMainpageInfo } = useAuth(); // useAuth 훅을 통해 isLoggedIn, user 사용
+ 
 
   //------------------------------------------------------
   // 지역 설정 모달
   //------------------------------------------------------
-  
+  /*
   //지역명
   const [isModalOpen, setModalOpen] = useState(false);
   const [selectedArea, setSelectedArea] = useState("seoul");
   const [selectedCity, setSelectedCity] = useState("");
-
   
-  // useEffect를 사용하여 컴포넌트가 처음 마운트될 때 실행될 로직 추가
-  useEffect(() => {
-    // 초기값으로 서울을 선택하도록 설정
-    handleAreaSelect("seoul");
-  }, []);
-
-  useEffect(() => {
-    // 서버에서 데이터를 가져오는 함수
-    const fetchData = async () => {
-      try {
-        // 서버로 요청 보내기
-        console.log("1. 서버로 요청을 보내겠습니다");
-        const response = await fetch("http://localhost:9000/");
-        if (!response.ok) {
-          throw new Error("서버로부터 데이터를 가져오는데 실패했습니다.");
-        }
-        // JSON 형태로 응답을 받아옴
-        const data = await response.json();
-        // 받아온 데이터 로그로 출력
-        console.log("서버로부터 받은 데이터:", data);
-      } catch (error) {
-        console.error("데이터를 가져오는 중 에러가 발생했습니다:", error);
-      }
-    };
-
-    // fetchData 함수 실행
-    fetchData();
-  }, []); // 컴포넌트가 처음 렌더링될 때 한 번만 실행
 
   // 모달 창을 열거나 닫는 함수를 정의합니다.
   const handleModalToggle = () => {
@@ -201,7 +176,53 @@ const HomePage = () => {
   const handleCitySelect = (city) => {
     setSelectedCity(city);
     setModalOpen(false);
-  };
+  };*/
+
+
+  //------------------------------------------------
+  // 로그인 관련
+  //------------------------------------------------
+
+  useEffect(() => {
+    // 로그인 되어 있을 때
+    if (isLoggedIn) {
+      console.log('🟢로그인 되어있다');
+      const fetchData = async () => {
+        try {
+          await fetchMainpageInfo();
+          console.log('메인페이지 데이터를 가져왔습니다.');
+        } catch (error) {
+          console.error('메인페이지 데이터를 가져오는 중 에러 발생:', error);
+        }
+      };
+      fetchData();
+    } else {
+      // 로그인 되어 있지 않을 때
+      // 서버에서 데이터를 가져오는 함수
+      const fetchData = async () => {
+        console.log('🔴로그인 안 되어있다');
+        try {
+          // 서버로 요청 보내기
+          console.log("1. 서버로 요청을 보내겠습니다");
+          const response = await fetch("http://localhost:9000/");
+          if (!response.ok) {
+            throw new Error("서버로부터 데이터를 가져오는데 실패했습니다.");
+          }
+          // JSON 형태로 응답을 받아옴
+         // const data = await response.json();
+          // 받아온 데이터 로그로 출력
+         // console.log("서버로부터 받은 데이터:", data);
+        } catch (error) {
+          console.error("데이터를 가져오는 중 에러가 발생했습니다:", error);
+        }
+      };
+  
+      // fetchData 함수 실행
+      fetchData();
+    }
+  }, [fetchMainpageInfo, isLoggedIn]);
+  
+
 
 
 
@@ -250,22 +271,26 @@ useEffect(() => {
         recruitmentEnd: formatDateTime(event.recruitmentEnd)
       }))};
 
+      //변환된 형식으로 배열 저장
       const modifiedEventViews = modifiedEvent(response.data.eventViews);
       const modifiedEventRandom = modifiedEvent(response.data.eventRandom);
+      //const modifiedEventRegion = modifiedEvent(response.data.eventRegion);
 
-
-
-
+      //변환된 배열 적용
       setEventNames(response.data.eventNames);
       setEventRandom(modifiedEventRandom);
       setEventViews(modifiedEventViews);
-      setEventRegion(response.data.eventRegion);
+      //setEventRegion(modifiedEventRegion);
+
+      //데이터 fetching 여부 확인
+      console.log('데이터 fetching에 성공했습니다.');
+      console.log(response.data);
       console.log(modifiedEventViews);
       console.log(modifiedEventRandom);
+      //console.log(modifiedEventRegion);
 
 
-      console.log('데이터 fetching에 성공했습니다.');
-
+      
     } catch (error) {
       console.error('Error fetching data:', error);
     }
@@ -288,11 +313,10 @@ useEffect(() => {
         <RecommendPersonalContainer>
           <h2>이런행사 찾으셨죠? </h2>
           <HomePageShowAllLink to ="/festival-list">모든행사보기</HomePageShowAllLink>
+         {/* 삭제 버전 */}
           <PersonalContainerDiv>
-            회원가입 시 선택한
-            <span style={{ color: "#582fff" }}> 커리어 키워드</span>에 가장
-            부합한 행사들을 볼 수 있어요!
-          </PersonalContainerDiv>
+            <span style={{ color: "#582fff" }}> 조회수 </span>가 높은 행사들을 볼 수 있어요!
+          </PersonalContainerDiv> 
 
           <RecommendPersonalWraper>
             {eventViews.map((item) => (
@@ -301,23 +325,25 @@ useEffect(() => {
                   color: "white",
                   fontSize: "0.8rem",
                 }}
-                key={item.eventName} // 유일한 키가 필요합니다.
+                key={item.eventId} // 유일한 키
                 eventMainFileUrl={item.eventMainFileUrl}
                 eventName={item.eventName}
                 recruitmentStart={item.recruitmentStart}
                 recruitmentEnd={item.recruitmentEnd}
                 isLiked={item.isLiked}
                 eventCost={item.eventCost}
-                organizerProfileUrl={item.organizerProfileUrl}
+                organizerProfileUrl={`../assets/images/${item.organizerProfileUrl}`}
               />
             ))}
           </RecommendPersonalWraper>
         </RecommendPersonalContainer>
 
+
+
+        {/* 지역 기반 */}
         <RecommendPlaceContainer>
           <h2>
-            <span>
-              {/* 지역명 */}
+           {/* <span>
               <InterestArea
                 style={{}}
                 selectedArea={selectedArea}
@@ -329,29 +355,32 @@ useEffect(() => {
                 closeModal={closeModal}
                 buttonText="지역명"
               />
-            </span>
+            </span> */}
             근처 행사
           </h2>
+          
           <HomePageShowAllLink to ="/festival-list">모든행사보기</HomePageShowAllLink>
+          <h4>로그인시 관심있는 지역의 행사 정보를 볼 수 있어요!</h4>
 
           <RecommendPlaceWraper>
-          {eventRandom.map((item) => (
-              <Recommend
-                style={{
-                  color: "white",
-                  fontSize: "0.8rem",
-                }}
-                key={item.eventName} // 유일한 키가 필요합니다.
-                eventMainFileUrl={item.eventMainFileUrl}
-                eventName={item.eventName}
-                recruitmentStart={item.recruitmentStart}
-                recruitmentEnd={item.recruitmentEnd}
-                isLiked={item.isLiked}
-                eventCost={item.eventCost}
-                organizerProfileUrl={item.organizerProfileUrl}
-              />
-            ))}
-          </RecommendPlaceWraper>
+     {eventRandom.map((item) => (
+      // If isLoggedIn is false, map eventRandom
+      <Recommend
+        style={{
+          color: "white",
+          fontSize: "0.8rem",
+        }}
+        key={item.eventId} // Unique key
+        eventMainFileUrl={item.eventMainFileUrl}
+        eventName={item.eventName}
+        recruitmentStart={item.recruitmentStart}
+        recruitmentEnd={item.recruitmentEnd}
+        isLiked={item.isLiked}
+        eventCost={item.eventCost}
+        organizerProfileUrl={item.organizerProfileUrl}
+      />
+    ))}
+  </RecommendPlaceWraper>
         </RecommendPlaceContainer>
       </HomePageContainer>
     </div>
