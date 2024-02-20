@@ -62,14 +62,16 @@ export const AuthProvider = ({ children }) => {
         });
         if (userInfoResponse.ok) {
           const userInfo = await userInfoResponse.json();
-
+          console.log("userInfo: " +  userInfo);
+          console.log("userdddddddddddddddddd", JSON.stringify(userInfo));
           // 로컬 스토리지에 사용자 정보 저장
           localStorage.setItem("isLoggedIn", "true");
-          // localStorage.setItem("user", JSON.stringify(userInfo));
+          localStorage.setItem("user", JSON.stringify(userInfo));
           localStorage.setItem("token", jwtToken); // 토큰 저장
 
           setIsLoggedIn(true);
           setUser(userInfo);
+          fetchMypageInfo();
           console.log("로그인 정보 및 토큰이 로컬 스토리지에 저장되었습니다.");
         } else {
           console.error(
@@ -90,12 +92,7 @@ export const AuthProvider = ({ children }) => {
   // -----------------------------------------------------------------------------
   const logout = () => {
     // 로그아웃 시 로컬 스토리지에서 로그인 정보 및 인증 정보 삭제
-    localStorage.removeItem("isLoggedIn");
-    localStorage.removeItem("user");
-    localStorage.removeItem("token");
-    localStorage.removeItem("userRole");
-    localStorage.removeItem("organizerName");
-    localStorage.removeItem("userInfo");
+    localStorage.clear();
     setIsLoggedIn(false);
     setUser(null);
     console.log("로그인 정보 및 인증 정보가 로컬 스토리지에서 삭제되었습니다.");
