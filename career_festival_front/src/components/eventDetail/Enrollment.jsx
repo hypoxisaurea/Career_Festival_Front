@@ -72,11 +72,10 @@ const SirenIcon = styled.img`
   width: 20%; // 이미지 크기 조절
 `;
 
-
 const EventTitle = styled.div`
   width: 100%;
-  height: 4vw;
-  margin: 1vw 0 0 0;
+  height: auto;
+  margin: 2vw 0 1vw 0;
   color: black;
   font-size: 1.1vw;
   font-family: "Noto Sans KR";
@@ -109,7 +108,7 @@ const HorizontalDivider = styled.div`
 `;
 
 //프로필
-const Profile = styled.div`
+const Profile = styled.img`
   width: 2vw;
   height: 2vw;
   background: #d9d9d9;
@@ -128,14 +127,13 @@ const Sponsor = styled.div`
   display: inline-block;
   align-items: flex-start;
   margin: 0.3vw 0 0 0vw;
-`; 
+`;
 
 //과학기술과 강연세미나를 감싸고 있는 태그
 const Body = styled.div`
   display: flex;
   justify-content: space-between;
 `;
-
 
 //신고하기 까지 감싸는 태그
 const Cover = styled.div`
@@ -227,7 +225,20 @@ const BookmarkButton = styled.button`
   display: inline-block;
 `;
 
-function Enrollment() {
+function Enrollment({
+  eventName,
+  eventCost,
+  recruitmentStart,
+  recruitmentEnd,
+  eventStart,
+  specAddress,
+  keywordName,
+  category,
+  eventMainImageUrl,
+  eventInformImageUrl,
+  organizerName,
+  organizerProfileFileUrl,
+}) {
   const [modal, setModal] = useState(false);
   const [modalContent, setModalContent] = useState(null);
 
@@ -245,34 +256,32 @@ function Enrollment() {
     <EnrollmentContainer>
       <InfoContainer>
         <Cover>
-        <Body>
-          <Category1>과학기술</Category1>
-          <VerticalDivider />
-          <Category2>강연/세미나</Category2>
-        </Body>
-        <Make>
-          <ReportContainer
-            onClick={() => openModal("행사신고가 완료되었습니다!")}
-          >
-            신고하기
-            <SirenIcon src={SirenImage} alt="siren" />{" "}
-          </ReportContainer>
-        </Make></Cover>
-        <EventTitle>
-          제4회 홍익대학교 인공지능 캠프 <br /> [문과생 전용]
-        </EventTitle>
+          <Body>
+            <Category1>{keywordName}</Category1>
+            <VerticalDivider />
+            <Category2>{category}</Category2>
+          </Body>
+          <Make>
+            <ReportContainer
+              onClick={() => openModal("행사신고가 완료되었습니다!")}
+            >
+              신고하기
+              <SirenIcon src={SirenImage} alt="siren" />{" "}
+            </ReportContainer>
+          </Make>
+        </Cover>
+        <EventTitle>{eventName}</EventTitle>
         <Tag>
-          <EventTag>IT/프로그래밍</EventTag>
-          <EventTag>과학기술</EventTag>
+          <EventTag>{keywordName}</EventTag>
         </Tag>
         <HorizontalDivider />
         <SponsorContainer>
-          <Profile />
-          <Sponsor>뉴럴웍스랩</Sponsor>
+          <Profile src={organizerProfileFileUrl} />
+          <Sponsor>{organizerName}</Sponsor>
         </SponsorContainer>
         <Body>
-          <Date>2024년 1월 13일</Date>
-          <Price>무료</Price>
+          <Date>{eventStart}</Date>
+          <Price>{eventCost}</Price>
         </Body>
       </InfoContainer>
 

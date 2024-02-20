@@ -1,5 +1,6 @@
 // src/pages/DetailFestival.jsx
 import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import Enrollment from "../components/eventDetail/Enrollment";
 import EventDetail from "../components/eventDetail/EventDetail";
@@ -24,47 +25,107 @@ const DetailContainer = styled.div`
 `;
 
 const DetailFestivalPage = () => {
-  const [eventData, setEventData] = useState({
-    eventName: "",
-    recruitmentStart: "",
-    recruitmentEnd: "",
-    eventCost: "",
-    eventStart: "",
-    specAddress: "",
-    keywordName: "",
-    category: "",
-    eventMainImageUrl: "",
-    eventInformImageUrl: "",
-  });
+  const { eventId } = useParams();
+
+  const [eventName, setEventName] = useState("");
+  const [recruitmentStart, setRecruitmentStart] = useState("");
+  const [recruitmentEnd, setRecruitmentEnd] = useState("");
+  const [eventCost, setEventCost] = useState("");
+  const [eventStart, setEventStart] = useState("");
+  const [specAddress, setSpecAddress] = useState("");
+  const [keywordName, setKeywordName] = useState("");
+  const [category, setCategory] = useState("");
+  const [eventMainImageUrl, setEventMainImageUrl] = useState("");
+  const [eventInformImageUrl, setEventInformImageUrl] = useState("");
+  const [managerEmail, setmanagerEmail] = useState("");
+  const [managerName, setmanagerName] = useState("");
+
+  const [organizerName, setorganizerName] = useState("");
+  const [organizerProfileFileUrl, setorganizerProfileFileUrl] = useState("");
 
   useEffect(() => {
     const fetchEventDetailData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:9000/detail/${item.id}`
+          `http://localhost:9000/event/${eventId}`
         );
 
-        setEventData(response.data);
+        const eventInfo = response.data.eventInformation[0];
 
-        console.log("Event detail data fetching에 성공했습니다.");
+        setEventName(eventInfo.eventName);
+        setEventCost(eventInfo.eventCost);
+        setRecruitmentStart(eventInfo.recruitmentStart);
+        setRecruitmentEnd(eventInfo.recruitmentEnd);
+        setEventStart(eventInfo.eventStart);
+        setSpecAddress(eventInfo.specAddress);
+        setKeywordName(eventInfo.keywordName);
+        setCategory(eventInfo.category);
+        setEventMainImageUrl(eventInfo.eventMainImageUrl);
+        setEventInformImageUrl(eventInfo.eventInformImageUrl);
+        setmanagerEmail(eventInfo.managerEmail);
+        setmanagerName(eventInfo.managerName);
+
+        console.log("Event Info data fetching에 성공했습니다.");
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    const fetchEventOrganizerData = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:9000/event/${eventId}`
+        );
+
+        const organizerInfo = response.data.organizerInformation;
+
+        setorganizerName(organizerInfo.organizerName);
+        setorganizerProfileFileUrl(organizerInfo.organizerProfileFileUrl);
+
+        console.log("Event Organizer data fetching에 성공했습니다.");
+        console.log(response.data);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     };
 
     fetchEventDetailData();
-  }, []);
+    fetchEventOrganizerData();
+  }, [eventId]);
 
   return (
     <DetailFestivalPageContainer>
       <DetailContainer>
-        <EventDetail eventData={eventData} />
-        <EventDetail eventData={eventData} />
-        <Enrollment />
+        <EventDetail
+          eventName={eventName}
+          eventCost={eventCost}
+          recruitmentStart={recruitmentStart}
+          recruitmentEnd={recruitmentEnd}
+          eventStart={eventStart}
+          specAddress={specAddress}
+          keywordName={keywordName}
+          category={category}
+          eventMainImageUrl={eventMainImageUrl}
+          eventInformImageUrl={eventInformImageUrl}
+        />
+        <Enrollment
+          eventName={eventName}
+          eventCost={eventCost}
+          recruitmentStart={recruitmentStart}
+          recruitmentEnd={recruitmentEnd}
+          eventStart={eventStart}
+          specAddress={specAddress}
+          keywordName={keywordName}
+          category={category}
+          eventMainImageUrl={eventMainImageUrl}
+          eventInformImageUrl={eventInformImageUrl}
+          organizerName={organizerName}
+          organizerProfileFileUrl={organizerProfileFileUrl}
+        />
       </DetailContainer>
       <QnA />
       <QnAList />
-      <Contact />
+      <Contact managerName={managerName} managerEmail={managerEmail} />
       <Join />
       <CommentList />
     </DetailFestivalPageContainer>

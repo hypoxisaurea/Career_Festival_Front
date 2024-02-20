@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom"; // useNavigate를 import합니다.
+import { useNavigate, useParams } from "react-router-dom"; // useNavigate를 import합니다.
 import axios from "axios"; // axios를 import합니다.
 const AuthContext = createContext();
 
@@ -411,16 +411,42 @@ export const AuthProvider = ({ children }) => {
   // AuthProvider 컴포넌트 내에 새로운 함수 추가
   const fetchEventDetailData = async () => {
     try {
-      console.log("소연씨");
-
       // 토큰 가져오기
       const token = getTokenFromLocalStorage();
+      const eventId = window.location.pathname.split("/").pop();
 
-      const response = await axios.get(`/detail/${eventid}`, {
-        headers: {
-          Authorization: `${token}`,
-        },
-      });
+      const response = await axios.get(
+        `http://localhost:9000/event/${eventId}`,
+        {
+          headers: {
+            Authorization: `${token}`,
+          },
+        }
+      );
+
+      console.log("서버 응답:", response);
+
+      return response.data;
+    } catch (error) {
+      console.error("이벤트 정보를 가져오지 못했습니다", error);
+      throw error;
+    }
+  };
+
+  const fetchEventOrganizerData = async () => {
+    try {
+      // 토큰 가져오기
+      const token = getTokenFromLocalStorage();
+      const eventId = window.location.pathname.split("/").pop();
+
+      const response = await axios.get(
+        `http://localhost:9000/event/${eventId}`,
+        {
+          headers: {
+            Authorization: `${token}`,
+          },
+        }
+      );
 
       console.log("서버 응답:", response);
 
@@ -447,6 +473,7 @@ export const AuthProvider = ({ children }) => {
         fetchMainpageInfo,
         fetchfestivalListpageInfo,
         fetchEventDetailData,
+        fetchEventOrganizerData,
       }}
     >
       {children}

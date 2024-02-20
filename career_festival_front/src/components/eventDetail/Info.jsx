@@ -42,24 +42,32 @@ const Content = styled.div`
   display: inline-block;
 `;
 
-function Info({ eventData }) {
+function Info({
+  eventStart,
+  recruitmentStart,
+  recruitmentEnd,
+  eventCost,
+  specAddress,
+}) {
   return (
     <InfoContainer>
       <DateContainer>
         <Title>일시</Title>
-        <Content>01월 13일(토) 9:00~18:30</Content>
+        <Content>{eventStart}</Content>
       </DateContainer>
       <ApplyContainer>
         <Title>신청</Title>
-        <Content>11월 15일(수) 00:00~01월 06일(토) 3:30</Content>
+        <Content>
+          {recruitmentStart} ~ {recruitmentEnd}
+        </Content>
       </ApplyContainer>
       <PriceContainer>
         <Title>비용</Title>
-        <Content>{eventData.eventCost}</Content>
+        <Content>{eventCost}</Content>
       </PriceContainer>
       <PlaceContainer>
         <Title>위치</Title>
-        <Content>{eventData.specAddress}</Content>
+        <Content>{specAddress}</Content>
       </PlaceContainer>
     </InfoContainer>
   );
