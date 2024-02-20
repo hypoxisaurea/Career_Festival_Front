@@ -62,8 +62,10 @@ export const AuthProvider = ({ children }) => {
         });
         if (userInfoResponse.ok) {
           const userInfo = await userInfoResponse.json();
-          console.log("userInfo: " +  userInfo);
-          console.log("userdddddddddddddddddd", JSON.stringify(userInfo));
+          console.log("userInfo: " + userInfo);
+          // console.log("userdddddddddddddddddd", JSON.stringify(userInfo));
+          console.log("메인페이지 추천정보 반환값:");
+          console.log(" " + JSON.stringify(userInfo));
           // 로컬 스토리지에 사용자 정보 저장
           localStorage.setItem("isLoggedIn", "true");
           localStorage.setItem("user", JSON.stringify(userInfo));
@@ -99,7 +101,7 @@ export const AuthProvider = ({ children }) => {
   };
   // -----------------------------------------------------------------------------
   // - Name : saveAdditionalInfo
-  // - Desc : 서버에 부가정보를 저장하는 함수
+  // - Desc : 서버에 참가자(Participant) 부가정보를 저장하는 함수
   // - Input
   //   1) userData : 사용자 데이터
   // -----------------------------------------------------------------------------
@@ -359,30 +361,32 @@ export const AuthProvider = ({ children }) => {
       console.error("에러 발생:", error);
     }
   };
+
   //
-  // 메인페이지
+  // 행사 목록페이지
   //
   // AuthProvider 컴포넌트 내에 새로운 함수 추가
   const fetchfestivalListpageInfo = async () => {
     try {
-      console.log("메인페이지 정보를 가져오는 중...");
+      console.log("🎶메인페이지 정보를 가져오는 중...");
       // 토큰 가져오기
       const token = getTokenFromLocalStorage();
-      // 서버에 GET 요청 보내기
       const response = await axios.get("http://localhost:9000/festival-list", {
         headers: {
           Authorization: `${token}`,
         },
       });
-      console.log("서버 응답:", response); // 수정된 부분: 응답 전체 객체 출력
+
+      console.log("서버 응답:", response);
+
       if (response.status === 200) {
-        const { userInfo } = response.data; // userInfo 객체 추출
-        // userInfo 객체를 로컬 스토리지에 저장
+        const { userInfo } = response.data;
+
         localStorage.setItem("userInfo", JSON.stringify(userInfo));
-        console.log("메인페이지 정보:", userInfo);
+        console.log("🎶🎶🎶메인페이지 정보:", userInfo);
         // 가져온 정보를 상태에 설정하거나 필요한 작업 수행
       } else {
-        console.error("메인페이지 정보 가져오기 실패:", response.statusText);
+        console.error("🎶메인페이지 정보 가져오기 실패:", response.statusText);
       }
     } catch (error) {
       console.error("에러 발생:", error);
@@ -409,6 +413,15 @@ export const AuthProvider = ({ children }) => {
       );
 
       console.log("서버 응답:", response);
+
+      if (response.status === 200) {
+        const { userInfo } = response.data;
+
+        localStorage.setItem("userInfo", JSON.stringify(userInfo));
+        console.log("메인페이지 정보:", userInfo);
+      } else {
+        console.error("메인페이지 정보 가져오기 실패:", response.statusText);
+      }
 
       return response.data;
     } catch (error) {

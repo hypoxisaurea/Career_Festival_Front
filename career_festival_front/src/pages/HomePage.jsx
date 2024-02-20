@@ -8,6 +8,7 @@ import Banner from "../components/home/Banner";
 import InterestArea from "../components/signup/InterestArea";
 import { Link } from "react-router-dom";
 import axios from 'axios';
+import { useAuth } from "../context/AuthContext";
 
 
 //Home 전체 페이지
@@ -141,6 +142,7 @@ const HomePage = () => {
   const recommendedByPlaceSlice = dummy.RecommendedByPlace.slice(0, 3); // 처음 3개 아이템만 사용
 
   const [userName, setUserName] = useState(""); // 사용자 이름 상태
+  const { isLoggedIn, user, logout, fetchfestivalListpageInfo } = useAuth(); // useAuth 훅을 통해 isLoggedIn, user 사용
 
   //------------------------------------------------------
   // 지역 설정 모달
@@ -153,10 +155,11 @@ const HomePage = () => {
 
   
   // useEffect를 사용하여 컴포넌트가 처음 마운트될 때 실행될 로직 추가
+  // 로그인 정보 확인 및 로그 출력
   useEffect(() => {
-    // 초기값으로 서울을 선택하도록 설정
-    handleAreaSelect("seoul");
-  }, []);
+    console.log("isLoggedIn:", isLoggedIn);
+    console.log("🟡🟡🟡user 정보:", user);
+  }, [isLoggedIn, user]);
 
   useEffect(() => {
     // 서버에서 데이터를 가져오는 함수
@@ -179,6 +182,7 @@ const HomePage = () => {
 
     // fetchData 함수 실행
     fetchData();
+    fetchfestivalListpageInfo();
   }, []); // 컴포넌트가 처음 렌더링될 때 한 번만 실행
 
   // 모달 창을 열거나 닫는 함수를 정의합니다.
@@ -253,9 +257,6 @@ useEffect(() => {
       const modifiedEventViews = modifiedEvent(response.data.eventViews);
       const modifiedEventRandom = modifiedEvent(response.data.eventRandom);
 
-
-
-
       setEventNames(response.data.eventNames);
       setEventRandom(modifiedEventRandom);
       setEventViews(modifiedEventViews);
@@ -272,13 +273,8 @@ useEffect(() => {
   };
 
   fetchEventData();
+  
 }, []);
-
-
-
-
-
-
 
   return (
     <div>
