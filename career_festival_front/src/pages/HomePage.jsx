@@ -172,7 +172,7 @@ const HomePage = () => {
     const fetchDataBasedOnLoginStatus = async () => {
       if (isLoggedIn) {
         console.log("🟢로그인 O  -> fetchMainpageInfo 실행합니다")
-        fetchMainpageInfo();
+        //fetchMainpageInfo();
       } else {
         console.log("🔴로그인 X  -> fetchData 실행합니다")
         fetchData();
