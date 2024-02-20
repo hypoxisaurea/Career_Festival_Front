@@ -14,10 +14,10 @@ import Participant from "./components/signup/Participant";
 import Organizer from "./components/signup/Organizer";
 import FestivalListPage from "./pages/FestivalListPage";
 import RegisterPage from "./pages/RegisterPage";
-import ExhibitionFair from "./components/diary/ExhibitionFair";
+// import ExhibitionFair from "./components/diary/ExhibitionFair";
 import LectureSeminar from "./components/diary/LectureSeminar";
-import Other from "./components/diary/Other";
-import Symposium from "./components/diary/Symposium";
+// import Other from "./components/diary/Other";
+// import Symposium from "./components/diary/Symposium";
 import DiaryHeader from "./components/header/DiaryHeader";
 import MyPage from "./pages/MyPage";
 import SettingPage from "./pages/SettingPage";
@@ -87,7 +87,7 @@ function App() {
                 </>
               }
             />
-            <Route
+            {/* <Route
               path="/diary/exhibitionfair"
               element={
                 <>
@@ -96,7 +96,7 @@ function App() {
                   <Footer />
                 </>
               }
-            />
+            /> */}
             <Route
               path="/diary/lectureseminar"
               element={
@@ -107,7 +107,7 @@ function App() {
                 </>
               }
             />
-            <Route
+            {/* <Route
               path="/diary/other"
               element={
                 <>
@@ -126,7 +126,7 @@ function App() {
                   <Footer />
                 </>
               }
-            />
+            /> */}
             {/* 행사목록 */}
             <Route
               path="/festival-list"
