@@ -15,10 +15,10 @@ import Organizer from "./components/signup/Organizer";
 import FestivalListPage from "./pages/FestivalListPage";
 import RegisterPage from "./pages/RegisterPage";
 // import ExhibitionFair from "./components/diary/ExhibitionFair";
-import LectureSeminar from "./components/diary/LectureSeminar";
+import Recordbook from "./components/diary/Recordbook";
 // import Other from "./components/diary/Other";
 // import Symposium from "./components/diary/Symposium";
-import DiaryHeader from "./components/header/DiaryHeader";
+//import DiaryHeader from "./components/header/DiaryHeader";
 import MyPage from "./pages/MyPage";
 import SettingPage from "./pages/SettingPage";
 import OrganizationInfoPage from "./pages/OrganizationInfoPage";
@@ -71,7 +71,7 @@ function App() {
               path="/diary"
               element={
                 <>
-                  <DiaryHeader />
+                  <Header />
                   <Diary />
                   <Footer />
                 </>
@@ -81,7 +81,7 @@ function App() {
               path="/addDiary"
               element={
                 <>
-                  <DiaryHeader />
+                  <Header />
                   <AddDiary />
                   <Footer />
                 </>
@@ -98,11 +98,11 @@ function App() {
               }
             /> */}
             <Route
-              path="/diary/lectureseminar"
+              path="/diary/recordbook"
               element={
                 <>
-                  <DiaryHeader />
-                  <LectureSeminar />
+                  <Header />
+                  <Recordbook />
                   <Footer />
                 </>
               }
@@ -169,12 +169,47 @@ function App() {
                 </>
               }
             />
-            <Route path="/register/Level1" element={<><Level1 /></>} />
-          <Route path="/register/Level2" element={<><Level2 /></>} />
-          <Route path="/register/Level3" element={<><Level3 /></>} />
-          <Route path="/register/Level4" element={<><Level4 /></>} /> 
+            <Route
+              path="/register/Level1"
+              element={
+                <>
+                  <Level1 />
+                </>
+              }
+            />
+            <Route
+              path="/register/Level2"
+              element={
+                <>
+                  <Level2 />
+                </>
+              }
+            />
+            <Route
+              path="/register/Level3"
+              element={
+                <>
+                  <Level3 />
+                </>
+              }
+            />
+            <Route
+              path="/register/Level4"
+              element={
+                <>
+                  <Level4 />
+                </>
+              }
+            />
             {/*<Route path="/register/Level5" element={<><Header /><Level5 /><Footer /></>} />*/}
-            <Route path="/register/Level6" element={<><Level6 /></>} />
+            <Route
+              path="/register/Level6"
+              element={
+                <>
+                  <Level6 />
+                </>
+              }
+            />
             <Route
               path="/register/Level7"
               element={
