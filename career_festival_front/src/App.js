@@ -14,11 +14,7 @@ import Participant from "./components/signup/Participant";
 import Organizer from "./components/signup/Organizer";
 import FestivalListPage from "./pages/FestivalListPage";
 import RegisterPage from "./pages/RegisterPage";
-// import ExhibitionFair from "./components/diary/ExhibitionFair";
-import Recordbook from "./components/diary/Recordbook";
-// import Other from "./components/diary/Other";
-// import Symposium from "./components/diary/Symposium";
-//import DiaryHeader from "./components/header/DiaryHeader";
+import LectureSeminar from "./components/diary/LectureSeminar";
 import MyPage from "./pages/MyPage";
 import SettingPage from "./pages/SettingPage";
 import OrganizationInfoPage from "./pages/OrganizationInfoPage";
@@ -87,46 +83,17 @@ function App() {
                 </>
               }
             />
-            {/* <Route
-              path="/diary/exhibitionfair"
-              element={
-                <>
-                  <DiaryHeader />
-                  <ExhibitionFair />
-                  <Footer />
-                </>
-              }
-            /> */}
             <Route
-              path="/diary/recordbook"
+              path="/diary/LectureSeminar"
               element={
                 <>
                   <Header />
-                  <Recordbook />
+                  <LectureSeminar />
                   <Footer />
                 </>
               }
             />
-            {/* <Route
-              path="/diary/other"
-              element={
-                <>
-                  <DiaryHeader />
-                  <Other />
-                  <Footer />
-                </>
-              }
-            />
-            <Route
-              path="/diary/symposium"
-              element={
-                <>
-                  <DiaryHeader />
-                  <Symposium />
-                  <Footer />
-                </>
-              }
-            /> */}
+
             {/* 행사목록 */}
             <Route
               path="/festival-list"
