@@ -25,6 +25,31 @@ const DetailContainer = styled.div`
 `;
 
 const DetailFestivalPage = () => {
+  //-----------------------------------------------------
+  // 날짜 형변환
+  // datetime 형식을 "-년 -월 -일 -시 -분" 형태로 변환하는 함수
+  //------------------------------------------------------
+  function formatDateTime(datetimeString) {
+    const dateTime = new Date(datetimeString); // 문자열을 Date 객체로 변환
+    const year = dateTime.getFullYear(); // 연도 추출
+    const month = dateTime.getMonth() + 1; // 월 추출 (0부터 시작하므로 1을 더함)
+    const day = dateTime.getDate(); // 일 추출
+    const hours = dateTime.getHours(); // 시간 추출
+    const minutes = dateTime.getMinutes(); // 분 추출
+
+    // 한 자리 숫자일 경우 앞에 0을 추가하여 두 자리로 만듦
+    const formattedMonth = month < 10 ? "0" + month : month;
+    const formattedDay = day < 10 ? "0" + day : day;
+    const formattedHours = hours < 10 ? "0" + hours : hours;
+    const formattedMinutes = minutes < 10 ? "0" + minutes : minutes;
+
+    // 포맷된 문자열 반환
+    return `${year}년 ${formattedMonth}월 ${formattedDay}일 ${formattedHours}시 ${formattedMinutes}분`;
+  }
+
+  //------------------------------------------------------
+  // api
+  //------------------------------------------------------
   const { eventId } = useParams();
 
   const [eventName, setEventName] = useState("");
@@ -54,9 +79,9 @@ const DetailFestivalPage = () => {
 
         setEventName(eventInfo.eventName);
         setEventCost(eventInfo.eventCost);
-        setRecruitmentStart(eventInfo.recruitmentStart);
-        setRecruitmentEnd(eventInfo.recruitmentEnd);
-        setEventStart(eventInfo.eventStart);
+        setRecruitmentStart(formatDateTime(eventInfo.recruitmentStart));
+        setRecruitmentEnd(formatDateTime(eventInfo.recruitmentEnd));
+        setEventStart(formatDateTime(eventInfo.eventStart));
         setSpecAddress(eventInfo.specAddress);
         setKeywordName(eventInfo.keywordName);
         setCategory(eventInfo.category);
