@@ -8,7 +8,7 @@ import InterestArea from "../components/signup/InterestArea";
 import FilterKeyword from "../components/home/Filterkeyword";
 import Recommend from "../components/home/Recommend";
 import dummy from "../db/RecommendedEvents.json";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 //페이징
 import Pagination from "../components/home/Pagination";
@@ -162,12 +162,12 @@ const OrganizationListBoxWrapper = styled.div`
 const ButtonContainer = styled.div`
   display: flex;
   align-items: center;
-  margin-top:2vw;
+  margin-top: 2vw;
 `;
 
 const Button = styled.button`
   background: transparent;
-  color:#838383;
+  color: #838383;
   border: none;
   cursor: pointer;
   font-size: 2vw;
@@ -203,6 +203,7 @@ const FestivalListPage = () => {
       setSelectedEventTypes([...selectedEventTypes, eventType]);
     }
   };
+
   // 선택된 필터를 제거하는 함수
   const removeFilter = (filter) => {
     setSelectedFilters(selectedFilters.filter((f) => f !== filter));
@@ -342,17 +343,17 @@ const FestivalListPage = () => {
 
           <FestivalListWrapper>
             {getCurrentPageData().map((item) => (
-              <Recommend
-                key={item.eventName}
-                mainImg={item.mainImg}
-                eventName={item.eventName}
-                recruitmentStart={item.recruitmentStart}
-                recruitmentEnd={item.recruitmentEnd}
-                isLiked={item.isLiked}
-                price={item.price}
-                profile={item.profile}
-                //eventId={item.id} // 이벤트 ID 전달
-              />
+              <Link to={`/detail/${item.id}`} key={item.eventName}>
+                <Recommend
+                  mainImg={item.mainImg}
+                  eventName={item.eventName}
+                  recruitmentStart={item.recruitmentStart}
+                  recruitmentEnd={item.recruitmentEnd}
+                  isLiked={item.isLiked}
+                  price={item.price}
+                  profile={item.profile}
+                />
+              </Link>
             ))}
           </FestivalListWrapper>
 
@@ -368,7 +369,7 @@ const FestivalListPage = () => {
       <LowerContaniner>
         {/*주최자*/}
         <OrganizationListContainer>
-            <span>인기 주최자가 궁금하세요?</span>
+          <span>인기 주최자가 궁금하세요?</span>
           <OrganizationslistWraper>
             <ButtonContainer>
               <LeftButton onClick={handleLeftButtonClick}>◁</LeftButton>
