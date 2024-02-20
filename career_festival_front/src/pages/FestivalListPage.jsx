@@ -414,17 +414,16 @@ const FestivalListPage = () => {
 
           <FestivalListWrapper>
             {eventViews.map((item) => (
-                <Recommend
-                  key={item.eventId}
-                  eventMainFileUrl={item.eventMainFileUrl}
-                  eventName={item.eventName}
-                  recruitmentStart={item.recruitmentStart}
-                  recruitmentEnd={item.recruitmentEnd}
-                  isLiked={item.isLiked}
-                  eventCost={item.eventCost}
-                  organizerProfileUrl={item.organizerProfileUrl}
-                  onClick={() => (window.location.href = `/event/${item.id}`)}
-                />
+              <Recommend
+                eventId={item.eventId}
+                eventMainFileUrl={item.eventMainFileUrl}
+                eventName={item.eventName}
+                recruitmentStart={item.recruitmentStart}
+                recruitmentEnd={item.recruitmentEnd}
+                isLiked={item.isLiked}
+                eventCost={item.eventCost}
+                organizerProfileUrl={item.organizerProfileUrl}
+              />
             ))}
           </FestivalListWrapper>
 

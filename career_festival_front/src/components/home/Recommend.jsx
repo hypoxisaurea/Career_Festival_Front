@@ -135,8 +135,8 @@ const StyledLink = styled(Link)`
 
 const Recommend = ({eventMainFileUrl, eventName, recruitmentStart, recruitmentEnd, isLiked, eventCost, organizerProfileUrl, eventId}) => {
   return (
-    // <StyledLink to={`/event/detail/${eventId}`}> 나중엔 이걸로 해야함 지금은 영상을 찍기 위함
-    <StyledLink to={"/detail"}>
+    
+    <StyledLink to={`/event/${eventId}`}> 
       {" "}
       {/* 지금은 영상을 찍기 위함 */}
       <RecommendCardcontainer>
