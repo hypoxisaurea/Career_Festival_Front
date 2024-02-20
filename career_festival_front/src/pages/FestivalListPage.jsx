@@ -316,6 +316,7 @@ const FestivalListPage = () => {
   const [eventNames, setEventNames] = useState([]);
   const [eventViews, setEventViews] = useState([]);
   const [eventRegion, setEventRegion] = useState([]);
+  const [organizers, setOrganizers] = useState([]);
 
 
   useEffect(() => {
@@ -341,12 +342,14 @@ const FestivalListPage = () => {
             recruitmentEnd: formatDateTime(event.recruitmentEnd)
           }));
         };
-
+       
         const modifiedEventViews = modifiedEvent(response.data.eventViews);
         setEventViews(modifiedEventViews);
+        setOrganizers(response.data.organizers.content);
 
         console.log('서버로부터 받은 데이터:', response.data);
         console.log(modifiedEventViews);
+        console.log(response.data.organizers.content);
       } catch (error) {
         console.error('데이터를 가져오는 중 에러 발생:', error);
       }
@@ -443,17 +446,16 @@ const FestivalListPage = () => {
             <ButtonContainer>
               <LeftButton onClick={handleLeftButtonClick}>◁</LeftButton>
               <OrganizationListBoxWrapper>
-                {organizationsListSlice.map((item) => {
-                  return (
-                    <OrganizationList
-                      profile={item.profile}
-                      OrganizationName={item.OrganizationName}
-                      uploadedNumber={item.uploadedNumber}
-                      subscribed={item.subscribed}
-                      subscriberNumber={item.subscriberNumber}
-                    />
-                  );
-                })}
+              {organizers.map((item) => (
+                <OrganizationList
+                  key={item.organizerId}
+                  organizerProfileFileUrl={item.organizerProfileFileUrl}
+                  organizerName={item.organizerName}
+                  uploadedNumber={item.uploadedNumber}
+                  subscribed={item.subscribed}
+                  countEvent={item.countEvent}
+                  />
+              ))}
               </OrganizationListBoxWrapper>
               <RightButton onClick={handleRightButtonClick}>▷</RightButton>
             </ButtonContainer>
