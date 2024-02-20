@@ -325,7 +325,7 @@ const FestivalListPage = () => {
   useEffect(() => {
     const fetchEventData = async () => {
       try {
-        const response = await axios.get("http://localhost:9000/festival-list");
+        const response = await axios.get("https://www.career-festival/festival-list");
 
         console.log("왜 6개지", response.data);
 
