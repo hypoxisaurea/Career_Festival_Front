@@ -325,7 +325,7 @@ const FestivalListPage = () => {
   useEffect(() => {
     const fetchEventData = async () => {
       try {
-        const response = await axios.get("http://localhost:9000/festival-list");
+        const response = await axios.get("http://localhost:9000");
 
         console.log("왜 6개지", response.data);
 
@@ -412,18 +412,17 @@ const FestivalListPage = () => {
 
           <FestivalListWrapper>
             {eventViews.map((item) => (
-              <Link to={`/event/${item.id}`} key={item.eventName}>
-                <Recommend
-                  key={item.id}
-                  eventMainFileUrl={item.eventMainFileUrl}
-                  eventName={item.eventName}
-                  recruitmentStart={item.recruitmentStart}
-                  recruitmentEnd={item.recruitmentEnd}
-                  isLiked={item.isLiked}
-                  eventCost={item.eventCost}
-                  organizerProfileUrl={item.organizerProfileUrl}
-                />
-              </Link>
+              <Recommend
+                eventId={item.eventId}
+                eventMainFileUrl={item.eventMainFileUrl}
+                eventName={item.eventName}
+                recruitmentStart={item.recruitmentStart}
+                recruitmentEnd={item.recruitmentEnd}
+                isLiked={item.isLiked}
+                eventCost={item.eventCost}
+                organizerProfileUrl={item.organizerProfileUrl}
+                onClick={() => (window.location.href = `/event/${item.id}`)}
+              />
             ))}
           </FestivalListWrapper>
 
