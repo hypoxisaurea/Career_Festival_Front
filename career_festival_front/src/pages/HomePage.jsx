@@ -135,7 +135,7 @@ const HomePage = () => {
   const recommendedByPlaceSlice = dummy.RecommendedByPlace.slice(0, 3); // 처음 3개 아이템만 사용
 
   const [userName, setUserName] = useState(""); // 사용자 이름 상태
-  const { isLoggedIn, user, logout, fetchMainpageInfo, getTokenFromLocalStorage } = useAuth(); // useAuth 훅을 통해 isLoggedIn, user 사용
+  const { isLoggedIn, user, logout, fetchMypageInfo, fetchMainpageInfo, getTokenFromLocalStorage } = useAuth(); // useAuth 훅을 통해 isLoggedIn, user 사용
 
   //------------------------------------------------------
   // 지역 설정 모달
@@ -151,6 +151,7 @@ const HomePage = () => {
   useEffect(() => {
     console.log("isLoggedIn:", isLoggedIn);
     console.log("🟡🟡🟡user 정보:", user);
+    fetchMypageInfo();
   }, [isLoggedIn, user]);
 
   useEffect(() => {
@@ -176,6 +177,7 @@ const HomePage = () => {
       if (isLoggedIn) {
         console.log("🟢로그인 O  -> fetchMainpageInfo 실행합니다")
         //fetchMainpageInfo();
+        fetchMypageInfo();
       } else {
         console.log("🔴로그인 X  -> fetchData 실행합니다")
         fetchData();
