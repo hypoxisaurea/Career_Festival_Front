@@ -1,8 +1,3 @@
-// src/components/header/Header.js
-
-// 유저의 정보가 주최자일때만 행사 등록하기 버튼 보이게하기
-
-
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
@@ -53,16 +48,6 @@ const SearchItem = styled.div`
 `;
 
 // 검색 입력창 스타일
-// const SearchInput = styled.input`
-//   /* width: 50%; */
-//   border: 0.2vw solid transparent;
-//   border-image: linear-gradient(45deg, #582fff, #0085ff) 1;
-//   border-radius: 1vw;
-//   padding: 0.7vw 15vw 0.7vw 2.5vw;
-//   font-size: 0.8vw;
-//   outline: none;
-//   overflow: hidden;
-// `;
 const SearchInput = styled.input`
   // width: 50%;
   border: 0.2vw solid #582fff;
@@ -213,6 +198,12 @@ const Header = () => {
       console.log("2초가 경과했습니다.");
     }, 2000);
   };
+
+  // 로그인 정보 확인 및 로그 출력
+  useEffect(() => {
+    console.log("isLoggedIn:", isLoggedIn);
+    console.log("user 정보:", user);
+  }, [isLoggedIn, user]);
 
   return (
     <HeaderContainer>

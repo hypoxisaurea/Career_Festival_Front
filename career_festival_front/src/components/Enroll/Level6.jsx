@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
@@ -43,7 +43,6 @@ const EventTypeButton = styled.button`
 `;
 
 const CustomInput = styled.input`
-  //padding: 1vw;
   margin: 0.5vw;
   font-size: 1rem;
   border: 2px solid #ccc;
@@ -63,31 +62,37 @@ const NextButton = styled.button`
 `;
 
 const Level6 = () => {
-  const [selectedEventType, setSelectedEventType] = useState(null);
-  const [customEventType, setCustomEventType] = useState("");
+  const [category, setCategory] = useState("");
+  const [customEventType, setCustomEventType] = useState(""); // customEventType 상태 추가
+
+  useEffect(() => {
+    // 로컬 스토리지에서 선택된 행사 유형 가져오기
+    const storedCategory = localStorage.getItem("category");
+    if (storedCategory) {
+      setCategory(storedCategory);
+    }
+  }, []);
 
   // EventTypeButton 클릭 핸들러
   const handleEventTypeClick = (eventType) => {
-    setSelectedEventType(eventType);
+    setCategory(eventType);
+    // 로컬 스토리지에 선택된 행사 유형 저장
+    localStorage.setItem("category", eventType);
   };
 
   // CustomInput 변경 핸들러
   const handleCustomEventTypeChange = (event) => {
-    setCustomEventType(event.target.value);
+    setCategory("기타");
+    // 로컬 스토리지에 선택된 행사 유형 저장
+    localStorage.setItem("category", "기타");
+    setCustomEventType(event.target.value); // customEventType 값 설정
+    localStorage.setItem("customEventType", event.target.value);
   };
 
   // 다음 버튼 클릭 핸들러
   const handleNextButtonClick = () => {
-    // Level7 컴포넌트로 전달할 정보 객체 생성
-    const eventData = {
-      part: `${selectedEventType || ""}%2F${customEventType || ""}`
-    };
-
-    // JSON 문자열로 변환하여 URL 쿼리 파라미터로 전달
-    const queryString = new URLSearchParams(eventData).toString();
-
-    // Level7 컴포넌트로 이동하면서 URL 쿼리 파라미터 전달
-    window.location.href = `/register/Level7?${queryString}`;
+    // Level7 컴포넌트로 이동
+    window.location.href = "/register/Level7";
   };
 
   return (
@@ -97,38 +102,36 @@ const Level6 = () => {
         <Content>5분이면 행사를 개설할 수 있어요!</Content>
         <ButtonContainer>
           <EventTypeButton
-            isSelected={selectedEventType === "강연세미나"}
+            isSelected={category === "강연세미나"}
             onClick={() => handleEventTypeClick("강연세미나")}
           >
             강연/세미나
           </EventTypeButton>
           <EventTypeButton
-            isSelected={selectedEventType === "학술대회"}
+            isSelected={category === "학술대회"}
             onClick={() => handleEventTypeClick("학술대회")}
           >
             학술대회
           </EventTypeButton>
           <EventTypeButton
-            isSelected={selectedEventType === "전시박람회"}
+            isSelected={category === "전시박람회"}
             onClick={() => handleEventTypeClick("전시박람회")}
           >
             전시/박람회
           </EventTypeButton>
           <EventTypeButton
-            isSelected={selectedEventType === "기타"}
+            isSelected={category === "기타"}
             onClick={() => handleEventTypeClick("기타")}
           >
             기타<br></br>{" "}
             <CustomInput
               type="text"
               placeholder="기타 행사 유형 입력하세요."
-              value={customEventType}
+              value={category === "기타" ? customEventType : ""}
               onChange={handleCustomEventTypeChange}
             />
           </EventTypeButton>
-          <Link to="/register/Level7">
-            <NextButton onClick={handleNextButtonClick}>다음</NextButton>
-          </Link>
+          <NextButton onClick={handleNextButtonClick}>다음</NextButton>
         </ButtonContainer>
       </Container>
     </div>
