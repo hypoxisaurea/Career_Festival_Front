@@ -363,6 +363,8 @@ const FestivalListPage = () => {
     }
   };
 
+  //안뜨게 할거임
+
   return (
     <div>
       {/* 상단 영역 */}
@@ -449,16 +451,16 @@ const FestivalListPage = () => {
             <ButtonContainer>
               <LeftButton onClick={handleLeftButtonClick}>◁</LeftButton>
               <OrganizationListBoxWrapper>
-              {organizersSlice.map((item) => (
-                <OrganizationList
-                  key={item.organizerId}
-                  organizerProfileFileUrl={item.organizerProfileFileUrl}
-                  organizerName={item.organizerName}
-                  uploadedNumber={item.uploadedNumber}
-                  subscribed={item.subscribed}
-                  countEvent={item.countEvent}
+                {organizersSlice.map((item) => (
+                  <OrganizationList
+                    key={item.organizerId}
+                    organizerProfileFileUrl={item.organizerProfileFileUrl}
+                    organizerName={item.organizerName}
+                    uploadedNumber={item.uploadedNumber}
+                    subscribed={item.subscribed}
+                    countEvent={item.countEvent}
                   />
-              ))}
+                ))}
               </OrganizationListBoxWrapper>
               <RightButton onClick={handleRightButtonClick}>▷</RightButton>
             </ButtonContainer>
