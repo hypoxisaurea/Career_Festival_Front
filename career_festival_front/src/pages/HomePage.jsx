@@ -253,9 +253,6 @@ useEffect(() => {
       const modifiedEventViews = modifiedEvent(response.data.eventViews);
       const modifiedEventRandom = modifiedEvent(response.data.eventRandom);
 
-
-
-
       setEventNames(response.data.eventNames);
       setEventRandom(modifiedEventRandom);
       setEventViews(modifiedEventViews);
@@ -273,12 +270,6 @@ useEffect(() => {
 
   fetchEventData();
 }, []);
-
-
-
-
-
-
 
   return (
     <div>

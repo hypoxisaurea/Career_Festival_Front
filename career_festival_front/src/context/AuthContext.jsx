@@ -63,7 +63,9 @@ export const AuthProvider = ({ children }) => {
         if (userInfoResponse.ok) {
           const userInfo = await userInfoResponse.json();
           console.log("userInfo: " +  userInfo);
-          console.log("userdddddddddddddddddd", JSON.stringify(userInfo));
+          // console.log("userdddddddddddddddddd", JSON.stringify(userInfo));
+          console.log("메인페이지 추천정보 반환값:");
+          console.log(" "+JSON.stringify(userInfo));
           // 로컬 스토리지에 사용자 정보 저장
           localStorage.setItem("isLoggedIn", "true");
           localStorage.setItem("user", JSON.stringify(userInfo));
@@ -99,7 +101,7 @@ export const AuthProvider = ({ children }) => {
   };
   // -----------------------------------------------------------------------------
   // - Name : saveAdditionalInfo
-  // - Desc : 서버에 부가정보를 저장하는 함수
+  // - Desc : 서버에 참가자(Participant) 부가정보를 저장하는 함수
   // - Input
   //   1) userData : 사용자 데이터
   // -----------------------------------------------------------------------------
