@@ -332,7 +332,7 @@ export const AuthProvider = ({ children }) => {
   // 메인페이지
   //
   // AuthProvider 컴포넌트 내에 새로운 함수 추가
-  const fetchMainpageInfo = async () => {
+  /*const fetchMainpageInfo = async () => {
     try {
       console.log("메인페이지 정보를 가져오는 중...");
       // 토큰 가져오기
@@ -360,9 +360,9 @@ export const AuthProvider = ({ children }) => {
     } catch (error) {
       console.error("에러 발생:", error);
     }
-  };
+  };*/
   //
-  // 메인페이지
+  // 행사 목록 페이지
   //
   // AuthProvider 컴포넌트 내에 새로운 함수 추가
   const fetchfestivalListpageInfo = async () => {
@@ -376,7 +376,7 @@ export const AuthProvider = ({ children }) => {
           Authorization: `${token}`,
         },
       });
-      console.log("서버 응답:", response); // 수정된 부분: 응답 전체 객체 출력
+      console.log("서버 응답:", response); // 응답 전체 객체 출력
       if (response.status === 200) {
         const { userInfo } = response.data; // userInfo 객체 추출
         // userInfo 객체를 로컬 스토리지에 저장
@@ -457,7 +457,7 @@ export const AuthProvider = ({ children }) => {
         fetchMypageInfo,
         updateMypageInfo,
         registerEvent,
-        fetchMainpageInfo,
+        //fetchMainpageInfo,
         fetchfestivalListpageInfo,
         fetchEventDetailData,
         fetchEventOrganizerData,
