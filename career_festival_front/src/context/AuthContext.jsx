@@ -90,12 +90,7 @@ export const AuthProvider = ({ children }) => {
   // -----------------------------------------------------------------------------
   const logout = () => {
     // 로그아웃 시 로컬 스토리지에서 로그인 정보 및 인증 정보 삭제
-    localStorage.removeItem("isLoggedIn");
-    localStorage.removeItem("user");
-    localStorage.removeItem("token");
-    localStorage.removeItem("userRole");
-    localStorage.removeItem("organizerName");
-    localStorage.removeItem("userInfo");
+    localStorage.clear();
     setIsLoggedIn(false);
     setUser(null);
     console.log("로그인 정보 및 인증 정보가 로컬 스토리지에서 삭제되었습니다.");
