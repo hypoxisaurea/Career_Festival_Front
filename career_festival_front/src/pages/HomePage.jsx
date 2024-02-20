@@ -143,7 +143,7 @@ const RecommendPlaceWraper = styled.div`
 
 const HomePage = () => {
   const [userName, setUserName] = useState(""); // 사용자 이름 상태
-  const { isLoggedIn, user, logout, fetchMainpageInfo } = useAuth(); // useAuth 훅을 통해 isLoggedIn, user 사용
+  const { isLoggedIn, getTokenFromLocalStorage, user, logout, fetchMainpageInfo } = useAuth(); // useAuth 훅을 통해 isLoggedIn, user 사용
  
 
   //------------------------------------------------------
@@ -183,7 +183,7 @@ const HomePage = () => {
   // 로그인 관련
   //------------------------------------------------
 
-  useEffect(() => {
+  /*useEffect(() => {
     // 로그인 되어 있을 때
     if (isLoggedIn) {
       console.log('🟢로그인 되어있다');
@@ -209,9 +209,9 @@ const HomePage = () => {
             throw new Error("서버로부터 데이터를 가져오는데 실패했습니다.");
           }
           // JSON 형태로 응답을 받아옴
-         // const data = await response.json();
+          //const data = await response.json();
           // 받아온 데이터 로그로 출력
-         console.log("서버응답:", response);
+         console.log("서버응답:", response.data);
         } catch (error) {
           console.error("데이터를 가져오는 중 에러가 발생했습니다:", error);
         }
@@ -220,7 +220,7 @@ const HomePage = () => {
       // fetchData 함수 실행
       fetchData();
     }
-  }, [fetchMainpageInfo, isLoggedIn]);
+  }, [fetchMainpageInfo, isLoggedIn]); */
   
 
 
@@ -258,10 +258,14 @@ const [eventRandom, setEventRandom] = useState([]);
 const [eventViews, setEventViews] = useState([]);
 const [eventRegion, setEventRegion] = useState([]);
 
+
 useEffect(() => {
   const fetchEventData = async () => {
     try {
+      if(!isLoggedIn){
+      console.log("로그인 되지 않은 사용자 입니다.");
       const response = await axios.get('http://localhost:9000');
+      console.log (response);
 
       // eventViews datetime 변환 함수
       const modifiedEvent = (events) =>{
@@ -288,6 +292,41 @@ useEffect(() => {
       console.log(modifiedEventViews);
       console.log(modifiedEventRandom);
       //console.log(modifiedEventRegion);
+    }
+    else{
+      console.log("로그인 된 사용자 입니다.");
+      //const token = getTokenFromLocalStorage();
+
+      const response = await axios.get("http://localhost:9000");
+      console.log (response);
+
+      // eventViews datetime 변환 함수
+      const modifiedEvent = (events) =>{
+        return events.map(event => ({
+        ...event,
+        recruitmentStart: formatDateTime(event.recruitmentStart),
+        recruitmentEnd: formatDateTime(event.recruitmentEnd)
+      }))};
+
+      //변환된 형식으로 배열 저장
+      const modifiedEventViews = modifiedEvent(response.data.eventViews);
+      //const modifiedEventRandom = modifiedEvent(response.data.eventRandom);
+      const modifiedEventRegion = modifiedEvent(response.data.eventRegion);
+
+      //변환된 배열 적용
+      setEventNames(response.data.eventNames);
+      //setEventRandom(modifiedEventRandom);
+      setEventViews(modifiedEventViews);
+      setEventRegion(modifiedEventRegion);
+
+      //데이터 fetching 여부 확인
+      console.log('데이터 fetching에 성공했습니다.');
+      console.log(response.data);
+      console.log(modifiedEventViews);
+      //console.log(modifiedEventRandom);
+      console.log(modifiedEventRegion);
+
+    }
 
 
       
