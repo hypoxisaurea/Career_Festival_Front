@@ -204,14 +204,14 @@ const HomePage = () => {
         try {
           // 서버로 요청 보내기
           console.log("1. 서버로 요청을 보내겠습니다");
-          const response = await fetch("http://localhost:9000/");
+          const response = await fetch("http://localhost:9000");
           if (!response.ok) {
             throw new Error("서버로부터 데이터를 가져오는데 실패했습니다.");
           }
           // JSON 형태로 응답을 받아옴
          // const data = await response.json();
           // 받아온 데이터 로그로 출력
-         // console.log("서버로부터 받은 데이터:", data);
+         console.log("서버응답:", response);
         } catch (error) {
           console.error("데이터를 가져오는 중 에러가 발생했습니다:", error);
         }
