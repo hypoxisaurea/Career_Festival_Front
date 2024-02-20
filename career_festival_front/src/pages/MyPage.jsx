@@ -1,30 +1,28 @@
 import React from "react";
 import styled from "styled-components";
-import { Link, useLocation, useParams, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import  "../db/organizationsData.json"
 import dummy from "../db/RecommendedEvents.json"
 import Recommend from '../components/home/Recommend'
 import MypageProfile from '../components/mypage/MypageProfile'
-import MypageInfo from "../components/mypage/MypageInfo";
-
 
 
 
 //전체 페이지
-const OrganizationInfoContainer = styled.div`
+const InfoContainer = styled.div`
     display: flex;
     flex-direction: column;
     padding: 3vw 15vw;
     gap: 3vw;
 `
 
-//주최자 마이페이지 프로필
-const OrganizationMypageProfileContainer = styled.div`
+//마이페이지 프로필
+const MypageProfileContainer = styled.div`
   //background-color: aliceblue;
   border-radius: 12px;
   box-shadow: 0 4px 4px 0 rgb(0, 0, 0, 0.25);
   padding: 5vw 7vw 5vw 7vw;
-`
+`;
 
 // 나누기 선
 const HorizontalDivider = styled.div`
@@ -34,13 +32,10 @@ const HorizontalDivider = styled.div`
   margin: 4vw 0 4vw 0;
 `
 
-
-
-const OrganizationMypageButtonContainer = styled(Link)`
+const MypageButtonContainer = styled(Link)`
   //background-color: aliceblue;
   margin: 0 auto;
 `
-
 
 //수정하기 버튼
 const CorrectionButton = styled.button`
@@ -58,7 +53,6 @@ const CorrectionButton = styled.button`
         }
 
 `
-
 
 
 //행사 리스트
@@ -110,26 +104,20 @@ const DeterminedFestivalListWrapper = styled.div`
   }
 `
 
-
-
-
-
-
 const OrganizationMypage = (props) => {
   
 
   return (
     
-    <OrganizationInfoContainer>
-      <OrganizationMypageProfileContainer>
+    <InfoContainer>
+      <MypageProfileContainer>
         <MypageProfile/>
         <HorizontalDivider/>
-        <MypageInfo/>
-      </OrganizationMypageProfileContainer>
+      </MypageProfileContainer>
 
-      <OrganizationMypageButtonContainer link to = "/mypage-correction">
+      <MypageButtonContainer link to = "/mypage-correction">
         <CorrectionButton>수정하기</CorrectionButton>
-      </OrganizationMypageButtonContainer>
+      </MypageButtonContainer>
 
 
       <FestivalListContainer>
@@ -174,7 +162,7 @@ const OrganizationMypage = (props) => {
           ))}
           </DeterminedFestivalListWrapper>
       </FestivalListContainer>
-  </OrganizationInfoContainer>  
+  </InfoContainer>  
   )
 };
 

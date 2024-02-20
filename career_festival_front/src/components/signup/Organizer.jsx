@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import InterestArea from "./InterestArea";
 import AffiliationInput from "./AffiliationInput";
 import { useNavigate } from "react-router-dom";
-import axios from "axios"; // Axios를 임포트합니다.
+import { useAuth } from "../../context/AuthContext";
 import {
   Container,
   Title,
@@ -32,26 +32,9 @@ const Organizer = () => {
   const [customKeyword, setCustomKeyword] = useState("");
   const [customKeywords, setCustomKeywords] = useState([]);
 
-  const [token, setToken] = useState("");
-
-  // useEffect를 사용하여 컴포넌트가 처음 마운트될 때 실행될 로직 추가
-  useEffect(() => {
-
-    const tokenFromStorage = getTokenFromLocalStorage();
-    if (tokenFromStorage) {
-      setToken(tokenFromStorage);
-      console.log("로컬 스토리지에서 토큰을 가져왔습니다:", tokenFromStorage);
-    } else {
-      // 토큰이 없는 경우 다른 작업 수행
-    }
-  }, []);
+  const { saveAdditionalOOInfo } = useAuth();
 
   const navigate = useNavigate();
-
-  const getTokenFromLocalStorage = () => {
-    const token = localStorage.getItem("token");
-    return token;
-  };
 
   // 모달 창을 열거나 닫는 함수를 정의합니다.
   const handleModalToggle = () => {
@@ -120,7 +103,7 @@ const Organizer = () => {
   };
 
   // 부가정보를 저장하는 함수입니다.
-  const saveAdditionalInfo = () => {
+  const handleSaveAdditionalInfo = () => {
     console.log("부가정보 저장 함수가 호출되었습니다.");
 
     // 모든 항목이 입력되었는지 확인
@@ -135,6 +118,9 @@ const Organizer = () => {
     ) {
       console.log("부가정보가 유효합니다.");
 
+      // 선택된 키워드와 기타 키워드를 합침
+      const allKeywords = [...selectedKeywords, ...customKeywords];
+
       // 데이터를 백엔드로 전달할 데이터
       const userData = {
         city: selectedArea,
@@ -143,26 +129,17 @@ const Organizer = () => {
         phoneNumber,
         company: affiliation,
         department,
-        keywordName: [...selectedKeywords, ...customKeywords] // 선택된 키워드와 기타 키워드를 합침
+        keywordName: allKeywords // 선택된 키워드와 기타 키워드를 합친 배열을 전송
       };
 
-      console.log("보낼 사용자 토큰:", token);
       console.log("보낼 사용자 데이터:", userData);
 
-      axios
-        .patch("http://localhost:9000/organizer", userData, {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `${token}`
-          }
-        })
-        .then((response) => {
-          console.log("부가정보 저장 완료:", response.data);
-          navigate("/");
-        })
-        .catch((error) => {
-          console.error("부가정보 저장 실패:", error.message);
-        });
+      saveAdditionalOOInfo(userData);
+    setTimeout(() => {
+      saveAdditionalOOInfo(userData); // 첫 번째 호출
+      saveAdditionalOOInfo(userData); // 두 번째 호출
+      saveAdditionalOOInfo(userData); // 세 번째 호출
+    }, 1000);
     } else {
       console.error("모든 항목을 완료해야 합니다.");
     }
@@ -172,7 +149,10 @@ const Organizer = () => {
   return (
     <Container>
       <Title>김커리님, Career Festival에 가입해주셔서 감사합니다.</Title>
-      <Subtitle>직접 오프라인 커리어 행사를 개설하고 싶으신가요?</Subtitle>
+      <Subtitle>
+        직접 <span style={{ fontWeight: "bold" }}>오프라인 커리어 행사</span>를
+        개설하고 싶으신가요?
+      </Subtitle>
 
       <Subtitle2>
         부가정보를 미리 입력하면 더 빠르게 행사 매칭이 가능합니다.
@@ -180,9 +160,14 @@ const Organizer = () => {
         또, 행사에 함께 갈 팀원 모집 시 서로의 프로필 열람이 가능합니다.
       </Subtitle2>
       <hr />
+      <br></br>
 
       {/* 관심지역 입력 부분입니다. */}
-      <p>관심지역</p>
+      <label
+        style={{ marginTop: "50px", fontWeight: "bold", fontSize: "15px" }}
+      >
+        관심지역
+      </label>
       <InterestArea
         selectedArea={selectedArea}
         handleAreaSelect={handleAreaSelect}
@@ -196,10 +181,11 @@ const Organizer = () => {
 
       {/* 이메일 입력 부분입니다. */}
       <EmailInput>
-        <label>이메일</label>
+        <label style={{ fontWeight: "bold", fontSize: "15px" }}>이메일</label>
         <input
+          style={{ fontSize: "12px" }}
           type="email"
-          placeholder="이메일을 입력하세요"
+          placeholder="예시) test@gmail.com"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
@@ -207,10 +193,11 @@ const Organizer = () => {
 
       {/* 전화번호 입력 부분입니다. */}
       <TelInput>
-        <label>전화번호</label>
+        <label style={{ fontWeight: "bold", fontSize: "15px" }}>전화번호</label>
         <input
+          style={{ fontSize: "12px" }}
           type="tel"
-          placeholder="전화번호를 입력하세요"
+          placeholder="예시) 010-1234-1234"
           value={phoneNumber}
           onChange={(e) => setPhoneNumber(e.target.value)}
         />
@@ -225,7 +212,21 @@ const Organizer = () => {
       />
 
       {/* 커리어 키워드 입력 부분입니다. */}
-      <p>커리어 키워드</p>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          marginTop: "30px",
+          marginBottom: "10px",
+        }}
+      >
+        <label style={{ fontSize: "15px", fontWeight: "bold" }}>
+          커리어 키워드
+        </label>
+        <label style={{ fontSize: "12px", color: "#583fff" }}>
+          관심분야를 골라주세요!
+        </label>
+      </div>
       <KeyworldOptionList>
         {[
           "창업",
@@ -237,7 +238,7 @@ const Organizer = () => {
           "인문/사회",
           "과학기술",
           "디자인",
-          "관광/여행"
+          "관광/여행",
         ].map((keyword) => (
           <KeywordButton
             key={keyword}
@@ -274,10 +275,10 @@ const Organizer = () => {
       <hr />
 
       <TwoButton>
-        <LaterSave onClick={handleNextInput}>다음에입력</LaterSave>
+        <LaterSave onClick={handleNextInput}>다음에 입력</LaterSave>
         {/* 부가정보 저장하기 버튼 */}
         <Save
-          onClick={saveAdditionalInfo}
+          onClick={handleSaveAdditionalInfo}
           disabled={
             !selectedArea ||
             !selectedCity ||

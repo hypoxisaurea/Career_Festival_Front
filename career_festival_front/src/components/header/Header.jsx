@@ -1,5 +1,4 @@
-// src/components/header/Header.js
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import styled from "styled-components";
@@ -49,16 +48,6 @@ const SearchItem = styled.div`
 `;
 
 // 검색 입력창 스타일
-// const SearchInput = styled.input`
-//   /* width: 50%; */
-//   border: 0.2vw solid transparent;
-//   border-image: linear-gradient(45deg, #582fff, #0085ff) 1;
-//   border-radius: 1vw;
-//   padding: 0.7vw 15vw 0.7vw 2.5vw;
-//   font-size: 0.8vw;
-//   outline: none;
-//   overflow: hidden;
-// `;
 const SearchInput = styled.input`
   // width: 50%;
   border: 0.2vw solid #582fff;
@@ -80,7 +69,7 @@ const SearchButton = styled.button`
   margin-left: 1vw;
 
   &:hover {
-    background-color: #1472ff;
+    background-color: #838383;
   }
 `;
 
@@ -187,8 +176,7 @@ const VerticalLine = styled.div`
 const Header = () => {
   // 검색어
   const [searchTerm, setSearchTerm] = useState("");
-
-  const { isLoggedIn, user, logout } = useAuth(); // useAuth 훅을 통해 isLoggedIn, user 사용
+  const { isLoggedIn, user, logout, fetchMypageInfo } = useAuth(); // useAuth 훅을 통해 isLoggedIn, user 사용
 
   // 검색어 변경 핸들러
   const handleSearchTermChange = (event) => {
@@ -200,7 +188,30 @@ const Header = () => {
     // 여기에서 검색 버튼이 클릭되었을 때 수행할 동작을 추가
     // 예를 들면 검색 결과를 가져오거나 페이지를 이동하는 등의 동작
     console.log("검색어:", searchTerm);
+
+    // 실제 검색 결과가 없을 경우 처리
+    const searchResultExists = false;
+
+    // 검색 결과가 없는 경우 메시지를 출력
+    if (!searchResultExists) {
+      alert("찾는 정보가 없습니다.");
+    }
   };
+
+  // 마이페이지 버튼 클릭 시 fetchMypageInfo 함수 호출 및 2초 대기 설정
+  const handleMypageButtonClick = () => {
+    fetchMypageInfo(); // fetchMypageInfo 함수 호출
+    setTimeout(() => {
+      // 2초 대기 후 실행
+      console.log("2초가 경과했습니다.");
+    }, 2000);
+  };
+
+  // 로그인 정보 확인 및 로그 출력
+  useEffect(() => {
+    console.log("isLoggedIn:", isLoggedIn);
+    console.log("user 정보:", user);
+  }, [isLoggedIn, user]);
 
   return (
     <HeaderContainer>
@@ -245,12 +256,21 @@ const Header = () => {
       <LinkContainer>
         <LinkItem to="/festival-list">행사목록</LinkItem>
         <LinkItem to="/diary">기록장</LinkItem>
-        <LinkItem to="/mypage">마이페이지</LinkItem>
+        {/* 마이페이지 버튼 */}
+        <LinkItem to="/mypage" onClick={handleMypageButtonClick}>
+          마이페이지
+        </LinkItem>
         <TextContiner>
-          <RegisterItem to="/register">행사개설하기</RegisterItem>
+          <RegisterItem to="/register/level1">행사개설하기</RegisterItem>
+          {/* <RegisterItem to="/register/level1">행사개설하기</RegisterItem> 
+            해당 ID에 주최자 페이지가 있다면
+            level1말고 level6으로 이동해서 행사등록만하기
+          */}
           <VerticalLine />
           <WelcomeText>
-            {isLoggedIn ? `${user.userName} 님 환영합니다!` : "로그인 해주세요!"}
+            {isLoggedIn
+              ? `${user.userName} 님 환영합니다!`
+              : "로그인 해주세요!"}
             {/* {isLoggedIn ? `${user} 님 환영합니다!` : "로그인 해주세요!"}/ */}
           </WelcomeText>
         </TextContiner>

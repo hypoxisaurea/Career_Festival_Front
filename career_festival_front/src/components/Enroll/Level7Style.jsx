@@ -18,15 +18,16 @@ export const NextButton = styled.button`
   margin-top: 2vw;
   padding: 0.8vw 4vw;
   font-size: 1rem;
-  background-color: #582fff;
+  background-color: ${(props) => (props.disabled ? "#ccc" : "#582fff")}; // 비활성화된 경우 회색, 활성화된 경우 보라색 배경색
   color: #fff;
   border: none;
   border-radius: 0.5vw;
-  cursor: pointer;
+  cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")}; // 비활성화된 경우 커서를 변경하여 클릭이 불가능하도록 함
   &:hover {
-    background-color: #4700a6;
+    background-color: ${(props) => (props.disabled ? "#ccc" : "#4700a6")}; // 비활성화된 경우에는 hover 효과가 없도록 함
   }
 `;
+
 export const PurpleTitle = styled.h1`
   color: #582fff; // 글자색을 #582fff로 지정
   font-size: 1.5rem;
@@ -267,3 +268,16 @@ export const ImageIcon = styled.img`
   margin-top: 5px; /* 이미지 아래 여백 추가 */
 `;
 
+export const DetailedLocationInput = styled.input`
+  width: 40%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+
+  &:focus {
+    border-color: #582fff;
+    outline: none;
+  }
+
+`;

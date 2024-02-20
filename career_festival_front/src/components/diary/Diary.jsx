@@ -1,4 +1,3 @@
-// 디자인이 아직 안나온듯?
 // src/components/home/Diary.jsx
 import React from "react";
 import styled from "styled-components";
@@ -7,7 +6,7 @@ import DiaryIntro from "./DiaryIntro";
 import DiaryList from "./DiaryList";
 
 const DiaryContainer = styled.div`
-  margin: 8vw 18vw 8vw 18vw;
+  margin: 5vw 18vw 8vw 18vw;
 `;
 
 const TitleContainer = styled.div`
@@ -23,18 +22,25 @@ const HorizontalDivider = styled.div`
 
 const AddDiaryButton = styled(Link)`
   background-color: transparent;
-  border: 0;
+  border: 0.1vw solid #582fff;
+  border-radius: 5px;
   float: right;
 
   color: #582fff;
   font-family: "Noto Sans KR";
-  font-size: 1rem;
+  font-size: 1vw;
   font-style: normal;
-  font-weight: 500;
+  font-weight: bold;
   line-height: normal;
 
   text-decoration: none;
   display: inline-block;
+  padding: 0.5vw 1vw; 
+
+  &:hover {
+    background-color: #582fff; 
+    color: white; 
+  }
 `;
 
 const TitleText = styled.div`

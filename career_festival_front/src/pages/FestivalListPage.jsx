@@ -8,7 +8,8 @@ import InterestArea from "../components/signup/InterestArea";
 import FilterKeyword from "../components/home/Filterkeyword";
 import Recommend from "../components/home/Recommend";
 import dummy from "../db/RecommendedEvents.json";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
+import axios from "axios";
 
 //페이징
 import Pagination from "../components/home/Pagination";
@@ -94,10 +95,7 @@ const Eventtype = styled.div`
 `;
 
 // 행사 목록 컨테이너에 대한 스타일링
-const Eventlist = styled.div`
-  // width: 50vw;
-  // height: 85vw;
-`;
+const Eventlist = styled.div``;
 
 // 페스티벌 리스트 래퍼에 대한 스타일링
 const FestivalListWrapper = styled.div`
@@ -109,6 +107,7 @@ const FestivalListWrapper = styled.div`
     font-size: 1vw;
   }
 `;
+
 //키워드
 const KeywordContainer = styled.div`
   display: flex;
@@ -136,12 +135,13 @@ const OrganizationListContainer = styled.div`
   justify-content: center;
 
   h2 {
-    font-size: 1.3rem;
+    font-size: 1.3vw;
     font-weight: bold;
   }
 
   span {
     color: #582fff;
+    font-size: 1.3vw;
   }
 `;
 
@@ -163,11 +163,12 @@ const OrganizationListBoxWrapper = styled.div`
 const ButtonContainer = styled.div`
   display: flex;
   align-items: center;
+  margin-top: 2vw;
 `;
 
 const Button = styled.button`
   background: transparent;
-  color:#838383;
+  color: #838383;
   border: none;
   cursor: pointer;
   font-size: 2vw;
@@ -203,6 +204,7 @@ const FestivalListPage = () => {
       setSelectedEventTypes([...selectedEventTypes, eventType]);
     }
   };
+
   // 선택된 필터를 제거하는 함수
   const removeFilter = (filter) => {
     setSelectedFilters(selectedFilters.filter((f) => f !== filter));
@@ -286,6 +288,72 @@ const FestivalListPage = () => {
     }
   };
 
+  //-----------------------------------------------------
+  // 날짜 형변환
+  // datetime 형식을 "-년 -월 -일 -시 -분" 형태로 변환하는 함수
+  //------------------------------------------------------
+  function formatDateTime(datetimeString) {
+    const dateTime = new Date(datetimeString); // 문자열을 Date 객체로 변환
+    const year = dateTime.getFullYear(); // 연도 추출
+    const month = dateTime.getMonth() + 1; // 월 추출 (0부터 시작하므로 1을 더함)
+    const day = dateTime.getDate(); // 일 추출
+    const hours = dateTime.getHours(); // 시간 추출
+    const minutes = dateTime.getMinutes(); // 분 추출
+
+    // 한 자리 숫자일 경우 앞에 0을 추가하여 두 자리로 만듦
+    const formattedMonth = month < 10 ? "0" + month : month;
+    const formattedDay = day < 10 ? "0" + day : day;
+    const formattedHours = hours < 10 ? "0" + hours : hours;
+    const formattedMinutes = minutes < 10 ? "0" + minutes : minutes;
+
+    // 포맷된 문자열 반환
+    return `${year}년 ${formattedMonth}월 ${formattedDay}일 ${formattedHours}시 ${formattedMinutes}분`;
+  }
+
+  //------------------------------------------------------
+  // api
+  //------------------------------------------------------
+  const [eventNames, setEventNames] = useState([]);
+  const [eventViews, setEventViews] = useState([]);
+  const [eventRegion, setEventRegion] = useState([]);
+
+  const [category, setCategory] = useState([]);
+  const [keywordName, setKeywordName] = useState([]);
+  const [city, setCity] = useState("");
+  const [addressLine, setAddressLine] = useState("");
+
+  useEffect(() => {
+    const fetchEventData = async () => {
+      try {
+        const response = await axios.get("http://localhost:9000/festival-list");
+
+        console.log("왜 6개지", response.data);
+
+        // eventViews datetime 변환 함수
+        const modifiedEvent = (events) => {
+          return events.map((event) => ({
+            ...event,
+            recruitmentStart: formatDateTime(event.recruitmentStart),
+            recruitmentEnd: formatDateTime(event.recruitmentEnd),
+          }));
+        };
+
+        const modifiedEventViews = modifiedEvent(response.data.eventViews);
+
+        setEventNames(response.data.eventNames);
+        setEventViews(modifiedEventViews);
+        setEventRegion(response.data.eventRegion);
+        console.log(modifiedEventViews);
+
+        console.log("데이터 fetching에 성공했습니다.");
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchEventData();
+  }, []);
+
   return (
     <div>
       {/* 상단 영역 */}
@@ -334,33 +402,34 @@ const FestivalListPage = () => {
 
         {/* 행사목록 영역 */}
         <Eventlist>
-          <KeywordContainer> 000 개의 행사를 찾았어요!</KeywordContainer>
+          <KeywordContainer>
+            {eventViews.length} 개의 행사를 찾았어요!
+          </KeywordContainer>
           <FilterKeyword
             selectedFilters={selectedFilters}
             removeFilter={removeFilter}
           />
 
           <FestivalListWrapper>
-            {getCurrentPageData().map((item) => (
-              <Recommend
-                key={item.eventName}
-                mainImg={item.mainImg}
-                eventName={item.eventName}
-                recruitmentStart={item.recruitmentStart}
-                recruitmentEnd={item.recruitmentEnd}
-                isLiked={item.isLiked}
-                price={item.price}
-                profile={item.profile}
-                //eventId={item.id} // 이벤트 ID 전달
-              />
+            {eventViews.map((item) => (
+              <Link to={`/event/${item.id}`} key={item.eventName}>
+                <Recommend
+                  key={item.id}
+                  eventMainFileUrl={item.eventMainFileUrl}
+                  eventName={item.eventName}
+                  recruitmentStart={item.recruitmentStart}
+                  recruitmentEnd={item.recruitmentEnd}
+                  isLiked={item.isLiked}
+                  eventCost={item.eventCost}
+                  organizerProfileUrl={item.organizerProfileUrl}
+                />
+              </Link>
             ))}
           </FestivalListWrapper>
 
           <Pagination
             currentPage={currentPage}
-            totalPages={Math.ceil(
-              dummy.RecommendedByPerson.length / itemsPerPage
-            )}
+            totalPages={Math.ceil(eventViews.length / itemsPerPage)}
             onPageChange={handlePageChange}
           />
         </Eventlist>
@@ -368,10 +437,7 @@ const FestivalListPage = () => {
       <LowerContaniner>
         {/*주최자*/}
         <OrganizationListContainer>
-          <h2>
-            <span>219</span>명의 주최자
-          </h2>{" "}
-          {/* 숫자는 나중에 데이터로 받아와야함 */}
+          <span>인기 주최자가 궁금하세요?</span>
           <OrganizationslistWraper>
             <ButtonContainer>
               <LeftButton onClick={handleLeftButtonClick}>◁</LeftButton>

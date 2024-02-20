@@ -7,6 +7,8 @@ import Header from "../components/header/Header";
 import Banner from "../components/home/Banner";
 import InterestArea from "../components/signup/InterestArea";
 import { Link } from "react-router-dom";
+import axios from 'axios';
+import { useAuth } from "../context/AuthContext";
 
 
 //Home 전체 페이지
@@ -140,18 +142,24 @@ const HomePage = () => {
   const recommendedByPlaceSlice = dummy.RecommendedByPlace.slice(0, 3); // 처음 3개 아이템만 사용
 
   const [userName, setUserName] = useState(""); // 사용자 이름 상태
+  const { isLoggedIn, user, logout, fetchfestivalListpageInfo } = useAuth(); // useAuth 훅을 통해 isLoggedIn, user 사용
+
+  //------------------------------------------------------
+  // 지역 설정 모달
+  //------------------------------------------------------
   
   //지역명
   const [isModalOpen, setModalOpen] = useState(false);
   const [selectedArea, setSelectedArea] = useState("seoul");
   const [selectedCity, setSelectedCity] = useState("");
 
-  //지역
+  
   // useEffect를 사용하여 컴포넌트가 처음 마운트될 때 실행될 로직 추가
+  // 로그인 정보 확인 및 로그 출력
   useEffect(() => {
-    // 초기값으로 서울을 선택하도록 설정
-    handleAreaSelect("seoul");
-  }, []);
+    console.log("isLoggedIn:", isLoggedIn);
+    console.log("🟡🟡🟡user 정보:", user);
+  }, [isLoggedIn, user]);
 
   useEffect(() => {
     // 서버에서 데이터를 가져오는 함수
@@ -174,6 +182,7 @@ const HomePage = () => {
 
     // fetchData 함수 실행
     fetchData();
+    fetchfestivalListpageInfo();
   }, []); // 컴포넌트가 처음 렌더링될 때 한 번만 실행
 
   // 모달 창을 열거나 닫는 함수를 정의합니다.
@@ -199,6 +208,74 @@ const HomePage = () => {
   };
 
 
+
+//-----------------------------------------------------
+// 날짜 형변환
+// datetime 형식을 "-년 -월 -일 -시 -분" 형태로 변환하는 함수
+//------------------------------------------------------
+function formatDateTime(datetimeString) {
+  const dateTime = new Date(datetimeString); // 문자열을 Date 객체로 변환
+  const year = dateTime.getFullYear(); // 연도 추출
+  const month = dateTime.getMonth() + 1; // 월 추출 (0부터 시작하므로 1을 더함)
+  const day = dateTime.getDate(); // 일 추출
+  const hours = dateTime.getHours(); // 시간 추출
+  const minutes = dateTime.getMinutes(); // 분 추출
+
+  // 한 자리 숫자일 경우 앞에 0을 추가하여 두 자리로 만듦
+  const formattedMonth = month < 10 ? '0' + month : month;
+  const formattedDay = day < 10 ? '0' + day : day;
+  const formattedHours = hours < 10 ? '0' + hours : hours;
+  const formattedMinutes = minutes < 10 ? '0' + minutes : minutes;
+
+  // 포맷된 문자열 반환
+  return `${year}년 ${formattedMonth}월 ${formattedDay}일 ${formattedHours}시 ${formattedMinutes}분`;
+}
+
+
+
+//------------------------------------------------------
+// api
+//------------------------------------------------------
+const [eventNames, setEventNames] = useState([]);
+const [eventRandom, setEventRandom] = useState([]);
+const [eventViews, setEventViews] = useState([]);
+const [eventRegion, setEventRegion] = useState([]);
+
+useEffect(() => {
+  const fetchEventData = async () => {
+    try {
+      const response = await axios.get('http://localhost:9000');
+
+      // eventViews datetime 변환 함수
+      const modifiedEvent = (events) =>{
+        return events.map(event => ({
+        ...event,
+        recruitmentStart: formatDateTime(event.recruitmentStart),
+        recruitmentEnd: formatDateTime(event.recruitmentEnd)
+      }))};
+
+      const modifiedEventViews = modifiedEvent(response.data.eventViews);
+      const modifiedEventRandom = modifiedEvent(response.data.eventRandom);
+
+      setEventNames(response.data.eventNames);
+      setEventRandom(modifiedEventRandom);
+      setEventViews(modifiedEventViews);
+      setEventRegion(response.data.eventRegion);
+      console.log(modifiedEventViews);
+      console.log(modifiedEventRandom);
+
+
+      console.log('데이터 fetching에 성공했습니다.');
+
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+
+  fetchEventData();
+  
+}, []);
+
   return (
     <div>
       <Header userName={userName} />
@@ -214,20 +291,20 @@ const HomePage = () => {
           </PersonalContainerDiv>
 
           <RecommendPersonalWraper>
-            {recommendedByPersonSlice.map((item) => (
+            {eventViews.map((item) => (
               <Recommend
                 style={{
                   color: "white",
                   fontSize: "0.8rem",
                 }}
                 key={item.eventName} // 유일한 키가 필요합니다.
-                mainImg={item.mainImg}
+                eventMainFileUrl={item.eventMainFileUrl}
                 eventName={item.eventName}
                 recruitmentStart={item.recruitmentStart}
                 recruitmentEnd={item.recruitmentEnd}
                 isLiked={item.isLiked}
-                price={item.price}
-                profile={item.profile}
+                eventCost={item.eventCost}
+                organizerProfileUrl={item.organizerProfileUrl}
               />
             ))}
           </RecommendPersonalWraper>
@@ -254,19 +331,22 @@ const HomePage = () => {
           <HomePageShowAllLink to ="/festival-list">모든행사보기</HomePageShowAllLink>
 
           <RecommendPlaceWraper>
-            {recommendedByPlaceSlice.map((item) => {
-              return (
-                <Recommend
-                  mainImg={item.mainImg}
-                  eventName={item.eventName}
-                  recruitmentStart={item.recruitmentStart}
-                  recruitmentEnd={item.recruitmentEnd}
-                  isLiked={item.isLiked}
-                  price={item.price}
-                  profile={item.profile}
-                />
-              );
-            })}
+          {eventRandom.map((item) => (
+              <Recommend
+                style={{
+                  color: "white",
+                  fontSize: "0.8rem",
+                }}
+                key={item.eventName} // 유일한 키가 필요합니다.
+                eventMainFileUrl={item.eventMainFileUrl}
+                eventName={item.eventName}
+                recruitmentStart={item.recruitmentStart}
+                recruitmentEnd={item.recruitmentEnd}
+                isLiked={item.isLiked}
+                eventCost={item.eventCost}
+                organizerProfileUrl={item.organizerProfileUrl}
+              />
+            ))}
           </RecommendPlaceWraper>
         </RecommendPlaceContainer>
       </HomePageContainer>

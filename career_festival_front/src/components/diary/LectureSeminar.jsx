@@ -1,10 +1,11 @@
+//LectureSeminar.jsx. 세부 기록장입니다
 import React, { useState } from "react";
 import styled from "styled-components";
-import Dropdown from "./Dropdown";
 import EventInfo from "./EventInfo";
 import SeminarRecord from "./SeminarRecord";
 import PeopleNetwork from "./PeopleNetwork";
-import SubmitButton from "./SubmitButton";
+import Pick from "./Pick";
+import { Link } from "react-router-dom";
 
 const LectureSeminarContainer = styled.div`
   margin: 3.5vw 23vw 3vw 23vw;
@@ -13,7 +14,19 @@ const LectureSeminarContainer = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top:2vw;
   }
+`;
+
+const Button = styled(Link)`
+  padding: 1vw;
+  background-color: #582fff;
+  color: white;
+  font-size: 1vw;
+  border: none;
+  border-radius: 1vw;
+  cursor: pointer;
+  text-decoration: none;
 `;
 
 function LectureSeminar() {
@@ -36,21 +49,14 @@ function LectureSeminar() {
     setIsSeminarRecordComplete(isComplete);
   };
 
-
   return (
     <LectureSeminarContainer>
-      LectureSeminar
-      <br />
-      <Dropdown />
+      <Pick/>
       <EventInfo onInfoComplete={handleEventInfoComplete} />
       <SeminarRecord onComplete={handleSeminarRecordComplete} />
       <PeopleNetwork onComplete={handlePeopleNetworkComplete} />
       <div className="centered">
-        <SubmitButton
-          isComplete={
-            isEventInfoComplete && isPeopleNetworkComplete && isSeminarRecordComplete
-          }
-        />
+        <Button to="/diary">등록하기</Button>
       </div>
     </LectureSeminarContainer>
   );
