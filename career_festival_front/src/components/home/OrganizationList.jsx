@@ -7,6 +7,7 @@ const OrganizationBox = styled.div`
   border-radius: 1vw;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   align-items: center;
   width: 80%;
   gap: 1vw;
@@ -93,9 +94,10 @@ const OrganizationList = (props) => {
   const navigate = useNavigate();
 
     const onClickOrganizationProfile = () => {
-      navigate(`/organizationinfo/${props.OrganizationName}`, {
-        state: props,
-      });
+      // navigate(`/organizationinfo/${props.OrganizationName}`, {
+      //   state: props,
+      // });
+     alert("정보를 준비중입니다!!");
     };
 
   return (
