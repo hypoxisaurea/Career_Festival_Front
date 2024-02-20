@@ -62,10 +62,11 @@ export const AuthProvider = ({ children }) => {
         });
         if (userInfoResponse.ok) {
           const userInfo = await userInfoResponse.json();
-
+          console.log("userInfo: " +  userInfo);
+          console.log("userdddddddddddddddddd", JSON.stringify(userInfo));
           // 로컬 스토리지에 사용자 정보 저장
           localStorage.setItem("isLoggedIn", "true");
-          // localStorage.setItem("user", JSON.stringify(userInfo));
+          localStorage.setItem("user", JSON.stringify(userInfo));
           localStorage.setItem("token", jwtToken); // 토큰 저장
 
           setIsLoggedIn(true);
