@@ -9,6 +9,7 @@ import FilterKeyword from "../components/home/Filterkeyword";
 import Recommend from "../components/home/Recommend";
 import dummy from "../db/RecommendedEvents.json";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 //페이징
 import Pagination from "../components/home/Pagination";
@@ -287,6 +288,72 @@ const FestivalListPage = () => {
     }
   };
 
+  //-----------------------------------------------------
+  // 날짜 형변환
+  // datetime 형식을 "-년 -월 -일 -시 -분" 형태로 변환하는 함수
+  //------------------------------------------------------
+  function formatDateTime(datetimeString) {
+    const dateTime = new Date(datetimeString); // 문자열을 Date 객체로 변환
+    const year = dateTime.getFullYear(); // 연도 추출
+    const month = dateTime.getMonth() + 1; // 월 추출 (0부터 시작하므로 1을 더함)
+    const day = dateTime.getDate(); // 일 추출
+    const hours = dateTime.getHours(); // 시간 추출
+    const minutes = dateTime.getMinutes(); // 분 추출
+
+    // 한 자리 숫자일 경우 앞에 0을 추가하여 두 자리로 만듦
+    const formattedMonth = month < 10 ? "0" + month : month;
+    const formattedDay = day < 10 ? "0" + day : day;
+    const formattedHours = hours < 10 ? "0" + hours : hours;
+    const formattedMinutes = minutes < 10 ? "0" + minutes : minutes;
+
+    // 포맷된 문자열 반환
+    return `${year}년 ${formattedMonth}월 ${formattedDay}일 ${formattedHours}시 ${formattedMinutes}분`;
+  }
+
+  //------------------------------------------------------
+  // api
+  //------------------------------------------------------
+  const [eventNames, setEventNames] = useState([]);
+  const [eventViews, setEventViews] = useState([]);
+  const [eventRegion, setEventRegion] = useState([]);
+
+  const [category, setCategory] = useState([]);
+  const [keywordName, setKeywordName] = useState([]);
+  const [city, setCity] = useState("");
+  const [addressLine, setAddressLine] = useState("");
+
+  useEffect(() => {
+    const fetchEventData = async () => {
+      try {
+        const response = await axios.get("http://localhost:9000/festival-list");
+
+        console.log("왜 6개지", response.data);
+
+        // eventViews datetime 변환 함수
+        const modifiedEvent = (events) => {
+          return events.map((event) => ({
+            ...event,
+            recruitmentStart: formatDateTime(event.recruitmentStart),
+            recruitmentEnd: formatDateTime(event.recruitmentEnd),
+          }));
+        };
+
+        const modifiedEventViews = modifiedEvent(response.data.eventViews);
+
+        setEventNames(response.data.eventNames);
+        setEventViews(modifiedEventViews);
+        setEventRegion(response.data.eventRegion);
+        console.log(modifiedEventViews);
+
+        console.log("데이터 fetching에 성공했습니다.");
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchEventData();
+  }, []);
+
   return (
     <div>
       {/* 상단 영역 */}
@@ -335,23 +402,26 @@ const FestivalListPage = () => {
 
         {/* 행사목록 영역 */}
         <Eventlist>
-          <KeywordContainer> 000 개의 행사를 찾았어요!</KeywordContainer>
+          <KeywordContainer>
+            {eventViews.length} 개의 행사를 찾았어요!
+          </KeywordContainer>
           <FilterKeyword
             selectedFilters={selectedFilters}
             removeFilter={removeFilter}
           />
 
           <FestivalListWrapper>
-            {getCurrentPageData().map((item) => (
-              <Link to={`/detail/${item.id}`} key={item.eventName}>
+            {eventViews.map((item) => (
+              <Link to={`/event/${item.id}`} key={item.eventName}>
                 <Recommend
-                  mainImg={item.mainImg}
+                  key={item.id}
+                  eventMainFileUrl={item.eventMainFileUrl}
                   eventName={item.eventName}
                   recruitmentStart={item.recruitmentStart}
                   recruitmentEnd={item.recruitmentEnd}
                   isLiked={item.isLiked}
-                  price={item.price}
-                  profile={item.profile}
+                  eventCost={item.eventCost}
+                  organizerProfileUrl={item.organizerProfileUrl}
                 />
               </Link>
             ))}
@@ -359,9 +429,7 @@ const FestivalListPage = () => {
 
           <Pagination
             currentPage={currentPage}
-            totalPages={Math.ceil(
-              dummy.RecommendedByPerson.length / itemsPerPage
-            )}
+            totalPages={Math.ceil(eventViews.length / itemsPerPage)}
             onPageChange={handlePageChange}
           />
         </Eventlist>
