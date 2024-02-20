@@ -291,7 +291,7 @@ const HomePage = () => {
                   color: "white",
                   fontSize: "0.8rem",
                 }}
-                key={item.eventName} // 유일한 키가 필요합니다.
+                
                 eventId={item.eventId}
                 eventMainFileUrl={item.eventMainFileUrl}
                 eventName={item.eventName}
@@ -334,7 +334,8 @@ const HomePage = () => {
                   color: "white",
                   fontSize: "0.8rem",
                 }}
-                key={item.eventName} // 유일한 키가 필요합니다.
+                key={item.eventName}
+                eventId = {item.eventId}
                 eventMainFileUrl={item.eventMainFileUrl}
                 eventName={item.eventName}
                 recruitmentStart={item.recruitmentStart}
