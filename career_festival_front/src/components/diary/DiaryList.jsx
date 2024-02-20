@@ -3,7 +3,10 @@
   import styled from "styled-components";
   import { Link } from "react-router-dom";
   import Pagination from "./Pagination";
-  import dummy from "../../db/Diary.json";
+import dummy from "../../db/Diary.json";
+import Modal from "./Modal";
+  
+
 
   const ListContainer = styled.div``;
 
@@ -128,64 +131,66 @@ const EventTitleText = styled.div`
        color: #838383;
      `;
 
+const DiaryList = () => {
+  const [showModal, setShowModal] = useState(false); // 모달 상태를 추가합니다.
 
-  const DiaryList = () => {
-    // 페이징 관련 state
-    const itemsPerPage = 4; // 페이지당 보여줄 항목 수
-    const [currentPage, setCurrentPage] = useState(1);
-
-    // 페이지에 해당하는 데이터를 반환하는 함수
-    const getCurrentPageData = useCallback(() => {
-      const startIndex = (currentPage - 1) * itemsPerPage;
-      const endIndex = startIndex + itemsPerPage;
-      const myDiary = dummy.DiaryList || [];
-      return myDiary.slice(startIndex, endIndex);
-    }, [currentPage, itemsPerPage]);
-
-    // 페이지 변경 시 호출되는 함수
-    const handlePageChange = (page) => {
-      setCurrentPage(page);
-    };
-
-    return (
-      <ListContainer>
-        <ContentContainer>
-          {getCurrentPageData().map((item) => (
-            <DiaryContainer>
-              <ColorContainer />
-              <DiaryContentContainer>
-                <HeaderContainer>
-                  <EventTitleText>
-                    <span>{item.eventTitle}</span>
-                    <span>{item.uploadedDate}</span>
-                  </EventTitleText>
-                </HeaderContainer>
-                
-                <HorizontalDivider />
-
-                <QuoteContainer>
-                  <Left>❝</Left>
-                  <Right>❞</Right>
-                </QuoteContainer>
-
-                <DiaryTitleText>{item.diaryTitle}</DiaryTitleText>
-
-                <TagContainer>
-                  <TypeTagContainer>{item.type}</TypeTagContainer>
-                  <GenreTagContainer>{item.genre}</GenreTagContainer>
-                </TagContainer>
-              </DiaryContentContainer>
-            </DiaryContainer>
-          ))}
-        </ContentContainer>
-
-        <Pagination
-          currentPage={currentPage}
-          totalPages={Math.ceil(dummy.DiaryList.length / itemsPerPage)}
-          onPageChange={handlePageChange}
-        />
-      </ListContainer>
-    );
+  const handleOpenModal = () => {
+    setShowModal(true); // 모달 상태를 true로 설정합니다.
   };
 
-  export default DiaryList;
+  const handleCloseModal = () => {
+    setShowModal(false); // 모달 상태를 false로 설정합니다.
+  };
+
+  const itemsPerPage = 4; // 페이지당 보여줄 항목 수
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const getCurrentPageData = useCallback(() => {
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    const myDiary = dummy.DiaryList || [];
+    return myDiary.slice(startIndex, endIndex);
+  }, [currentPage, itemsPerPage]);
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
+
+  return (
+    <div>
+      <ContentContainer onClick={handleOpenModal}>
+        {getCurrentPageData().map((item) => (
+          <DiaryContainer key={item.id}>
+            <ColorContainer />
+            <DiaryContentContainer>
+              <HeaderContainer>
+                <EventTitleText>
+                  <span>{item.eventTitle}</span>
+                  <span>{item.uploadedDate}</span>
+                </EventTitleText>
+              </HeaderContainer>
+              <HorizontalDivider />
+              <QuoteContainer>
+                <Left>❝</Left>
+                <Right>❞</Right>
+              </QuoteContainer>
+              <DiaryTitleText>{item.diaryTitle}</DiaryTitleText>
+              <TagContainer>
+                <TypeTagContainer>{item.type}</TypeTagContainer>
+                <GenreTagContainer>{item.genre}</GenreTagContainer>
+              </TagContainer>
+            </DiaryContentContainer>
+          </DiaryContainer>
+        ))}
+      </ContentContainer>
+      {showModal && <Modal onClose={handleCloseModal} />}
+      <Pagination
+        currentPage={currentPage}
+        totalPages={Math.ceil(dummy.DiaryList.length / itemsPerPage)}
+        onPageChange={handlePageChange}
+      />
+    </div>
+  );
+};
+
+export default DiaryList;
