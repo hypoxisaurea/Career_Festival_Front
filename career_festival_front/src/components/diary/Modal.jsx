@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import dummy from "../../db/Diary.json";
 
 const ModalContainer = styled.div`
   position: fixed;
@@ -19,14 +20,26 @@ const ModalContainer = styled.div`
 `;
 
 const ModalOverlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
 `;
 
 const Modal = ({ onClose }) => {
+  const item = dummy.DiaryList[0]; // 더미 데이터에서 첫 번째 항목을 가져옵니다.
+
   return (
     <ModalOverlay onClick={onClose}>
       <ModalContainer>
-        <h2 style={{ color: "#582fff" }}>경고</h2>
-        <p>5000자가 넘었습니다!</p>
+          <p style={{ color: "#582fff" }}>{item.eventTitle}</p>
+        <p>{item.uploadedDate}</p>
+        <p>{item.diaryTitle}</p>
+        <p>{item.type}</p>
+        <p>{item.genre}</p>
         <button
           style={{
             background: "#582fff",

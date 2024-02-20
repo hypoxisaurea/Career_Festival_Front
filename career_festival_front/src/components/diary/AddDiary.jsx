@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import Dropdown from "./Dropdown";
 import EventInfo from "./EventInfo";
 
 const AddDiaryContainer = styled.div`
@@ -10,7 +9,6 @@ const AddDiaryContainer = styled.div`
 function AddDiary() {
   return (
     <AddDiaryContainer>
-      <Dropdown />
       <EventInfo />
     </AddDiaryContainer>
   );
