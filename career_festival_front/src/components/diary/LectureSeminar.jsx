@@ -1,4 +1,4 @@
-//Recordbook.jsx. 세부 기록장입니다
+//LectureSeminar.jsx. 세부 기록장입니다
 import React, { useState } from "react";
 import styled from "styled-components";
 import EventInfo from "./EventInfo";
@@ -55,9 +55,9 @@ function LectureSeminar() {
       <EventInfo onInfoComplete={handleEventInfoComplete} />
       <SeminarRecord onComplete={handleSeminarRecordComplete} />
       <PeopleNetwork onComplete={handlePeopleNetworkComplete} />
- <div className="centered">
+      <div className="centered">
         <Button to="/diary">등록하기</Button>
-</div>
+      </div>
     </LectureSeminarContainer>
   );
 }
