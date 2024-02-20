@@ -12,7 +12,7 @@
       "id": 2,
       "eventTitle": "5th UMC 데모데이가 끝낫다",
       "uploadedDate": "2024.02.21",
-      "diaryTitle": "나의 행사는..",
+      "diaryTitle": "약 두달 간 커리어페스티벌을 하면서 처음엔 어렵지 않게 달렸지만,, 첨 해보는 서버연결에,, 너무 힘들었다!!",
       "type": "학술대회",
       "genre": "IT/프로그래밍"
     },
@@ -28,15 +28,47 @@
       "id": 4,
       "eventTitle": "5th UMC 일지",
       "uploadedDate": "2024.02.20",
-      "diaryTitle": "힘들다",
+      "diaryTitle": "힘들다 그치만 우리는 개강해.",
       "type": "학술대회",
       "genre": "창업"
     },
     {
       "id": 5,
-      "eventTitle": "5기 유엠씨를 하면서",
+      "eventTitle": "커리어페스티벌",
       "uploadedDate": "2024.02.17",
       "diaryTitle": "너무너무너무 어렵다!!",
+      "type": "학술대회",
+      "genre": "라이프"
+    },
+    {
+      "id": 6,
+      "eventTitle": "유엠씨",
+      "uploadedDate": "2024.02.15",
+      "diaryTitle": "안녕?  나는 이 웹사이트를 만들면서 아주많이 힘들었단다.. 머리가 터지는 줄 알앗어.. UI 마스터했다고 생각했는데 아주 어렵네~",
+      "type": "학술대회",
+      "genre": "라이프"
+    },
+    {
+      "id": 7,
+      "eventTitle": "5기 유엠씨를 하면서",
+      "uploadedDate": "2024.02.14",
+      "diaryTitle": "토큰 어떻게 가져와요?",
+      "type": "학술대회",
+      "genre": "라이프"
+    },
+    {
+      "id": 8,
+      "eventTitle": "커리어페스티벌 사용후기",
+      "uploadedDate": "2024.02.12",
+      "diaryTitle": "ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ",
+      "type": "학술대회",
+      "genre": "라이프"
+    },
+    {
+      "id": 9,
+      "eventTitle": "5기 유엠씨 커리어페스티벌",
+      "uploadedDate": "2024.02.10",
+      "diaryTitle": "애도라 화이팅~",
       "type": "학술대회",
       "genre": "라이프"
     }
