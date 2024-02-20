@@ -2,43 +2,43 @@
   "DiaryList": [
     {
       "id": 1,
-      "eventTitle": "5th UMC 해커톤",
-      "uploadedDate": "2024.12.14",
-      "diaryTitle": "나의 첫 해커톤",
+      "eventTitle": "5th UMC 데모데이: Career Festival🎉",
+      "uploadedDate": "2024.02.21",
+      "diaryTitle": "내 커리어에 맞는 오프라인 행사 매칭 및 기록 서비스😊",
       "type": "학술대회",
-      "genre": "경제/금융"
+      "genre": "창업"
     },
     {
       "id": 2,
-      "eventTitle": "5th UMC 해커톤",
-      "uploadedDate": "2024.12.14",
-      "diaryTitle": "나의 첫 해커톤",
+      "eventTitle": "5th UMC 데모데이가 끝낫다",
+      "uploadedDate": "2024.02.21",
+      "diaryTitle": "나의 행사는..",
       "type": "학술대회",
-      "genre": "경제/금융"
+      "genre": "IT/프로그래밍"
     },
     {
       "id": 3,
-      "eventTitle": "5th UMC 해커톤",
-      "uploadedDate": "2024.12.14",
-      "diaryTitle": "나의 첫 해커톤",
+      "eventTitle": "5th UMC 활동기",
+      "uploadedDate": "2024.02.21",
+      "diaryTitle": "데모데이..까지 달려오면서 끄아앙",
       "type": "학술대회",
-      "genre": "경제/금융"
+      "genre": "IT/프로그래밍"
     },
     {
       "id": 4,
-      "eventTitle": "5th UMC 해커톤",
-      "uploadedDate": "2024.12.14",
-      "diaryTitle": "나의 첫 해커톤",
+      "eventTitle": "5th UMC 일지",
+      "uploadedDate": "2024.02.20",
+      "diaryTitle": "힘들다",
       "type": "학술대회",
-      "genre": "경제/금융"
+      "genre": "창업"
     },
     {
       "id": 5,
-      "eventTitle": "5th UMC 해커톤",
-      "uploadedDate": "2024.12.14",
-      "diaryTitle": "나의 첫 해커톤",
+      "eventTitle": "5기 유엠씨를 하면서",
+      "uploadedDate": "2024.02.17",
+      "diaryTitle": "너무너무너무 어렵다!!",
       "type": "학술대회",
-      "genre": "경제/금융"
+      "genre": "라이프"
     }
   ]
 }
