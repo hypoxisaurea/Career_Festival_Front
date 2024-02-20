@@ -1,3 +1,4 @@
+//Recordbook.jsx. 세부 기록장입니다
 import React, { useState } from "react";
 import styled from "styled-components";
 import EventInfo from "./EventInfo";
