@@ -3,19 +3,19 @@ import styled, { css } from "styled-components";
 
 const MenuContainer = styled.div`
   width: 100%;
-  height: 20px; //임시
-  margin: 53px 0 19px 0;
+  height: auto;
+  margin: 2.5vw 0 1vw 0;
 `;
 
 const MenuButton = styled.button`
   background-color: transparent;
   border: 0;
 
-  margin-right: 40px;
+  margin-right: 2.5vw;
 
   color: #838383;
   font-family: "Noto Sans KR";
-  font-size: 15px;
+  font-size: 1rem;
   font-style: normal;
   font-weight: 500;
   line-height: normal;

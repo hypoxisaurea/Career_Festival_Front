@@ -6,17 +6,17 @@ import dummy from "../../db/RecommendedEvents.json";
 
 const InfoContainer = styled.div`
   width: 100%;
-  margin: 27px 0 28px 0;
+  margin: 1.8vw 0 1.8vw 0;
 `;
 
 const DateContainer = styled.div``;
 
 const ApplyContainer = styled.div`
-  margin: 19px 0 19px 0;
+  margin: 1vw 0 1vw 0;
 `;
 
 const PriceContainer = styled.div`
-  margin-bottom: 17px;
+  margin-bottom: 1vw;
 `;
 
 const PlaceContainer = styled.div``;
@@ -24,18 +24,18 @@ const PlaceContainer = styled.div``;
 const Title = styled.div`
   color: #838383;
   font-family: "Noto Sans KR";
-  font-size: 15px;
+  font-size: 1rem;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
-  margin-right: 22px;
+  margin-right: 1.8vw;
   display: inline-block;
 `;
 
 const Content = styled.div`
   color: black;
   font-family: "Noto Sans KR";
-  font-size: 15px;
+  font-size: 1rem;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
