@@ -322,6 +322,7 @@ const FestivalListPage = () => {
     const fetchData = async () => {
       //로그인이 안된 경우 (토큰, params 모두 null)
       try {
+
         // 모든 쿼리 매개변수가 null인 경우
         const response = await axios.get('http://localhost:9000/festival-list', {
           params: {
