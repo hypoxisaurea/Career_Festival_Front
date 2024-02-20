@@ -36,17 +36,15 @@ const ContactContent = styled.div`
   display: inline-block;
 `;
 
-const Contact = () => {
+const Contact = ({ managerName, managerEmail }) => {
   return (
     <ContactContainer>
       <ContactTitle>담당자</ContactTitle>
-      <ContactContent>뉴럴웍스랩</ContactContent>
+      <ContactContent>{managerName}</ContactContent>
       <EmailContainer>
         <ContactTitle>이메일</ContactTitle>
-        <ContactContent>camp@neuralworks.io</ContactContent>
+        <ContactContent>{managerEmail}</ContactContent>
       </EmailContainer>
-      <ContactTitle>연락처</ContactTitle>
-      <ContactContent>01012341234</ContactContent>
     </ContactContainer>
   );
 };
